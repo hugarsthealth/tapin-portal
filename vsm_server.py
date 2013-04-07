@@ -2,6 +2,7 @@
 
 import os
 from flask import Flask, request, redirect, url_for
+import json
 
 app = Flask(__name__)
 
@@ -28,6 +29,18 @@ def add_info():
         </form>
     '''
     
+@app.route("/new", methods=['GET','POST'])
+def new():
+    print(json.loads(request.data))
+    
+    if request.json:
+        mydata = request.json 
+        
+        return "Thanks. Your name is %s" % mydata.get("firstName")
+ 
+    else:
+        return "no json received"
+
 @app.route('/submitted')
 def submitted():
     f = open("person.csv", 'r')
@@ -36,4 +49,4 @@ def submitted():
     return full_name
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
