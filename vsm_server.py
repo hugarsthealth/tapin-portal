@@ -33,15 +33,16 @@ def add_info():
 
 @app.route("/new", methods=['GET', 'POST'])
 def new():
-    print(json.loads(request.data))
+    return "MIKE U TOUCHED ME"
+    # print(json.loads(request.data))
 
-    if request.json:
-        mydata = request.json
+    # if request.json:
+    #     mydata = request.json
 
-        return "Thanks. Your name is %s" % mydata.get("firstName")
+    #     return "Thanks. Your name is %s" % mydata.get("firstName")
 
-    else:
-        return "no json received"
+    # else:
+    #     return "no json received"
 
 
 @app.route('/submitted')
