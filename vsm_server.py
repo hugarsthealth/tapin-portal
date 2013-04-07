@@ -34,7 +34,7 @@ def add_info():
 @app.route("/new", methods=['GET', 'POST'])
 def new():
     # return "MIKE U TOUCHED ME"
-    return request.json
+    return request.data
     # print(json.loads(request.data))
 
     # if request.json:
