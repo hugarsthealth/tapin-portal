@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 from flask import Flask, request, redirect, url_for
-import json
 
 app = Flask(__name__)
 
@@ -22,8 +21,9 @@ def add_info():
         f.close()
 
         return redirect(url_for('submitted'))
+
     return '''
-        <form action="" method="post">
+        <form action="/new" method="post">
             <p><input type=text name=first_name>
             <p><input type=text name=last_name>
             <p><input type=submit value=Submit>
@@ -31,19 +31,9 @@ def add_info():
     '''
 
 
-@app.route("/new", methods=['GET', 'POST'])
+@app.route("/new")
 def new():
-    # return "MIKE U TOUCHED ME"
     return request.data
-    # print(json.loads(request.data))
-
-    # if request.json:
-    #     mydata = request.json
-
-    #     return "Thanks. Your name is %s" % mydata.get("firstName")
-
-    # else:
-    #     return "no json received"
 
 
 @app.route('/submitted')
