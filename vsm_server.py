@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 
-import os
 from flask import Flask, request, redirect, url_for
 import json
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def hello():
     return 'Hello World!'
+
 
 @app.route('/add_info', methods=['GET', 'POST'])
 def add_info():
@@ -28,18 +29,20 @@ def add_info():
             <p><input type=submit value=Submit>
         </form>
     '''
-    
-@app.route("/new", methods=['GET','POST'])
+
+
+@app.route("/new", methods=['GET', 'POST'])
 def new():
     print(json.loads(request.data))
-    
+
     if request.json:
-        mydata = request.json 
-        
+        mydata = request.json
+
         return "Thanks. Your name is %s" % mydata.get("firstName")
- 
+
     else:
         return "no json received"
+
 
 @app.route('/submitted')
 def submitted():
