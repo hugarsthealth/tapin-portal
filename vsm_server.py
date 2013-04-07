@@ -14,6 +14,11 @@ def add_info():
     if request.method == 'POST':
         first_name = request.form['first_name']
         last_name = request.form['last_name']
+
+        f = open("person.csv", 'a')
+        f.write(first_name + " " + last_name)
+        f.close()
+
         return redirect(url_for('submitted'))
     return '''
         <form action="" method="post">
@@ -25,7 +30,10 @@ def add_info():
     
 @app.route('/submitted')
 def submitted():
-    return "Submitted"
+    f = open("person.csv", 'r')
+    full_name = f.readline()
+    f.close()
+    return full_name
 
 if __name__ == '__main__':
     app.run()
