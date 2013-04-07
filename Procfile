@@ -1,1 +1,1 @@
-web: python vsm_server.py
+web: gunicorn vsm_server:app
