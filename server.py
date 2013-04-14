@@ -16,14 +16,14 @@ def patient(patient_id):
     return jsonify(data.get_patient(patient_id))
 
 
-@app.route('/patients/<int:patient_id>/vitalinfo')
+@app.route('/patients/<int:patient_id>/vitalinfos')
 def vital_infos(patient_id):
     return jsonify(data.get_vital_infos(patient_id))
 
 
-@app.route('/patients/<int:patient_id>/vitalinfo/<int:vitalinfo_id>', methods=['GET', 'POST'])
+@app.route('/patients/<int:patient_id>/vitalinfos/<int:vitalinfo_id>', methods=['GET', 'POST'])
 def vital_info(patient_id, vitalinfo_id):
-    return jsonify(data.get_vital_info(vitalinfo_id))
+    return jsonify(data.get_vital_info(patient_id, vitalinfo_id))
 
 
 if __name__ == '__main__':
