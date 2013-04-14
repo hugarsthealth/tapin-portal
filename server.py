@@ -6,7 +6,7 @@ import data
 app = Flask(__name__)
 
 
-@app.route('/patients')
+@app.route('/patients', methods=['GET', 'POST'])
 def patients():
     if request.method == "GET":
         return jsonify(data.get_patients())
@@ -16,7 +16,7 @@ def patients():
         return request.data
 
 
-@app.route('/patients/<int:patient_id>', methods=['GET', 'POST'])
+@app.route('/patients/<int:patient_id>', methods=['GET', 'PUT', 'DELETE'])
 def patient(patient_id):
     if request.method == "GET":
         return jsonify(data.get_patient(patient_id))
@@ -28,7 +28,7 @@ def patient(patient_id):
         data.delete_patient(patient_id)
 
 
-@app.route('/patients/<int:patient_id>/vitalinfos')
+@app.route('/patients/<int:patient_id>/vitalinfos', methods=['GET', 'POST'])
 def vital_infos(patient_id):
     if request.method == "GET":
         return jsonify(data.get_vital_infos(patient_id))
@@ -37,7 +37,7 @@ def vital_infos(patient_id):
         data.store_vital_info(patient_id, request.json)
 
 
-@app.route('/patients/<int:patient_id>/vitalinfos/<int:vitalinfo_id>', methods=['GET', 'POST'])
+@app.route('/patients/<int:patient_id>/vitalinfos/<int:vitalinfo_id>', methods=['GET', 'PUT', 'DELETE'])
 def vital_info(patient_id, vitalinfo_id):
     if request.method == "GET":
         return jsonify(data.get_vital_info(patient_id, vitalinfo_id))
