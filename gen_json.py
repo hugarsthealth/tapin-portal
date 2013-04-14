@@ -53,8 +53,8 @@ smoker = rand_bool()
 drinker = rand_bool()
 family_hist = list_of_rand_str(6, 30)
 overseas_recently = rand_lower_str(20)
-overseas_destinations = rand_lower_str(20)
-medical_conditions = rand_lower_str(20)
+overseas_destinations = list_of_rand_str(10, 12)
+medical_conditions = list_of_rand_str(6, 20)
 allergies = list_of_rand_str(4, 10)
 
 patient = {
