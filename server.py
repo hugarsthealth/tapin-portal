@@ -18,7 +18,7 @@ def patient(patient_id):
 
 @app.route('/patients/<int:patient_id>/vitalinfo')
 def vital_infos(patient_id):
-    return jsonify(data.get_vital_infos())
+    return jsonify(data.get_vital_infos(patient_id))
 
 
 @app.route('/patients/<int:patient_id>/vitalinfo/<int:vitalinfo_id>', methods=['GET', 'POST'])
