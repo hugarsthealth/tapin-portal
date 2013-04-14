@@ -12,7 +12,7 @@ def patients():
         return jsonify(data.get_patients())
 
     elif request.method == "POST":
-        data.store_patient(request.json)
+        data.store_patient(request.data)
 
 
 @app.route('/patients/<int:patient_id>', methods=['GET', 'POST'])
