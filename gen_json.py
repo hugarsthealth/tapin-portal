@@ -4,6 +4,12 @@ from random import choice, randrange, getrandbits
 import json
 import string
 
+def rand_date():
+    day = str(randrange(1, 29))
+    month = str(randrange(1, 12))
+    year = str(randrange(1800, 2012))
+    return '/'.join([year, month, day])
+
 def rand_lower_str(length):
     return ''.join(choice(string.lowercase) for i in range(length))
 
@@ -32,6 +38,9 @@ def list_of_rand_str(list_length, str_length):
         lines.append(rand_lower_str(str_length))
     return lines
 
+
+# PATIENT INFO
+
 patient_id = randrange(0, 100000)
 firstname = rand_name(6)
 lastname = rand_name(8)
@@ -40,7 +49,10 @@ occupation = rand_name(12)
 citizen_resident = rand_bool()
 contact_num = rand_digit_str(10)
 gender = choice(['Male', 'Female'])
-dob = rand_lower_str(4) #TODO
+dob = rand_date()
+
+
+# VITAL STATS INFO
 
 vital_info_id = randrange(0, 10000000)
 vital_info_url = "/patients/%s/vitalinfo" % patient_id
@@ -52,7 +64,7 @@ blood_type = choice(['A', 'B', 'AB', 'O'])
 smoker = rand_bool()
 drinker = rand_bool()
 family_hist = list_of_rand_str(6, 30)
-overseas_recently = rand_lower_str(20)
+overseas_recently = rand_bool()
 overseas_destinations = list_of_rand_str(10, 12)
 medical_conditions = list_of_rand_str(6, 20)
 allergies = list_of_rand_str(4, 10)
