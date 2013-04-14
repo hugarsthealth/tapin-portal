@@ -1,1 +1,1 @@
-web: gunicorn vsm_server:app
+web: gunicorn server:app
