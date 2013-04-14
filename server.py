@@ -13,6 +13,7 @@ def patients():
 
     elif request.method == "POST":
         data.store_patient(request.data)
+        return request.data
 
 
 @app.route('/patients/<int:patient_id>', methods=['GET', 'POST'])
