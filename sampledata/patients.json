@@ -1,0 +1,36 @@
+{
+  "patients": [
+    {
+      "patient_id": 1,
+      "firstname": "Onmmnxzmxs",
+      "lastname": "Gwygkoqonm",
+      "nhi": "DF6F96",
+      "occupation": "Avtusadbelpwidusgrlx",
+      "citizen_resident": true,
+      "contact_num": 930423,
+      "gender": "Female",
+      "dob": "ntwodefjliwtanrlldke",
+      "vitalinfo_url": "/patients/1/vitalinfos",
+      "vitalinfo_ids": [
+        10,
+        11
+      ]
+    },
+    {
+      "patient_id": 2,
+      "firstname": "asd",
+      "lastname": "asddasdasd",
+      "nhi": "AAA111",
+      "occupation": "worker",
+      "citizen_resident": false,
+      "contact_num": 4445555,
+      "gender": "Female",
+      "dob": "26/01/1992",
+      "vitalinfo_url": "/patients/2/vitalinfos",
+      "vitalinfo_ids": [
+        12,
+        13
+      ]
+    }
+  ]
+}
