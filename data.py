@@ -11,16 +11,16 @@ cur = conn.cursor()
 
 
 def get_patients():
-    return "HI"
+    return {"hi": 1}
 
 
 def get_patient(patient_id):
-    return "HI"
+    return {"hi": 1}
 
 
 def get_vital_infos():
-    return "HI"
+    return {"hi": 1}
 
 
 def get_vital_info(vitalinfo_id):
-    return "HI"
+    return {"hi": 1}
