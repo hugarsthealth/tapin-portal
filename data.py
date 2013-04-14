@@ -1,7 +1,7 @@
-import os
 import json
-import urlparse
-import psycopg2
+# import os
+# import urlparse
+# import psycopg2
 
 
 # urlparse.uses_netloc.append('postgres')
@@ -27,6 +27,28 @@ def get_patient(patient_id):
         return {"Error 404": "Patient not found"}
 
 
+def store_patient(patient_data):
+    with open("sampledata/patients.json", "w") as f:
+        patients = json.loads(f.read()).get('patients', [])
+        patient = json.loads(patient_data.get('patient'))
+
+        patient["patient_id"] = (max(patients, key=lambda x: x['id'])["patient_id"] + 1)
+        patient["vitalinfo_url"] = "/patients/{}/vitalinfos".format(patient["patient_id"])
+        patient["vitalinfo_ids"] = []
+
+        patients.append(patient)
+
+        f.write(json.dumps({"patients": patients}, indent=2))
+
+
+def delete_patient(patient_id):
+    pass
+
+
+def update_patient(patient_id, patient_data):
+    pass
+
+
 def get_vital_infos(patient_id):
     with open("sampledata/vitalinfos.json") as f:
         vitalinfos = json.loads(f.read()).get('vitalinfos', [])
@@ -43,3 +65,15 @@ def get_vital_info(patient_id, vitalinfo_id):
                 return {"vitalinfo": vitalinfo}
 
         return {"Error 404": "Vital info not found"}
+
+
+def store_vital_info(patient_id, vitalinfo_data):
+    pass
+
+
+def delete_vital_info(vitalinfo_id):
+    pass
+
+
+def update_vital_info(vitalinfo_id, vitalinfo_data):
+    pass
