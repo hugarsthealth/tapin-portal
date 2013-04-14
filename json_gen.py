@@ -1,11 +1,17 @@
 #!/usr/bin/env python
 
-import json
 from random import choice, randrange, getrandbits
+import json
 import string
 
 def rand_lower_str(length):
     return ''.join(choice(string.lowercase) for i in range(length))
+
+def rand_name(length):
+    return rand_lower_str(length).capitalize()
+
+def rand_digit_str(length):
+    return ''.join(choice(string.digits) for i in range(length))
 
 def rand_nhi():
     letters = ''.join(choice(string.uppercase) for i in range(3))
@@ -20,30 +26,36 @@ def write_to_file(filename, data):
     f.writelines(data)
     f.close
 
+def list_of_rand_str(list_length, str_length):
+    lines = []
+    for line in range(list_length):
+        lines.append(rand_lower_str(str_length))
+    return lines
+
 patient_id = randrange(0, 100000)
-firstname = rand_lower_str(10).capitalize()
-lastname = rand_lower_str(10).capitalize()
+firstname = rand_name(6)
+lastname = rand_name(8)
 nhi = rand_nhi()
-occupation = rand_lower_str(20).capitalize()
+occupation = rand_name(12)
 citizen_resident = rand_bool()
-contact_num = randrange(100000, 999999)
+contact_num = rand_digit_str(10)
 gender = choice(['Male', 'Female'])
-dob = rand_lower_str(20)
+dob = rand_lower_str(4) #TODO
 
 vital_info_id = randrange(0, 10000000)
 vital_info_url = "/patients/%s/vitalinfo" % patient_id
-weight_value = rand_lower_str(20)
+weight_value = randrange(0, 200)
 weight_unit = choice(['kg', 'lb'])
-height_value = rand_lower_str(20)
+height_value = randrange(0, 200)
 height_unit = choice(['cm'])
-blood_type = rand_lower_str(20)
-smoker = rand_lower_str(20)
-drinker = rand_lower_str(20)
-family_hist = rand_lower_str(20)
+blood_type = choice(['A', 'B', 'AB', 'O'])
+smoker = rand_bool()
+drinker = rand_bool()
+family_hist = list_of_rand_str(6, 30)
 overseas_recently = rand_lower_str(20)
 overseas_destinations = rand_lower_str(20)
 medical_conditions = rand_lower_str(20)
-allergies = rand_lower_str(20)
+allergies = list_of_rand_str(4, 10)
 
 patient = {
     'patient_id': patient_id,
