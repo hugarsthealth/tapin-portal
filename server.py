@@ -12,7 +12,7 @@ def patients():
         return jsonify(data.get_patients())
 
     elif request.method == "POST":
-        data.store_patient(request.data)
+        # data.store_patient(request.data)
         return request.data
 
 
