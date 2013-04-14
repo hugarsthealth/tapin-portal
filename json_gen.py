@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import json
-from random import choice, randrange
+from random import choice, randrange, getrandbits
 import string
 
 def rand_lower_str(length):
@@ -13,7 +13,7 @@ def rand_nhi():
     return letters + digits
 
 def rand_bool():
-    return choice(['Yes', 'No'])
+    return bool(getrandbits(1))
 
 def write_to_file(filename, data):
     f = open(filename, 'w')
@@ -25,7 +25,7 @@ firstname = rand_lower_str(10).capitalize()
 lastname = rand_lower_str(10).capitalize()
 nhi = rand_nhi()
 occupation = rand_lower_str(20).capitalize()
-citizen_resident = 'Yes'
+citizen_resident = rand_bool()
 contact_num = randrange(100000, 999999)
 gender = choice(['Male', 'Female'])
 dob = rand_lower_str(20)
