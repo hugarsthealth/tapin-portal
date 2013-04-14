@@ -13,7 +13,7 @@ conn = psycopg2.connect(dburl)
 
 @app.route('/')
 def hello():
-    return 'Hello World!'
+    return dburl + conn
 
 
 @app.route('/patients')
