@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import json
 import string
 
-with open('data/dictionary.txt') as f:
+with open('models/dictionary.txt') as f:
     words = [word.strip() for word in f.read().split('\n')]
 
 

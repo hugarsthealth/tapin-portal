@@ -3,7 +3,7 @@ import os
 import urlparse
 import psycopg2
 
-from data.patientstore import PostgresPatientStore, SQLitePatientStore
+from stores.patientstore import PostgresPatientStore, SQLitePatientStore
 from flask import Flask
 app = Flask(__name__)
 

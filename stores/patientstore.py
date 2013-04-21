@@ -1,5 +1,6 @@
 import sqlite3
-import sampledata
+
+from models import sampledata
 
 
 class SQLitePatientStore(object):
@@ -27,16 +28,16 @@ class SQLitePatientStore(object):
     def _tables_exist(self):
         return self.conn.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='patients'").fetchone() is not None
 
+    def _create_tables(self):
+        with open('schema.sql') as f:
+            self.conn.executescript(f.read())
+            self.conn.commit()
+
     def _populate_tables(self, patients, vitalinfos):
         for p in patients:
             self.store_patient(p)
         for v in vitalinfos:
             self.store_vital_info(v['patient_id'], v)
-
-    def _create_tables(self):
-        with open('schema.sql') as f:
-            self.conn.executescript(f.read())
-            self.conn.commit()
 
     def _patient_row_to_obj(self, row):
         return {
@@ -49,24 +50,16 @@ class SQLitePatientStore(object):
             "contact_num": row["contact_num"],
             "gender": row["gender"],
             "patient_id": row["patient_id"],
-            "dob": row["dob"],
-            "last_check_in": None,
-            "vital_info_ids": []
+            "dob": row["dob"]
         }
 
-    def _patient_vital_ids(self, patient_id):
-        return [r[0] for r in self.conn.execute("SELECT vital_info_id FROM vitalinfos WHERE patient_id=?", (patient_id,))]
-
     def get_patients(self):
-        patients = [self._patient_row_to_obj(r) for r in self.conn.execute("SELECT * FROM patients")]
-
-        for p in patients:
-            p['vital_info_ids'] = self._patient_vital_ids(p['patient_id'])
-
-        return {"patients": patients}
+        return {"patients": [self._patient_row_to_obj(r) for r in self.conn.execute("SELECT * FROM patients")]}
 
     def get_patient(self, patient_id):
-        pass
+        patient = self.conn.execute("SELECT * FROM patients WHERE patient_id=?", (patient_id,)).fetchone()
+
+        return {"patient": self._patient_row_to_obj(patient) if patient is not None else {}}
 
     def store_patient(self, patient_data):
         self.conn.execute("INSERT INTO patients VALUES (?,?,?,?,?,?,?,?,?)",
