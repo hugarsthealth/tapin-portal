@@ -5,17 +5,24 @@ from datetime import datetime, timedelta
 import json
 import string
 
+with open('dictionary.txt') as f:
+    words = [word.strip() for word in f.read().split('\n')]
+
 
 def rand_date(from_days_ago=2000):
     return datetime.now() - timedelta(randint(0, from_days_ago))
 
 
-def rand_lower_str(length):
-    return ''.join(choice(string.lowercase) for i in range(length))
+def rand_word():
+    return choice(words).lower()
 
 
-def rand_name(length):
-    return rand_lower_str(length).capitalize()
+def rand_sentence(length):
+    return ' '.join([choice(words) for x in xrange(length)]).capitalize()
+
+
+def rand_name():
+    return rand_word().capitalize()
 
 
 def rand_digit_str(length):
@@ -32,15 +39,15 @@ def rand_bool():
     return bool(getrandbits(1))
 
 
-def list_of_rand_str(list_length, str_length):
-    return [rand_lower_str(str_length) for x in xrange(list_length)]
+def list_of_rand_sentences(list_length, sentence_length):
+    return [rand_sentence(sentence_length) for x in xrange(list_length)]
 
 
 def generate_patient(patient_id):
-    firstname = rand_name(6)
-    lastname = rand_name(8)
+    firstname = rand_name()
+    lastname = rand_name()
     nhi = rand_nhi()
-    occupation = rand_name(12)
+    occupation = rand_name()
     citizen_resident = rand_bool()
     contact_num = rand_digit_str(10)
     gender = choice(['Male', 'Female'])
@@ -74,11 +81,11 @@ def generate_vital_info(patient_id, vital_info_id):
     blood_type = choice(['A', 'B', 'AB', 'O'])
     smoker = rand_bool()
     drinker = rand_bool()
-    family_hist = list_of_rand_str(6, 30)
+    family_hist = list_of_rand_sentences(6, 30)
     overseas_recently = rand_bool()
-    overseas_destinations = list_of_rand_str(10, 12)
-    medical_conditions = list_of_rand_str(6, 20)
-    allergies = list_of_rand_str(4, 10)
+    overseas_destinations = list_of_rand_sentences(10, 12)
+    medical_conditions = list_of_rand_sentences(6, 20)
+    allergies = list_of_rand_sentences(4, 10)
 
     return {
         'vital_info_id': vital_info_id,
