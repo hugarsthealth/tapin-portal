@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 
-from random import choice, randrange, getrandbits
+from random import choice, randrange, getrandbits, randint
+from datetime import datetime, timedelta
 import json
 import string
 
 
-def rand_date():
-    day = str(randrange(1, 29))
-    month = str(randrange(1, 12))
-    year = str(randrange(1800, 2012))
-    return '/'.join([year, month, day])
+def rand_date(from_days_ago=2000):
+    return datetime.now() - timedelta(randint(0, from_days_ago))
 
 
 def rand_lower_str(length):
@@ -34,12 +32,6 @@ def rand_bool():
     return bool(getrandbits(1))
 
 
-def write_to_file(filename, data):
-    f = open(filename, 'w')
-    f.writelines(data)
-    f.close
-
-
 def list_of_rand_str(list_length, str_length):
     return [rand_lower_str(str_length) for x in xrange(list_length)]
 
@@ -52,7 +44,8 @@ def generate_patient(patient_id):
     citizen_resident = rand_bool()
     contact_num = rand_digit_str(10)
     gender = choice(['Male', 'Female'])
-    dob = rand_date()
+    dob = rand_date(30000)
+    last_check_in = None
     vital_info_url = "/patients/%s/vitalinfo" % patient_id
     vital_info_ids = []
 
@@ -66,12 +59,14 @@ def generate_patient(patient_id):
         'contact_num': contact_num,
         'gender': gender,
         'dob': dob,
+        'last_check_in': last_check_in,
         'vital_info_url': vital_info_url,
         'vital_info_ids': vital_info_ids
     }
 
 
 def generate_vital_info(patient_id, vital_info_id):
+    check_in_time = rand_date()
     weight_value = randrange(0, 200)
     weight_unit = choice(['kg', 'lb'])
     height_value = randrange(0, 200)
@@ -87,6 +82,7 @@ def generate_vital_info(patient_id, vital_info_id):
 
     return {
         'vital_info_id': vital_info_id,
+        'check_in_time': check_in_time,
         'patient_id': patient_id,
         'weight': {'value': weight_value, 'unit': weight_unit},
         'height': {'value': height_value, 'unit': height_unit},
@@ -103,7 +99,7 @@ def generate_vital_info(patient_id, vital_info_id):
 def main():
     NUM_PATIENTS = 10
     MIN_VITAL_INFOS = 1
-    MAX_VITAL_INFOS = 20
+    MAX_VITAL_INFOS = 5
 
     vitalinfos = []
     patients = []
@@ -117,12 +113,19 @@ def main():
             vitalinfos.append(vitalinfo)
 
             patient['vital_info_ids'].append(vitalinfo['vital_info_id'])
+            lci = patient['last_check_in']
+            vid = vitalinfo['check_in_time']
+
+            lci = vid if lci is None or vid > lci else lci
+            patient['last_check_in'] = lci
+
+    dthandler = lambda obj: obj.isoformat() if isinstance(obj, datetime) else None
 
     with open('patients.json', 'w') as f:
-        f.write(json.dumps({'patients': patients}, indent=4))
+        f.write(json.dumps({'patients': patients}, indent=2, default=dthandler))
 
     with open('vitalinfos.json', 'w') as f:
-        f.write(json.dumps({'vitalinfos': vitalinfos}, indent=4))
+        f.write(json.dumps({'vitalinfos': vitalinfos}, indent=2, default=dthandler))
 
 if __name__ == '__main__':
     main()
