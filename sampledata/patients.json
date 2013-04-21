@@ -1,36 +1,233 @@
 {
-  "patients": [
-    {
-      "patient_id": 1,
-      "firstname": "Onmmnxzmxs",
-      "lastname": "Gwygkoqonm",
-      "nhi": "DF6F96",
-      "occupation": "Avtusadbelpwidusgrlx",
-      "citizen_resident": true,
-      "contact_num": 930423,
-      "gender": "Female",
-      "dob": "ntwodefjliwtanrlldke",
-      "vitalinfo_url": "/patients/1/vitalinfos",
-      "vitalinfo_ids": [
-        10,
-        11
-      ]
-    },
-    {
-      "patient_id": 2,
-      "firstname": "asd",
-      "lastname": "asddasdasd",
-      "nhi": "AAA111",
-      "occupation": "worker",
-      "citizen_resident": false,
-      "contact_num": 4445555,
-      "gender": "Female",
-      "dob": "26/01/1992",
-      "vitalinfo_url": "/patients/2/vitalinfos",
-      "vitalinfo_ids": [
-        12,
-        13
-      ]
-    }
-  ]
+    "patients": [
+        {
+            "vital_info_ids": [
+                0, 
+                1, 
+                2, 
+                3, 
+                4, 
+                5, 
+                6, 
+                7, 
+                8, 
+                9, 
+                10, 
+                11, 
+                12, 
+                13, 
+                14, 
+                15, 
+                16
+            ], 
+            "firstname": "Dlohpo", 
+            "lastname": "Bxjhetrn", 
+            "nhi": "GUA624", 
+            "vital_info_url": "/patients/0/vitalinfo", 
+            "occupation": "Gotdbyriexrk", 
+            "citizen_resident": true, 
+            "contact_num": "2352794395", 
+            "dob": "1849/10/15", 
+            "gender": "Female", 
+            "patient_id": 0
+        }, 
+        {
+            "vital_info_ids": [
+                0, 
+                1, 
+                2, 
+                3, 
+                4, 
+                5, 
+                6, 
+                7, 
+                8
+            ], 
+            "firstname": "Xzjlwb", 
+            "lastname": "Faawkvsv", 
+            "nhi": "PMI427", 
+            "vital_info_url": "/patients/1/vitalinfo", 
+            "occupation": "Bxqhvndieztg", 
+            "citizen_resident": false, 
+            "contact_num": "9560402829", 
+            "dob": "1913/1/14", 
+            "gender": "Female", 
+            "patient_id": 1
+        }, 
+        {
+            "vital_info_ids": [
+                0, 
+                1, 
+                2, 
+                3, 
+                4, 
+                5, 
+                6, 
+                7, 
+                8
+            ], 
+            "firstname": "Zgbmqr", 
+            "lastname": "Gzesmguu", 
+            "nhi": "DMA674", 
+            "vital_info_url": "/patients/2/vitalinfo", 
+            "occupation": "Tglcqbefgyvb", 
+            "citizen_resident": false, 
+            "contact_num": "2873657717", 
+            "dob": "1969/11/20", 
+            "gender": "Male", 
+            "patient_id": 2
+        }, 
+        {
+            "vital_info_ids": [
+                0, 
+                1, 
+                2, 
+                3, 
+                4, 
+                5, 
+                6, 
+                7, 
+                8, 
+                9, 
+                10, 
+                11, 
+                12, 
+                13
+            ], 
+            "firstname": "Jmqouk", 
+            "lastname": "Grmtvbfx", 
+            "nhi": "HLW044", 
+            "vital_info_url": "/patients/3/vitalinfo", 
+            "occupation": "Zwrpbephckor", 
+            "citizen_resident": true, 
+            "contact_num": "8804773858", 
+            "dob": "1918/6/3", 
+            "gender": "Female", 
+            "patient_id": 3
+        }, 
+        {
+            "vital_info_ids": [
+                0, 
+                1, 
+                2, 
+                3, 
+                4, 
+                5, 
+                6, 
+                7, 
+                8, 
+                9, 
+                10, 
+                11, 
+                12, 
+                13, 
+                14, 
+                15
+            ], 
+            "firstname": "Kjpclr", 
+            "lastname": "Jqqyinfj", 
+            "nhi": "GZJ900", 
+            "vital_info_url": "/patients/4/vitalinfo", 
+            "occupation": "Qlpundipwrvr", 
+            "citizen_resident": true, 
+            "contact_num": "7835533347", 
+            "dob": "1901/5/15", 
+            "gender": "Female", 
+            "patient_id": 4
+        }, 
+        {
+            "vital_info_ids": [
+                0, 
+                1, 
+                2, 
+                3, 
+                4, 
+                5, 
+                6, 
+                7, 
+                8
+            ], 
+            "firstname": "Xngwyi", 
+            "lastname": "Pfpbhgxr", 
+            "nhi": "IOR966", 
+            "vital_info_url": "/patients/5/vitalinfo", 
+            "occupation": "Yyikigpwulxj", 
+            "citizen_resident": false, 
+            "contact_num": "2706285685", 
+            "dob": "1827/10/19", 
+            "gender": "Female", 
+            "patient_id": 5
+        }, 
+        {
+            "vital_info_ids": [
+                0, 
+                1, 
+                2, 
+                3, 
+                4, 
+                5, 
+                6, 
+                7
+            ], 
+            "firstname": "Tjdwet", 
+            "lastname": "Vamldjak", 
+            "nhi": "SFD915", 
+            "vital_info_url": "/patients/6/vitalinfo", 
+            "occupation": "Efjfkfvxerse", 
+            "citizen_resident": false, 
+            "contact_num": "3792974672", 
+            "dob": "1892/7/20", 
+            "gender": "Male", 
+            "patient_id": 6
+        }, 
+        {
+            "vital_info_ids": [
+                0
+            ], 
+            "firstname": "Peqtlv", 
+            "lastname": "Vtwlbdep", 
+            "nhi": "GIK505", 
+            "vital_info_url": "/patients/7/vitalinfo", 
+            "occupation": "Fkjozoyuuqzd", 
+            "citizen_resident": true, 
+            "contact_num": "3672351421", 
+            "dob": "1869/10/21", 
+            "gender": "Female", 
+            "patient_id": 7
+        }, 
+        {
+            "vital_info_ids": [
+                0, 
+                1, 
+                2
+            ], 
+            "firstname": "Uxlvlj", 
+            "lastname": "Nbuopurp", 
+            "nhi": "OTL524", 
+            "vital_info_url": "/patients/8/vitalinfo", 
+            "occupation": "Stfjqnyiudif", 
+            "citizen_resident": false, 
+            "contact_num": "6134862892", 
+            "dob": "1865/2/2", 
+            "gender": "Female", 
+            "patient_id": 8
+        }, 
+        {
+            "vital_info_ids": [
+                0, 
+                1, 
+                2
+            ], 
+            "firstname": "Xiukvq", 
+            "lastname": "Ywjgeign", 
+            "nhi": "MWI521", 
+            "vital_info_url": "/patients/9/vitalinfo", 
+            "occupation": "Lvksbuajltib", 
+            "citizen_resident": false, 
+            "contact_num": "1012440619", 
+            "dob": "1912/5/2", 
+            "gender": "Female", 
+            "patient_id": 9
+        }
+    ]
 }
