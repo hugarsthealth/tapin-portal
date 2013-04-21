@@ -28,17 +28,7 @@ def get_patient(patient_id):
 
 
 def store_patient(patient_data):
-    with open("sampledata/patients.json", "w") as f:
-        patients = json.loads(f.read()).get('patients', [])
-        patient = json.loads(patient_data.get('patient'))
-
-        patient["patient_id"] = (max(patients, key=lambda x: x['id'])["patient_id"] + 1)
-        patient["vitalinfo_url"] = "/patients/{}/vitalinfos".format(patient["patient_id"])
-        patient["vitalinfo_ids"] = []
-
-        patients.append(patient)
-
-        f.write(json.dumps({"patients": patients}, indent=2))
+    pass
 
 
 def delete_patient(patient_id):
@@ -56,24 +46,24 @@ def get_vital_infos(patient_id):
         return {"vitalinfos": [vi for vi in vitalinfos if vi.get('patient_id') == patient_id]}
 
 
-def get_vital_info(patient_id, vitalinfo_id):
+def get_vital_info(patient_id, vital_info_id):
     with open("sampledata/vitalinfos.json") as f:
         vitalinfos = json.loads(f.read()).get('vitalinfos', [])
 
         for vitalinfo in vitalinfos:
-            if vitalinfo.get('vitalinfo_id') == vitalinfo_id and vitalinfo.get('patient_id') == patient_id:
+            if vitalinfo.get('vital_info_id') == vital_info_id and vitalinfo.get('patient_id') == patient_id:
                 return {"vitalinfo": vitalinfo}
 
         return {"Error 404": "Vital info not found"}
 
 
-def store_vital_info(patient_id, vitalinfo_data):
+def store_vital_info(patient_id, vital_info_data):
     pass
 
 
-def delete_vital_info(vitalinfo_id):
+def delete_vital_info(vital_info_id):
     pass
 
 
-def update_vital_info(vitalinfo_id, vitalinfo_data):
+def update_vital_info(vital_info_id, vital_info_data):
     pass
