@@ -2,957 +2,639 @@
   "vitalinfos": [
     {
       "weight": {
-        "unit": "kg", 
-        "value": 20
+        "unit": "lb", 
+        "value": 82
       }, 
       "family_hist": [
-        "laomyotxyandmosxnoddpvfwxepgnu", 
-        "jkrrwrpjkeqgemvrdgbemkualhzkae", 
-        "awzvpomksmrcdatrxxusredkdixemu", 
-        "dmwhgrciowlgyasahunhjitkatluuh", 
-        "iehzwnhfnjwnkijiycbodxafqgrycm", 
-        "aaktbyqcyxjxzwdlhbbmkdpdiyshdc"
+        "igkanjpdvqzfphptcmfmydosvpnwhr", 
+        "wcnetonmiwhflqxeyjjtvkwvrjscnk", 
+        "lnzbjnulwdvqdvfpnwtbubzpqyhyie", 
+        "ikkemldrelhuitvltxejmnearlcvgp", 
+        "iaxdqwgdexdajczyzeuekqcigmpfrh", 
+        "xvnbksvjidjhtxbvzxlndpnuovplcv"
       ], 
       "height": {
         "unit": "cm", 
-        "value": 21
+        "value": 148
       }, 
-      "check_in_time": "2011-02-07T14:46:35.500000", 
+      "check_in_time": "2012-02-17T14:54:15.641000", 
       "drinker": false, 
       "vital_info_id": 0, 
       "allergies": [
-        "czpstfokub", 
-        "rbfktfbzkn", 
-        "snjeemnqdl", 
-        "vjvkggvipg"
+        "tmszwackbp", 
+        "rrwjxwgksb", 
+        "uuhktmgmuc", 
+        "hoycufwqqg"
+      ], 
+      "smoker": false, 
+      "patient_id": 0, 
+      "overseas": {
+        "recently": true, 
+        "destinations": [
+          "jraztkyoctep", 
+          "qcqhtvfhczna", 
+          "vpwkdzfqkikn", 
+          "cbeyhikomcfm", 
+          "lzshabriaupc", 
+          "libzqrnzbrsz", 
+          "xgisfzdxkaut", 
+          "kiypaeojjcry", 
+          "luztmgvbrtmf", 
+          "jlwymhepnkma"
+        ]
+      }, 
+      "medical_conditions": [
+        "xntedecczdvvzzmwdszm", 
+        "hzjkrxbyzttyryqrvknt", 
+        "klhcknvlpssxwekknfeo", 
+        "lqpqgfxrtrqlejawidel", 
+        "pbodmigssmtkmdiwojue", 
+        "gehtdtcbzsbpzqikfxrh"
+      ], 
+      "blood_type": "A"
+    }, 
+    {
+      "weight": {
+        "unit": "kg", 
+        "value": 35
+      }, 
+      "family_hist": [
+        "owyobkufygzloziikokztguvyywluz", 
+        "hvtgcgjifrkxfwunlkqvdfzqmhiuig", 
+        "lafyjsxgnyuwudhpsrvxiyuszucbyf", 
+        "xwkzhdvwulripsaecfehtkmsmpxrhl", 
+        "ihsnvtttzkakihnwlamyzwsgasjlxh", 
+        "bvwxjywnppnkvsgrubiqsacxbvpcnr"
+      ], 
+      "height": {
+        "unit": "cm", 
+        "value": 141
+      }, 
+      "check_in_time": "2011-08-13T14:54:15.643000", 
+      "drinker": true, 
+      "vital_info_id": 1, 
+      "allergies": [
+        "dftmuzzrbp", 
+        "mpqvhraxcy", 
+        "lagzezsohm", 
+        "komiqlbuap"
       ], 
       "smoker": true, 
       "patient_id": 0, 
       "overseas": {
         "recently": true, 
         "destinations": [
-          "hvaabfziusgd", 
-          "jaxripjerhdh", 
-          "hheunwqoeolh", 
-          "owvhglmjwedg", 
-          "gukvgypotkfv", 
-          "ycnsvcxzydiy", 
-          "jscxlnjibnio", 
-          "pkopennxmxna", 
-          "knhngehpdamk", 
-          "oypijprfhgcf"
+          "lqgaesnokqjw", 
+          "qjpsesqecqzx", 
+          "egbklatrsjbw", 
+          "rbopxfpflifr", 
+          "yqwtkuqghodo", 
+          "gqjjkvfnvlfs", 
+          "kifrjcsptdah", 
+          "nuksnyuqrcdv", 
+          "kbwqifpjllsa", 
+          "mrbfsjguduom"
         ]
       }, 
       "medical_conditions": [
-        "fiaiehnmcxpezqoijeji", 
-        "aulbyrgxunatalypcsov", 
-        "imnygltobnavznhteyna", 
-        "wtqkvffmozsvouujapxc", 
-        "mlfssbyohczcunamfgrd", 
-        "djmvtloxefxowktkzfeb"
+        "pvvughqghhzoujteqalj", 
+        "mhxsiwyfmubspglhxudp", 
+        "ovgtfkikzznkhutuicsq", 
+        "rbusgrdthzgleytdfjdb", 
+        "fzdjnninbnaungqlmhrt", 
+        "thkaabdtjfxnhcnvihlb"
+      ], 
+      "blood_type": "AB"
+    }, 
+    {
+      "weight": {
+        "unit": "kg", 
+        "value": 14
+      }, 
+      "family_hist": [
+        "iacqcndveyplspueqddppeoofmglcc", 
+        "jidrtyorgunokzvoekmohqruusyypr", 
+        "niojaiwtctmvekmzjupzvkucltzdvx", 
+        "odvkmhbanabhpgkapfbshwzgzbeumr", 
+        "akfjxmygdblrixropthhralozyjezh", 
+        "nbltgccplsqlrudtmgzrzzkfshocrt"
+      ], 
+      "height": {
+        "unit": "cm", 
+        "value": 69
+      }, 
+      "check_in_time": "2013-01-20T14:54:15.644000", 
+      "drinker": false, 
+      "vital_info_id": 2, 
+      "allergies": [
+        "krcvgngsta", 
+        "sceivcoqrl", 
+        "nsgmlciwfe", 
+        "sycgdqfidm"
+      ], 
+      "smoker": true, 
+      "patient_id": 0, 
+      "overseas": {
+        "recently": true, 
+        "destinations": [
+          "xbbyqkeddmwh", 
+          "gaebnywusmeo", 
+          "seowvrbjopxs", 
+          "uuwidejblufp", 
+          "gzosryrqrlom", 
+          "tgxzsfhdzqvc", 
+          "uacrcqngvpyp", 
+          "caaivwxgweie", 
+          "ppxowivylfvf", 
+          "eyxoehkutsyx"
+        ]
+      }, 
+      "medical_conditions": [
+        "kzxkufhskxtmjafixusi", 
+        "aypnhlgebbowiqjxxqpt", 
+        "bkkysfodcqkczkdjdeul", 
+        "wrqhieewfirtslfvjdeu", 
+        "jjkisfuhbpkrxeweanuz", 
+        "trrqxubpskebecylzmxg"
       ], 
       "blood_type": "O"
     }, 
     {
       "weight": {
         "unit": "kg", 
-        "value": 82
+        "value": 9
       }, 
       "family_hist": [
-        "oygaltmjkrawytzzitnjmxefsgpatl", 
-        "pynubwipoxwpglwlrqmmgwotbyitaf", 
-        "xdaroaoiysjzitoxhwjfbiiillmxit", 
-        "nzhnyxmtpsvtajtibggdwjobxhhnig", 
-        "twsbadsxxtnyylmgizmkbmgrzzwdcl", 
-        "xahmhdqnbipknkwhmcjobbumazezhn"
+        "ogzbmjdwsybrekjhxougemgxecvvms", 
+        "jribmjocchrtbqydfpbmhxnafdgxme", 
+        "welfvnyeqbcbolnycgndncuafeexrc", 
+        "byxckyvlpdrwfvvaqndddutuaauejo", 
+        "mrbqjwcysbtetmflbmbxoophdzgwpu", 
+        "grabstrbqlkmqpiyhymwvajadvvlmd"
       ], 
       "height": {
         "unit": "cm", 
-        "value": 92
+        "value": 53
       }, 
-      "check_in_time": "2009-08-23T14:46:35.502000", 
+      "check_in_time": "2008-04-29T14:54:15.646000", 
       "drinker": true, 
       "vital_info_id": 0, 
       "allergies": [
-        "axgvxvmxsx", 
-        "sczkplvmcv", 
-        "udlpdbuxpn", 
-        "umsybpfmtd"
+        "xqnzutyzxt", 
+        "horlmerscd", 
+        "mstqckwwzw", 
+        "wbzrqzxcol"
       ], 
       "smoker": false, 
       "patient_id": 1, 
       "overseas": {
         "recently": false, 
         "destinations": [
-          "znpvxxsjcoee", 
-          "bsvgpgjfhfox", 
-          "xmukxnwwjptd", 
-          "vlyxpvcqqcxd", 
-          "iojudialahmk", 
-          "bikclaikzpqe", 
-          "bfhjnyeomdor", 
-          "lcgwsjonzsnk", 
-          "cvxxsgerorqs", 
-          "rdlzrzylecyc"
+          "ssrmguvxtzrp", 
+          "plpaegzdtwnf", 
+          "bikpbzctaojz", 
+          "eiwyevmnaccx", 
+          "tcanfeqruaub", 
+          "mftadcqkmzvv", 
+          "qazevshrznqp", 
+          "mdswmaiouhqj", 
+          "vacegefldtao", 
+          "bpqnjaxcdmfp"
         ]
       }, 
       "medical_conditions": [
-        "pkycoenkztxmbaejguom", 
-        "dvsuzsbkckhbzmswfsep", 
-        "nhovdayenmzqsfsxyqzg", 
-        "sczsonkkuagiaoqzsqmn", 
-        "sxgvnuehiyjsusjwzucj", 
-        "hunzddibmlslzfkykurp"
-      ], 
-      "blood_type": "O"
-    }, 
-    {
-      "weight": {
-        "unit": "lb", 
-        "value": 191
-      }, 
-      "family_hist": [
-        "xkhmlsxwkznkrxvnkonfwmgpwrocun", 
-        "zfmedfnatyusiygvhfwvniyqmikcpa", 
-        "dfhcokjxyoyjjqfkbmqrsvipnhhwco", 
-        "qbngenuqyiikafdjugidbliynzciha", 
-        "eyjjvwkejinoeakmxepnptdfeghxxm", 
-        "jccsmeandnxonnwjtlyuanuhbxpvns"
-      ], 
-      "height": {
-        "unit": "cm", 
-        "value": 1
-      }, 
-      "check_in_time": "2008-05-14T14:46:35.503000", 
-      "drinker": true, 
-      "vital_info_id": 0, 
-      "allergies": [
-        "exrnebsxix", 
-        "asltkmlorw", 
-        "ammoqsiwxr", 
-        "xmwrkishza"
-      ], 
-      "smoker": false, 
-      "patient_id": 2, 
-      "overseas": {
-        "recently": false, 
-        "destinations": [
-          "upetymopwmnv", 
-          "xrsnuxedzumk", 
-          "hrcguqeticws", 
-          "ixonpdwyxktg", 
-          "jmatusrztyxe", 
-          "saijdmbqvucm", 
-          "uakldyxmbofs", 
-          "qhwfjlqnmyku", 
-          "omxthfdvexcy", 
-          "limitokxgonu"
-        ]
-      }, 
-      "medical_conditions": [
-        "muhotunehatbguickxzs", 
-        "puemdapvtmtzipikclux", 
-        "pbnmkcxxrfufmtodilgj", 
-        "gyuwmvhmkwvlzwdllpeh", 
-        "raugvmitaimrstageyqm", 
-        "kuwbphzucmjsfdtpealn"
+        "bgzkihyalcccuhqybcui", 
+        "bljjgqjmklbhmkslegem", 
+        "yenfdhwcnsiyfshuagnw", 
+        "vudhsonvfemdjrkvhjko", 
+        "vgyyqggnlzkaicrioctj", 
+        "zsedyoewmoutzckoqsni"
       ], 
       "blood_type": "AB"
     }, 
     {
       "weight": {
         "unit": "lb", 
-        "value": 54
+        "value": 102
       }, 
       "family_hist": [
-        "zicnafvyqcnbqfiwnhxhkmzymuxfeq", 
-        "mmkungcelygprkdmztqcpyderoxvgz", 
-        "xgwmbaqzdqyehtwoybuaafuqrmrjip", 
-        "qkgvyckuwwuzxrfymkevcblgitnund", 
-        "otsjfhcrfopsutkcirssfaxzeionpu", 
-        "ybtitjnbzczvvqxeedsowqoclhwcau"
+        "hjmqpwsgvdpnymcqqcmbndcurlagto", 
+        "ipnjjsvomehcefoxoxwpqdubsmkmzs", 
+        "tcxpuigegihtfqrlenfcyzrzfsgaqg", 
+        "wgaqvmfvnrfbiiqdfjptqrviekulqw", 
+        "mkwxztsuokewzirkjzsdrikqikzqru", 
+        "ukqpjulgdjtqbqolfksmbiwzqkeybd"
       ], 
       "height": {
         "unit": "cm", 
-        "value": 1
+        "value": 156
       }, 
-      "check_in_time": "2010-12-23T14:46:35.505000", 
+      "check_in_time": "2008-01-17T14:54:15.647000", 
       "drinker": false, 
-      "vital_info_id": 1, 
+      "vital_info_id": 0, 
       "allergies": [
-        "whexkptzcy", 
-        "idtkdtjmwp", 
-        "gqjfwehfxq", 
-        "wcdpweogme"
+        "lxfubwebtz", 
+        "kkcjcqoirj", 
+        "hfjdsoalch", 
+        "axxjoaemeq"
       ], 
       "smoker": false, 
       "patient_id": 2, 
       "overseas": {
         "recently": true, 
         "destinations": [
-          "ybtivgsnldgl", 
-          "qsktlfsxhrae", 
-          "xjjofgmytcxw", 
-          "fedarxpofhqu", 
-          "evdpkdkwyyid", 
-          "eafdfrcpeebn", 
-          "tcybjgujzfot", 
-          "kciozcrtzcrv", 
-          "iwrgiurglypv", 
-          "hdhexmxwiwum"
+          "vvlrguqxeivm", 
+          "qgyfvjrbyhut", 
+          "iguikbmuutum", 
+          "ccthsuppvbct", 
+          "ufdkfceithqd", 
+          "etmovzijgbbf", 
+          "gnmwmzsavjkl", 
+          "qvrepeyaowby", 
+          "nilncouwgekk", 
+          "zlvkdqdgdpea"
         ]
       }, 
       "medical_conditions": [
-        "yqkgsbvjnnbluyqdrtdn", 
-        "fbqupswxaamwhzjwgdkb", 
-        "vqxjwnexbelxqjlkkbgc", 
-        "jioofrzzrqxlrjppvgex", 
-        "qynlfwbjbxqcffnkqctc", 
-        "vudcqimukolzvzwybfgd"
+        "wpqiupqvpwezcnyvzhbq", 
+        "qsezftgjchshqzpjunad", 
+        "ytvecaqpezczvbnaxkck", 
+        "fruxemgrghhhienoctfh", 
+        "yyhshwwawzbtoviyfguv", 
+        "tlxsmgepecvupkrhjzcq"
       ], 
-      "blood_type": "A"
+      "blood_type": "AB"
     }, 
     {
       "weight": {
         "unit": "kg", 
-        "value": 186
+        "value": 97
       }, 
       "family_hist": [
-        "mpkefwcpcudfmqsvtpevicoxodyruf", 
-        "xfqyeamvxqfefkyrnuthcdguallmnj", 
-        "pqbtgzkamvqopdbbxjmfssqylpkwlj", 
-        "auschjdpzwqoelcqupocrtffexmdvj", 
-        "pwrcozukufsgvpziflbkdxeczvrhwf", 
-        "zbzkurfoudfhyojsrqfmzaeqnusufz"
+        "nyactvdxegmvfgorpqfowmwmagkymp", 
+        "dzxasmejdyozncskfvyafabvzobrvc", 
+        "rxdlmhnbssctedzxyrpqtufjlhcuul", 
+        "luznvlstfguylyuqfitcjupcywkkdu", 
+        "hpwfpnwxdxwagefppacguauskvxqxz", 
+        "biyjlzuvdmanlqycvnoumlsbwvabpk"
       ], 
       "height": {
         "unit": "cm", 
-        "value": 103
+        "value": 19
       }, 
-      "check_in_time": "2009-02-16T14:46:35.506000", 
-      "drinker": false, 
-      "vital_info_id": 2, 
+      "check_in_time": "2010-11-06T14:54:15.648000", 
+      "drinker": true, 
+      "vital_info_id": 1, 
       "allergies": [
-        "ydzmshlkrc", 
-        "tzvjbrfzke", 
-        "ucbibkcxpt", 
-        "iukavbdjjz"
+        "ckhlmfksil", 
+        "wjfcvwepbn", 
+        "ktphuuqylo", 
+        "reedloipbn"
       ], 
       "smoker": true, 
       "patient_id": 2, 
       "overseas": {
-        "recently": true, 
+        "recently": false, 
         "destinations": [
-          "tbnfwpetfpgt", 
-          "xbdcfzzsnfyt", 
-          "bjgetdcyyqjc", 
-          "hxjlnntlyukf", 
-          "xsaibzhrzekz", 
-          "xvxrxaswuwbi", 
-          "tduiecxnkqab", 
-          "lrqirppwejjx", 
-          "tcydhfukvdsy", 
-          "amaosmhicvrb"
+          "iovoftfzgvtc", 
+          "hgoaxqwdotdi", 
+          "dffqqjveoozd", 
+          "cdvqkothlljr", 
+          "lejmrkmdrsjz", 
+          "qkjcoemipmgh", 
+          "kvlawsrvdwbi", 
+          "smgkrbbfqmcn", 
+          "jtzmkbowcmqg", 
+          "kqwlnhltfghi"
         ]
       }, 
       "medical_conditions": [
-        "nxukzznktmqusvnxrebj", 
-        "ghclvxpfctbxaeocswcm", 
-        "umztogynsnwhqasjtmyk", 
-        "ztxtipdzhqwmvokkogde", 
-        "issmjzckhjyoqrqxbgly", 
-        "pvkjnjhybcpzkzsuvvmk"
+        "pbtsmighmdladndufgvl", 
+        "kvzgnnqkdwcqleiwytur", 
+        "birpxrzsuabcvykqxavj", 
+        "rxnsrsrmtyvzbkczoiob", 
+        "ykngfjtartccltetxpuu", 
+        "gosoprkjieonsginseli"
       ], 
       "blood_type": "A"
     }, 
     {
       "weight": {
-        "unit": "kg", 
-        "value": 91
+        "unit": "lb", 
+        "value": 195
       }, 
       "family_hist": [
-        "irybhxiignkfuyxropysxzjxcpaycn", 
-        "hehpuaxkeyaqgrhvidphnadxyqtfqz", 
-        "oxuizmfhgdbvyswatoikhvvstavibc", 
-        "taemvujfvypdluortfisosevymhhhb", 
-        "xuxniyrtlffnjwlzmubebmheypunkf", 
-        "ftdwwzncqnxydgkcpmvdzltkvbbrws"
+        "ogmduhvemddmkrsqwwzjgoeggvrptg", 
+        "zfcpuhbfzcpclqglleqvnobdseenqh", 
+        "noqdrmyczibnhkndcquptycrvgglyt", 
+        "jfvuwuglncuclicwofxeuwhgonnbol", 
+        "vjbwbubglbnwcsbburxumnshvhlxdc", 
+        "vorqnsrldyyjsodraleepcofpemuog"
       ], 
       "height": {
         "unit": "cm", 
-        "value": 157
+        "value": 58
       }, 
-      "check_in_time": "2011-02-16T14:46:35.508000", 
-      "drinker": false, 
+      "check_in_time": "2007-11-02T14:54:15.650000", 
+      "drinker": true, 
+      "vital_info_id": 2, 
+      "allergies": [
+        "unjmnclggb", 
+        "xhreucxejs", 
+        "exhcpspkyk", 
+        "tagyzihtgx"
+      ], 
+      "smoker": true, 
+      "patient_id": 2, 
+      "overseas": {
+        "recently": false, 
+        "destinations": [
+          "zmcccfbeapdr", 
+          "vjnbtzhupdbs", 
+          "vgokqbebwric", 
+          "ncagrcwvjnhz", 
+          "ymzunmdkruyo", 
+          "sqxzowcwwlrf", 
+          "uwrrqdbzncyn", 
+          "iucnzzgppilg", 
+          "stljkdrqjltf", 
+          "tzdarsgvhtcp"
+        ]
+      }, 
+      "medical_conditions": [
+        "qsiyfsnnzenrpsjkjddg", 
+        "mpekffifgudnkpqqjiez", 
+        "iipiprhrzuwvpaqdmruu", 
+        "vbdevdptvawgunvwxfol", 
+        "ruukvxremvbjfsqwruuj", 
+        "focnkbusqubfaprvjtmm"
+      ], 
+      "blood_type": "AB"
+    }, 
+    {
+      "weight": {
+        "unit": "lb", 
+        "value": 62
+      }, 
+      "family_hist": [
+        "jhhxldgxmveoompahzapfbnvlxxmnj", 
+        "mxaueihbmvdcyarorgbcedsgtoxthu", 
+        "ndokibqsyjdohrlyakqtlpegdoddgg", 
+        "wdvymxoayajdbrisvvfwifbaosccdz", 
+        "bwqqwiysfurcuyjldlmattaamclbul", 
+        "uzkrucmunjaotcnksikiadkrqblusr"
+      ], 
+      "height": {
+        "unit": "cm", 
+        "value": 90
+      }, 
+      "check_in_time": "2009-09-06T14:54:15.651000", 
+      "drinker": true, 
+      "vital_info_id": 3, 
+      "allergies": [
+        "gpajgxtcku", 
+        "fgknbuzrmk", 
+        "wgbrsgughs", 
+        "tyjhystcfb"
+      ], 
+      "smoker": false, 
+      "patient_id": 2, 
+      "overseas": {
+        "recently": false, 
+        "destinations": [
+          "wedkgbviqzef", 
+          "jkdejwaephcc", 
+          "zqewygbtxmag", 
+          "grgmnfhcvner", 
+          "shyogrufjwpf", 
+          "ymqfaecfwvbo", 
+          "dfxowqhvugxu", 
+          "jisjzywqhpcg", 
+          "wkxyhkezpzrv", 
+          "phazquvnmezx"
+        ]
+      }, 
+      "medical_conditions": [
+        "dkvqcpqejijroucwggqo", 
+        "brwptrjxhooyyioiwqbs", 
+        "vndtmjiuapqlnvawtmee", 
+        "bmimqtklknxglcunowmz", 
+        "qtgslnibudedgfkiejbz", 
+        "vxztcqcvsbohgygzvpnp"
+      ], 
+      "blood_type": "AB"
+    }, 
+    {
+      "weight": {
+        "unit": "lb", 
+        "value": 124
+      }, 
+      "family_hist": [
+        "zqzgqetwbamjrstmydyyqtssgnmvio", 
+        "nyzqieusvfgwtfdcrtvkmoxlcpuphp", 
+        "phrhlvvifxtwxrgdnexwkkmmtciddy", 
+        "mhlfsfhrljatxknmrcafwomdgzwuuq", 
+        "bxbmyeecnddekpccinkeybfmsoiwbc", 
+        "buoxifrxutozfrnnnnoiqujlntchbo"
+      ], 
+      "height": {
+        "unit": "cm", 
+        "value": 171
+      }, 
+      "check_in_time": "2008-06-20T14:54:15.653000", 
+      "drinker": true, 
       "vital_info_id": 0, 
       "allergies": [
-        "kdgsetayly", 
-        "ynzxbhmvqv", 
-        "awzfcgjmcp", 
-        "vilzlsgeeg"
+        "exemuzwppc", 
+        "jmdnfuscrv", 
+        "ztlfsjwhby", 
+        "ndmejubkxi"
+      ], 
+      "smoker": false, 
+      "patient_id": 3, 
+      "overseas": {
+        "recently": false, 
+        "destinations": [
+          "xufdjpgmaxhq", 
+          "zyhdapyskkqq", 
+          "bpfgxegwvxzf", 
+          "sttlwnwhpcow", 
+          "guhhdqpxhgwc", 
+          "tcmvjbeargke", 
+          "wmnlnhghqncf", 
+          "pevvphcwsexs", 
+          "ktopnpjxhfnv", 
+          "pudfonqofgiu"
+        ]
+      }, 
+      "medical_conditions": [
+        "tqztguozhvklvppuyguz", 
+        "whphshauuqqwukvskjwn", 
+        "jlmistcbaoefmnatqogl", 
+        "rhntienqlptjpoieimva", 
+        "kuaqeicgastlsbxoswcw", 
+        "gqaqoxmajaevrkswdqej"
+      ], 
+      "blood_type": "O"
+    }, 
+    {
+      "weight": {
+        "unit": "lb", 
+        "value": 116
+      }, 
+      "family_hist": [
+        "flrupgktjtnhasdjyctzjneejdopqx", 
+        "ljcbzteizcxuexwcsykckdomopqetk", 
+        "nfgidswarmtrkydbnfmoyoadmjniwg", 
+        "bnbzbheihvnjyubmgpizyxensldeod", 
+        "yydyljnkpjgsbpqxfqukrdejhozruv", 
+        "ilbwihkfeieeufjyrpfudhiqipumzw"
+      ], 
+      "height": {
+        "unit": "cm", 
+        "value": 130
+      }, 
+      "check_in_time": "2011-11-07T14:54:15.654000", 
+      "drinker": true, 
+      "vital_info_id": 1, 
+      "allergies": [
+        "izqebjqfvb", 
+        "zxalnkofzm", 
+        "ampxaoscag", 
+        "zjjzbmwfik"
       ], 
       "smoker": false, 
       "patient_id": 3, 
       "overseas": {
         "recently": true, 
         "destinations": [
-          "fcvzszbodanj", 
-          "flurvsfbaivn", 
-          "toymdagikmse", 
-          "ihkqlbfncwbn", 
-          "gouewjkavzrn", 
-          "ozeewfzhpvbm", 
-          "emvlkhljyrut", 
-          "fcjnhhaekewn", 
-          "dlktjovcornf", 
-          "zincqapsyvjg"
+          "zsacvgrajqpo", 
+          "cptcoezazbah", 
+          "dccyqjtasyei", 
+          "dhkgpcfaybyw", 
+          "kujqeiyheydr", 
+          "csxrgqhagjyn", 
+          "jutfnukrsomu", 
+          "lysdqebyknzb", 
+          "uhgahpxvbgyf", 
+          "icljqyldmmeo"
         ]
       }, 
       "medical_conditions": [
-        "wmmbwqaiydzeismbmmbv", 
-        "jamzkgznjfawogvopmvk", 
-        "qvaxgayshjfxitidddoj", 
-        "usqysikfxnwpcwgepoww", 
-        "hpdzrpcvkgvmhdhagpbn", 
-        "eqspyjkdcjpovtsevamx"
-      ], 
-      "blood_type": "O"
-    }, 
-    {
-      "weight": {
-        "unit": "lb", 
-        "value": 145
-      }, 
-      "family_hist": [
-        "cufzjjhmbqvbnzjutfktujqyzdjrqc", 
-        "jbpbzecrlwojvoukjafgnracycprfn", 
-        "voxncahyksyjxlpqjganerkibfoerd", 
-        "wovlzwgfuujawngtejjtlkfpetxtvl", 
-        "aofhrsiqqfvwgeknregptebxrqoxwq", 
-        "ewrxmkgmbyjhcbphrfpkvepojvrxxq"
-      ], 
-      "height": {
-        "unit": "cm", 
-        "value": 114
-      }, 
-      "check_in_time": "2008-05-25T14:46:35.509000", 
-      "drinker": true, 
-      "vital_info_id": 0, 
-      "allergies": [
-        "uemycrqufm", 
-        "pimefepctj", 
-        "pxzpeyqxsg", 
-        "bhshjfqhcw"
-      ], 
-      "smoker": true, 
-      "patient_id": 4, 
-      "overseas": {
-        "recently": true, 
-        "destinations": [
-          "opglddyoxksu", 
-          "wdynyomycovq", 
-          "xbrkvljlipyn", 
-          "jqzguslxaphd", 
-          "ctpxbvqxoujv", 
-          "gbkjiclnthte", 
-          "efvieujstegs", 
-          "syfszxcoygpl", 
-          "pmjsokfbxjqd", 
-          "jwrjshjxobfy"
-        ]
-      }, 
-      "medical_conditions": [
-        "xgthabqmvlppqvhnbtpi", 
-        "aqlctzihjfyumibdxmsg", 
-        "dfodwsqlimbenqjiqbda", 
-        "qyhilcikzddcdeatqduy", 
-        "qgatloitplexikeolrda", 
-        "axlwlpondejdzzlspwqd"
-      ], 
-      "blood_type": "O"
-    }, 
-    {
-      "weight": {
-        "unit": "kg", 
-        "value": 106
-      }, 
-      "family_hist": [
-        "mkcykvjlvwkyommmkziouyhgvdsypr", 
-        "ymzgygvpewoqlhwtzrkjokdqbgztbl", 
-        "jdyyxsthgvtqczheyetltcuxkufkol", 
-        "ocjqjytmtqjtmuqrtevyasslgfugxi", 
-        "ojzjlkytqieuwofnqithjemjuzizjv", 
-        "gqzxmuaseumzfldpwivhxrhszagoel"
-      ], 
-      "height": {
-        "unit": "cm", 
-        "value": 19
-      }, 
-      "check_in_time": "2013-02-01T14:46:35.511000", 
-      "drinker": false, 
-      "vital_info_id": 1, 
-      "allergies": [
-        "gwlcqcxlmo", 
-        "iybwagwuzy", 
-        "lxgkjezari", 
-        "jyfvdtesaw"
-      ], 
-      "smoker": true, 
-      "patient_id": 4, 
-      "overseas": {
-        "recently": false, 
-        "destinations": [
-          "xpfhjdnkojrk", 
-          "imdypfnwyzex", 
-          "egnsmrsaxcqb", 
-          "ogawcluwnohk", 
-          "lvyzosuxrgth", 
-          "lyflruwhvtcy", 
-          "jfygqzcwkewj", 
-          "cgqevgjslykn", 
-          "pemslgqezimt", 
-          "rpexuzpwpwkh"
-        ]
-      }, 
-      "medical_conditions": [
-        "piyaezqdymtprcgisfmj", 
-        "epknrlvviestvvdnidbx", 
-        "rpbbaergsewynmimvdnr", 
-        "eupswgkwxyghxgtaqpmu", 
-        "vzcapadmpgemyjbyeysc", 
-        "ulxtfpgefsfbotnnhhhb"
-      ], 
-      "blood_type": "O"
-    }, 
-    {
-      "weight": {
-        "unit": "lb", 
-        "value": 64
-      }, 
-      "family_hist": [
-        "prtliwmdwkoxslhrnicignqdhbsqco", 
-        "qcnsfqyekvmhkwahggusllaocukerq", 
-        "emualmpofbokpjuasvtgakkxjyduwc", 
-        "erdqrpigbcjmurvyicxwxgapwwhjhb", 
-        "rpevyhnguvivhdffyokgnmfkvfjikx", 
-        "crbkdzhjulgbhgzefzjomvmnatlnwt"
-      ], 
-      "height": {
-        "unit": "cm", 
-        "value": 52
-      }, 
-      "check_in_time": "2012-01-03T14:46:35.512000", 
-      "drinker": false, 
-      "vital_info_id": 2, 
-      "allergies": [
-        "uuphbfbhze", 
-        "jewaxazbxi", 
-        "neetnypzep", 
-        "wopviseevf"
-      ], 
-      "smoker": false, 
-      "patient_id": 4, 
-      "overseas": {
-        "recently": true, 
-        "destinations": [
-          "yjutxorwvqst", 
-          "wglagkkuzyzm", 
-          "wgvnhuubianc", 
-          "jeljwtuftmgl", 
-          "iuifvlfhgyfd", 
-          "lendmeavhvkj", 
-          "grbewfsjottp", 
-          "pvuryhbmhoer", 
-          "nonbzedrvdyx", 
-          "ycmrifppvzfg"
-        ]
-      }, 
-      "medical_conditions": [
-        "zgtvctfidwduoahqetzm", 
-        "bjiomlzuzgygkxpvmisp", 
-        "eoiaakpwnrsdghanjqlj", 
-        "fudyerklgykhtjhkffwq", 
-        "rhvslwzkhjhvilffeose", 
-        "zswvakeugmxaqrxjcysb"
-      ], 
-      "blood_type": "A"
-    }, 
-    {
-      "weight": {
-        "unit": "kg", 
-        "value": 86
-      }, 
-      "family_hist": [
-        "advtzqoyuapeqpjgivmpclnzhwktwz", 
-        "yyrztyrnpygysntmnmebyssjrbtdjx", 
-        "agspmurlmpvduvdztmrivbqrwimhcy", 
-        "szzniipwrdxeucfahdraboduwpsskl", 
-        "lclqvugyfomhqeybxqudbidliywush", 
-        "eeqxllcmznndmfgrcoittcklpnkhwb"
-      ], 
-      "height": {
-        "unit": "cm", 
-        "value": 74
-      }, 
-      "check_in_time": "2010-04-18T14:46:35.514000", 
-      "drinker": true, 
-      "vital_info_id": 0, 
-      "allergies": [
-        "xhzlridatx", 
-        "gwlvilbaoh", 
-        "hhugrwtzut", 
-        "cwezeswppb"
-      ], 
-      "smoker": true, 
-      "patient_id": 5, 
-      "overseas": {
-        "recently": false, 
-        "destinations": [
-          "asuodryrokht", 
-          "runhvvojhbab", 
-          "nstmrkjtbzqd", 
-          "shajunpkippc", 
-          "uptbtkabtqsu", 
-          "ibrxwlrbvokz", 
-          "cdhurwoonfmx", 
-          "urgdsszxmfhn", 
-          "cdeclhzrxzeg", 
-          "fnazvqkzirvc"
-        ]
-      }, 
-      "medical_conditions": [
-        "pqpgnwtfamnmlhqemcbw", 
-        "vbxdnpczmdlghvzyzhzq", 
-        "pspurzloykdipkmelqie", 
-        "dczirnrwxzxjyotowsze", 
-        "lixycsaadzwzxhlkrccp", 
-        "bvesgqwonjwzqhayhukd"
-      ], 
-      "blood_type": "AB"
-    }, 
-    {
-      "weight": {
-        "unit": "lb", 
-        "value": 98
-      }, 
-      "family_hist": [
-        "fopwkvyzubsuxbcusnuqscucyxgilh", 
-        "apsqirlmmicqeklrfspymglfdwvsem", 
-        "yndsjozsbbxycwyripqxyopnjiceii", 
-        "gkbdtkmsluyvuwgyguzerqwgblayub", 
-        "tqixbsjavqauwmemjeflnckaodtxtc", 
-        "yupkybnjhvelhnxwmjbpijzzgtupvd"
-      ], 
-      "height": {
-        "unit": "cm", 
-        "value": 17
-      }, 
-      "check_in_time": "2012-06-02T14:46:35.515000", 
-      "drinker": false, 
-      "vital_info_id": 1, 
-      "allergies": [
-        "huqdlnjymx", 
-        "ekxqmjjrry", 
-        "wfjbeulcqn", 
-        "izcbnfknao"
-      ], 
-      "smoker": false, 
-      "patient_id": 5, 
-      "overseas": {
-        "recently": true, 
-        "destinations": [
-          "jodbmqzvxrlz", 
-          "czjzhqgvxxrg", 
-          "aucguhkynqtb", 
-          "qepharpkbsbd", 
-          "osnkmdcoqkix", 
-          "zvstgegxemrc", 
-          "kxtnorwbeobj", 
-          "ckhawgiwyvnj", 
-          "edqojnflrutl", 
-          "ebnmxdsbvmjx"
-        ]
-      }, 
-      "medical_conditions": [
-        "xczvpammlzdrloacjjgt", 
-        "wwnwioxisqrkmojflnwz", 
-        "apgedbtlzsujwtjzcpsa", 
-        "qxpvtxyeyugdqdkreoqc", 
-        "bceanroayqdtwcmchiik", 
-        "buuwsnomzmoqxfibzzfr"
-      ], 
-      "blood_type": "A"
-    }, 
-    {
-      "weight": {
-        "unit": "lb", 
-        "value": 128
-      }, 
-      "family_hist": [
-        "hdvjcpkqnkfmthhsnntgvogpmhgglu", 
-        "iayzfiiligixyapaemcoopmcmetauo", 
-        "gjzvvzrhdgvplqullyvtrtbfdoqlvk", 
-        "dukjhxqjahmiwxdoymeelhajhfnvxy", 
-        "cqcuabdouxaozmmruebmnevrlqxupn", 
-        "crdedbnslzxtgnsdzqgttklfgkkhpx"
-      ], 
-      "height": {
-        "unit": "cm", 
-        "value": 140
-      }, 
-      "check_in_time": "2009-11-27T14:46:35.516000", 
-      "drinker": false, 
-      "vital_info_id": 2, 
-      "allergies": [
-        "eszgvrybxa", 
-        "zshicvqkfo", 
-        "rsgdjjhvyj", 
-        "lyluthqvec"
-      ], 
-      "smoker": false, 
-      "patient_id": 5, 
-      "overseas": {
-        "recently": false, 
-        "destinations": [
-          "yjvgttrjmdbh", 
-          "iikdpvuwvmck", 
-          "dhqftmswmxww", 
-          "bwtvqjiqswaf", 
-          "nrimypitkgbn", 
-          "vfnvzyauyqie", 
-          "lcnqiznnrgkv", 
-          "xtpjwcmngjsq", 
-          "fqvvbplvaddq", 
-          "ubnnolppavig"
-        ]
-      }, 
-      "medical_conditions": [
-        "yolhcuzxuskkbrotatgq", 
-        "yoyxmydvlfvkymvncxtc", 
-        "daxaasdypihikbkdrcex", 
-        "lbhwqixmuvdcxndbsogx", 
-        "pwpsvbujvbjymabvdizu", 
-        "uaetxshsnxmmaseiqelg"
-      ], 
-      "blood_type": "A"
-    }, 
-    {
-      "weight": {
-        "unit": "lb", 
-        "value": 189
-      }, 
-      "family_hist": [
-        "pjpoloyhumbvreyvjkorgqmzdflmff", 
-        "sfmmjvaxpnajxbhueypsalfllkqhmf", 
-        "hdzgmkofjnxmhopgaquximzonfysna", 
-        "ugmhotzpcfzuxhsvnjozgehdbjggbg", 
-        "isbviltpyobsanufidsrfhyahuorci", 
-        "gtutxmwgxcxlwegxkfohdzfxzercou"
-      ], 
-      "height": {
-        "unit": "cm", 
-        "value": 2
-      }, 
-      "check_in_time": "2012-08-08T14:46:35.518000", 
-      "drinker": true, 
-      "vital_info_id": 0, 
-      "allergies": [
-        "gmhgohypgx", 
-        "dxfqcrvqqx", 
-        "cbzgiigzvn", 
-        "yyctqngbut"
-      ], 
-      "smoker": true, 
-      "patient_id": 6, 
-      "overseas": {
-        "recently": true, 
-        "destinations": [
-          "zsxktrohadkg", 
-          "gbplrqtavnnn", 
-          "anxrfgfjjfeg", 
-          "pcrolntgyfxz", 
-          "mrwnmobuhekn", 
-          "hnbafnirkmtd", 
-          "wumjvkvpcwjn", 
-          "bujwzkrbmmyu", 
-          "mpvkevclqxia", 
-          "ctzoiionsmhv"
-        ]
-      }, 
-      "medical_conditions": [
-        "bnsprcrtdtdypusnfnsl", 
-        "dpgnwlcqcrxilazjxazh", 
-        "qnqtjuiwhdsadlfeunov", 
-        "sgwgczffvoukymjogkxr", 
-        "ptcvzjdkqpmvgawibhoc", 
-        "imujekmjfboiitkbzmyf"
+        "hfgfbzdgxtgysdnxoszn", 
+        "xxctvyrhhapezatceumc", 
+        "aiaepyrabgdwhgkzwzyz", 
+        "yuhueqrheknqcvzizuwk", 
+        "zxhvwqqbgflqekjavnhh", 
+        "nikbjpmlqnqkhlshwgoe"
       ], 
       "blood_type": "B"
     }, 
     {
       "weight": {
-        "unit": "kg", 
+        "unit": "lb", 
         "value": 116
       }, 
       "family_hist": [
-        "flrjewyekfzcutdccdszdniqjencjn", 
-        "wtbpbokqasaqgjbksfllwzjzgerszv", 
-        "lhgthpfxiwtyfmwnzocpxerfhyjpfb", 
-        "wovmjojcmflbssgbjgvjnwtcdonwsh", 
-        "pbiyygamkgechaeskmqyqyaleppncx", 
-        "yufaaaadvolytcwxogwmiaogminttc"
+        "osjfejbeyshvviuwmztniblstdejev", 
+        "vjrguxdbqmpfxgaxjypzkrckdegniw", 
+        "loadymkdcgoirfefjukjqvgzigcugs", 
+        "rprtbxqvnbuoetgcxrkobwnquuquwt", 
+        "kmmsirvrgfhchsjxtgzviwvxhuwudq", 
+        "xxkkxqfgjofmsnfmqajsunvuxfjoci"
       ], 
       "height": {
         "unit": "cm", 
-        "value": 107
+        "value": 66
       }, 
-      "check_in_time": "2011-05-20T14:46:35.519000", 
+      "check_in_time": "2008-08-18T14:54:15.655000", 
       "drinker": true, 
-      "vital_info_id": 0, 
-      "allergies": [
-        "ubakjdkvht", 
-        "amvbvuqked", 
-        "qxnhkvxkky", 
-        "lvxzsphmqn"
-      ], 
-      "smoker": false, 
-      "patient_id": 7, 
-      "overseas": {
-        "recently": true, 
-        "destinations": [
-          "ixtyzxlzipid", 
-          "rhfyswnhkobc", 
-          "ukvklqitkwag", 
-          "psxlpceryxsl", 
-          "oyuipgkehdls", 
-          "ejanjlyezynn", 
-          "jzuedohmbbka", 
-          "dvnnmltiktdw", 
-          "ddmgboxvjddn", 
-          "volyragwbeqb"
-        ]
-      }, 
-      "medical_conditions": [
-        "utjcnxehsrvltpdapnze", 
-        "ceydziontwhvqjkiztgw", 
-        "dkzzjljtexlhdoqqplhc", 
-        "xyzlwjtpokykhoseotjq", 
-        "rwmcicetqegwcsmcqujr", 
-        "bugnocajjmlditbzbmvm"
-      ], 
-      "blood_type": "A"
-    }, 
-    {
-      "weight": {
-        "unit": "lb", 
-        "value": 94
-      }, 
-      "family_hist": [
-        "lqeewiwtabrypebgsnzwaynszhgnvh", 
-        "kwxrjqzltjdvonzmxrkyqrgaymwlsl", 
-        "hpitpvxkuomeokjadooaamqpkzzrth", 
-        "senkkedpvtwcgkridxmmhxnuhnglio", 
-        "wcmuekghyteegpanqfovealthruyfe", 
-        "zzkopuurmuwdeopszibelucgpojyth"
-      ], 
-      "height": {
-        "unit": "cm", 
-        "value": 12
-      }, 
-      "check_in_time": "2009-10-20T14:46:35.521000", 
-      "drinker": true, 
-      "vital_info_id": 1, 
-      "allergies": [
-        "qgeyfpwaib", 
-        "axvamodfeg", 
-        "clrhnaypwg", 
-        "lyjbeufzdj"
-      ], 
-      "smoker": true, 
-      "patient_id": 7, 
-      "overseas": {
-        "recently": true, 
-        "destinations": [
-          "bmifenfthkzq", 
-          "lzdqznlskptp", 
-          "yvtqmweciahm", 
-          "bymqxrodvfuh", 
-          "cxfrkhaerxls", 
-          "aogbjwltjcfy", 
-          "stxlkpfwkdvs", 
-          "aacsaupcpscn", 
-          "ioykidrntmrs", 
-          "zfkmfnrdiszo"
-        ]
-      }, 
-      "medical_conditions": [
-        "mhgowqvjzlygjrhetaar", 
-        "qreeminuthlfinmgtacw", 
-        "ljjacojgidwjbsdbkbvq", 
-        "hcnzvythjzfiiugfznzy", 
-        "ldihtbutybkwxrsxdtke", 
-        "awuvwdhhefrbezaykqid"
-      ], 
-      "blood_type": "O"
-    }, 
-    {
-      "weight": {
-        "unit": "lb", 
-        "value": 161
-      }, 
-      "family_hist": [
-        "gctzbesjpxhevxfaalrqewllyqgimw", 
-        "ttgfgszdfmjrwwfkpujrjhfazvdwkg", 
-        "ystgnwgokbqcgcydzckewuspvnfemh", 
-        "aceuanxugmpbliemoyejytnlevczay", 
-        "dcquegstnavfjdaaprklrzigzstvvk", 
-        "ckreksuqscdbzatjqphcqmtnryynid"
-      ], 
-      "height": {
-        "unit": "cm", 
-        "value": 51
-      }, 
-      "check_in_time": "2008-02-03T14:46:35.522000", 
-      "drinker": false, 
       "vital_info_id": 2, 
       "allergies": [
-        "jhsjqpylvb", 
-        "uzkegaasgm", 
-        "vtwskahugf", 
-        "lfkkzsrggr"
+        "yfwqtdedeu", 
+        "ecjiygosmq", 
+        "fiqfibyvom", 
+        "xtehezqidl"
       ], 
       "smoker": false, 
-      "patient_id": 7, 
-      "overseas": {
-        "recently": true, 
-        "destinations": [
-          "birvhuxmvmsr", 
-          "ubwouipdqlmd", 
-          "axdhgbzgbiny", 
-          "kzhpyfuclxxs", 
-          "dhayaiqzbtki", 
-          "jfknmakttwjr", 
-          "rddfomnuedhi", 
-          "nihacnwuhiky", 
-          "efdvmijspdhw", 
-          "ixksquykyaft"
-        ]
-      }, 
-      "medical_conditions": [
-        "gvjzladavrhkmrpamrcr", 
-        "zmqatkaxuuchznnjatkr", 
-        "hrrgximuodfnppmeebqj", 
-        "zpgbnvumljdarkwaxkmh", 
-        "eodppeybacikmgckbfyo", 
-        "jwjbeasbcsawdwqlwlwz"
-      ], 
-      "blood_type": "AB"
-    }, 
-    {
-      "weight": {
-        "unit": "lb", 
-        "value": 115
-      }, 
-      "family_hist": [
-        "badlulsszrqhksuxepyefqogmaqaed", 
-        "ikegojwxmtatayjdafotxuurdekwah", 
-        "rmerhwnynsbqidivaxnujbutjlhnvk", 
-        "nvesbhyhlknmxwmbgposkutzntjmxc", 
-        "kvmfhginrwiofuwtaqnnsuojkpnoam", 
-        "ysreiejrlbaycyuflrsccdrzqvimol"
-      ], 
-      "height": {
-        "unit": "cm", 
-        "value": 43
-      }, 
-      "check_in_time": "2012-02-19T14:46:35.524000", 
-      "drinker": false, 
-      "vital_info_id": 0, 
-      "allergies": [
-        "jjzeygmxjb", 
-        "uxcryyqswx", 
-        "wcvegdvhag", 
-        "npcoqymdfg"
-      ], 
-      "smoker": true, 
-      "patient_id": 8, 
-      "overseas": {
-        "recently": true, 
-        "destinations": [
-          "sqgwqbftgpra", 
-          "iclksellcbvf", 
-          "czajhhhnyxkd", 
-          "fgnrzjhqdghx", 
-          "dpebwwnpzjdg", 
-          "gpudxofbsdrd", 
-          "pzkhnxpvaveq", 
-          "uejoowbjcoet", 
-          "gwubvabzpjgg", 
-          "zgjlikpkbbqb"
-        ]
-      }, 
-      "medical_conditions": [
-        "wfliagdjjqzpzcinlwou", 
-        "vtgmuvnafdnfnxosbfic", 
-        "ixdgruoqpafktfsihvjs", 
-        "tgjscwmoiejkvoksqlbx", 
-        "dpwdtyspnaglszctgxod", 
-        "vwnfybzmogzrqohhidki"
-      ], 
-      "blood_type": "O"
-    }, 
-    {
-      "weight": {
-        "unit": "kg", 
-        "value": 158
-      }, 
-      "family_hist": [
-        "ryfheldnjuzuhcaepaidmvxkqxcmjz", 
-        "kgcgrognehrzyetijluwcfelgirnfr", 
-        "abhuefqzvrorfmzzuprnilkstgoohk", 
-        "ahrnstjicnaubnvyspdwynbmfefxnv", 
-        "zajlwzxenlnliwcddetpzsbeyoebfl", 
-        "elmvcarpnqvxpdinhtywemdbisjmrz"
-      ], 
-      "height": {
-        "unit": "cm", 
-        "value": 187
-      }, 
-      "check_in_time": "2009-09-23T14:46:35.525000", 
-      "drinker": true, 
-      "vital_info_id": 1, 
-      "allergies": [
-        "jiuigajerz", 
-        "oyvqvflwqd", 
-        "zunbttyuzt", 
-        "lahyaqrqqu"
-      ], 
-      "smoker": false, 
-      "patient_id": 8, 
+      "patient_id": 3, 
       "overseas": {
         "recently": false, 
         "destinations": [
-          "csgdkyvhxxkv", 
-          "xwksrorfqeaf", 
-          "bhxbrtqylsqo", 
-          "nseidyaoqdbe", 
-          "xvugrdoikztz", 
-          "ycdvumffjzgz", 
-          "dkdcsjbbzuzu", 
-          "ixuhjartsuwz", 
-          "pkrnxmjhjett", 
-          "uzqkrzonyvli"
+          "zwuusqxagjjq", 
+          "nnzophmzpgcb", 
+          "dwhcfirzijgj", 
+          "crrboxiwydqm", 
+          "frngtooqcudq", 
+          "ttvybcxapwrp", 
+          "kdqrrxedocfu", 
+          "vffhtylcgzai", 
+          "lfympqajyafi", 
+          "yoodlwxyigli"
         ]
       }, 
       "medical_conditions": [
-        "mismzikldrlxdfkftsqi", 
-        "rloqvsdrqryyfepchlsg", 
-        "xirvorohuxikgbxqlofe", 
-        "ytmjqlvcoxtantrqekkc", 
-        "nhxahnidvmtebuezrjsw", 
-        "deaeswodpuzcgudstvzg"
+        "apibujeduakirexwfeng", 
+        "tkmuyxnquunkjphxaccd", 
+        "gnybpaowwyalbnasbfvs", 
+        "fgxtlphhjeohflapigcy", 
+        "yyrwykbbtabappjgdzcl", 
+        "wygsxivzuruncldgxpuj"
       ], 
-      "blood_type": "AB"
+      "blood_type": "O"
+    }, 
+    {
+      "weight": {
+        "unit": "lb", 
+        "value": 196
+      }, 
+      "family_hist": [
+        "lmlekeevrnswzbhunqbkgekgzmpbsc", 
+        "qmpgybrhagrmgesasxgtswzbkqaacq", 
+        "ydegkexdhicqxkhwuswevnbtvekkrz", 
+        "xbbavabqjhimxvhokyiunkwuvackkb", 
+        "grarpxngwngpupdtbkwifvlfzdnlbe", 
+        "swaozokacukzfburxcpsqnzhcbooox"
+      ], 
+      "height": {
+        "unit": "cm", 
+        "value": 16
+      }, 
+      "check_in_time": "2010-03-15T14:54:15.657000", 
+      "drinker": false, 
+      "vital_info_id": 0, 
+      "allergies": [
+        "bkhlvjruks", 
+        "unflpuhnlf", 
+        "kdolmzuqsm", 
+        "mmfyriuewz"
+      ], 
+      "smoker": true, 
+      "patient_id": 4, 
+      "overseas": {
+        "recently": false, 
+        "destinations": [
+          "fvhhztqwsvsz", 
+          "tdxwtktbildx", 
+          "jnggfejdznco", 
+          "xwiujvvkgbjv", 
+          "lzkylepedrjx", 
+          "zoehwxbeousr", 
+          "gutpymrxxdyj", 
+          "ckmrljfomybi", 
+          "pcfvrknbwgit", 
+          "xyolrlluwghh"
+        ]
+      }, 
+      "medical_conditions": [
+        "hzspfbmynxuufzrabtmn", 
+        "huzouuaybwkgfhqqiyzx", 
+        "dvzemoobcvqbyjjfboat", 
+        "edlkkrssjtzeliltljjx", 
+        "hybrzborzeviamvtfbyd", 
+        "rdgfyfriganldzwtwvym"
+      ], 
+      "blood_type": "O"
     }, 
     {
       "weight": {
@@ -960,158 +642,582 @@
         "value": 119
       }, 
       "family_hist": [
-        "ctildrqgigystrxeuqgpdyyuxjfaue", 
-        "fpqzfvkvktxuzhfvkkmtgoubpnndfg", 
-        "tblyxgdllegfmpiplbatfqxzeyasrp", 
-        "wamjxhmhjzwswxlzbzpvuevopfxptv", 
-        "tyhjyskldknttewoqhhhtfejnocqyk", 
-        "pxicquhmaopaxbrdczzzqahyzqtpas"
+        "kzbjzzgdialceqvlbajymylnctegtm", 
+        "vfhmjarerpznclnanqmdrngtwghdlm", 
+        "trctuanhyeefvefntwsckshisysztd", 
+        "ysgdmgwsucnsnhlpcmgxzvljoedril", 
+        "lzjfpirqypdhmgbhqyeswkqbaiuplo", 
+        "qsihtsprylbwodhdkbkefvhevxpzno"
       ], 
       "height": {
         "unit": "cm", 
-        "value": 99
+        "value": 87
       }, 
-      "check_in_time": "2009-01-20T14:46:35.526000", 
-      "drinker": true, 
-      "vital_info_id": 2, 
-      "allergies": [
-        "tlfhazgtxf", 
-        "fzfxqeseqc", 
-        "zuztkrarvv", 
-        "fonoefinps"
-      ], 
-      "smoker": true, 
-      "patient_id": 8, 
-      "overseas": {
-        "recently": true, 
-        "destinations": [
-          "bpdiolrxwjtf", 
-          "igddzpstkgwk", 
-          "njtlvrldufnj", 
-          "qwmezbmvkvrl", 
-          "idjvxcqlukbk", 
-          "gzosaoumvrtf", 
-          "orqblpebecsf", 
-          "hxmqmnhwtxvy", 
-          "okmpergvpwus", 
-          "ueioqwkuadwb"
-        ]
-      }, 
-      "medical_conditions": [
-        "xixdqgyburnrmgbnhwhy", 
-        "akbipxbvhefompusfpos", 
-        "rmzqdntsymeoqjfmzzvn", 
-        "pikmomucxwhcdgupqwge", 
-        "tfxphhinvrzoohhypjjy", 
-        "znldpfnwclgkzlbzwxpb"
-      ], 
-      "blood_type": "A"
-    }, 
-    {
-      "weight": {
-        "unit": "lb", 
-        "value": 147
-      }, 
-      "family_hist": [
-        "suxeqllsnattgijdomgxspstfbukld", 
-        "jvljjuvokcagehfpydaxpfxgrencvf", 
-        "dvvgxjjflozbbrgeigqcldetzvojkz", 
-        "fvaatbnypaliuqxniuunhmmxncplxt", 
-        "ynpajkzkkaeyujjbjkzemlnpbmbjtm", 
-        "tomsbbbawrfsmledjluirjosrrhopa"
-      ], 
-      "height": {
-        "unit": "cm", 
-        "value": 39
-      }, 
-      "check_in_time": "2012-02-01T14:46:35.528000", 
+      "check_in_time": "2013-01-18T14:54:15.658000", 
       "drinker": false, 
       "vital_info_id": 0, 
       "allergies": [
-        "ibzikqlwaa", 
-        "krzhzgxjjj", 
-        "wemftacque", 
-        "auofqgctne"
+        "ritoqjsfpg", 
+        "qpbiltppek", 
+        "otmprzorls", 
+        "bofxlavbht"
       ], 
-      "smoker": true, 
-      "patient_id": 9, 
+      "smoker": false, 
+      "patient_id": 5, 
       "overseas": {
-        "recently": true, 
+        "recently": false, 
         "destinations": [
-          "ongyzqouuedg", 
-          "wjojspfcfdpe", 
-          "upcxvlywlwww", 
-          "kuhphrjcvnhm", 
-          "lraewrbtpgco", 
-          "xuyapflcnuar", 
-          "tztqltabmtmu", 
-          "sfwzavxvihck", 
-          "mgnqlphxyjhh", 
-          "szdvwwzdvszr"
+          "imwzkgxgrprs", 
+          "luitwyhsanuo", 
+          "ztylqyaptesq", 
+          "hxxsfsgwizdh", 
+          "izmedlngpxmw", 
+          "qknmxirgxgiy", 
+          "tjfkgplkggez", 
+          "lcalkrkiirsq", 
+          "xwbcliyibyye", 
+          "nzcupolyrtxa"
         ]
       }, 
       "medical_conditions": [
-        "roiwpbvhgcrebdigxqnq", 
-        "pjejufieaesojaqjlvdf", 
-        "nleaowouyrfmgcelazgb", 
-        "girnfrbakjpgbfzahnbs", 
-        "cptugppouoxinlagivfs", 
-        "nmveqplkcuxnmofepfgw"
+        "lvfidbzyzucbmoipffwt", 
+        "lotpvtqkziakwgwcyxuh", 
+        "smbgjxuaskrtkxwhgcuv", 
+        "hruhhwhlqfgflwsfkkmp", 
+        "pqfqgxsegfhnujzjbqyd", 
+        "igikhoraghxcohtifyia"
       ], 
       "blood_type": "O"
     }, 
     {
       "weight": {
-        "unit": "lb", 
-        "value": 133
+        "unit": "kg", 
+        "value": 104
       }, 
       "family_hist": [
-        "xxesjdyztpnckgybjopikdqlkuvozv", 
-        "ehhrytvobrvswhewxjlxqgxrvizjuq", 
-        "uptulniahoxcdbvthrezupsypfpuox", 
-        "ltywlkacerjvggydpfnvzidxhlfjmk", 
-        "yvafdycwfbvkequqrpwyzhfhqiuuxr", 
-        "mgthyxddpdbfqtmwrwzhcbwbbfcpzs"
+        "hzmidejlndwqkvcvijbnofllrieppd", 
+        "bdwunuxqwmwnkmjcubsthseouaynrc", 
+        "yalcfurswzancbpooceaowuxqlolco", 
+        "nnzishveoedauqtpygebhwxjbignib", 
+        "uqmggdufhylwcktqdzcdngdwsjovjd", 
+        "gytaidmtpxvmprmabouepjtdrqftgj"
       ], 
       "height": {
         "unit": "cm", 
-        "value": 167
+        "value": 163
       }, 
-      "check_in_time": "2010-03-02T14:46:35.529000", 
-      "drinker": false, 
+      "check_in_time": "2009-10-26T14:54:15.660000", 
+      "drinker": true, 
       "vital_info_id": 1, 
       "allergies": [
-        "sitzelwdrk", 
-        "rowujvlxjp", 
-        "csbmvcmyix", 
-        "cfhfoliimn"
+        "nvaybcvhif", 
+        "pxetawkqeo", 
+        "mwhspycrtf", 
+        "zshipgnszh"
       ], 
       "smoker": true, 
-      "patient_id": 9, 
+      "patient_id": 5, 
       "overseas": {
-        "recently": false, 
+        "recently": true, 
         "destinations": [
-          "rmvtorjqiiai", 
-          "oldpmqtsiyoe", 
-          "jfnojlyyslqx", 
-          "cryzomsdoumd", 
-          "mkkbxbpmwqpm", 
-          "xpfqzwgrpyfq", 
-          "zxegebnaldcm", 
-          "tdzadqxfsdrx", 
-          "hitnvssolqkc", 
-          "myarujifahun"
+          "wyomhucpriek", 
+          "wsqmsjpojmgp", 
+          "qbxubavbybuw", 
+          "kjsbdrrnccft", 
+          "fmxlqoydtzoq", 
+          "tqbmzurzgacq", 
+          "yvupwnvnkbbd", 
+          "dsxxinzmpjzx", 
+          "gefopuhlopiu", 
+          "lqlldgunduee"
         ]
       }, 
       "medical_conditions": [
-        "yxhpibqfbszhmawqztlb", 
-        "icsquucyryfiriacxwha", 
-        "kchcruluyobnxweksbsz", 
-        "dpnopttcdrajgzkqqrcs", 
-        "izjpbclytitupeqteitw", 
-        "lslkxvahfcqemkawneep"
+        "rxfweknoxamnihijvgor", 
+        "uffjyeymvfvwsqnjvzmw", 
+        "uilhpahgdghbxkntnfii", 
+        "mmvknworgllcysgexbts", 
+        "geptrstutmmaahxpngcp", 
+        "nvjsqjogqngivlystfda"
+      ], 
+      "blood_type": "O"
+    }, 
+    {
+      "weight": {
+        "unit": "kg", 
+        "value": 57
+      }, 
+      "family_hist": [
+        "noplrafkfwvubzxtaqtloevooauogb", 
+        "xwqcwxyhsbvichyhkrnvfuoywfpdry", 
+        "uzskiwmyozhbgzijyqjlurmcbtrzbp", 
+        "cmjlovgwoywsqadxxuauzdcnclzvxj", 
+        "ipjppulkjauhcapcujgwcoowtwllma", 
+        "hyhsdyrzeozbccjhwsdmyegumvship"
+      ], 
+      "height": {
+        "unit": "cm", 
+        "value": 11
+      }, 
+      "check_in_time": "2013-01-03T14:54:15.661000", 
+      "drinker": true, 
+      "vital_info_id": 0, 
+      "allergies": [
+        "ojfkgxwslo", 
+        "avnyhpnbio", 
+        "blmxjofylc", 
+        "kxiuhegima"
+      ], 
+      "smoker": true, 
+      "patient_id": 6, 
+      "overseas": {
+        "recently": false, 
+        "destinations": [
+          "qpilrcqqmheh", 
+          "fzrbuldawrny", 
+          "tejtxlzswxhh", 
+          "lhmwoozwijuv", 
+          "rapshlwqsebv", 
+          "tldsebekzthe", 
+          "cpdahtxxwrvs", 
+          "hoqrluzokniz", 
+          "yjtcshgetsxb", 
+          "slpsajllrjay"
+        ]
+      }, 
+      "medical_conditions": [
+        "kpcbttfkrpzaozkkymfx", 
+        "tgdppkqzqkemqoxhqkvs", 
+        "wqusdadkuwnlqsbzrmqu", 
+        "phjpfhjrgiftkcyaknoy", 
+        "ivjnmfxrouwawsuzjfrh", 
+        "zseamxbopykokstjzsgw"
       ], 
       "blood_type": "B"
+    }, 
+    {
+      "weight": {
+        "unit": "kg", 
+        "value": 115
+      }, 
+      "family_hist": [
+        "fuxlpnzfzyxjmeyrofjwvbaqvhmstb", 
+        "ymrfhleqfowmiuuojxiokftwxodrgd", 
+        "hqcjdmqosyxelwtkwpwpgjhjyqodte", 
+        "usjvvakqvvpuqtoixhkskgnmwyzokc", 
+        "emsclawjzcqolcxnmzlrlsfrxfahgf", 
+        "kayjljnvdnqvxlqvbsuqmsftlyteqp"
+      ], 
+      "height": {
+        "unit": "cm", 
+        "value": 126
+      }, 
+      "check_in_time": "2008-08-06T14:54:15.662000", 
+      "drinker": true, 
+      "vital_info_id": 1, 
+      "allergies": [
+        "yuedfacotj", 
+        "oaknqicbfg", 
+        "inlrdtcvyd", 
+        "hvpqophoat"
+      ], 
+      "smoker": true, 
+      "patient_id": 6, 
+      "overseas": {
+        "recently": true, 
+        "destinations": [
+          "mtahdmsvaemb", 
+          "zzsnrvkgsafc", 
+          "ealymagmsvlw", 
+          "nxbkhuzkfhrn", 
+          "vackaypnqfgl", 
+          "jhvqthihrwpy", 
+          "lnpzmhkcxopy", 
+          "xefykahddwtg", 
+          "etuihnpijuuu", 
+          "xhhxvitffloc"
+        ]
+      }, 
+      "medical_conditions": [
+        "ytxhpjczxgdghtrinhkp", 
+        "wnmcgheghkqjautsqpoq", 
+        "vascjoncugeztiujejcp", 
+        "qqdojteudusydkngaosg", 
+        "fbnyskuozsxmykzaeqxy", 
+        "cfbayfozxnehjfprqqrs"
+      ], 
+      "blood_type": "A"
+    }, 
+    {
+      "weight": {
+        "unit": "kg", 
+        "value": 114
+      }, 
+      "family_hist": [
+        "fhwlhuhdaaenvbxeuikglorlmiacyq", 
+        "hokpclxojitftqvzwbeuqnuvrzqvcx", 
+        "cbzfgjgesxexbtxzffmencdjxqhzpa", 
+        "dlqbywefwhpyfqfysujfpslengeeay", 
+        "sasfloelsdezxxzvrtqpoxbclkesbl", 
+        "eoridsxiolbjegpatynfkbethdtwnm"
+      ], 
+      "height": {
+        "unit": "cm", 
+        "value": 137
+      }, 
+      "check_in_time": "2008-11-21T14:54:15.664000", 
+      "drinker": false, 
+      "vital_info_id": 2, 
+      "allergies": [
+        "wffnbgcscu", 
+        "oxazlizgwp", 
+        "kxqrdamgif", 
+        "ddhvvesyft"
+      ], 
+      "smoker": false, 
+      "patient_id": 6, 
+      "overseas": {
+        "recently": false, 
+        "destinations": [
+          "tozylwazpugf", 
+          "vytpcshtwipe", 
+          "navkhdnbcxjm", 
+          "lirqnyitygeu", 
+          "rmtwxvnagach", 
+          "pkpmvenukxfk", 
+          "wavkspnivpio", 
+          "mqnnfwbqhuei", 
+          "qpsqhzjjmkap", 
+          "qfuiipdwgsps"
+        ]
+      }, 
+      "medical_conditions": [
+        "uivnsodifihvzxwhgvlv", 
+        "ymrjiigsssqtpweoxbdv", 
+        "uqldydeeuctoehjwltym", 
+        "szksjhrteamwgqqaqufh", 
+        "sdczjxuckmfulfvnsgiz", 
+        "nwcpirzxjwizlxcncjsp"
+      ], 
+      "blood_type": "A"
+    }, 
+    {
+      "weight": {
+        "unit": "kg", 
+        "value": 51
+      }, 
+      "family_hist": [
+        "xsawjuqizgjgbeslohjfwerormmlly", 
+        "wukgvxdsbvhovrmcmhimihevwqxgiz", 
+        "qhflieanzzkojeceobzwiitkfumohc", 
+        "vjswxceuttbzvwujineikkzhgkrnwj", 
+        "zccxozcbxmsmyazzvqaztyhfjsrsjj", 
+        "xgfsxsxpyzlzxijpozurtgxdqyjwsk"
+      ], 
+      "height": {
+        "unit": "cm", 
+        "value": 109
+      }, 
+      "check_in_time": "2012-05-02T14:54:15.665000", 
+      "drinker": true, 
+      "vital_info_id": 3, 
+      "allergies": [
+        "xihpwdxzjl", 
+        "grjwvaaamp", 
+        "eomrukupaj", 
+        "zmxkmysjgr"
+      ], 
+      "smoker": true, 
+      "patient_id": 6, 
+      "overseas": {
+        "recently": false, 
+        "destinations": [
+          "gawihtwwncpu", 
+          "infqtbwhfuix", 
+          "fidkzanoswlo", 
+          "jerzsgeetpzr", 
+          "hunqjyjecrzt", 
+          "razwkbcqluav", 
+          "garkxxuymocw", 
+          "cgmlmmlquonh", 
+          "ytpfboonxlvr", 
+          "hfekajaywedw"
+        ]
+      }, 
+      "medical_conditions": [
+        "soyjnchayrqehztvxgar", 
+        "hgbktgmthdmhzejtunaz", 
+        "gewqxuhygybsmoelitdz", 
+        "qsqyobwixbzlotopsnkl", 
+        "dcytpcoeboibftwybsdp", 
+        "enicqkwwyskebnagszhq"
+      ], 
+      "blood_type": "AB"
+    }, 
+    {
+      "weight": {
+        "unit": "lb", 
+        "value": 161
+      }, 
+      "family_hist": [
+        "kvgoinrlsdpnoldrwyzagfwfoqxslt", 
+        "vsrjgsqthxlebqznwzdzjwkmaspjcx", 
+        "cqqnzmnnalrgufyvtotrretcikpxaw", 
+        "xjqtwveilaemjsguasqfvtdoumakjd", 
+        "errqimblohhkrsrsymholybtlmhsbv", 
+        "rvnbckahkaxcaiwczzctrnwokeyqcm"
+      ], 
+      "height": {
+        "unit": "cm", 
+        "value": 106
+      }, 
+      "check_in_time": "2011-09-22T14:54:15.666000", 
+      "drinker": true, 
+      "vital_info_id": 0, 
+      "allergies": [
+        "yavmmapcvi", 
+        "uhntzskptk", 
+        "gozgdugjrj", 
+        "ouixqbxcja"
+      ], 
+      "smoker": true, 
+      "patient_id": 7, 
+      "overseas": {
+        "recently": true, 
+        "destinations": [
+          "ijmoxgnftmwv", 
+          "xnwabfvjsyal", 
+          "mhvhjhyprokx", 
+          "ptirsnzechzu", 
+          "pttrmjhoztxb", 
+          "wnbyagbtprbv", 
+          "pngikefnccdn", 
+          "ntitsgaixgqi", 
+          "piuasmlbrmum", 
+          "hpndhoctusqh"
+        ]
+      }, 
+      "medical_conditions": [
+        "qwxtxltfrejlwvswdhat", 
+        "gmzbadvhqnazwwvihkmp", 
+        "sximrvfkfxudobgmqjyp", 
+        "tdrfhqhoyxhfmsynxhxk", 
+        "dzneybonshthpojaafly", 
+        "vutrgeymuqgfixlfqwzm"
+      ], 
+      "blood_type": "B"
+    }, 
+    {
+      "weight": {
+        "unit": "kg", 
+        "value": 102
+      }, 
+      "family_hist": [
+        "wytavjhjjbycmjqjmsuiizosvnmyqf", 
+        "igbdmrtckrbacgammbhgaemphuhmzd", 
+        "jeuwbxphhqreeetkhszhhxxfxioazr", 
+        "wzsrmbzmpykjrrbadisnxsacdzmith", 
+        "cdoejutaqibcbchdvhrnlpykroshxx", 
+        "eaqcghiszoyioxglqfqjqsxubchpxl"
+      ], 
+      "height": {
+        "unit": "cm", 
+        "value": 62
+      }, 
+      "check_in_time": "2010-12-04T14:54:15.668000", 
+      "drinker": true, 
+      "vital_info_id": 1, 
+      "allergies": [
+        "nckhitvubr", 
+        "lltmqdfysw", 
+        "mjvwjfyaeh", 
+        "mqjtcdipmy"
+      ], 
+      "smoker": false, 
+      "patient_id": 7, 
+      "overseas": {
+        "recently": false, 
+        "destinations": [
+          "wdkaflffkyli", 
+          "hdgfxgejidcw", 
+          "qbazsasmxwco", 
+          "ydfdzfqsuosq", 
+          "hwxfjvgjbxjz", 
+          "apuznxplfbyp", 
+          "hjmcrytjelum", 
+          "pwxggvmarsqd", 
+          "hgxyjkhfoghl", 
+          "yhobdnmbgtka"
+        ]
+      }, 
+      "medical_conditions": [
+        "twjihifdfrqcpwfmjjun", 
+        "fjpivxdlcnnbmgnwjjzt", 
+        "ytuuvvueudtxaqphkgob", 
+        "kcifkwqvkzpyuxkkvvxc", 
+        "iuledltuvjqbntzvuhjk", 
+        "dfocjmfydispddtfhvfq"
+      ], 
+      "blood_type": "A"
+    }, 
+    {
+      "weight": {
+        "unit": "kg", 
+        "value": 196
+      }, 
+      "family_hist": [
+        "pbreixrufypyboxibrtruftyewtzch", 
+        "vliibtttstannpqsovzhbqrzrkgdsb", 
+        "oeefpmhnumwvdosqqzezxbjvfympbr", 
+        "gklyenumualdqdxzrkjlguoywarwtu", 
+        "ztzqvnkjfzzzbyxymevbzbkkupmjzs", 
+        "aomryvgncpubkdypggudezgjptdyqs"
+      ], 
+      "height": {
+        "unit": "cm", 
+        "value": 102
+      }, 
+      "check_in_time": "2008-04-26T14:54:15.669000", 
+      "drinker": true, 
+      "vital_info_id": 2, 
+      "allergies": [
+        "rtjwaoalvo", 
+        "vfzqjbhuga", 
+        "cvkpatdjem", 
+        "gfsknvwwrx"
+      ], 
+      "smoker": false, 
+      "patient_id": 7, 
+      "overseas": {
+        "recently": true, 
+        "destinations": [
+          "fatheysbqqlj", 
+          "medgiayobncu", 
+          "kurnyhdktmxp", 
+          "khbampeztchy", 
+          "ydepdjlpifit", 
+          "fbwzcsudatje", 
+          "mhfrvrfdevvm", 
+          "spslkxilixig", 
+          "cjuhyetmhvmd", 
+          "khvllnzfeigi"
+        ]
+      }, 
+      "medical_conditions": [
+        "xwrzlidmijyfsbwkwcuv", 
+        "qsijdzxenimqepafquur", 
+        "tgpqsmaqqihdqaltolhv", 
+        "oygdiextlmyaevjaujvj", 
+        "ekcyqiuawcykduhxxstl", 
+        "bdiyaevmhrepmrylyqsv"
+      ], 
+      "blood_type": "AB"
+    }, 
+    {
+      "weight": {
+        "unit": "kg", 
+        "value": 96
+      }, 
+      "family_hist": [
+        "egmwrswbzgxkmtqztvawqelhljzswe", 
+        "jgyhftgnmnnxlguihktdoalpsvkoxn", 
+        "cveisazoufhdskvidzufmpomkgygnu", 
+        "ezrzezeatotupiyyslblesguhyxeye", 
+        "dwizfcesqhsccccsenuxllxyfcmrcn", 
+        "gubirvdvvbnmofpjjrzduyysketfyy"
+      ], 
+      "height": {
+        "unit": "cm", 
+        "value": 159
+      }, 
+      "check_in_time": "2011-01-27T14:54:15.671000", 
+      "drinker": false, 
+      "vital_info_id": 0, 
+      "allergies": [
+        "rsuauoeulj", 
+        "xbuajwyrgb", 
+        "crhiinkzya", 
+        "inqcfyazjr"
+      ], 
+      "smoker": false, 
+      "patient_id": 8, 
+      "overseas": {
+        "recently": true, 
+        "destinations": [
+          "qcyzwhiagllm", 
+          "lzdiutrqqifu", 
+          "fluaxgixvztv", 
+          "txpwrhkmcayq", 
+          "pbjpwjhemoxb", 
+          "nikqlivwfzvt", 
+          "zajzxbayittb", 
+          "ldvlxtciimrd", 
+          "utmkyuhqqghy", 
+          "sveqdrsvlura"
+        ]
+      }, 
+      "medical_conditions": [
+        "rqyjkmusyfwvvdxhqgfw", 
+        "rtcwlysliviwncpqsgpx", 
+        "xmfwzzfeluhkayfbafct", 
+        "hgapikpcjmzlxorpyhvm", 
+        "kpgmkpiebqfjuzonvihv", 
+        "ntbbditdiaodtvrhevno"
+      ], 
+      "blood_type": "A"
+    }, 
+    {
+      "weight": {
+        "unit": "kg", 
+        "value": 108
+      }, 
+      "family_hist": [
+        "flggscwjchmjiecmjgtsqfoiactjgr", 
+        "xsniygtsrixcjnkqfdyrmmsifhpbxq", 
+        "lcwzupvbmrevcysaxiuxksvpsnbsrl", 
+        "rxscpfuilszblxrcfkrypmptjmnuyu", 
+        "udxjywskcwsnqseaikxfdnkvqxosdo", 
+        "tmbcheymxfihcfbyzscphadfhsugqs"
+      ], 
+      "height": {
+        "unit": "cm", 
+        "value": 169
+      }, 
+      "check_in_time": "2010-04-05T14:54:15.672000", 
+      "drinker": false, 
+      "vital_info_id": 0, 
+      "allergies": [
+        "xapkfcpmnh", 
+        "ggjabzjwwh", 
+        "mnkpysagdu", 
+        "mtuykkpwun"
+      ], 
+      "smoker": false, 
+      "patient_id": 9, 
+      "overseas": {
+        "recently": true, 
+        "destinations": [
+          "ooeuetctovrv", 
+          "lgbrjqfhtvyv", 
+          "lydghbtuuvmv", 
+          "osaeedcvkfvg", 
+          "nwybwkwheiym", 
+          "euklubatjgjj", 
+          "ehnxnrvwblvx", 
+          "pzdrmtlrgpmm", 
+          "oyixmercumxp", 
+          "zpaxanzqzqgz"
+        ]
+      }, 
+      "medical_conditions": [
+        "ndnndbdyzllynbjkciul", 
+        "wqljtxmlftzefvfhvsuq", 
+        "ctweedursrrtynyzaxqc", 
+        "vlzphvqosdbnlymchxzj", 
+        "ilsyhrfihtpwgydtijwp", 
+        "lrjxlklohczwezibdkie"
+      ], 
+      "blood_type": "O"
     }
   ]
 }

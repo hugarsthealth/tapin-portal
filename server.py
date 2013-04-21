@@ -10,9 +10,7 @@ app = Flask(__name__)
 @app.route('/')
 def root():
     if request.method == "GET":
-        return json.dumps({
-            "patients": "/patients/"
-        }, indent=2)
+        return json.dumps({"patients": "/patients/"})
 
 
 @app.route('/patients/', methods=['GET', 'POST'])
