@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import json
 import string
 
-with open('dictionary.txt') as f:
+with open('data/dictionary.txt') as f:
     words = [word.strip() for word in f.read().split('\n')]
 
 
@@ -103,13 +103,13 @@ def generate_vital_info(patient_id, vital_info_id):
     }
 
 
-def main():
+def generate_sample_data():
     NUM_PATIENTS = 10
     MIN_VITAL_INFOS = 1
     MAX_VITAL_INFOS = 5
 
-    vitalinfos = []
     patients = []
+    vitalinfos = []
 
     for i in xrange(NUM_PATIENTS):
         patient = generate_patient(i)
@@ -125,6 +125,12 @@ def main():
 
             lci = vid if lci is None or vid > lci else lci
             patient['last_check_in'] = lci
+
+    return (patients, vitalinfos)
+
+
+def main():
+    patients, vitalinfos = generate_sample_data()
 
     dthandler = lambda obj: obj.isoformat() if isinstance(obj, datetime) else None
 
