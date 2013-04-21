@@ -12,12 +12,12 @@ import json
 
 
 def get_patients():
-    with open("sampledata/patients.json") as f:
+    with open("data/patients.json") as f:
         return json.loads(f.read())
 
 
 def get_patient(patient_id):
-    with open("sampledata/patients.json") as f:
+    with open("data/patients.json") as f:
         patients = json.loads(f.read()).get('patients', [])
 
         for patient in patients:
@@ -40,14 +40,14 @@ def update_patient(patient_id, patient_data):
 
 
 def get_vital_infos(patient_id):
-    with open("sampledata/vitalinfos.json") as f:
+    with open("data/vitalinfos.json") as f:
         vitalinfos = json.loads(f.read()).get('vitalinfos', [])
 
         return {"vitalinfos": [vi for vi in vitalinfos if vi.get('patient_id') == patient_id]}
 
 
 def get_vital_info(patient_id, vital_info_id):
-    with open("sampledata/vitalinfos.json") as f:
+    with open("data/vitalinfos.json") as f:
         vitalinfos = json.loads(f.read()).get('vitalinfos', [])
 
         for vitalinfo in vitalinfos:
