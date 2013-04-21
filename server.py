@@ -1,9 +1,18 @@
 #!/usr/bin/env python
 
 from flask import Flask, request, jsonify
+import json
 import data
 
 app = Flask(__name__)
+
+
+@app.route('/')
+def root():
+    if request.method == "GET":
+        return json.dumps({
+            "patients": "/patients/"
+        }, indent=2)
 
 
 @app.route('/patients/', methods=['GET', 'POST'])
