@@ -46,7 +46,7 @@ def generate_patient(patient_id):
     gender = choice(['Male', 'Female'])
     dob = rand_date(30000)
     last_check_in = None
-    vital_info_url = "/patients/%s/vitalinfo" % patient_id
+    vital_info_url = "/patients/%s/vitalinfo/" % patient_id
     vital_info_ids = []
 
     return {
