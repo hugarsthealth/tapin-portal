@@ -1,7 +1,5 @@
 from server import app
 
-import json
-
 
 class VitalInfo(app.db.Model):
     vital_info_id = app.db.Column(app.db.Integer, primary_key=True)
@@ -21,9 +19,12 @@ class VitalInfo(app.db.Model):
     allergies = app.db.Column(app.db.String(2500))
 
     """docstring for VitalInfo"""
-    def __init__(self, **kwargs):
-        super(VitalInfo, self).__init__()
-        self.__dict__.update(kwargs)
+    def __init__(self, *initial_data, **kwargs):
+        for dictionary in initial_data:
+            for key in dictionary:
+                setattr(self, key, dictionary[key])
+        for key in kwargs:
+            setattr(self, key, kwargs[key])
 
     def to_dict(self):
         temp = self.__dict__.copy()
@@ -32,4 +33,4 @@ class VitalInfo(app.db.Model):
         return temp
 
     def __repr__(self):
-        return json.dumps(self.__dict__, indent=2)
+        return '<VitalInfo (id: {}, patient: {})>'.format(self.vital_info_id, self.patient_id)

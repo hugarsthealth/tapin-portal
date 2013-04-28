@@ -1,7 +1,5 @@
 from server import app
 
-import json
-
 
 class Patient(app.db.Model):
     patient_id = app.db.Column(app.db.Integer, primary_key=True)
@@ -16,8 +14,12 @@ class Patient(app.db.Model):
     last_check_in = app.db.Column(app.db.Date)
 
     """docstring for Patient"""
-    def __init__(self, **kwargs):
-        self.__dict__.update(kwargs)
+    def __init__(self, *initial_data, **kwargs):
+        for dictionary in initial_data:
+            for key in dictionary:
+                setattr(self, key, dictionary[key])
+        for key in kwargs:
+            setattr(self, key, kwargs[key])
 
     @property
     def name(self):
