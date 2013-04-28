@@ -28,16 +28,16 @@ def patients():
 @app.route('/patients/<int:patient_id>/', methods=['GET', 'PUT', 'DELETE'])
 def patient(patient_id):
     if request.method == "GET":
-        return jsonify({'patient': Patient.query.get(patient_id).to_dict()})
+        return jsonify({'patient': Patient.query.get_or_404(patient_id).to_dict()})
 
     elif request.method == "PUT":
-        patient = Patient.query.get(patient_id)
+        patient = Patient.query.get_or_404(patient_id)
         patient.__init__(**json.loads(request.data))
 
         app.db.session.commit()
 
     elif request.method == "DELETE":
-        app.db.session.delete(Patient.query.get(patient_id))
+        app.db.session.delete(Patient.query.get_or_404(patient_id))
 
         app.db.session.commit()
 
@@ -58,15 +58,15 @@ def vital_infos(patient_id):
 @app.route('/patients/<int:patient_id>/vitalinfos/<int:vital_info_id>/', methods=['GET', 'PUT', 'DELETE'])
 def vital_info(patient_id, vital_info_id):
     if request.method == "GET":
-        return jsonify({'vitalinfo': VitalInfo.query.get(vital_info_id).to_dict()})
+        return jsonify({'vitalinfo': VitalInfo.query.get_or_404(vital_info_id).to_dict()})
 
     elif request.method == "PUT":
-        vitalinfo = VitalInfo.query.get(vital_info_id)
+        vitalinfo = VitalInfo.query.get_or_404(vital_info_id)
         vitalinfo.__init__(**json.loads(request.data))
 
         app.db.session.commit()
 
     elif request.method == "DELETE":
-        app.db.session.delete(VitalInfo.query.get(vital_info_id))
+        app.db.session.delete(VitalInfo.query.get_or_404(vital_info_id))
 
         app.db.session.commit()
