@@ -2,10 +2,13 @@
 
 from random import choice, randrange, getrandbits, randint
 from datetime import datetime, timedelta
-import json
 import string
 
-with open('dictionary.txt') as f:
+from server import app
+from models.patient import Patient
+from models.vitalinfo import VitalInfo
+
+with open('models/dictionary.txt') as f:
     words = [word.strip() for word in f.read().split('\n')]
 
 
@@ -40,10 +43,10 @@ def rand_bool():
 
 
 def list_of_rand_sentences(list_length, sentence_length):
-    return [rand_sentence(sentence_length) for x in xrange(list_length)]
+    return ';'.join([rand_sentence(sentence_length) for x in xrange(list_length)])
 
 
-def generate_patient(patient_id):
+def generate_patient():
     firstname = rand_name()
     lastname = rand_name()
     nhi = rand_nhi()
@@ -53,11 +56,8 @@ def generate_patient(patient_id):
     gender = choice(['Male', 'Female'])
     dob = rand_date(30000)
     last_check_in = None
-    vital_info_url = "/patients/%s/vitalinfos/" % patient_id
-    vital_info_ids = []
 
     return {
-        'patient_id': patient_id,
         'firstname': firstname,
         'lastname': lastname,
         'nhi': nhi,
@@ -67,12 +67,10 @@ def generate_patient(patient_id):
         'gender': gender,
         'dob': dob,
         'last_check_in': last_check_in,
-        'vital_info_url': vital_info_url,
-        'vital_info_ids': vital_info_ids
     }
 
 
-def generate_vital_info(patient_id, vital_info_id):
+def generate_vital_info(patient_id):
     check_in_time = rand_date()
     weight_value = randrange(0, 200)
     weight_unit = choice(['kg', 'lb'])
@@ -83,56 +81,70 @@ def generate_vital_info(patient_id, vital_info_id):
     drinker = rand_bool()
     family_hist = list_of_rand_sentences(6, 30)
     overseas_recently = rand_bool()
-    overseas_destinations = list_of_rand_sentences(10, 12)
+    overseas_dests = list_of_rand_sentences(10, 12)
     medical_conditions = list_of_rand_sentences(6, 20)
     allergies = list_of_rand_sentences(4, 10)
 
     return {
-        'vital_info_id': vital_info_id,
         'check_in_time': check_in_time,
         'patient_id': patient_id,
-        'weight': {'value': weight_value, 'unit': weight_unit},
-        'height': {'value': height_value, 'unit': height_unit},
+        'weight_value': weight_value,
+        'weight_unit': weight_unit,
+        'height_value': height_value,
+        'height_unit': height_unit,
         'blood_type': blood_type,
         'smoker': smoker,
         'drinker': drinker,
         'family_hist': family_hist,
-        'overseas': {'recently': overseas_recently, 'destinations': overseas_destinations},
+        'overseas_recently': overseas_recently,
+        'overseas_dests': overseas_dests,
         'medical_conditions': medical_conditions,
         'allergies': allergies
     }
 
 
-def main():
-    NUM_PATIENTS = 10
-    MIN_VITAL_INFOS = 1
-    MAX_VITAL_INFOS = 5
+def generate_sample_data():
+    NUM_PATIENTS = 5
+    MIN_VITAL_INFOS = 2
+    MAX_VITAL_INFOS = 10
 
-    vitalinfos = []
     patients = []
+    vitalinfos = []
 
     for i in xrange(NUM_PATIENTS):
-        patient = generate_patient(i)
+        patient = Patient(**generate_patient())
         patients.append(patient)
+        app.db.session.add(patient)
+        app.db.session.commit()
 
         for j in xrange(randrange(MIN_VITAL_INFOS, MAX_VITAL_INFOS)):
-            vitalinfo = generate_vital_info(i, j)
-            vitalinfos.append(vitalinfo)
+            vitalinfo = VitalInfo(**generate_vital_info(i))
+            vitalinfo.patient_id = patient.patient_id
 
-            patient['vital_info_ids'].append(vitalinfo['vital_info_id'])
-            lci = patient['last_check_in']
-            vid = vitalinfo['check_in_time']
+            lci = patient.last_check_in
+            vid = vitalinfo.check_in_time
 
             lci = vid if lci is None or vid > lci else lci
-            patient['last_check_in'] = lci
+            patient.last_check_in = lci
 
-    dthandler = lambda obj: obj.isoformat() if isinstance(obj, datetime) else None
+            vitalinfos.append(vitalinfo)
+            app.db.session.add(vitalinfo)
+            app.db.session.commit()
 
-    with open('patients.json', 'w') as f:
-        f.write(json.dumps({'patients': patients}, indent=2, default=dthandler))
+    return (patients, vitalinfos)
 
-    with open('vitalinfos.json', 'w') as f:
-        f.write(json.dumps({'vitalinfos': vitalinfos}, indent=2, default=dthandler))
+
+def main():
+    app.db.create_all()
+    patients, vitalinfos = generate_sample_data()
+
+    # dthandler = lambda obj: obj.isoformat() if isinstance(obj, datetime) else None
+
+#    with open('patients.json', 'w') as f:
+#        f.write(json.dumps({'patients': patients}, indent=2, default=dthandler))
+#
+#    with open('vitalinfos.json', 'w') as f:
+#        f.write(json.dumps({'vitalinfos': vitalinfos}, indent=2, default=dthandler))
 
 if __name__ == '__main__':
     main()
