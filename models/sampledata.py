@@ -4,7 +4,7 @@ from random import choice, randrange, getrandbits, randint
 from datetime import datetime, timedelta
 import string
 
-from server import app
+from server import db
 from models.patient import Patient
 from models.vitalinfo import VitalInfo
 
@@ -104,12 +104,12 @@ def generate_vital_info(patient_id):
 
 
 def populate_database(num_patients=5, min_vital_infos=2, max_vital_infos=10):
-    app.db.create_all()
+    db.create_all()
 
     for i in xrange(num_patients):
         patient = Patient(**generate_patient())
-        app.db.session.add(patient)
-        app.db.session.commit()
+        db.session.add(patient)
+        db.session.commit()
 
         for j in xrange(randrange(min_vital_infos, max_vital_infos)):
             vitalinfo = VitalInfo(**generate_vital_info(i))
@@ -121,5 +121,5 @@ def populate_database(num_patients=5, min_vital_infos=2, max_vital_infos=10):
             lci = vid if lci is None or vid > lci else lci
             patient.last_check_in = lci
 
-            app.db.session.add(vitalinfo)
-            app.db.session.commit()
+            db.session.add(vitalinfo)
+            db.session.commit()

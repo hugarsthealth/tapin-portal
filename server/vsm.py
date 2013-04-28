@@ -1,7 +1,7 @@
 import json
 import datetime
 
-from server import app
+from server import app, db
 from flask import request, jsonify, url_for, redirect, render_template
 from models.patient import Patient
 from models.vitalinfo import VitalInfo
@@ -20,8 +20,8 @@ def patients():
 
     elif request.method == "POST":
         p = Patient(**json.loads(request.data))
-        app.db.session.add(p)
-        app.db.session.commit()
+        db.session.add(p)
+        db.session.commit()
         return redirect(url_for('patient', patient_id=p.patient_id))
 
 
@@ -34,12 +34,12 @@ def patient(patient_id):
         patient = Patient.query.get_or_404(patient_id)
         patient.__init__(**json.loads(request.data))
 
-        app.db.session.commit()
+        db.session.commit()
 
     elif request.method == "DELETE":
-        app.db.session.delete(Patient.query.get_or_404(patient_id))
+        db.session.delete(Patient.query.get_or_404(patient_id))
 
-        app.db.session.commit()
+        db.session.commit()
 
 
 @app.route('/patients/<int:patient_id>/vitalinfos/', methods=['GET', 'POST'])
@@ -50,8 +50,8 @@ def vital_infos(patient_id):
     elif request.method == "POST":
         v = VitalInfo(**json.loads(request.data))
         v.check_in_time = datetime.datetime.strptime(v.check_in_time, "%Y-%m-%dT%H:%M:%S.%f")
-        app.db.session.add(v)
-        app.db.session.commit()
+        db.session.add(v)
+        db.session.commit()
         return redirect(url_for('vital_info', patient_id=v.patient_id, vital_info_id=v.vital_info_id))
 
 
@@ -64,9 +64,9 @@ def vital_info(patient_id, vital_info_id):
         vitalinfo = VitalInfo.query.get_or_404(vital_info_id)
         vitalinfo.__init__(**json.loads(request.data))
 
-        app.db.session.commit()
+        db.session.commit()
 
     elif request.method == "DELETE":
-        app.db.session.delete(VitalInfo.query.get_or_404(vital_info_id))
+        db.session.delete(VitalInfo.query.get_or_404(vital_info_id))
 
-        app.db.session.commit()
+        db.session.commit()

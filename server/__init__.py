@@ -13,7 +13,7 @@ if "DATABASE_URL" in os.environ:
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 
-app.db = SQLAlchemy(app)
+db = SQLAlchemy(app)
 
 
 import server.vsm

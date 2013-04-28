@@ -1,22 +1,22 @@
-from server import app
+from server import db
 
 
-class VitalInfo(app.db.Model):
-    vital_info_id = app.db.Column(app.db.Integer, primary_key=True)
-    check_in_time = app.db.Column(app.db.DateTime, nullable=False)
-    patient_id = app.db.Column(app.db.Integer, app.db.ForeignKey("patient.patient_id"), nullable=False)
-    weight_value = app.db.Column(app.db.Float)
-    weight_unit = app.db.Column(app.db.String(50))
-    height_value = app.db.Column(app.db.Float)
-    height_unit = app.db.Column(app.db.String(50))
-    blood_type = app.db.Column(app.db.String(5))
-    smoker = app.db.Column(app.db.Boolean)
-    drinker = app.db.Column(app.db.Boolean)
-    family_hist = app.db.Column(app.db.String(2500))
-    overseas_recently = app.db.Column(app.db.Boolean)
-    overseas_dests = app.db.Column(app.db.String(2500))
-    medical_conditions = app.db.Column(app.db.String(2500))
-    allergies = app.db.Column(app.db.String(2500))
+class VitalInfo(db.Model):
+    vital_info_id = db.Column(db.Integer, primary_key=True)
+    check_in_time = db.Column(db.DateTime, nullable=False)
+    patient_id = db.Column(db.Integer, db.ForeignKey("patient.patient_id"), nullable=False)
+    weight_value = db.Column(db.Float)
+    weight_unit = db.Column(db.String(50))
+    height_value = db.Column(db.Float)
+    height_unit = db.Column(db.String(50))
+    blood_type = db.Column(db.String(5))
+    smoker = db.Column(db.Boolean)
+    drinker = db.Column(db.Boolean)
+    family_hist = db.Column(db.String(2500))
+    overseas_recently = db.Column(db.Boolean)
+    overseas_dests = db.Column(db.String(2500))
+    medical_conditions = db.Column(db.String(2500))
+    allergies = db.Column(db.String(2500))
 
     """docstring for VitalInfo"""
     def __init__(self, **kwargs):

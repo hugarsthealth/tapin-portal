@@ -1,18 +1,18 @@
-from server import app
+from server import db
 
 
-class Patient(app.db.Model):
-    patient_id = app.db.Column(app.db.Integer, primary_key=True)
-    firstname = app.db.Column(app.db.String(250), nullable=False)
-    lastname = app.db.Column(app.db.String(250), nullable=False)
-    nhi = app.db.Column(app.db.String(10), unique=True, nullable=False)
-    occupation = app.db.Column(app.db.String(250))
-    citizen_resident = app.db.Column(app.db.Boolean)
-    contact_num = app.db.Column(app.db.String(20))
-    gender = app.db.Column(app.db.String(250))
-    dob = app.db.Column(app.db.Date)
-    last_check_in = app.db.Column(app.db.DateTime)
-    vitalinfos = app.db.relationship("VitalInfo", backref="patient", cascade="delete")
+class Patient(db.Model):
+    patient_id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.String(250), nullable=False)
+    lastname = db.Column(db.String(250), nullable=False)
+    nhi = db.Column(db.String(10), unique=True, nullable=False)
+    occupation = db.Column(db.String(250))
+    citizen_resident = db.Column(db.Boolean)
+    contact_num = db.Column(db.String(20))
+    gender = db.Column(db.String(250))
+    dob = db.Column(db.Date)
+    last_check_in = db.Column(db.DateTime)
+    vitalinfos = db.relationship("VitalInfo", backref="patient", cascade="delete")
 
     """docstring for Patient"""
     def __init__(self, **kwargs):
