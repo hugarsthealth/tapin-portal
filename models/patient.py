@@ -11,7 +11,7 @@ class Patient(app.db.Model):
     contact_num = app.db.Column(app.db.String(20))
     gender = app.db.Column(app.db.String(250))
     dob = app.db.Column(app.db.Date)
-    last_check_in = app.db.Column(app.db.Date)
+    last_check_in = app.db.Column(app.db.DateTime)
     vitalinfos = app.db.relationship("VitalInfo", backref="patient", cascade="delete")
 
     """docstring for Patient"""
@@ -27,7 +27,9 @@ class Patient(app.db.Model):
         temp = self.__dict__.copy()
         del temp['_sa_instance_state']
         temp['vital_info_url'] = "/patients/{}/vitalinfos/".format(self.patient_id)
+        temp['dob'] = self.dob.isoformat()
+        temp['last_check_in'] = self.last_check_in.isoformat()
         return temp
 
     def __repr__(self):
-        return '<Patient (nhi: {}, name: {})>'.format(self.nhi, self.name)
+        return '<Patient (id: {}, nhi: {}, name: {})>'.format(self.patient_id, self.nhi, self.name)

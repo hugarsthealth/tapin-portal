@@ -2,11 +2,11 @@
 
 from random import choice, randrange, getrandbits, randint
 from datetime import datetime, timedelta
+import string
+
 from server import app
 from models.patient import Patient
 from models.vitalinfo import VitalInfo
-import json
-import string
 
 with open('models/dictionary.txt') as f:
     words = [word.strip() for word in f.read().split('\n')]
@@ -46,7 +46,7 @@ def list_of_rand_sentences(list_length, sentence_length):
     return ';'.join([rand_sentence(sentence_length) for x in xrange(list_length)])
 
 
-def generate_patient(patient_id):
+def generate_patient():
     firstname = rand_name()
     lastname = rand_name()
     nhi = rand_nhi()
@@ -58,7 +58,6 @@ def generate_patient(patient_id):
     last_check_in = None
 
     return {
-        #'patient_id': patient_id,
         'firstname': firstname,
         'lastname': lastname,
         'nhi': nhi,
@@ -71,7 +70,7 @@ def generate_patient(patient_id):
     }
 
 
-def generate_vital_info(patient_id, vital_info_id):
+def generate_vital_info(patient_id):
     check_in_time = rand_date()
     weight_value = randrange(0, 200)
     weight_unit = choice(['kg', 'lb'])
@@ -87,7 +86,6 @@ def generate_vital_info(patient_id, vital_info_id):
     allergies = list_of_rand_sentences(4, 10)
 
     return {
-        'vital_info_id': vital_info_id,
         'check_in_time': check_in_time,
         'patient_id': patient_id,
         'weight_value': weight_value,
@@ -106,35 +104,41 @@ def generate_vital_info(patient_id, vital_info_id):
 
 
 def generate_sample_data():
-    NUM_PATIENTS = 2
-    MIN_VITAL_INFOS = 1
-    MAX_VITAL_INFOS = 2
+    NUM_PATIENTS = 5
+    MIN_VITAL_INFOS = 2
+    MAX_VITAL_INFOS = 10
 
     patients = []
     vitalinfos = []
 
     for i in xrange(NUM_PATIENTS):
-        patient = generate_patient(i)
-        app.db.session.add(Patient(**patient))
+        patient = Patient(**generate_patient())
+        patients.append(patient)
+        app.db.session.add(patient)
+        app.db.session.commit()
 
         for j in xrange(randrange(MIN_VITAL_INFOS, MAX_VITAL_INFOS)):
-            vitalinfo = generate_vital_info(i, j)
-            app.db.session.add(VitalInfo(**vitalinfo))
+            vitalinfo = VitalInfo(**generate_vital_info(i))
+            vitalinfo.patient_id = patient.patient_id
 
-            lci = patient['last_check_in']
-            vid = vitalinfo['check_in_time']
+            lci = patient.last_check_in
+            vid = vitalinfo.check_in_time
 
             lci = vid if lci is None or vid > lci else lci
-            patient['last_check_in'] = lci
+            patient.last_check_in = lci
 
-    app.db.session.commit()
+            vitalinfos.append(vitalinfo)
+            app.db.session.add(vitalinfo)
+            app.db.session.commit()
 
     return (patients, vitalinfos)
 
+
 def main():
+    app.db.create_all()
     patients, vitalinfos = generate_sample_data()
 
-    dthandler = lambda obj: obj.isoformat() if isinstance(obj, datetime) else None
+    # dthandler = lambda obj: obj.isoformat() if isinstance(obj, datetime) else None
 
 #    with open('patients.json', 'w') as f:
 #        f.write(json.dumps({'patients': patients}, indent=2, default=dthandler))
