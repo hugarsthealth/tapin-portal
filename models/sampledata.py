@@ -103,21 +103,15 @@ def generate_vital_info(patient_id):
     }
 
 
-def generate_sample_data():
-    NUM_PATIENTS = 5
-    MIN_VITAL_INFOS = 2
-    MAX_VITAL_INFOS = 10
+def populate_database(num_patients=5, min_vital_infos=2, max_vital_infos=10):
+    app.db.create_all()
 
-    patients = []
-    vitalinfos = []
-
-    for i in xrange(NUM_PATIENTS):
+    for i in xrange(num_patients):
         patient = Patient(**generate_patient())
-        patients.append(patient)
         app.db.session.add(patient)
         app.db.session.commit()
 
-        for j in xrange(randrange(MIN_VITAL_INFOS, MAX_VITAL_INFOS)):
+        for j in xrange(randrange(min_vital_infos, max_vital_infos)):
             vitalinfo = VitalInfo(**generate_vital_info(i))
             vitalinfo.patient_id = patient.patient_id
 
@@ -127,24 +121,5 @@ def generate_sample_data():
             lci = vid if lci is None or vid > lci else lci
             patient.last_check_in = lci
 
-            vitalinfos.append(vitalinfo)
             app.db.session.add(vitalinfo)
             app.db.session.commit()
-
-    return (patients, vitalinfos)
-
-
-def main():
-    app.db.create_all()
-    patients, vitalinfos = generate_sample_data()
-
-    # dthandler = lambda obj: obj.isoformat() if isinstance(obj, datetime) else None
-
-#    with open('patients.json', 'w') as f:
-#        f.write(json.dumps({'patients': patients}, indent=2, default=dthandler))
-#
-#    with open('vitalinfos.json', 'w') as f:
-#        f.write(json.dumps({'vitalinfos': vitalinfos}, indent=2, default=dthandler))
-
-if __name__ == '__main__':
-    main()
