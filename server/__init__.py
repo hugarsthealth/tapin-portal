@@ -1,29 +1,19 @@
 #!/usr/bin/env python
 import os
-import urlparse
-import psycopg2
-
-from stores.patientstore import PostgresPatientStore, SQLitePatientStore
 from flask import Flask
+from flask.ext.sqlalchemy import SQLAlchemy
+
+
 app = Flask(__name__)
 
 app.config['DEBUG'] = False if "PRODUCTION" in os.environ else True
 
 if "DATABASE_URL" in os.environ:
-    urlparse.uses_netloc.append('postgres')
-    url = urlparse.urlparse(os.getenv('DATABASE_URL'))
-
-    conn = psycopg2.connect("dbname=%s user=%s password=%s host=%s " % (url.path[1:], url.username, url.password, url.hostname))
-    app.db = PostgresPatientStore(conn)
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 else:
-    @app.before_request
-    def before_request():
-        app.db = SQLitePatientStore('patients.db')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 
-    @app.teardown_request
-    def teardown_request(exception):
-        if hasattr(app, 'db'):
-            app.db.conn.close()
 
+app.db = SQLAlchemy(app)
 
 import server.vsm
