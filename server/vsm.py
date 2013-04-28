@@ -1,8 +1,10 @@
 import json
+import datetime
 
 from server import app
 from flask import request, jsonify, url_for, redirect
 from models.patient import Patient
+from models.vitalinfo import VitalInfo
 
 
 @app.route('/')
@@ -38,16 +40,20 @@ def patient(patient_id):
 @app.route('/patients/<int:patient_id>/vitalinfos/', methods=['GET', 'POST'])
 def vital_infos(patient_id):
     if request.method == "GET":
-        return jsonify(app.db.get_vital_infos(patient_id))
+        return jsonify({'vitalinfos': [v.to_dict() for v in VitalInfo.query.filter_by(patient_id=patient_id).all()]})
 
     elif request.method == "POST":
-        app.db.store_vital_info(patient_id, request.json)
+        v = VitalInfo(**json.loads(request.data))
+        v.check_in_time = datetime.datetime.strptime(v.check_in_time, "%Y-%m-%dT%H:%M:%S.%f")
+        app.db.session.add(v)
+        app.db.session.commit()
+        return redirect(url_for('vital_info', patient_id=v.patient_id, vital_info_id=v.vital_info_id))
 
 
 @app.route('/patients/<int:patient_id>/vitalinfos/<int:vital_info_id>/', methods=['GET', 'PUT', 'DELETE'])
 def vital_info(patient_id, vital_info_id):
     if request.method == "GET":
-        return jsonify(app.db.get_vital_info(patient_id, vital_info_id))
+        return jsonify({'vitalinfo': VitalInfo.query.get(vital_info_id).to_dict()})
 
     elif request.method == "PUT":
         app.db.update_vital_info(patient_id, vital_info_id, request.json)
