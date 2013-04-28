@@ -39,3 +39,7 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# SQLite
+*.db
+*.db-journal
