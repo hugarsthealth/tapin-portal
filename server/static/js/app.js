@@ -1,15 +1,16 @@
-function FirstCtrl ($scope, $http) {
-  $http({method: 'GET', url: '/patients/'}).
-    success(function(data, status, headers, config) {
-      // this callback will be called asynchronously
-      // when the response is available
-      $scope.patients = data;
-      console.log(data);
-    }).
-    error(function(data, status, headers, config) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-      console.log(data);
-    });
+var myApp = angular.module('vsmApp', [], function($interpolateProvider) {
+    $interpolateProvider.startSymbol('<[');
+    $interpolateProvider.endSymbol(']>');
+});
 
+function PatientListCtrl($scope, $http){
+  $http.get('/patients/').success(function(data) {
+    $scope.patients = data.patients;
+    for (var i = 0 ; i < $scope.patients.length ; i++) {
+      $scope.patients[i].fullname = $scope.patients[i].firstname + $scope.patients[i].lastname;
+    }
+  });
+
+  $scope.orderProp = 'patient_id';
 }
+

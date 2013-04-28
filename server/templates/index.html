@@ -10,10 +10,25 @@
 
 </head>
 <body>
-    <div ng-app="">
-        <div ng-controller="FirstCtrl">
-
+  <div ng-app="vsmApp">
+      <div ng-controller="PatientListCtrl">
+        <div class="search-bar">
+          <input ng-model="query.fullname">
+        </div>
+        <div class = "patients">
+          <div ng-repeat = "patient in patients | filter:query">
+            <h3>Name: <[patient.firstname]> <[patient.lastname]></h3>
+            <p>NHI: <[patient.nhi]></p>
+            <p>Occupation: <[patient.occupation]></p>
+            <p>Citizen/Resident: <[patient.citizen_resident]></p>
+            <p>Contact Number: <[patient.contact_num]></p>
+            <p>Last Check In: <[patient.last_check_in]></p>
+            <p>Gender: <[patient.gender]></p>
+            <p>Patient ID: <[patient.patient_id]></p>
+            <p>Date Of Birth: <[patient.dob]></p>
+          </div> 
         </div>
     </div>
+  </div>
 </body>
 </html>
