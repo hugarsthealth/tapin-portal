@@ -23,6 +23,7 @@ class VitalInfo(app.db.Model):
 
     """docstring for VitalInfo"""
     def __init__(self, **kwargs):
+        super(VitalInfo, self).__init__()
         self.__dict__.update(kwargs)
 
     def __repr__(self):

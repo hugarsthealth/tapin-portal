@@ -1,7 +1,8 @@
 import json
 
 from server import app
-from flask import request, jsonify
+from flask import request, jsonify, url_for, redirect
+from models.patient import Patient
 
 
 @app.route('/')
@@ -13,17 +14,19 @@ def root():
 @app.route('/patients/', methods=['GET', 'POST'])
 def patients():
     if request.method == "GET":
-        return jsonify(app.db.get_patients())
+        return jsonify({'patients': [p.to_dict() for p in Patient.query.all()]})
 
     elif request.method == "POST":
-        # app.db.store_patient(request.data)
-        return request.data
+        p = Patient(**json.loads(request.data))
+        app.db.session.add(p)
+        app.db.session.commit()
+        return redirect(url_for('patient', patient_id=p.patient_id))
 
 
 @app.route('/patients/<int:patient_id>/', methods=['GET', 'PUT', 'DELETE'])
 def patient(patient_id):
     if request.method == "GET":
-        return jsonify(app.db.get_patient(patient_id))
+        return jsonify({'patient': Patient.query.get(patient_id).to_dict()})
 
     elif request.method == "PUT":
         app.db.update_patient(patient_id, request.json)

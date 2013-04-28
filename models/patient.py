@@ -19,5 +19,15 @@ class Patient(app.db.Model):
     def __init__(self, **kwargs):
         self.__dict__.update(kwargs)
 
+    @property
+    def name(self):
+        return '{0} {1}'.format(self.firstname, self.lastname)
+
+    def to_dict(self):
+        temp = self.__dict__.copy()
+        del temp['_sa_instance_state']
+        temp['vital_info_url'] = "/patients/{}/vitalinfos/".format(self.patient_id)
+        return temp
+
     def __repr__(self):
-        return json.dumps(self.__dict__, indent=2)
+        return '<Patient (nhi: {}, name: {})>'.format(self.nhi, self.name)
