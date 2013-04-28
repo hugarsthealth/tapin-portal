@@ -13,7 +13,9 @@ if "DATABASE_URL" in os.environ:
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 
-
 app.db = SQLAlchemy(app)
+
+if not os.path.exists(app.config['SQLALCHEMY_DATABASE_URI']):
+    app.db.create_all()
 
 import server.vsm
