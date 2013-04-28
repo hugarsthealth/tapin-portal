@@ -12,6 +12,7 @@ class Patient(app.db.Model):
     gender = app.db.Column(app.db.String(250))
     dob = app.db.Column(app.db.Date)
     last_check_in = app.db.Column(app.db.Date)
+    vitalinfos = app.db.relationship("VitalInfo", backref="patient", cascade="delete")
 
     """docstring for Patient"""
     def __init__(self, **kwargs):

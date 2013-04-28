@@ -31,10 +31,15 @@ def patient(patient_id):
         return jsonify({'patient': Patient.query.get(patient_id).to_dict()})
 
     elif request.method == "PUT":
-        app.db.update_patient(patient_id, request.json)
+        patient = Patient.query.get(patient_id)
+        patient.__init__(**json.loads(request.data))
+
+        app.db.session.commit()
 
     elif request.method == "DELETE":
-        app.db.delete_patient(patient_id)
+        app.db.session.delete(Patient.query.get(patient_id))
+
+        app.db.session.commit()
 
 
 @app.route('/patients/<int:patient_id>/vitalinfos/', methods=['GET', 'POST'])
@@ -56,7 +61,12 @@ def vital_info(patient_id, vital_info_id):
         return jsonify({'vitalinfo': VitalInfo.query.get(vital_info_id).to_dict()})
 
     elif request.method == "PUT":
-        app.db.update_vital_info(patient_id, vital_info_id, request.json)
+        vitalinfo = VitalInfo.query.get(vital_info_id)
+        vitalinfo.__init__(**json.loads(request.data))
+
+        app.db.session.commit()
 
     elif request.method == "DELETE":
-        app.db.delete_vital_info(vital_info_id)
+        app.db.session.delete(VitalInfo.query.get(vital_info_id))
+
+        app.db.session.commit()
