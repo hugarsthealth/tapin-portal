@@ -1,14 +1,13 @@
 import json
-
 from server import app
 from data import data
-from flask import request, jsonify
+from flask import request, jsonify, render_template
 
 
 @app.route('/')
 def root():
-    if request.method == "GET":
-        return json.dumps({"patients": "/patients/"})
+    #serve up the angular
+    return render_template('index.html')
 
 
 @app.route('/patients/', methods=['GET', 'POST'])
