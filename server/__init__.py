@@ -15,7 +15,5 @@ else:
 
 app.db = SQLAlchemy(app)
 
-if not os.path.exists(app.config['SQLALCHEMY_DATABASE_URI']):
-    app.db.create_all()
 
 import server.vsm
