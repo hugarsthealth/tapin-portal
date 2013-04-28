@@ -2,6 +2,9 @@
 
 from random import choice, randrange, getrandbits, randint
 from datetime import datetime, timedelta
+from server import app
+from models.patient import Patient
+from models.vitalinfo import VitalInfo
 import json
 import string
 
@@ -40,7 +43,7 @@ def rand_bool():
 
 
 def list_of_rand_sentences(list_length, sentence_length):
-    return [rand_sentence(sentence_length) for x in xrange(list_length)]
+    return ';'.join([rand_sentence(sentence_length) for x in xrange(list_length)])
 
 
 def generate_patient(patient_id):
@@ -53,11 +56,9 @@ def generate_patient(patient_id):
     gender = choice(['Male', 'Female'])
     dob = rand_date(30000)
     last_check_in = None
-    vital_info_url = "/patients/%s/vitalinfos/" % patient_id
-    vital_info_ids = []
 
     return {
-        'patient_id': patient_id,
+        #'patient_id': patient_id,
         'firstname': firstname,
         'lastname': lastname,
         'nhi': nhi,
@@ -67,8 +68,6 @@ def generate_patient(patient_id):
         'gender': gender,
         'dob': dob,
         'last_check_in': last_check_in,
-        'vital_info_url': vital_info_url,
-        'vital_info_ids': vital_info_ids
     }
 
 
@@ -83,7 +82,7 @@ def generate_vital_info(patient_id, vital_info_id):
     drinker = rand_bool()
     family_hist = list_of_rand_sentences(6, 30)
     overseas_recently = rand_bool()
-    overseas_destinations = list_of_rand_sentences(10, 12)
+    overseas_dests = list_of_rand_sentences(10, 12)
     medical_conditions = list_of_rand_sentences(6, 20)
     allergies = list_of_rand_sentences(4, 10)
 
@@ -91,54 +90,57 @@ def generate_vital_info(patient_id, vital_info_id):
         'vital_info_id': vital_info_id,
         'check_in_time': check_in_time,
         'patient_id': patient_id,
-        'weight': {'value': weight_value, 'unit': weight_unit},
-        'height': {'value': height_value, 'unit': height_unit},
+        'weight_value': weight_value,
+        'weight_unit': weight_unit,
+        'height_value': height_value,
+        'height_unit': height_unit,
         'blood_type': blood_type,
         'smoker': smoker,
         'drinker': drinker,
         'family_hist': family_hist,
-        'overseas': {'recently': overseas_recently, 'destinations': overseas_destinations},
+        'overseas_recently': overseas_recently,
+        'overseas_dests': overseas_dests,
         'medical_conditions': medical_conditions,
         'allergies': allergies
     }
 
 
 def generate_sample_data():
-    NUM_PATIENTS = 10
+    NUM_PATIENTS = 2
     MIN_VITAL_INFOS = 1
-    MAX_VITAL_INFOS = 5
+    MAX_VITAL_INFOS = 2
 
     patients = []
     vitalinfos = []
 
     for i in xrange(NUM_PATIENTS):
         patient = generate_patient(i)
-        patients.append(patient)
+        app.db.session.add(Patient(**patient))
 
         for j in xrange(randrange(MIN_VITAL_INFOS, MAX_VITAL_INFOS)):
             vitalinfo = generate_vital_info(i, j)
-            vitalinfos.append(vitalinfo)
+            app.db.session.add(VitalInfo(**vitalinfo))
 
-            patient['vital_info_ids'].append(vitalinfo['vital_info_id'])
             lci = patient['last_check_in']
             vid = vitalinfo['check_in_time']
 
             lci = vid if lci is None or vid > lci else lci
             patient['last_check_in'] = lci
 
-    return (patients, vitalinfos)
+    app.db.session.commit()
 
+    return (patients, vitalinfos)
 
 def main():
     patients, vitalinfos = generate_sample_data()
 
     dthandler = lambda obj: obj.isoformat() if isinstance(obj, datetime) else None
 
-    with open('patients.json', 'w') as f:
-        f.write(json.dumps({'patients': patients}, indent=2, default=dthandler))
-
-    with open('vitalinfos.json', 'w') as f:
-        f.write(json.dumps({'vitalinfos': vitalinfos}, indent=2, default=dthandler))
+#    with open('patients.json', 'w') as f:
+#        f.write(json.dumps({'patients': patients}, indent=2, default=dthandler))
+#
+#    with open('vitalinfos.json', 'w') as f:
+#        f.write(json.dumps({'vitalinfos': vitalinfos}, indent=2, default=dthandler))
 
 if __name__ == '__main__':
     main()
