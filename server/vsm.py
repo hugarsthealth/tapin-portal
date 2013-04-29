@@ -49,12 +49,16 @@ def vital_infos(patient_id):
 
     elif request.method == "POST":
         v = VitalInfo(**json.loads(request.data))
+
+        v.patient_id = patient_id
         v.check_in_time = datetime.datetime.strptime(v.check_in_time, "%Y-%m-%dT%H:%M:%S.%f")
 
-        if v.check_in_time > v.patient.last_check_in:
+        db.session.add(v)
+        db.session.commit()
+
+        if v.patient.last_check_in is None or v.check_in_time > v.patient.last_check_in:
             v.patient.last_check_in = v.check_in_time  # untested sqlalchemy magic
 
-        db.session.add(v)
         db.session.commit()
         return redirect(url_for('vital_info', patient_id=v.patient_id, vital_info_id=v.vital_info_id))
 
