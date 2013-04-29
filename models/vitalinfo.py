@@ -23,11 +23,24 @@ class VitalInfo(db.Model):
         for key in kwargs:
             setattr(self, key, kwargs[key])
 
-    def to_dict(self):
-        temp = self.__dict__.copy()
-        del temp['_sa_instance_state']
-        temp['check_in_time'] = temp['check_in_time'].isoformat()
-        return temp
+    def serialize(self):
+        return {
+            "vital_info_id": self.vital_info_id,
+            "check_in_time": self.check_in_time.isoformat(),
+            "patient_id": self.patient_id,
+            "weight_value": self.weight_value,
+            "weight_unit": self.weight_unit,
+            "height_value": self.height_value,
+            "height_unit": self.height_unit,
+            "blood_type": self.blood_type,
+            "smoker": self.smoker,
+            "drinker": self.drinker,
+            "family_hist": self.family_hist.split(';'),
+            "overseas_recently": self.overseas_recently,
+            "overseas_dests": self.overseas_dests.split(';'),
+            "medical_conditions": self.medical_conditions.split(';'),
+            "allergies": self.allergies.split(';')
+        }
 
     def __repr__(self):
         return '<VitalInfo (id: {}, patient: {})>'.format(self.vital_info_id, self.patient_id)

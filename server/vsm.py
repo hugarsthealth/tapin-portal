@@ -16,7 +16,7 @@ def root():
 @app.route('/patients/', methods=['GET', 'POST'])
 def patients():
     if request.method == "GET":
-        return jsonify({'patients': [p.to_dict() for p in Patient.query.all()]})
+        return jsonify({'patients': [p.serialize() for p in Patient.query.all()]})
 
     elif request.method == "POST":
         p = Patient(**json.loads(request.data))
@@ -28,7 +28,7 @@ def patients():
 @app.route('/patients/<int:patient_id>/', methods=['GET', 'PUT', 'DELETE'])
 def patient(patient_id):
     if request.method == "GET":
-        return jsonify({'patient': Patient.query.get_or_404(patient_id).to_dict()})
+        return jsonify({'patient': Patient.query.get_or_404(patient_id).serialize()})
 
     elif request.method == "PUT":
         patient = Patient.query.get_or_404(patient_id)
@@ -45,7 +45,7 @@ def patient(patient_id):
 @app.route('/patients/<int:patient_id>/vitalinfos/', methods=['GET', 'POST'])
 def vital_infos(patient_id):
     if request.method == "GET":
-        return jsonify({'vitalinfos': [v.to_dict() for v in VitalInfo.query.filter_by(patient_id=patient_id).all()]})
+        return jsonify({'vitalinfos': [v.serialize() for v in VitalInfo.query.filter_by(patient_id=patient_id).all()]})
 
     elif request.method == "POST":
         v = VitalInfo(**json.loads(request.data))
@@ -66,7 +66,7 @@ def vital_infos(patient_id):
 @app.route('/patients/<int:patient_id>/vitalinfos/<int:vital_info_id>/', methods=['GET', 'PUT', 'DELETE'])
 def vital_info(patient_id, vital_info_id):
     if request.method == "GET":
-        return jsonify({'vitalinfo': VitalInfo.query.get_or_404(vital_info_id).to_dict()})
+        return jsonify({'vitalinfo': VitalInfo.query.get_or_404(vital_info_id).serialize()})
 
     elif request.method == "PUT":
         vitalinfo = VitalInfo.query.get_or_404(vital_info_id)

@@ -23,13 +23,19 @@ class Patient(db.Model):
     def name(self):
         return '{0} {1}'.format(self.firstname, self.lastname)
 
-    def to_dict(self):
-        temp = self.__dict__.copy()
-        del temp['_sa_instance_state']
-        temp['vital_info_url'] = "/patients/{}/vitalinfos/".format(self.patient_id)
-        temp['dob'] = self.dob.isoformat() if self.dob is not None else None
-        temp['last_check_in'] = self.last_check_in.isoformat() if self.last_check_in is not None else None
-        return temp
+    def serialize(self):
+        return {
+            "patient_id": self.patient_id,
+            "firstname": self.firstname,
+            "lastname": self.lastname,
+            "nhi": self.nhi,
+            "occupation": self.occupation,
+            "citizen_resident": self.citizen_resident,
+            "contact_num": self.contact_num,
+            "gender": self.gender,
+            "dob": self.dob.isoformat(),
+            "last_check_in": self.last_check_in.isoformat()
+        }
 
     def __repr__(self):
         return '<Patient (id: {}, nhi: {}, name: {})>'.format(self.patient_id, self.nhi, self.name)
