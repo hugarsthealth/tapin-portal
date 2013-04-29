@@ -12,9 +12,18 @@
 
         <div class="search-bar">
           <label>Patient Search</label>
-          <input type="search" ng-model="query.fullname">
-        </div>
 
+          <div class="search-input">
+            <label>Search by:</label>
+            <select ng-model="searchBy" ng-change="searchByChange()">
+              <option value="fullname">Name</option>
+              <option value="nhi">NHI number</option>
+            </select>
+
+            <input type="search" ng-change="searchBarChange()" ng-model="queryString">
+          </div>
+        </div>
+        
         <div class = "patients">
 
           <div class="patient" ng-repeat="patient in patients | filter:query">

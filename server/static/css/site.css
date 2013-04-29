@@ -20,13 +20,23 @@ dl {
     margin-top: 20px;
 }
 
-.search-bar > input {
-    width: 500px;
+.search-bar > .search-input {
     float: right;
 }
 
-.search-bar > label {
+.search-input > input {
+    width: 400px;
+    float: right;
 }
+
+.search-input > label {
+    float: left;
+}
+
+.search-input > select {
+    float: left;
+}
+
 
 
 .patient {
