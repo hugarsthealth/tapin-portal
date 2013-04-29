@@ -27,8 +27,8 @@ class Patient(db.Model):
         temp = self.__dict__.copy()
         del temp['_sa_instance_state']
         temp['vital_info_url'] = "/patients/{}/vitalinfos/".format(self.patient_id)
-        temp['dob'] = self.dob.isoformat()
-        temp['last_check_in'] = self.last_check_in.isoformat()
+        temp['dob'] = self.dob.isoformat() if self.dob is not None else None
+        temp['last_check_in'] = self.last_check_in.isoformat() if self.last_check_in is not None else None
         return temp
 
     def __repr__(self):
