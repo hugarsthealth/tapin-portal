@@ -33,15 +33,17 @@ def patient(nhi):
         return jsonify({'patient': Patient.query.get(nhi).serialize()})
 
     elif request.method == "PUT":
-        patient = Patient.query.get(nhi)
-        patient.__init__(**json.loads(request.data))
+        data = json.loads(request.data)
+        Patient.query.filter_by(nhi=nhi).update(data)
 
         db.commit()
+        return make_response("Successfully updated!", 200)
 
     elif request.method == "DELETE":
         db.delete(Patient.query.get(nhi))
 
         db.commit()
+        return make_response("Successfully deleted!", 200)
 
 
 @app.route('/patients/<nhi>/vitalinfos/', methods=['GET', 'POST'])
