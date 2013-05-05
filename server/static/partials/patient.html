@@ -1,1 +1,60 @@
-<h1>HELLO PATIENT <[ nhi ]> </h1>
+
+<div ng-controller="PatientCtrl">
+  <div class="patient_details">
+    
+    <div class="patient">
+
+      <h1><[ patient.firstname + " " + patient.lastname ]></h1>
+
+      <dl>
+        <dt>NHI</dt>
+        <dd><[patient.nhi]></dd>
+
+        <dt>Occupation</dt>
+        <dd><[patient.occupation]></dd>
+
+        <dt>Citizen/Resident</dt>
+        <dd><[patient.citizen_resident]></dd>
+
+        <dt>Contact Number</dt>
+        <dd><[patient.contact_num]></dd>
+
+        <dt>Gender</dt>
+        <dd><[patient.gender]></dd>
+
+        <dt>Date Of Birth</dt>
+        <dd><[patient.dob]></dd>
+
+        <dt>Last Check In</dt>
+        <dd><[patient.last_check_in]></dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="checkins">
+    <div class="checkin-sorter">
+      <label>Sort check-ins by: </label>
+      <select ng-model="sortBy" ng-change="sortByChange()">
+        <option value="date">Date</option>
+        <option value="location">Location</option>
+      </select>
+    </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Check-in Date</th>
+            <th>Check-in Time</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="vitalinfo in vitalinfos">
+            <td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.check_in_time.substring(0,10) ]></a></td>
+            <td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.check_in_time.substring(11,16) ]></a></td>
+            <td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.height_value + " " + vitalinfo.height_unit ]></a></td>
+          </tr>
+        </tbody>
+    </table>
+    </div>
+  </div>
+</div>
