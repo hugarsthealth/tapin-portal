@@ -2,7 +2,7 @@ import json
 import datetime
 
 from server import app, db
-from flask import request, jsonify, url_for, redirect, render_template
+from flask import request, jsonify, url_for, redirect, render_template, make_response
 from models.patient import Patient
 from models.vitalinfo import VitalInfo
 
@@ -70,15 +70,18 @@ def vital_infos(nhi):
 @app.route('/patients/<nhi>/vitalinfos/<int:vital_info_id>/', methods=['GET', 'PUT', 'DELETE'])
 def vital_info(nhi, vital_info_id):
     if request.method == "GET":
-        return jsonify({'vitalinfo': VitalInfo.query.get_or_404(vital_info_id).serialize()})
+        vitalinfo = VitalInfo.query.filter_by(patient_nhi=nhi, vital_info_id=vital_info_id).first_or_404()
+        return jsonify({'vitalinfo': vitalinfo.serialize()})
 
     elif request.method == "PUT":
-        vitalinfo = VitalInfo.query.get_or_404(vital_info_id)
-        vitalinfo.__init__(**json.loads(request.data))
+        VitalInfo.query.filter_by(patient_nhi=nhi, vital_info_id=vital_info_id).update(json.loads(request.data))
 
         db.session.commit()
+        return make_response("Successfully updated!", 200)
 
     elif request.method == "DELETE":
-        db.session.delete(VitalInfo.query.get_or_404(vital_info_id))
+        vitalinfo = VitalInfo.query.filter_by(patient_nhi=nhi, vital_info_id=vital_info_id).first_or_404()
+        db.session.delete(vitalinfo)
 
         db.session.commit()
+        return make_response("Successfully deleted!", 200)
