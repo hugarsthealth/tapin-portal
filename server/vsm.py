@@ -18,7 +18,7 @@ def patients():
     if request.method == "GET":
         start = int(request.args.get('offset', 0))
         end = start + int(request.args.get('limit', 100))
-        return jsonify({'patients': [p.serialize() for p in Patient.query.slice(start,end)]})
+        return jsonify({'patients': [p.serialize() for p in Patient.query.slice(start, end)]})
 
     elif request.method == "POST":
         p = Patient(**json.loads(request.data))
@@ -49,7 +49,7 @@ def vital_infos(nhi):
     if request.method == "GET":
         start = int(request.args.get('offset', 0))
         end = start + int(request.args.get('limit', 100))
-        return jsonify({'vitalinfos': [v.serialize() for v in VitalInfo.query.filter_by(patient_nhi=nhi).slice(start,end)]})
+        return jsonify({'vitalinfos': [v.serialize() for v in VitalInfo.query.filter_by(patient_nhi=nhi).slice(start, end)]})
 
     elif request.method == "POST":
         v = VitalInfo(**json.loads(request.data))
