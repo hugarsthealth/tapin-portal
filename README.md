@@ -4,7 +4,7 @@
 1. Clone the repo:
 `git clone https://github.com/jcgharvey/vsm-svr.git/`
 
-2. Create a virtualenv:
+2. Create a virtualenv inside the project folder (vsm-svr):
 `virtualenv venv`
 
 3. Activate virtualenv:
@@ -13,7 +13,7 @@
 4. Install dependencies:
 `pip install -r requirements.txt`
 
-5. Generate sample data, run `python` in shell and then:
+5. Run `python` in shell and then:
 ```python
 >>> import models
 >>> models.init_db([num_patients [, min_vital_infos [, max_vital_infos]]]):
