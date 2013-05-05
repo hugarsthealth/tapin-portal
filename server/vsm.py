@@ -74,7 +74,9 @@ def vital_info(nhi, vital_info_id):
         return jsonify({'vitalinfo': vitalinfo.serialize()})
 
     elif request.method == "PUT":
-        VitalInfo.query.filter_by(patient_nhi=nhi, vital_info_id=vital_info_id).update(json.loads(request.data))
+        data = json.loads(request.data)
+        data['check_in_time'] = datetime.datetime.strptime(data['check_in_time'], "%Y-%m-%dT%H:%M:%S.%f")
+        VitalInfo.query.filter_by(patient_nhi=nhi, vital_info_id=vital_info_id).update(data)
 
         db.session.commit()
         return make_response("Successfully updated!", 200)
