@@ -1,23 +1,25 @@
-from server import db
+from sqlalchemy import ForeignKey, Column, Integer, String, DateTime, Float, Boolean
+from models import Base
 
 
-class VitalInfo(db.Model):
-    vital_info_id = db.Column(db.Integer, primary_key=True)
-    check_in_time = db.Column(db.DateTime, nullable=False)
-    patient_nhi = db.Column(db.String(10), db.ForeignKey("patient.nhi"), nullable=False)
-    weight_value = db.Column(db.Float)
-    weight_unit = db.Column(db.String(50))
-    height_value = db.Column(db.Float)
-    height_unit = db.Column(db.String(50))
-    blood_type = db.Column(db.String(5))
-    smoker = db.Column(db.Boolean)
-    drinker = db.Column(db.Boolean)
-    family_hist = db.Column(db.String(2500))
-    overseas_recently = db.Column(db.Boolean)
-    overseas_dests = db.Column(db.String(2500))
-    medical_conditions = db.Column(db.String(2500))
-    allergies = db.Column(db.String(2500))
-    location = db.Column(db.String(50))
+class VitalInfo(Base):
+    __tablename__ = 'vital_info'
+    vital_info_id = Column(Integer, primary_key=True)
+    check_in_time = Column(DateTime, nullable=False)
+    patient_nhi = Column(String(10), ForeignKey("patient.nhi"), nullable=False)
+    weight_value = Column(Float)
+    weight_unit = Column(String(50))
+    height_value = Column(Float)
+    height_unit = Column(String(50))
+    blood_type = Column(String(5))
+    smoker = Column(Boolean)
+    drinker = Column(Boolean)
+    family_hist = Column(String(2500))
+    overseas_recently = Column(Boolean)
+    overseas_dests = Column(String(2500))
+    medical_conditions = Column(String(2500))
+    allergies = Column(String(2500))
+    location = Column(String(50))
 
     """docstring for VitalInfo"""
     def __init__(self, **kwargs):
@@ -41,7 +43,7 @@ class VitalInfo(db.Model):
             "overseas_dests": self.overseas_dests.split(';'),
             "medical_conditions": self.medical_conditions.split(';'),
             "allergies": self.allergies.split(';'),
-            "location" : self.location
+            "location": self.location
         }
 
     def __repr__(self):

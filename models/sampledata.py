@@ -4,9 +4,7 @@ from random import choice, randrange, getrandbits, randint
 from datetime import datetime, timedelta
 import string
 
-from server import db
-from models.patient import Patient
-from models.vitalinfo import VitalInfo
+from models import db, Patient, VitalInfo
 
 with open('models/dictionary.txt') as f:
     words = [word.strip() for word in f.read().split('\n')]
@@ -105,12 +103,10 @@ def generate_vital_info():
 
 
 def populate_database(num_patients=5, min_vital_infos=2, max_vital_infos=10):
-    db.create_all()
-
     for i in xrange(num_patients):
         patient = Patient(**generate_patient())
-        db.session.add(patient)
-        db.session.commit()
+        db.add(patient)
+        db.commit()
 
         for j in xrange(randrange(min_vital_infos, max_vital_infos)):
             vitalinfo = VitalInfo(**generate_vital_info())
@@ -122,5 +118,5 @@ def populate_database(num_patients=5, min_vital_infos=2, max_vital_infos=10):
             lci = vid if lci is None or vid > lci else lci
             patient.last_check_in = lci
 
-            db.session.add(vitalinfo)
-            db.session.commit()
+            db.add(vitalinfo)
+            db.commit()
