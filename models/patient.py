@@ -5,7 +5,7 @@ class Patient(db.Model):
     patient_id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String(250), nullable=False)
     lastname = db.Column(db.String(250), nullable=False)
-    nhi = db.Column(db.String(10), unique=True, nullable=False)
+    nhi = db.Column(db.String(10), index=True, unique=True, nullable=False)
     occupation = db.Column(db.String(250))
     citizen_resident = db.Column(db.Boolean)
     contact_num = db.Column(db.String(20))
