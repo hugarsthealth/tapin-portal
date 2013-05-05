@@ -31,23 +31,27 @@
     </div>
   </div>
 
-  <div class="vitalinfos">
-    <label>Sort check-ins by: </label>
-    <select ng-model="sortBy" ng-change="sortByChange()">
-      <option value="date">Date</option>
-      <option value="location">Location</option>
-    </select>
-      <table border="1">
+  <div class="checkins">
+    <div class="checkin-sorter">
+      <label>Sort check-ins by: </label>
+      <select ng-model="sortBy" ng-change="sortByChange()">
+        <option value="date">Date</option>
+        <option value="location">Location</option>
+      </select>
+    </div>
+      <table>
         <thead>
           <tr>
+            <th>Check-in Date</th>
             <th>Check-in Time</th>
             <th>Location</th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="vitalinfo in vitalinfos">
-            <td><[ vitalinfo.check_in_time ]></td>
-            <td><[ vitalinfo.height_value + " " + vitalinfo.height_unit ]></td>
+            <td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.check_in_time.substring(0,10) ]></a></td>
+            <td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.check_in_time.substring(11,16) ]></a></td>
+            <td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.height_value + " " + vitalinfo.height_unit ]></a></td>
           </tr>
         </tbody>
     </table>

@@ -71,8 +71,38 @@ dl {
 }
 
 table {
-    border: 1;
-    border-collapse: separate;
+    border: 1px;
     border-spacing: 2px;
     border-color: gray;
+    border-collapse: collapse;
+    vertical-align: middle;
+}
+
+td {
+    text-align:center;
+    height:30px;
+    vertical-align:bottom;
+    border-bottom: 1px solid #888;
+}
+
+th {
+    background-color: #FFF;
+    color: #444;
+    font-weight: bold;
+    width: 200px;
+    border-bottom: 2px solid #AAA;
+    
+}
+
+.checkins {
+    padding-left: 40px;
+}
+
+.checkin-sorter {
+    padding-bottom: 20px;
+}
+
+.checkins td a {
+    color: black;
+    text-decoration: none;
 }
