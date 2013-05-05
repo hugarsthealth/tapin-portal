@@ -1,15 +1,15 @@
 import json
 import datetime
 
-from server import app, db
 from flask import request, jsonify, url_for, redirect, render_template, make_response
-from models.patient import Patient
-from models.vitalinfo import VitalInfo
+
+from server import app
+from models import db, Patient, VitalInfo
 
 
 @app.route('/')
 def root():
-    #serve up the angular
+    # serve up the angular
     return render_template('index.html')
 
 
@@ -22,26 +22,26 @@ def patients():
 
     elif request.method == "POST":
         p = Patient(**json.loads(request.data))
-        db.session.add(p)
-        db.session.commit()
+        db.add(p)
+        db.commit()
         return redirect(url_for('patient', patient_id=p.patient_id))
 
 
 @app.route('/patients/<nhi>/', methods=['GET', 'PUT', 'DELETE'])
 def patient(nhi):
     if request.method == "GET":
-        return jsonify({'patient': Patient.query.get_or_404(nhi).serialize()})
+        return jsonify({'patient': Patient.query.get(nhi).serialize()})
 
     elif request.method == "PUT":
-        patient = Patient.query.get_or_404(nhi)
+        patient = Patient.query.get(nhi)
         patient.__init__(**json.loads(request.data))
 
-        db.session.commit()
+        db.commit()
 
     elif request.method == "DELETE":
-        db.session.delete(Patient.query.get_or_404(nhi))
+        db.delete(Patient.query.get(nhi))
 
-        db.session.commit()
+        db.commit()
 
 
 @app.route('/patients/<nhi>/vitalinfos/', methods=['GET', 'POST'])
@@ -57,20 +57,20 @@ def vital_infos(nhi):
         v.patient_nhi = nhi
         v.check_in_time = datetime.datetime.strptime(v.check_in_time, "%Y-%m-%dT%H:%M:%S.%f")
 
-        db.session.add(v)
-        db.session.commit()
+        db.add(v)
+        db.commit()
 
         if v.patient.last_check_in is None or v.check_in_time > v.patient.last_check_in:
             v.patient.last_check_in = v.check_in_time  # untested sqlalchemy magic
 
-        db.session.commit()
+        db.commit()
         return redirect(url_for('vital_info', patient_id=v.patient_id, vital_info_id=v.vital_info_id))
 
 
 @app.route('/patients/<nhi>/vitalinfos/<int:vital_info_id>/', methods=['GET', 'PUT', 'DELETE'])
 def vital_info(nhi, vital_info_id):
     if request.method == "GET":
-        vitalinfo = VitalInfo.query.filter_by(patient_nhi=nhi, vital_info_id=vital_info_id).first_or_404()
+        vitalinfo = VitalInfo.query.filter_by(patient_nhi=nhi, vital_info_id=vital_info_id).first()
         return jsonify({'vitalinfo': vitalinfo.serialize()})
 
     elif request.method == "PUT":
@@ -78,12 +78,12 @@ def vital_info(nhi, vital_info_id):
         data['check_in_time'] = datetime.datetime.strptime(data['check_in_time'], "%Y-%m-%dT%H:%M:%S.%f")
         VitalInfo.query.filter_by(patient_nhi=nhi, vital_info_id=vital_info_id).update(data)
 
-        db.session.commit()
+        db.commit()
         return make_response("Successfully updated!", 200)
 
     elif request.method == "DELETE":
-        vitalinfo = VitalInfo.query.filter_by(patient_nhi=nhi, vital_info_id=vital_info_id).first_or_404()
-        db.session.delete(vitalinfo)
+        vitalinfo = VitalInfo.query.filter_by(patient_nhi=nhi, vital_info_id=vital_info_id).first()
+        db.delete(vitalinfo)
 
-        db.session.commit()
+        db.commit()
         return make_response("Successfully deleted!", 200)
