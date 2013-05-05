@@ -12,13 +12,19 @@ myApp.config(function($routeProvider) {
         templateUrl: 'static/partials/patient_index.html',
         controller: 'PatientListCtrl'
       })
+      .when('/patients/:nhi',
+      {
+        templateUrl: 'static/partials/patient.html',
+        controller:'PatientCtrl'
+      })
       .otherwise(
       {
         redirectTo: "/"
       })
 });
 
-function AppController($scope) {
+function PatientCtrl($scope, $routeParams) {
+  $scope.nhi = $routeParams.nhi;
 
 }
 

@@ -19,7 +19,7 @@
         <div class = "patients">
 
           <div class="patient" ng-repeat="patient in patients | filter:query">
-            <h3 class="patient-name"><[patient.firstname]> <[patient.lastname]></h3>
+            <a href="#/patients/<[ patient.nhi ]>"><h3 class="patient-name"><[patient.firstname]> <[patient.lastname]></h3></a>
 
             <dl>
               <dt>NHI</dt>
@@ -36,9 +36,6 @@
 
               <dt>Gender</dt>
               <dd><[patient.gender]></dd>
-
-              <dt>Patient ID</dt>
-              <dd><[patient.patient_id]></dd>
 
               <dt>Date Of Birth</dt>
               <dd><[patient.dob]></dd>
