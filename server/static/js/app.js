@@ -1,7 +1,32 @@
-var myApp = angular.module('vsmApp', [], function($interpolateProvider) {
+var myApp = angular.module('vsmApp', []);
+
+myApp.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('<[');
     $interpolateProvider.endSymbol(']>');
 });
+
+myApp.config(function($routeProvider) {
+  $routeProvider
+      .when('/',
+      {
+        templateUrl: 'static/partials/patient_index.html',
+        controller: 'PatientListCtrl'
+      })
+      .when('/patients/:nhi',
+      {
+        templateUrl: 'static/partials/patient.html',
+        controller:'PatientCtrl'
+      })
+      .otherwise(
+      {
+        redirectTo: "/"
+      })
+});
+
+function PatientCtrl($scope, $routeParams) {
+  $scope.nhi = $routeParams.nhi;
+
+}
 
 function PatientListCtrl($scope, $http){
   $http.get('/patients/').success(function(data) {
