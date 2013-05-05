@@ -1,5 +1,8 @@
+from datetime import datetime
+
 from sqlalchemy import Column, String, Boolean, Date, DateTime
 from sqlalchemy.orm import relationship
+
 from models import Base
 
 
@@ -37,6 +40,17 @@ class Patient(Base):
             "dob": self.dob.isoformat(),
             "last_check_in": self.last_check_in.isoformat()
         }
+
+    def deserialize(self, data):
+        for key in data:
+            if key in ['last_check_in']:
+                setattr(self, key, datetime.strptime(data[key], "%Y-%m-%dT%H:%M:%S.%f"))
+                continue
+
+            if key in ['dob']:
+                setattr(self, key, datetime.strptime(data[key], "%Y-%m-%d"))
+
+            setattr(self, key, data[key])
 
     def __repr__(self):
         return '<Patient (nhi: {}, name: {})>'.format(self.nhi, self.name)

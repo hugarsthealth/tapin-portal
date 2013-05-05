@@ -1,4 +1,7 @@
+from datetime import datetime
+
 from sqlalchemy import ForeignKey, Column, Integer, String, DateTime, Float, Boolean
+
 from models import Base
 
 
@@ -45,6 +48,18 @@ class VitalInfo(Base):
             "allergies": self.allergies.split(';'),
             "location": self.location
         }
+
+    def deserialize(self, data):
+        for key in data:
+            if key in ['family_hist', 'overseas_dests', 'medical_conditions', 'allergies']:
+                setattr(self, key, ';'.join(data[key]))
+                continue
+
+            if key in ['check_in_time']:
+                setattr(self, key, datetime.strptime(data[key], "%Y-%m-%dT%H:%M:%S.%f"))
+                continue
+
+            setattr(self, key, data[key])
 
     def __repr__(self):
         return '<VitalInfo (id: {}, patient: {})>'.format(self.vital_info_id, self.patient_nhi)
