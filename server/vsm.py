@@ -47,7 +47,9 @@ def patient(nhi):
 @app.route('/patients/<nhi>/vitalinfos/', methods=['GET', 'POST'])
 def vital_infos(nhi):
     if request.method == "GET":
-        return jsonify({'vitalinfos': [v.serialize() for v in VitalInfo.query.filter_by(patient_nhi=nhi).all()]})
+        start = int(request.args.get('offset', 0))
+        end = start + int(request.args.get('limit', 100))
+        return jsonify({'vitalinfos': [v.serialize() for v in VitalInfo.query.filter_by(patient_nhi=nhi).slice(start,end)]})
 
     elif request.method == "POST":
         v = VitalInfo(**json.loads(request.data))
