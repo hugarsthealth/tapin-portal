@@ -4,7 +4,7 @@ from server import db
 class VitalInfo(db.Model):
     vital_info_id = db.Column(db.Integer, primary_key=True)
     check_in_time = db.Column(db.DateTime, nullable=False)
-    patient_id = db.Column(db.Integer, db.ForeignKey("patient.patient_id"), nullable=False)
+    patient_nhi = db.Column(db.String(10), db.ForeignKey("patient.nhi"), nullable=False)
     weight_value = db.Column(db.Float)
     weight_unit = db.Column(db.String(50))
     height_value = db.Column(db.Float)
@@ -27,7 +27,7 @@ class VitalInfo(db.Model):
         return {
             "vital_info_id": self.vital_info_id,
             "check_in_time": self.check_in_time.isoformat(),
-            "patient_id": self.patient_id,
+            "patient_nhi": self.patient_nhi,
             "weight_value": self.weight_value,
             "weight_unit": self.weight_unit,
             "height_value": self.height_value,
@@ -43,4 +43,4 @@ class VitalInfo(db.Model):
         }
 
     def __repr__(self):
-        return '<VitalInfo (id: {}, patient: {})>'.format(self.vital_info_id, self.patient_id)
+        return '<VitalInfo (id: {}, patient: {})>'.format(self.vital_info_id, self.patient_nhi)

@@ -25,7 +25,7 @@ def patients():
         return redirect(url_for('patient', patient_id=p.patient_id))
 
 
-@app.route('/patients/<int:nhi>/', methods=['GET', 'PUT', 'DELETE'])
+@app.route('/patients/<nhi>/', methods=['GET', 'PUT', 'DELETE'])
 def patient(nhi):
     if request.method == "GET":
         return jsonify({'patient': Patient.query.get_or_404(nhi).serialize()})
@@ -42,15 +42,15 @@ def patient(nhi):
         db.session.commit()
 
 
-@app.route('/patients/<int:patient_id>/vitalinfos/', methods=['GET', 'POST'])
-def vital_infos(patient_id):
+@app.route('/patients/<nhi>/vitalinfos/', methods=['GET', 'POST'])
+def vital_infos(nhi):
     if request.method == "GET":
-        return jsonify({'vitalinfos': [v.serialize() for v in VitalInfo.query.filter_by(patient_id=patient_id).all()]})
+        return jsonify({'vitalinfos': [v.serialize() for v in VitalInfo.query.filter_by(patient_nhi=nhi).all()]})
 
     elif request.method == "POST":
         v = VitalInfo(**json.loads(request.data))
 
-        v.patient_id = patient_id
+        v.patient_nhi = nhi
         v.check_in_time = datetime.datetime.strptime(v.check_in_time, "%Y-%m-%dT%H:%M:%S.%f")
 
         db.session.add(v)
@@ -63,8 +63,8 @@ def vital_infos(patient_id):
         return redirect(url_for('vital_info', patient_id=v.patient_id, vital_info_id=v.vital_info_id))
 
 
-@app.route('/patients/<int:patient_id>/vitalinfos/<int:vital_info_id>/', methods=['GET', 'PUT', 'DELETE'])
-def vital_info(patient_id, vital_info_id):
+@app.route('/patients/<nhi>/vitalinfos/<int:vital_info_id>/', methods=['GET', 'PUT', 'DELETE'])
+def vital_info(nhi, vital_info_id):
     if request.method == "GET":
         return jsonify({'vitalinfo': VitalInfo.query.get_or_404(vital_info_id).serialize()})
 
