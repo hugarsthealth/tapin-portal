@@ -25,19 +25,19 @@ def patients():
         return redirect(url_for('patient', patient_id=p.patient_id))
 
 
-@app.route('/patients/<int:patient_id>/', methods=['GET', 'PUT', 'DELETE'])
-def patient(patient_id):
+@app.route('/patients/<int:nhi>/', methods=['GET', 'PUT', 'DELETE'])
+def patient(nhi):
     if request.method == "GET":
-        return jsonify({'patient': Patient.query.get_or_404(patient_id).serialize()})
+        return jsonify({'patient': Patient.query.get_or_404(nhi).serialize()})
 
     elif request.method == "PUT":
-        patient = Patient.query.get_or_404(patient_id)
+        patient = Patient.query.get_or_404(nhi)
         patient.__init__(**json.loads(request.data))
 
         db.session.commit()
 
     elif request.method == "DELETE":
-        db.session.delete(Patient.query.get_or_404(patient_id))
+        db.session.delete(Patient.query.get_or_404(nhi))
 
         db.session.commit()
 
