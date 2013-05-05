@@ -1,7 +1,26 @@
-var myApp = angular.module('vsmApp', [], function($interpolateProvider) {
+var myApp = angular.module('vsmApp', []);
+
+myApp.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('<[');
     $interpolateProvider.endSymbol(']>');
 });
+
+myApp.config(function($routeProvider) {
+  $routeProvider
+      .when('/',
+      {
+        templateUrl: 'static/partials/patient_index.html',
+        controller: 'PatientListCtrl'
+      })
+      .otherwise(
+      {
+        redirectTo: "/"
+      })
+});
+
+function AppController($scope) {
+
+}
 
 function PatientListCtrl($scope, $http){
   $http.get('/patients/').success(function(data) {

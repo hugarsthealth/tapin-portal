@@ -1,0 +1,52 @@
+<div ng-controller="PatientListCtrl">
+
+        <h1>Vital Stats Manager</h1>
+
+        <div class="search-bar">
+          <label>Patient Search</label>
+
+          <div class="search-input">
+            <label>Search by:</label>
+            <select ng-model="searchBy" ng-change="searchByChange()">
+              <option value="fullname">Name</option>
+              <option value="nhi">NHI number</option>
+            </select>
+
+            <input type="search" ng-change="searchBarChange()" ng-model="queryString">
+          </div>
+        </div>
+        
+        <div class = "patients">
+
+          <div class="patient" ng-repeat="patient in patients | filter:query">
+            <h3 class="patient-name"><[patient.firstname]> <[patient.lastname]></h3>
+
+            <dl>
+              <dt>NHI</dt>
+              <dd><[patient.nhi]></dd>
+
+              <dt>Occupation</dt>
+              <dd><[patient.occupation]></dd>
+
+              <dt>Citizen/Resident</dt>
+              <dd><[patient.citizen_resident]></dd>
+
+              <dt>Contact Number</dt>
+              <dd><[patient.contact_num]></dd>
+
+              <dt>Gender</dt>
+              <dd><[patient.gender]></dd>
+
+              <dt>Patient ID</dt>
+              <dd><[patient.patient_id]></dd>
+
+              <dt>Date Of Birth</dt>
+              <dd><[patient.dob]></dd>
+
+              <dt>Last Check In</dt>
+              <dd><[patient.last_check_in]></dd>
+            </dl>
+          </div>
+        </div>
+
+    </div>
