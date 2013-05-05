@@ -102,7 +102,7 @@ def generate_vital_info():
     }
 
 
-def populate_database(num_patients=5, min_vital_infos=2, max_vital_infos=10):
+def populate_database(num_patients, min_vital_infos, max_vital_infos):
     for i in xrange(num_patients):
         patient = Patient(**generate_patient())
         db.add(patient)

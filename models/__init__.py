@@ -16,8 +16,8 @@ from models.patient import Patient
 from models.vitalinfo import VitalInfo
 
 
-def init_db():
+def init_db(num_patients=5, min_vital_infos=2, max_vital_infos=10):
     from models.sampledata import populate_database
 
     Base.metadata.create_all(bind=engine)
-    populate_database()
+    populate_database(num_patients, min_vital_infos, max_vital_infos)

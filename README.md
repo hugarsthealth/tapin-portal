@@ -15,8 +15,8 @@
 
 5. Generate sample data, run `python` in shell and then:
 ```python
->>> from models import sampledata
->>> sampledata.populate_database([num_patients [, min_vital_infos [, max_vital_infos]]]):
+>>> import models
+>>> models.init_db([num_patients [, min_vital_infos [, max_vital_infos]]]):
 ```
 
 6. Run the app:
