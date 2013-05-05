@@ -17,6 +17,7 @@ class VitalInfo(db.Model):
     overseas_dests = db.Column(db.String(2500))
     medical_conditions = db.Column(db.String(2500))
     allergies = db.Column(db.String(2500))
+    location = db.Column(db.String(50))
 
     """docstring for VitalInfo"""
     def __init__(self, **kwargs):
@@ -39,7 +40,8 @@ class VitalInfo(db.Model):
             "overseas_recently": self.overseas_recently,
             "overseas_dests": self.overseas_dests.split(';'),
             "medical_conditions": self.medical_conditions.split(';'),
-            "allergies": self.allergies.split(';')
+            "allergies": self.allergies.split(';'),
+            "location" : self.location
         }
 
     def __repr__(self):

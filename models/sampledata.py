@@ -84,6 +84,7 @@ def generate_vital_info():
     overseas_dests = list_of_rand_sentences(10, 12)
     medical_conditions = list_of_rand_sentences(6, 20)
     allergies = list_of_rand_sentences(4, 10)
+    location = rand_name()
 
     return {
         'check_in_time': check_in_time,
@@ -98,7 +99,8 @@ def generate_vital_info():
         'overseas_recently': overseas_recently,
         'overseas_dests': overseas_dests,
         'medical_conditions': medical_conditions,
-        'allergies': allergies
+        'allergies': allergies,
+        'location': location
     }
 
 
