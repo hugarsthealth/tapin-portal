@@ -11,7 +11,7 @@ app.config['DEBUG'] = False if "PRODUCTION" in os.environ else True
 if "DATABASE_URL" in os.environ:
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///./../vsm.db'
 
 db = SQLAlchemy(app)
 

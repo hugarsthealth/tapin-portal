@@ -70,7 +70,7 @@ def generate_patient():
     }
 
 
-def generate_vital_info(patient_id):
+def generate_vital_info():
     check_in_time = rand_date()
     weight_value = randrange(0, 200)
     weight_unit = choice(['kg', 'lb'])
@@ -87,7 +87,6 @@ def generate_vital_info(patient_id):
 
     return {
         'check_in_time': check_in_time,
-        'patient_id': patient_id,
         'weight_value': weight_value,
         'weight_unit': weight_unit,
         'height_value': height_value,
@@ -112,8 +111,8 @@ def populate_database(num_patients=5, min_vital_infos=2, max_vital_infos=10):
         db.session.commit()
 
         for j in xrange(randrange(min_vital_infos, max_vital_infos)):
-            vitalinfo = VitalInfo(**generate_vital_info(i))
-            vitalinfo.patient_id = patient.patient_id
+            vitalinfo = VitalInfo(**generate_vital_info())
+            vitalinfo.patient_nhi = patient.nhi
 
             lci = patient.last_check_in
             vid = vitalinfo.check_in_time

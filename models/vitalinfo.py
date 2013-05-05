@@ -4,7 +4,7 @@ from server import db
 class VitalInfo(db.Model):
     vital_info_id = db.Column(db.Integer, primary_key=True)
     check_in_time = db.Column(db.DateTime, nullable=False)
-    patient_id = db.Column(db.Integer, db.ForeignKey("patient.patient_id"), nullable=False)
+    patient_nhi = db.Column(db.String(10), db.ForeignKey("patient.nhi"), nullable=False)
     weight_value = db.Column(db.Float)
     weight_unit = db.Column(db.String(50))
     height_value = db.Column(db.Float)
@@ -23,11 +23,24 @@ class VitalInfo(db.Model):
         for key in kwargs:
             setattr(self, key, kwargs[key])
 
-    def to_dict(self):
-        temp = self.__dict__.copy()
-        del temp['_sa_instance_state']
-        temp['check_in_time'] = temp['check_in_time'].isoformat()
-        return temp
+    def serialize(self):
+        return {
+            "vital_info_id": self.vital_info_id,
+            "check_in_time": self.check_in_time.isoformat(),
+            "patient_nhi": self.patient_nhi,
+            "weight_value": self.weight_value,
+            "weight_unit": self.weight_unit,
+            "height_value": self.height_value,
+            "height_unit": self.height_unit,
+            "blood_type": self.blood_type,
+            "smoker": self.smoker,
+            "drinker": self.drinker,
+            "family_hist": self.family_hist.split(';'),
+            "overseas_recently": self.overseas_recently,
+            "overseas_dests": self.overseas_dests.split(';'),
+            "medical_conditions": self.medical_conditions.split(';'),
+            "allergies": self.allergies.split(';')
+        }
 
     def __repr__(self):
-        return '<VitalInfo (id: {}, patient: {})>'.format(self.vital_info_id, self.patient_id)
+        return '<VitalInfo (id: {}, patient: {})>'.format(self.vital_info_id, self.patient_nhi)
