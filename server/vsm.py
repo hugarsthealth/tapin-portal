@@ -16,7 +16,9 @@ def root():
 @app.route('/patients/', methods=['GET', 'POST'])
 def patients():
     if request.method == "GET":
-        return jsonify({'patients': [p.serialize() for p in Patient.query.all()]})
+        start = int(request.args.get('offset', 0))
+        end = start + int(request.args.get('limit', 100))
+        return jsonify({'patients': [p.serialize() for p in Patient.query.slice(start,end)]})
 
     elif request.method == "POST":
         p = Patient(**json.loads(request.data))
