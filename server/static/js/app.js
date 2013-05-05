@@ -17,15 +17,43 @@ myApp.config(function($routeProvider) {
         templateUrl: 'static/partials/patient.html',
         controller:'PatientCtrl'
       })
+      .when('/patients/:nhi/vitalinfos/:vital_info_id',
+      {
+        templateUrl: 'static/partials/vital_info.html',
+        controller: 'VitalInfoCtrl'
+      })
       .otherwise(
       {
         redirectTo: "/"
       })
 });
 
-function PatientCtrl($scope, $routeParams) {
-  $scope.nhi = $routeParams.nhi;
+function VitalInfoCtrl ($scope, $http, $routeParams) {
+  $http.get('/patients/' + $routeParams.nhi).success(function(data) {
+    console.log(data);
+    $scope.patient = data.patient;
+  });
+  $http.get('/patients/' + $routeParams.nhi + '/vitalinfos/' + $routeParams.vital_info_id).success(function(data) {
+    console.log(data);
+    $scope.vitalinfo = data.vitalinfo;
+  });
+}
 
+function PatientCtrl($scope, $http, $routeParams) {
+  $http.get('/patients/' + $routeParams.nhi).success(function(data) {
+    console.log(data);
+    $scope.patient = data.patient;
+  });
+  $http.get('/patients/' + $routeParams.nhi + '/vitalinfos').success(function(data) {
+    console.log(data);
+    $scope.vitalinfos = data.vitalinfos;
+  });
+
+  $scope.sortByChange = function() {
+    console.log($scope.sortBy);
+  }
+
+  $scope.sortBy = "date";
 }
 
 function PatientListCtrl($scope, $http){

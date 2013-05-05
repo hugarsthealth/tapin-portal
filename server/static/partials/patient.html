@@ -1,1 +1,56 @@
-<h1>HELLO PATIENT <[ nhi ]> </h1>
+
+<div ng-controller="PatientCtrl">
+  <div class="patient_details">
+    
+    <div class="patient">
+
+      <h1><[ patient.firstname + " " + patient.lastname ]></h1>
+
+      <dl>
+        <dt>NHI</dt>
+        <dd><[patient.nhi]></dd>
+
+        <dt>Occupation</dt>
+        <dd><[patient.occupation]></dd>
+
+        <dt>Citizen/Resident</dt>
+        <dd><[patient.citizen_resident]></dd>
+
+        <dt>Contact Number</dt>
+        <dd><[patient.contact_num]></dd>
+
+        <dt>Gender</dt>
+        <dd><[patient.gender]></dd>
+
+        <dt>Date Of Birth</dt>
+        <dd><[patient.dob]></dd>
+
+        <dt>Last Check In</dt>
+        <dd><[patient.last_check_in]></dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="vitalinfos">
+    <label>Sort check-ins by: </label>
+    <select ng-model="sortBy" ng-change="sortByChange()">
+      <option value="date">Date</option>
+      <option value="location">Location</option>
+    </select>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Check-in Time</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="vitalinfo in vitalinfos">
+            <td><[ vitalinfo.check_in_time ]></td>
+            <td><[ vitalinfo.height_value + " " + vitalinfo.height_unit ]></td>
+          </tr>
+        </tbody>
+    </table>
+    </div>
+  </div>
+</div>
