@@ -28,6 +28,7 @@ myApp.config(function($routeProvider) {
       })
 });
 
+
 function VitalInfoCtrl ($scope, $http, $routeParams) {
   $http.get('/patients/' + $routeParams.nhi).success(function(data) {
     console.log(data);
@@ -37,6 +38,12 @@ function VitalInfoCtrl ($scope, $http, $routeParams) {
     console.log(data);
     $scope.vitalinfo = data.vitalinfo;
   });
+  //Works but throws errors in console
+  //Returns true which is used with ng-show to show the overseas recently div if the overseas_recently parameter is true
+  $scope.ShowOverseasRecentlyDiv = function(){
+	  console.log(String($scope.vitalinfo.overseas_recently)=="true");
+	  return String($scope.vitalinfo.overseas_recently)=="true";
+  };
 }
 
 function PatientCtrl($scope, $http, $routeParams) {
