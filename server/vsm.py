@@ -61,6 +61,7 @@ def vital_infos(nhi):
 
     elif request.method == "POST":
         v = VitalInfo(**json.loads(request.data))
+        v.patient_nhi = nhi
 
         db.add(v)
         db.commit()  # need to commit before v.patient will resolve
