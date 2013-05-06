@@ -31,7 +31,7 @@ class VitalInfo(Base):
     def serialize(self):
         return {
             "vital_info_id": self.vital_info_id,
-            "check_in_time": self.check_in_time.isoformat(),
+            "check_in_time": self.check_in_time.isoformat() if self.check_in_time else None,
             "patient_nhi": self.patient_nhi,
             "weight_value": self.weight_value,
             "weight_unit": self.weight_unit,
@@ -40,11 +40,11 @@ class VitalInfo(Base):
             "blood_type": self.blood_type,
             "smoker": self.smoker,
             "drinker": self.drinker,
-            "family_hist": self.family_hist.split(';'),
+            "family_hist": self.family_hist.split(';') if self.family_hist else None,
             "overseas_recently": self.overseas_recently,
-            "overseas_dests": self.overseas_dests.split(';'),
-            "medical_conditions": self.medical_conditions.split(';'),
-            "allergies": self.allergies.split(';'),
+            "overseas_dests": self.overseas_dests.split(';') if self.overseas_dests else None,
+            "medical_conditions": self.medical_conditions.split(';') if self.medical_conditions else None,
+            "allergies": self.allergies.split(';') if self.allergies else None,
             "location": self.location
         }
 
@@ -55,7 +55,8 @@ class VitalInfo(Base):
                 continue
 
             if key in ['check_in_time']:
-                setattr(self, key, datetime.strptime(data[key], "%Y-%m-%dT%H:%M:%S.%f"))
+                setattr(self, key, datetime.strptime(
+                    data[key], "%Y-%m-%dT%H:%M:%S.%f"))
                 continue
 
             setattr(self, key, data[key])

@@ -36,14 +36,15 @@ class Patient(Base):
             "citizen_resident": self.citizen_resident,
             "contact_num": self.contact_num,
             "gender": self.gender,
-            "dob": self.dob.isoformat(),
-            "last_check_in": self.last_check_in.isoformat()
+            "dob": self.dob.isoformat() if self.dob else None,
+            "last_check_in": self.last_check_in.isoformat() if self.last_check_in else None
         }
 
     def deserialize(self, data):
         for key in data:
             if key in ['last_check_in']:
-                setattr(self, key, datetime.strptime(data[key], "%Y-%m-%dT%H:%M:%S.%f"))
+                setattr(self, key, datetime.strptime(
+                    data[key], "%Y-%m-%dT%H:%M:%S.%f"))
                 continue
 
             if key in ['dob']:
