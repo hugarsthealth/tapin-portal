@@ -42,12 +42,16 @@ class Patient(Base):
 
     def deserialize(self, data):
         for key in data:
-            if key in ['last_check_in']:
+            if not data[key]:
+                continue
+
+            if key in ['last_check_in'] and (isinstance(data[key], unicode) or isinstance(data[key], str)):
+                print(data[key], key)
                 setattr(self, key, datetime.strptime(
                     data[key], "%Y-%m-%dT%H:%M:%S.%f"))
                 continue
 
-            if key in ['dob']:
+            if key in ['dob'] and (isinstance(data[key], unicode) or isinstance(data[key], str)):
                 setattr(self, key, datetime.strptime(data[key], "%Y-%m-%d"))
 
             setattr(self, key, data[key])
