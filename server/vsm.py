@@ -1,6 +1,7 @@
 import json
 
-from flask import request, jsonify, url_for, redirect, render_template, make_response
+from flask import request, jsonify, render_template, make_response
+from sqlalchemy import desc
 
 from server import app
 from models import db, Patient, VitalInfo
@@ -15,10 +16,10 @@ def root():
 @app.route('/patients/', methods=['GET', 'POST'])
 def patients():
     if request.method == "GET":
-        start = int(request.args.get('offset', 0))
-        end = start + int(request.args.get('limit', 100))
+        offset = int(request.args.get('offset', 0))
+        limit = int(request.args.get('limit', 100))
 
-        return jsonify({'patients': [p.serialize() for p in Patient.query.slice(start, end)]})
+        return jsonify({'patients': [p.serialize() for p in Patient.query.order_by(desc(Patient.last_check_in)).offset(offset).limit(limit).all()]})
 
     elif request.method == "POST":
         db.add(Patient(**json.loads(request.data)))
@@ -53,10 +54,10 @@ def patient(nhi):
 @app.route('/patients/<nhi>/vitalinfos/', methods=['GET', 'POST'])
 def vital_infos(nhi):
     if request.method == "GET":
-        start = int(request.args.get('offset', 0))
-        end = start + int(request.args.get('limit', 100))
+        offset = int(request.args.get('offset', 0))
+        limit = int(request.args.get('limit', 100))
 
-        return jsonify({'vitalinfos': [v.serialize() for v in VitalInfo.query.filter_by(patient_nhi=nhi).slice(start, end)]})
+        return jsonify({'vitalinfos': [v.serialize() for v in VitalInfo.query.filter_by(patient_nhi=nhi).order_by(desc(VitalInfo.check_in_time)).offset(offset).limit(limit)]})
 
     elif request.method == "POST":
         v = VitalInfo(**json.loads(request.data))
