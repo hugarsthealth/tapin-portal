@@ -51,7 +51,7 @@
           <tr ng-repeat="vitalinfo in vitalinfos">
             <td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.check_in_time.substring(0,10) ]></a></td>
             <td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.check_in_time.substring(11,16) ]></a></td>
-            <td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.height_value + " " + vitalinfo.height_unit ]></a></td>
+            <td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.location ]></a></td>
           </tr>
         </tbody>
     </table>
