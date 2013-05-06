@@ -41,8 +41,8 @@ function VitalInfoCtrl ($scope, $http, $routeParams) {
 
 function PatientCtrl($scope, $http, $routeParams) {
   $http.get('/patients/' + $routeParams.nhi).success(function(data) {
-    console.log(data);
     $scope.patient = data.patient;
+    console.log($scope.patient);
   });
   $http.get('/patients/' + $routeParams.nhi + '/vitalinfos').success(function(data) {
     console.log(data);
@@ -50,10 +50,15 @@ function PatientCtrl($scope, $http, $routeParams) {
   });
 
   $scope.sortByChange = function() {
-    console.log($scope.sortBy);
-  }
+    if ($scope.sortBy === "check_in_time") {
+      $scope.reverseCheckIns = true;
+    }  else {
+      $scope.reverseCheckIns = false;
+    }
+  };
 
-  $scope.sortBy = "date";
+  $scope.sortBy = "check_in_time";
+  $scope.reverseCheckIns = true;
 }
 
 function PatientListCtrl($scope, $http){
