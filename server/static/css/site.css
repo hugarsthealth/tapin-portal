@@ -124,3 +124,8 @@ th {
 .vitalinfo dd {
     margin-left: 200px;
 }
+
+.vitalinfoBreak{
+	padding-bottom: 10px;
+	padding-top: 10px;
+}

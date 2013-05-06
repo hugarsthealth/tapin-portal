@@ -1,16 +1,15 @@
 <div ng-controller="VitalInfoCtrl">
-  <div class="patient">
+  <div class="vitalinfo">
     <h1><[ patient.firstname + " " + patient.lastname ]></h1>
     <dl>
 		<dt>Gender</dt><dd><[patient.gender]></dd>
         <dt>Date Of Birth</dt><dd><[patient.dob]></dd>
         <dt>NHI: </dt><dd><[patient.nhi]></dd>
-        </dl>
-  </div>
+	</dl>
 
-  <div class="vitalinfo">
+		<div class="vitalinfoBreak"><hr/></div>
 	  <dl>
-		  <dt>Check In Time: </dt><dd><[vitalinfo.check_in_time]></dd>      
+		  <dt>Check In Time: </dt><dd><[ vitalinfo.check_in_time.substring(0,10) + " " + vitalinfo.check_in_time.substring(11,16)]></dd>      
 		  <dt>Location: </dt><dd><[vitalinfo.location]></dd>
           <dt>Height: </dt><dd><[vitalinfo.height_value]> <[vitalinfo.height_unit]></dd>
           <dt>Weight: </dt><dd><[vitalinfo.weight_value]> <[vitalinfo.weight_unit]></dd>
