@@ -21,8 +21,7 @@ class Patient(Base):
 
     """docstring for Patient"""
     def __init__(self, **kwargs):
-        for key in kwargs:
-            setattr(self, key, kwargs[key])
+        self.deserialize(kwargs)
 
     @property
     def name(self):

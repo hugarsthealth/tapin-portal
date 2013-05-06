@@ -26,8 +26,7 @@ class VitalInfo(Base):
 
     """docstring for VitalInfo"""
     def __init__(self, **kwargs):
-        for key in kwargs:
-            setattr(self, key, kwargs[key])
+        self.deserialize(kwargs)
 
     def serialize(self):
         return {

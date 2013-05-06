@@ -1,5 +1,4 @@
 import json
-import datetime
 
 from flask import request, jsonify, url_for, redirect, render_template, make_response
 
@@ -18,44 +17,37 @@ def patients():
     if request.method == "GET":
         start = int(request.args.get('offset', 0))
         end = start + int(request.args.get('limit', 100))
+
         return jsonify({'patients': [p.serialize() for p in Patient.query.slice(start, end)]})
 
     elif request.method == "POST":
-        p = Patient(**json.loads(request.data))
-        db.add(p)
+        db.add(Patient(**json.loads(request.data)))
         db.commit()
-        return redirect(url_for('patient', nhi=p.nhi))
+
+        return make_response("Successfully added!", 200)
 
 
 @app.route('/patients/<nhi>/', methods=['GET', 'PUT', 'DELETE'])
 def patient(nhi):
-    if request.method == "GET":
-        patient = Patient.query.get(nhi)
+    patient = Patient.query.get(nhi)
 
-        if patient:
-            return jsonify({'patient': patient.serialize()})
-        else:
-            return make_response("Patient not found", 404)
+    if not patient:
+        return make_response("No patient with NHI " + nhi, 404)
+
+    elif request.method == "GET":
+        return jsonify({'patient': patient.serialize()})
 
     elif request.method == "PUT":
-        updated = Patient.query.filter_by(nhi=nhi).update(json.loads(request.data))
+        patient.deserialize(json.loads(request.data))
         db.commit()
 
-        if updated:
-            return make_response("Successfully updated!", 200)
-        else:
-            return make_response("Patient not found", 404)
+        return make_response("Successfully updated!", 200)
 
     elif request.method == "DELETE":
-        patient = Patient.query.get(nhi)
+        db.delete(patient)
+        db.commit()
 
-        if patient:
-            db.delete(patient)
-            db.commit()
-
-            return make_response("Successfully deleted!", 200)
-        else:
-            return make_response("Patient not found", 404)
+        return make_response("Successfully deleted!", 200)
 
 
 @app.route('/patients/<nhi>/vitalinfos/', methods=['GET', 'POST'])
@@ -63,52 +55,42 @@ def vital_infos(nhi):
     if request.method == "GET":
         start = int(request.args.get('offset', 0))
         end = start + int(request.args.get('limit', 100))
+
         return jsonify({'vitalinfos': [v.serialize() for v in VitalInfo.query.filter_by(patient_nhi=nhi).slice(start, end)]})
 
     elif request.method == "POST":
         v = VitalInfo(**json.loads(request.data))
 
-        v.patient_nhi = nhi
-        v.check_in_time = datetime.datetime.strptime(v.check_in_time, "%Y-%m-%dT%H:%M:%S.%f")
-
         db.add(v)
-        db.commit()
+        db.commit()  # need to commit before v.patient will resolve
 
         if v.patient.last_check_in is None or v.check_in_time > v.patient.last_check_in:
-            v.patient.last_check_in = v.check_in_time  # untested sqlalchemy magic
+            v.patient.last_check_in = v.check_in_time
 
         db.commit()
-        return redirect(url_for('vital_info', nhi=v.patient_nhi, vital_info_id=v.vital_info_id))
+
+        return make_response("Successfully added!", 200)
 
 
 @app.route('/patients/<nhi>/vitalinfos/<int:vital_info_id>/', methods=['GET', 'PUT', 'DELETE'])
 def vital_info(nhi, vital_info_id):
-    if request.method == "GET":
-        vitalinfo = VitalInfo.query.filter_by(patient_nhi=nhi, vital_info_id=vital_info_id).first()
+    vitalinfo = VitalInfo.query.filter_by(
+        patient_nhi=nhi, vital_info_id=vital_info_id).first()
 
-        if vitalinfo:
-            return jsonify({'vitalinfo': vitalinfo.serialize()})
-        else:
-            return make_response("Vitalinfo not found", 404)
+    if not vitalinfo:
+        return make_response("No vitalinfo for patient {} with id {}".format(nhi, vital_info_id))
+
+    elif request.method == "GET":
+        return jsonify({'vitalinfo': vitalinfo.serialize()})
 
     elif request.method == "PUT":
-        data = json.loads(request.data)
-        data['check_in_time'] = datetime.datetime.strptime(data['check_in_time'], "%Y-%m-%dT%H:%M:%S.%f")
-        updated = VitalInfo.query.filter_by(patient_nhi=nhi, vital_info_id=vital_info_id).update(data)
+        vitalinfo.deserialize(json.loads(request.data))
         db.commit()
 
-        if updated:
-            return make_response("Successfully updated!", 200)
-        else:
-            return make_response("Vitalinfo not found", 404)
+        return make_response("Successfully updated!", 200)
 
     elif request.method == "DELETE":
-        vitalinfo = VitalInfo.query.filter_by(patient_nhi=nhi, vital_info_id=vital_info_id).first()
+        db.delete(vitalinfo)
+        db.commit()
 
-        if vitalinfo:
-            db.delete(vitalinfo)
-            db.commit()
-
-            return make_response("Successfully deleted!", 200)
-        else:
-            return make_response("Vitalinfo not found", 404)
+        return make_response("Successfully deleted!", 200)
