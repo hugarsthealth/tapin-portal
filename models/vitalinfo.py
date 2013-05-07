@@ -58,8 +58,7 @@ class VitalInfo(Base):
                 continue
 
             if key in ['check_in_time'] and (isinstance(data[key], unicode) or isinstance(data[key], str)):
-                setattr(self, key, datetime.strptime(
-                    data[key], "%Y-%m-%dT%H:%M:%S.%f"))
+                setattr(self, key, datetime.strptime(data[key], "%Y-%m-%dT%H:%M:%S.%f"))
                 continue
 
             setattr(self, key, data[key])

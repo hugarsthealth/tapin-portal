@@ -46,13 +46,12 @@ class Patient(Base):
                 continue
 
             if key in ['last_check_in'] and (isinstance(data[key], unicode) or isinstance(data[key], str)):
-                print(data[key], key)
-                setattr(self, key, datetime.strptime(
-                    data[key], "%Y-%m-%dT%H:%M:%S.%f"))
+                setattr(self, key, datetime.strptime(data[key], "%Y-%m-%dT%H:%M:%S.%f"))
                 continue
 
             if key in ['dob'] and (isinstance(data[key], unicode) or isinstance(data[key], str)):
-                setattr(self, key, datetime.strptime(data[key], "%Y-%m-%d"))
+                setattr(self, key, datetime.strptime(data[key], "%Y-%m-%d").date())
+                continue
 
             setattr(self, key, data[key])
 
