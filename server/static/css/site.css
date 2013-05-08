@@ -64,10 +64,12 @@ dl {
     width: 200px;
     float: left;
     clear: left;
+    height: 28px;
 }
 
 .patient dd {
     margin-left: 200px;
+    height: 28px;
 }
 
 table {
@@ -91,7 +93,7 @@ th {
     font-weight: bold;
     width: 200px;
     border-bottom: 2px solid #AAA;
-    
+
 }
 
 .checkins {
