@@ -1,6 +1,6 @@
 import json
 
-from flask import request, jsonify, render_template, make_response
+from flask import request, session, jsonify, render_template, make_response
 from sqlalchemy import desc
 
 from server import app
@@ -19,7 +19,13 @@ def patients():
         offset = int(request.args.get('offset', 0))
         limit = int(request.args.get('limit', 100))
 
-        return jsonify({'patients': [p.serialize() for p in Patient.query.order_by(desc(Patient.last_check_in)).offset(offset).limit(limit).all()]})
+        return jsonify({'patients': [
+            p.serialize() for p in Patient.query
+            .order_by(desc(Patient.last_check_in))
+            .offset(offset)
+            .limit(limit)
+            .all()
+        ]})
 
     elif request.method == "POST":
         patient_data = json.loads(request.data)
@@ -63,7 +69,13 @@ def vital_infos(nhi):
         offset = int(request.args.get('offset', 0))
         limit = int(request.args.get('limit', 100))
 
-        return jsonify({'vitalinfos': [v.serialize() for v in VitalInfo.query.filter_by(patient_nhi=nhi).order_by(desc(VitalInfo.check_in_time)).offset(offset).limit(limit)]})
+        return jsonify({'vitalinfos': [
+            v.serialize() for v in VitalInfo.query
+            .filter_by(patient_nhi=nhi)
+            .order_by(desc(VitalInfo.check_in_time))
+            .offset(offset)
+            .limit(limit)
+        ]})
 
     elif request.method == "POST":
         v = VitalInfo(**json.loads(request.data))
