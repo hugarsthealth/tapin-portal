@@ -50,7 +50,7 @@ class VitalInfo(Base):
 
     def deserialize(self, data):
         for key in data:
-            if not data[key]:
+            if not data[key] or not hasattr(self, key):
                 continue
 
             if key in ['family_hist', 'overseas_dests', 'medical_conditions', 'allergies'] and isinstance(data[key], list):

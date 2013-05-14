@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy import Column, String, Boolean, Date, DateTime
 from sqlalchemy.orm import relationship
 
-from models import Base
+from models import Base, patient_role_table
 
 
 class Patient(Base):
@@ -18,6 +18,7 @@ class Patient(Base):
     dob = Column(Date)
     last_check_in = Column(DateTime)
     vitalinfos = relationship("VitalInfo", backref="patient", cascade="delete")
+    roles = relationship("Role", secondary=patient_role_table, backref="patients")
 
     """docstring for Patient"""
     def __init__(self, **kwargs):
@@ -42,7 +43,7 @@ class Patient(Base):
 
     def deserialize(self, data):
         for key in data:
-            if not data[key]:
+            if not data[key] or not hasattr(self, key):
                 continue
 
             if key in ['last_check_in'] and (isinstance(data[key], unicode) or isinstance(data[key], str)):
