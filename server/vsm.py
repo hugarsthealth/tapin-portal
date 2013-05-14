@@ -22,8 +22,14 @@ def patients():
         return jsonify({'patients': [p.serialize() for p in Patient.query.order_by(desc(Patient.last_check_in)).offset(offset).limit(limit).all()]})
 
     elif request.method == "POST":
-        db.add(Patient(**json.loads(request.data)))
+        patient_data = json.loads(request.data)
+
+        db.add(Patient(**patient_data))
         db.commit()
+
+        if 'vitalinfo' in patient_data:
+            db.add(VitalInfo(**patient_data['vitalinfo']))
+            db.commit()
 
         return make_response("Successfully added!", 200)
 
