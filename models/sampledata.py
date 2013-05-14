@@ -4,7 +4,7 @@ from random import choice, randrange, getrandbits, randint
 from datetime import datetime, timedelta
 import string
 
-from models import db, Patient, VitalInfo
+from models import db, Patient, VitalInfo, Role
 
 with open('models/dictionary.txt') as f:
     words = [word.strip() for word in f.read().split('\n')]
@@ -103,8 +103,11 @@ def generate_vital_info():
 
 
 def populate_database(num_patients, min_vital_infos, max_vital_infos):
+    default = Role(name="default")
+
     for i in xrange(num_patients):
         patient = Patient(**generate_patient())
+        patient.roles.append(default)
         db.add(patient)
         db.commit()
 
