@@ -45,31 +45,22 @@ def list_of_rand_sentences(list_length, sentence_length):
 
 
 def generate_patient():
-    firstname = rand_name()
-    lastname = rand_name()
     nhi = rand_nhi()
-    occupation = rand_name()
-    citizen_resident = rand_bool()
-    contact_num = rand_digit_str(10)
-    gender = choice(['Male', 'Female'])
-    dob = rand_date(30000)
-    last_check_in = None
 
     return {
-        'firstname': firstname,
-        'lastname': lastname,
         'nhi': nhi,
-        'occupation': occupation,
-        'citizen_resident': citizen_resident,
-        'contact_num': contact_num,
-        'gender': gender,
-        'dob': dob,
-        'last_check_in': last_check_in,
     }
 
 
 def generate_vital_info():
     check_in_time = rand_date()
+    firstname = rand_name()
+    lastname = rand_name()
+    occupation = rand_name()
+    citizen_resident = rand_bool()
+    contact_num = rand_digit_str(10)
+    gender = choice(['Male', 'Female'])
+    dob = rand_date(30000)
     weight_value = randrange(0, 200)
     weight_unit = choice(['kg', 'lb'])
     height_value = randrange(0, 200)
@@ -86,6 +77,13 @@ def generate_vital_info():
 
     return {
         'check_in_time': check_in_time,
+        'firstname': firstname,
+        'lastname': lastname,
+        'occupation': occupation,
+        'citizen_resident': citizen_resident,
+        'contact_num': contact_num,
+        'gender': gender,
+        'dob': dob,
         'weight_value': weight_value,
         'weight_unit': weight_unit,
         'height_value': height_value,

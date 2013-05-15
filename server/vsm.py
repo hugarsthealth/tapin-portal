@@ -21,7 +21,7 @@ def patients():
 
         return jsonify({'patients': [
             p.serialize() for p in Patient.query
-            .order_by(desc(Patient.last_check_in))
+            # .order_by(desc(Patient.check_in_time))
             .offset(offset)
             .limit(limit)
             .all()
@@ -111,4 +111,4 @@ def add_vital_info(nhi, data):
     v.patient_nhi = nhi
 
     db.add(v)
-    db.commit()  # need to commit before v.patient will resolve
+    db.commit()
