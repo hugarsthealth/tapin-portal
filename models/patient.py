@@ -17,8 +17,13 @@ class Patient(Base):
     gender = Column(String(250))
     dob = Column(Date)
     last_check_in = Column(DateTime)
-    vitalinfos = relationship("VitalInfo", backref="patient", cascade="delete")
     roles = relationship("Role", secondary=patient_role_table, backref="patients")
+    vitalinfos = relationship(
+        "VitalInfo",
+        backref="patient",
+        cascade="delete",
+        order_by="desc(VitalInfo.check_in_time)"
+    )
 
     """docstring for Patient"""
     def __init__(self, **kwargs):
@@ -38,7 +43,7 @@ class Patient(Base):
             "contact_num": self.contact_num,
             "gender": self.gender,
             "dob": self.dob.isoformat() if self.dob else None,
-            "last_check_in": self.last_check_in.isoformat() if self.last_check_in else None
+            "last_check_in": self.vitalinfos[0].serialize() if self.vitalinfos else None
         }
 
     def deserialize(self, data):
@@ -47,11 +52,13 @@ class Patient(Base):
                 continue
 
             if key in ['last_check_in'] and (isinstance(data[key], unicode) or isinstance(data[key], str)):
-                setattr(self, key, datetime.strptime(data[key], "%Y-%m-%dT%H:%M:%S.%f"))
+                setattr(self, key, datetime.strptime(
+                    data[key], "%Y-%m-%dT%H:%M:%S.%f"))
                 continue
 
             if key in ['dob'] and (isinstance(data[key], unicode) or isinstance(data[key], str)):
-                setattr(self, key, datetime.strptime(data[key], "%Y-%m-%d").date())
+                setattr(self, key, datetime.strptime(
+                    data[key], "%Y-%m-%d").date())
                 continue
 
             setattr(self, key, data[key])

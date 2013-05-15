@@ -1,6 +1,6 @@
 import json
 
-from flask import request, session, jsonify, render_template, make_response
+from flask import request, redirect, url_for, session, jsonify, render_template, make_response
 from sqlalchemy import desc
 
 from server import app
@@ -29,13 +29,12 @@ def patients():
 
     elif request.method == "POST":
         patient_data = json.loads(request.data)
-
-        db.add(Patient(**patient_data))
+        patient = Patient(**patient_data)
+        db.add(patient)
         db.commit()
 
         if 'vitalinfo' in patient_data:
-            db.add(VitalInfo(**patient_data['vitalinfo']))
-            db.commit()
+            add_vital_info(patient.nhi, patient_data['vitalinfo'])
 
         return make_response("Successfully added!", 200)
 
@@ -78,16 +77,7 @@ def vital_infos(nhi):
         ]})
 
     elif request.method == "POST":
-        v = VitalInfo(**json.loads(request.data))
-        v.patient_nhi = nhi
-
-        db.add(v)
-        db.commit()  # need to commit before v.patient will resolve
-
-        if v.patient.last_check_in is None or v.check_in_time > v.patient.last_check_in:
-            v.patient.last_check_in = v.check_in_time
-
-        db.commit()
+        add_vital_info(nhi, json.loads(request.data))
 
         return make_response("Successfully added!", 200)
 
@@ -114,3 +104,11 @@ def vital_info(nhi, vital_info_id):
         db.commit()
 
         return make_response("Successfully deleted!", 200)
+
+
+def add_vital_info(nhi, data):
+    v = VitalInfo(**data)
+    v.patient_nhi = nhi
+
+    db.add(v)
+    db.commit()  # need to commit before v.patient will resolve
