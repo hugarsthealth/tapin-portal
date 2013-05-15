@@ -1,6 +1,4 @@
-from datetime import datetime
-
-from sqlalchemy import Column, String, Boolean, Date, DateTime
+from sqlalchemy import Column, String, DateTime
 from sqlalchemy.orm import relationship
 
 from models import Base, patient_role_table
