@@ -113,7 +113,7 @@ def add_vital_info(nhi, data):
     db.add(v)
     db.commit()
 
-    if v.patient.last_check_in is None or v.check_in_time > v.patient.last_check_in:
-        v.patient.last_check_in = v.check_in_time
+    if v.patient.latest_check_in is None or v.check_in_time > v.patient.latest_check_in:
+        v.patient.latest_check_in = v.check_in_time
 
     db.commit()
