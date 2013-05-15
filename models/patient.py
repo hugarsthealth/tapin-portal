@@ -42,7 +42,7 @@ class Patient(Base):
             "contact_num": self.contact_num,
             "gender": self.gender,
             "dob": self.dob.isoformat() if self.dob else None,
-            "last_check_in": self.last_check_in.isoformat() if self.last_check_in else None
+            "last_check_in": self.vitalinfos[0].serialize() if self.vitalinfos else None
         }
 
     def deserialize(self, data):

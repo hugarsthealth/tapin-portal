@@ -112,11 +112,5 @@ def populate_database(num_patients, min_vital_infos, max_vital_infos):
             vitalinfo = VitalInfo(**generate_vital_info())
             vitalinfo.patient_nhi = patient.nhi
 
-            lci = patient.last_check_in
-            vid = vitalinfo.check_in_time
-
-            lci = vid if lci is None or vid > lci else lci
-            patient.last_check_in = lci
-
             db.add(vitalinfo)
             db.commit()
