@@ -1,6 +1,6 @@
 import json
 
-from flask import request, redirect, url_for, session, jsonify, render_template, make_response
+from flask import request, url_for, session, jsonify, render_template, make_response
 from sqlalchemy import desc
 
 from server import app
