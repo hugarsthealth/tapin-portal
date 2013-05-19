@@ -57,11 +57,12 @@ def patient(nhi):
     elif request.method == "GET":
         return jsonify({'patient': patient.serialize()})
 
-    elif request.method == "POST":
-        patient.deserialize(json.loads(request.data))
-        db.commit()
-
-        return make_response("Successfully updated!", 200)
+# No need to update patient
+#    elif request.method == "POST":
+#        patient.deserialize(json.loads(request.data))
+#        db.commit()
+#
+#        return make_response("Successfully updated!", 200)
 
     elif request.method == "DELETE":
         db.delete(patient)
