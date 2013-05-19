@@ -101,11 +101,13 @@ def generate_vital_info():
 
 
 def populate_database(num_patients, min_vital_infos, max_vital_infos):
-    default = Department(department_name="default")
+    def_department = Department(department_name="default")
+    departments = [Department(department_name="Cardiology"), Department(department_name="Emergency")]
 
     for i in xrange(num_patients):
         patient = Patient(**generate_patient())
-        patient.departments.append(default)
+        patient.departments.append(choice(departments))
+        patient.departments.append(def_department)
         db.add(patient)
         db.commit()
 
