@@ -26,10 +26,6 @@ class Patient(Base):
     def __init__(self, **kwargs):
         self.deserialize(kwargs)
 
-    @property
-    def name(self):
-        return '{0} {1}'.format(self.firstname, self.lastname)
-
     def serialize(self):
         return {
             "nhi": self.nhi,
