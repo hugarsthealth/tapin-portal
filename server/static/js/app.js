@@ -34,8 +34,11 @@ myApp.config(function($routeProvider) {
 });
 
 function LoginCtrl ($scope, $cookies) {
-  $cookies.City = 'London';
-  console.log($cookies.session);
+  $cookies.city = "AK";
+  $scope.printCookies = function() {
+    console.log($cookies);
+  };
+
 }
 
 function VitalInfoCtrl ($scope, $http, $routeParams) {
