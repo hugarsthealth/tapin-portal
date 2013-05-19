@@ -34,11 +34,6 @@ myApp.config(function($routeProvider) {
 });
 
 function LoginCtrl ($scope, $cookies, $location) {
-  $cookies.city = "AK";
-  $scope.printCookies = function() {
-    console.log($cookies);
-  };
-
   if ('department' in $cookies) {
     $location.path('/patients');
   }
