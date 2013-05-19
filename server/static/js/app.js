@@ -1,4 +1,4 @@
-var myApp = angular.module('vsmApp', []);
+var myApp = angular.module('vsmApp', ['ngCookies']);
 
 myApp.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('<[');
@@ -8,6 +8,11 @@ myApp.config(function($interpolateProvider) {
 myApp.config(function($routeProvider) {
   $routeProvider
       .when('/',
+      {
+        templateUrl: 'static/partials/login.html',
+        controller: 'LoginCtrl'
+      })
+      .when('/patients',
       {
         templateUrl: 'static/partials/patient_index.html',
         controller: 'PatientListCtrl'
@@ -25,9 +30,14 @@ myApp.config(function($routeProvider) {
       .otherwise(
       {
         redirectTo: "/"
-      })
+      });
 });
 
+function LoginCtrl ($scope, $cookies, $location) {
+  if ('department' in $cookies) {
+    $location.path('/patients');
+  }
+}
 
 function VitalInfoCtrl ($scope, $http, $routeParams) {
   $http.get('/patients/' + $routeParams.nhi).success(function(data) {
@@ -41,8 +51,8 @@ function VitalInfoCtrl ($scope, $http, $routeParams) {
   //Works but throws errors in console
   //Returns true which is used with ng-show to show the overseas recently div if the overseas_recently parameter is true
   $scope.ShowOverseasRecentlyDiv = function(){
-	  console.log(String($scope.vitalinfo.overseas_recently)=="true");
-	  return String($scope.vitalinfo.overseas_recently)=="true";
+    console.log(String($scope.vitalinfo.overseas_recently)=="true");
+    return String($scope.vitalinfo.overseas_recently)=="true";
   };
 }
 
