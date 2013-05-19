@@ -44,13 +44,14 @@ def patients():
     elif request.method == "POST":
         patient_data = json.loads(request.data)
         patient = Patient(**patient_data)
+        patient = db.merge(patient)
+        db.commit()
 
-        existing_patient = Patient.query.get(patient.nhi)
+        department = Department.query.filter_by(department_name=session.get('department')).first()
 
-        if existing_patient:
-            patient = db.merge(existing_patient)
+        if department:
+            patient.departments.append(department)
 
-        db.add(patient)
         db.commit()
 
         if 'vitalinfo' in patient_data:
@@ -62,14 +63,13 @@ def patients():
 @app.route('/patients/<nhi>/', methods=['GET', 'PUT', 'DELETE'])
 def patient(nhi):
     patient = Patient.query.join(Department.patients).filter(
-        Department.department_name == session.get('department', 'default')).filter_by(nhi=nhi).first()
+        Department.department_name == session.get('department', 'default')
+    ).filter_by(nhi=nhi).first()
 
     if not patient:
         return make_response("No patient with NHI " + nhi, 404)
-    else:
-        patient = Patient.query.get(patient.nhi)
 
-    if request.method == "GET":
+    elif request.method == "GET":
         return jsonify({'patient': patient.serialize()})
 
     elif request.method == "DELETE":
@@ -101,8 +101,7 @@ def vital_infos(nhi):
 
 @app.route('/patients/<nhi>/vitalinfos/<int:vital_info_id>/', methods=['GET', 'POST', 'DELETE'])
 def vital_info(nhi, vital_info_id):
-    vitalinfo = VitalInfo.query.filter_by(
-        patient_nhi=nhi, vital_info_id=vital_info_id).first()
+    vitalinfo = VitalInfo.query.filter_by(patient_nhi=nhi, vital_info_id=vital_info_id).first()
 
     if not vitalinfo:
         return make_response("No vitalinfo for patient {} with id {}".format(nhi, vital_info_id))
@@ -112,10 +111,9 @@ def vital_info(nhi, vital_info_id):
 
     elif request.method == "POST":
         vitalinfo_data = json.loads(request.data)
-        new_vitalinfo = VitalInfo(**vitalinfo_data)
-        new_vitalinfo.nhi = nhi
-        new_vitalinfo.vital_info_id = vital_info_id
-        merged_vitalinfo = db.merge(new_vitalinfo)
+        vitalinfo = VitalInfo(**vitalinfo_data)
+        vitalinfo.vital_info_id = vital_info_id
+        vitalinfo = db.merge(vitalinfo)
         db.commit()
 
         return make_response("Successfully updated!", 200)
