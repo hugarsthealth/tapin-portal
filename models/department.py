@@ -3,10 +3,10 @@ from sqlalchemy import Column, String, Integer
 from models import Base
 
 
-class Role(Base):
-    __tablename__ = 'role'
-    role_id = Column(Integer, primary_key=True)
-    name = Column(String, unique=True, nullable=False)
+class Department(Base):
+    __tablename__ = 'department'
+    department_id = Column(Integer, primary_key=True)
+    department_name = Column(String, unique=True, nullable=False)
 
     """docstring for Patient"""
     def __init__(self, **kwargs):
@@ -14,8 +14,8 @@ class Role(Base):
 
     def serialize(self):
         return {
-            "role_id": self.role_id,
-            "name": self.name
+            "department_id": self.department_id,
+            "department_name": self.department_name
         }
 
     def deserialize(self, data):
@@ -26,4 +26,4 @@ class Role(Base):
             setattr(self, key, data[key])
 
     def __repr__(self):
-        return '<Role (name: {})>'.format(self.name)
+        return '<Department (id: {}, name: {})>'.format(self.department_id, self.department_name)
