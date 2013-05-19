@@ -1,6 +1,6 @@
 import json
 
-from flask import request, url_for, session, jsonify, render_template, make_response
+from flask import request, redirect, url_for, session, jsonify, render_template, make_response
 from sqlalchemy import desc
 
 from server import app
@@ -11,6 +11,14 @@ from models import db, Patient, VitalInfo
 def root():
     # serve up the angular
     return render_template('index.html')
+
+
+@app.route('/login/', methods=['POST'])
+def login():
+    if 'role' in request.form:
+        session['role'] = request.form['role']
+
+    return redirect(url_for('root'))
 
 
 @app.route('/patients/', methods=['GET', 'POST'])
