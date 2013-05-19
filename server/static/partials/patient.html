@@ -4,29 +4,29 @@
     
     <div class="patient">
 
-      <h1><[ patient.firstname + " " + patient.lastname ]></h1>
+      <h1><[ patient.latest_vitalinfo.firstname + " " + patient.latest_vitalinfo.lastname ]></h1>
 
       <dl>
         <dt>NHI</dt>
         <dd><[patient.nhi]></dd>
 
         <dt>Occupation</dt>
-        <dd><[patient.occupation]></dd>
+        <dd><[patient.latest_vitalinfo.occupation]></dd>
 
         <dt>Citizen/Resident</dt>
-        <dd><[patient.citizen_resident]></dd>
+        <dd><[patient.latest_vitalinfo.citizen_resident]></dd>
 
         <dt>Contact Number</dt>
-        <dd><[patient.contact_num]></dd>
+        <dd><[patient.latest_vitalinfo.contact_num]></dd>
 
         <dt>Gender</dt>
-        <dd><[patient.gender]></dd>
+        <dd><[patient.latest_vitalinfo.gender]></dd>
 
         <dt>Date Of Birth</dt>
-        <dd><[patient.dob]></dd>
+        <dd><[patient.latest_vitalinfo.dob]></dd>
 
         <dt>Last Check In</dt>
-        <dd><[patient.last_check_in]></dd>
+        <dd><[patient.latest_vitalinfo.check_in_time]></dd>
       </dl>
     </div>
   </div>
