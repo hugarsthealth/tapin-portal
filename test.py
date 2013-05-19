@@ -18,9 +18,13 @@ class TestServer(unittest.TestCase):
         Base.metadata.create_all(bind=engine)
 
     def test_new_patient(self):
-        self.app.delete('/patients/123ABC/')
         self.app.post('/patients/', data=json.dumps({"firstname": "John", "lastname": "Doe", "nhi": "123ABC"}))
         assert Patient.query.get('123ABC') is not None
+
+    def test_patient_add_department(self):
+        self.app.post('/login/', data=json.dumps({"department": "Pediatrics"}))
+        self.app.post('/patients/', data=json.dumps({"nhi": "123ABC"}))
+        assert "Pediatrics" in Patient.query.get('123ABC').departments
 
     def test_new_vitalinfo(self):
         self.app.delete('/patients/123ABC/vitalinfos/1/')

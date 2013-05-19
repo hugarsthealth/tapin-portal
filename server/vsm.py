@@ -61,8 +61,10 @@ def patient(nhi):
 
     if not patient:
         return make_response("No patient with NHI " + nhi, 404)
+    else:
+        patient = Patient.query.get(patient.nhi)
 
-    elif request.method == "GET":
+    if request.method == "GET":
         return jsonify({'patient': patient.serialize()})
 
     elif request.method == "DELETE":
