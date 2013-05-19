@@ -28,16 +28,16 @@ class TestServer(unittest.TestCase):
         self.app.post('/patients/123ABC/vitalinfos/', data=json.dumps({"check_in_time": now.isoformat()}))
         assert VitalInfo.query.get(1).check_in_time is not None
 
-    def test_update_patient(self):
-        self.app.post('/patients/', data=json.dumps({"firstname": "To", "lastname": "Update", "nhi": "123ABC"}))
-        self.app.post('/patients/', data=json.dumps({"firstname": "Been", "lastname": "Updated", "nhi": "123ABC"}))
-        assert Patient.query.get('123ABC').lastname == "Updated"
+# No need to update patient
+#    def test_update_patient(self):
+#        now = datetime.now()
+#        self.app.post('/patients/123ABC/', data=json.dumps({"check_in_time": now.isoformat()}))
+#        assert VitalInfo.query.get(1).check_in_time == now
 
     def test_update_vitalinfo(self):
-        now = datetime.now()
-        self.app.post('/patients/123ABC/vitalinfos/', data=json.dumps({"check_in_time": now.isoformat(), "location": "To update"}))
-        self.app.post('/patients/123ABC/vitalinfos/', data=json.dumps({"check_in_time": now.isoformat(), "location": "Been updated"}))
+        self.app.post('/patients/123ABC/vitalinfos/1/', data=json.dumps({"location": "Been updated"}))
         assert VitalInfo.query.get(1).location == "Been updated"
+
 
     def test_delete_vitalinfo(self):
         self.app.delete('/patients/123ABC/vitalinfos/1/')
