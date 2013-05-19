@@ -73,7 +73,7 @@ function PatientListCtrl($scope, $http){
     $scope.patients = data.patients;
     console.log($scope.patients);
     for (var i = 0 ; i < $scope.patients.length ; i++) {
-      $scope.patients[i].fullname = $scope.patients[i].firstname + $scope.patients[i].lastname;
+      $scope.patients[i].fullname = $scope.patients[i].latest_vitalinfo.firstname + " " + $scope.patients[i].latest_vitalinfo.lastname;
     }
   });
 
