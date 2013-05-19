@@ -2,15 +2,6 @@ body {
     padding-top: 60px;
 }
 
-dl {
-    margin: 0;
-    padding: 0;
-}
-
-.nav {
-    padding: 10px;
-}
-
 .patient {
     box-sizing: border-box;
     margin-bottom: 20px;
@@ -21,14 +12,10 @@ dl {
 }
 
 .patient dt {
-    font-weight: bold;
-    width: 200px;
-    float: left;
-    clear: left;
-    height: 28px;
+    height: 20px;
+    text-align: left;
 }
 
 .patient dd {
-    margin-left: 200px;
-    height: 28px;
+    height: 20px;
 }
