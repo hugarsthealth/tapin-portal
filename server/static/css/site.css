@@ -38,7 +38,9 @@ dl {
     float: left;
 }
 
-
+.nav {
+    padding: 10px;
+}
 
 .patient {
     margin-right: auto;
