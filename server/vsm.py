@@ -91,7 +91,7 @@ def vital_infos(nhi):
         return make_response("Successfully added!", 200)
 
 
-@app.route('/patients/<nhi>/vitalinfos/<int:vital_info_id>/', methods=['GET', 'PUT', 'DELETE'])
+@app.route('/patients/<nhi>/vitalinfos/<int:vital_info_id>/', methods=['GET', 'POST', 'DELETE'])
 def vital_info(nhi, vital_info_id):
     vitalinfo = VitalInfo.query.filter_by(
         patient_nhi=nhi, vital_info_id=vital_info_id).first()
@@ -103,7 +103,11 @@ def vital_info(nhi, vital_info_id):
         return jsonify({'vitalinfo': vitalinfo.serialize()})
 
     elif request.method == "POST":
-        vitalinfo.deserialize(json.loads(request.data))
+        vitalinfo_data = json.loads(request.data)
+        new_vitalinfo = VitalInfo(**vitalinfo_data)
+        new_vitalinfo.nhi = nhi
+        new_vitalinfo.vital_info_id = vital_info_id
+        merged_vitalinfo = db.merge(new_vitalinfo)
         db.commit()
 
         return make_response("Successfully updated!", 200)
