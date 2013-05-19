@@ -81,34 +81,37 @@ class TestVitalInfo(VsmTest):
             '123ABC').latest_check_in.isoformat() == self.now
 
 
-# class TestDepartment(VsmTest):
+class TestDepartment(VsmTest):
 
-#     def setUp(self):
-#         super(TestDepartment, self).setUp()
+    def setUp(self):
+        super(TestDepartment, self).setUp()
 
-#         cardiology = Department(department_name="Cardiology")
-#         oncology = Department(department_name="Oncology")
+        cardiology = Department(department_name="Cardiology")
+        oncology = Department(department_name="Oncology")
 
-#         p1 = Patient(nhi="1")
-#         p2 = Patient(nhi="2")
-#         p3 = Patient(nhi="3")
+        p1 = Patient(nhi="A")
+        p2 = Patient(nhi="B")
+        p3 = Patient(nhi="C")
 
-#         p1.departments.append(cardiology)
-#         p2.departments.append(oncology)
-#         p3.departments.append(cardiology)
-#         p3.departments.append(oncology)
+        p1.departments.append(cardiology)
+        p2.departments.append(oncology)
+        p3.departments.append(cardiology)
+        p3.departments.append(oncology)
 
-#         map(db.add, (p1, p2, p3))
-#         db.commit()
+        map(db.add, (p1, p2, p3))
+        db.commit()
 
-#         self.app.post('/login/', data={"department": "Cardiology"})
+        self.app.post('/login/', data={"department": "Cardiology"})
 
-#     def test_department_filter(self):
-#         rv = self.app.get('/patients/')
-#         patients = json.loads(rv.data)['patients']
-#         print([p['departments'][0]['department_name'] == 'Cardiology' for p in patients])
+    def test_department_patients_get(self):
+        rv = self.app.get('/patients/')
+        patients = json.loads(rv.data)['patients']
 
-#         assert all(p['departments'][0]['department_name'] == 'Cardiology' for p in patients)
+        assert all(any(d['department_name'] == 'Cardiology' for d in p['departments']) for p in patients)
+
+    def test_department_patient_get(self):
+        rv = self.app.get('/patients/B/')
+        assert rv.data == "No patient with NHI B"
 
 
 if __name__ == '__main__':
