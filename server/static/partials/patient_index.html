@@ -1,49 +1,26 @@
 <div ng-controller="PatientListCtrl">
+	<div class="row">
 
-        <h1>Vital Stats Manager</h1>
+		<div class="span6">
+			<h1>Patients</h1>
+		</div>
 
-        <div class="search-bar">
-          <label>Patient Search</label>
+		<div class="span6">
+	    <form class="form-inline pull-right">
+				<label>Search by: </label>
+				<select class="input-small" ng-model="searchBy" ng-change="searchByChange()">
+				  <option value="fullname">Name</option>
+				  <option value="nhi">NHI</option>
+				</select>
+				<input type="search" class="input-xlarge search-query" ng-change="searchBarChange()" ng-model="queryString">
+	    </form>
+	  </div>
 
-          <div class="search-input">
-            <label>Search by:</label>
-            <select ng-model="searchBy" ng-change="searchByChange()">
-              <option value="fullname">Name</option>
-              <option value="nhi">NHI number</option>
-            </select>
+	</div>
 
-            <input type="search" ng-change="searchBarChange()" ng-model="queryString">
-          </div>
-        </div>
-        
-        <div class = "patients">
-
-          <div class="patient" ng-repeat="patient in patients | filter:query">
-            <a href="#/patients/<[ patient.nhi ]>"><h3 class="patient-name"><[patient.latest_vitalinfo.firstname]> <[patient.latest_vitalinfo.lastname]></h3></a>
-
-            <dl>
-              <dt>NHI</dt>
-              <dd><[patient.nhi]></dd>
-
-              <dt>Occupation</dt>
-              <dd><[patient.latest_vitalinfo.occupation]></dd>
-
-              <dt>Citizen/Resident</dt>
-              <dd><[patient.latest_vitalinfo.citizen_resident]></dd>
-
-              <dt>Contact Number</dt>
-              <dd><[patient.latest_vitalinfo.contact_num]></dd>
-
-              <dt>Gender</dt>
-              <dd><[patient.latest_vitalinfo.gender]></dd>
-
-              <dt>Date Of Birth</dt>
-              <dd><[patient.latest_vitalinfo.dob]></dd>
-
-              <dt>Last Check In</dt>
-              <dd><[patient.latest_vitalinfo.check_in_time.substring(0,10) + " " + patient.latest_vitalinfo.check_in_time.substring(11,16)]></dd>
-            </dl>
-          </div>
-        </div>
-
-    </div>
+	<div class="row">
+	  <div class="span12" ng-repeat="patient in patients | filter:query">
+			<div ng-include src="'static/partials/patient_card.html'"></div>
+		</div>
+  </div>
+</div>

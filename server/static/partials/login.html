@@ -1,14 +1,25 @@
 <div ng-controller="LoginCtrl">
-	<h1>Choose your department</h1>
+	<div class="row">
+		<div class="span12">
+				<h1>Vital Stats Manager</h1>
+				<p>Vital Stats Manager is an application which allows patients at hospitals to quickly check in using their NFC enabled mobile devices. Patients must download the Vital Stats Manager Android application and fill out their details using the simple form. Once completed, simply touch the NFC receiver on the reception desk to be automatically checked in to the Hospital.</p>
+		</div>
+	</div>
 
-	<form method="post" action="/login/">
+	<div class="row">
+		<div class="span12">
 
-		<select name="department">
-			<option value="Cardiology">Cardiology</option>
-			<option value="Emergency">Emergency</option>
-		</select>
+			<form class="form-inline" method="post" action="/login/">
+				<fieldset>
+					<legend>Choose your department</legend>
+					<select name="department">
+						<option value="Cardiology">Cardiology</option>
+						<option value="Emergency">Emergency</option>
+					</select>
+					<button type="submit" class="btn">Login</button>
+				</fieldset>
+			</form>
 
-		<button type="submit">Login</button>
-
-	</form>
+		</div>
+	</div>
 </div>

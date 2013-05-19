@@ -91,17 +91,21 @@ function PatientListCtrl($scope, $http){
   $scope.searchBy = "fullname";
 
   $scope.searchBarChange = function() {
+    if (!$scope.queryString) {
+      // if there is no query, don't filter
+      $scope.query = true;
+      return;
+    }
+
     $scope.query = {};
     if ($scope.searchBy === "fullname") {
       $scope.query.fullname = $scope.queryString;
     } else {
       $scope.query.nhi = $scope.queryString;
     }
-    console.log($scope.query);
   };
 
   $scope.searchByChange = function () {
     $scope.searchBarChange();
   };
-
 }

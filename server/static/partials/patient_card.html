@@ -1,0 +1,36 @@
+<div class="patient">
+  <div class="row">
+      <div class="span12">
+          <a href="#/patients/<[ patient.nhi ]>">
+              <h3 class="patient-name"><[patient.latest_vitalinfo.firstname]> <[patient.latest_vitalinfo.lastname]></h3>
+          </a>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="span12">
+          <dl class="dl-horizontal">
+            <dt>NHI</dt>
+            <dd><[patient.nhi]></dd>
+
+            <dt>Occupation</dt>
+            <dd><[patient.latest_vitalinfo.occupation]></dd>
+
+            <dt>Citizen/Resident</dt>
+            <dd><[patient.latest_vitalinfo.citizen_resident]></dd>
+
+            <dt>Contact Number</dt>
+            <dd><[patient.latest_vitalinfo.contact_num]></dd>
+
+            <dt>Gender</dt>
+            <dd><[patient.latest_vitalinfo.gender]></dd>
+
+            <dt>Date Of Birth</dt>
+            <dd><[patient.latest_vitalinfo.dob]></dd>
+
+            <dt>Last Check In</dt>
+            <dd><[patient.latest_vitalinfo.check_in_time.substring(0,10) + " " + patient.latest_vitalinfo.check_in_time.substring(11,16)]></dd>
+          </dl>
+      </div>
+  </div>
+</div>

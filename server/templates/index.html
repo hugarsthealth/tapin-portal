@@ -1,17 +1,30 @@
 <!doctype html>
 <html ng-app="vsmApp" id="ng-app">
+
 <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/site.css') }}">
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/angular.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/breadcrumbs.js') }}"></script>
   	<script src="//raw.github.com/angular/angular.js/master/src/ngCookies/cookies.js"></script>
+
     <title>Vital Stats Manager</title>
 </head>
+
 <body>
-  <div>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="#">Vital Stats Manager</a>
+			  <div class="nav-collapse collapse">
+			  	<ul class="nav" ng-bread-crumbs id='myBreadCrumbs'></ul>
+	      </div><!--/.nav-collapse -->
+	    </div>
+	  </div>
+	</div>
 
-    <div ng-view></div>
-
-  </div>
+  <div ng-view class="container"></div>
 
   <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
 
