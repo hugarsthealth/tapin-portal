@@ -21,27 +21,15 @@ class TestServer(unittest.TestCase):
         self.app.post('/patients/', data=json.dumps({"firstname": "John", "lastname": "Doe", "nhi": "123ABC"}))
         assert Patient.query.get('123ABC') is not None
 
-    def test_patient_add_department(self):
-        self.app.post('/login/', data=json.dumps({"department": "Pediatrics"}))
-        self.app.post('/patients/', data=json.dumps({"nhi": "123ABC"}))
-        assert "Pediatrics" in Patient.query.get('123ABC').departments
-
     def test_new_vitalinfo(self):
         self.app.delete('/patients/123ABC/vitalinfos/1/')
         now = datetime.now()
         self.app.post('/patients/123ABC/vitalinfos/', data=json.dumps({"check_in_time": now.isoformat()}))
         assert VitalInfo.query.get(1).check_in_time is not None
 
-# No need to update patient
-#    def test_update_patient(self):
-#        now = datetime.now()
-#        self.app.post('/patients/123ABC/', data=json.dumps({"check_in_time": now.isoformat()}))
-#        assert VitalInfo.query.get(1).check_in_time == now
-
     def test_update_vitalinfo(self):
         self.app.post('/patients/123ABC/vitalinfos/1/', data=json.dumps({"location": "Been updated"}))
         assert VitalInfo.query.get(1).location == "Been updated"
-
 
     def test_delete_vitalinfo(self):
         self.app.delete('/patients/123ABC/vitalinfos/1/')

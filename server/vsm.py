@@ -44,11 +44,11 @@ def patients():
     elif request.method == "POST":
         patient_data = json.loads(request.data)
         patient = Patient(**patient_data)
-        patient = db.merge(Patient.query.get(patient.nhi))
 
-        department = Department.query.filter_by(
-            department_name=session.get('department', 'default')).first()
-        patient.departments.append(department)
+        existing_patient = Patient.query.get(patient.nhi)
+
+        if existing_patient:
+            patient = db.merge(existing_patient)
 
         db.add(patient)
         db.commit()
@@ -62,7 +62,7 @@ def patients():
 @app.route('/patients/<nhi>/', methods=['GET', 'PUT', 'DELETE'])
 def patient(nhi):
     patient = Patient.query.join(Department.patients).filter(
-        Department.department_name == session.get('department', 'default')).get(nhi)
+        Department.department_name == session.get('department', 'default')).filter_by(nhi=nhi).first()
 
     if not patient:
         return make_response("No patient with NHI " + nhi, 404)
