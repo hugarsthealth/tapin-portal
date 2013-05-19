@@ -1,4 +1,4 @@
-var myApp = angular.module('vsmApp', []);
+var myApp = angular.module('vsmApp', ['ngCookies']);
 
 myApp.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('<[');
@@ -33,6 +33,10 @@ myApp.config(function($routeProvider) {
       })
 });
 
+function LoginCtrl ($scope, $cookies) {
+  $cookies.City = 'London';
+  console.log($cookies.session);
+}
 
 function VitalInfoCtrl ($scope, $http, $routeParams) {
   $http.get('/patients/' + $routeParams.nhi).success(function(data) {

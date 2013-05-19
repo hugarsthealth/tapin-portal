@@ -15,7 +15,9 @@ def root():
 
 @app.route('/login/', methods=['POST'])
 def login():
+    print "Tryna login"
     if 'role' in request.form:
+        print request.form['role']
         session['role'] = request.form['role']
 
     return redirect(url_for('root'))
