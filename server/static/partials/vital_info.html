@@ -1,29 +1,35 @@
-<div ng-controller="VitalInfoCtrl">
+<div class="container" ng-controller="VitalInfoCtrl">
   <div class="vitalinfo">
-    <h1><[ patient.latest_vitalinfo.firstname + " " + patient.latest_vitalinfo.lastname ]></h1>
-    <dl>
-		<dt>Gender</dt><dd><[patient.latest_vitalinfo.gender]></dd>
-        <dt>Date Of Birth</dt><dd><[patient.latest_vitalinfo.dob]></dd>
-        <dt>NHI: </dt><dd><[patient.nhi]></dd>
-	</dl>
-
-		<div class="vitalinfoBreak"><hr/></div>
-	  <dl>
-		  <dt>Check In Time: </dt><dd><[ vitalinfo.check_in_time.substring(0,10) + " " + vitalinfo.check_in_time.substring(11,16)]></dd>      
-		  <dt>Location: </dt><dd><[vitalinfo.location]></dd>
-          <dt>Height: </dt><dd><[vitalinfo.height_value]> <[vitalinfo.height_unit]></dd>
-          <dt>Weight: </dt><dd><[vitalinfo.weight_value]> <[vitalinfo.weight_unit]></dd>
-          <dt>Blood Type: </dt><dd><[vitalinfo.blood_type]></dd>
-          <dt>Drinker: </dt><dd><[vitalinfo.drinker]></dd>
-		  <dt>Smoker: </dt><dd><[vitalinfo.smoker]></dd>
-          <dt>Medical Conditions: </dt><dd><ul><li ng-repeat="medical_condition in vitalinfo.medical_conditions"> <[medical_condition]> </li></ul></dd>
-          <dt>Allergies: </dt><dd><ul><li ng-repeat="allergy in vitalinfo.allergies"> <[allergy]> </li></ul></dd>
-          <dt>Overseas Recently: </dt><dd><[vitalinfo.overseas_recently]></dd>
-          <div ng-show= ShowOverseasRecentlyDiv()>
-			<dt>Overseas Destinations: </dt><dd><ul><li ng-repeat="overseas_dest in vitalinfo.overseas_dests"> <[overseas_dest]> </li></ul></dd>
-          </div>
-          <dt>Family History: </dt><dd><ul><li ng-repeat="family_hist in vitalinfo.family_hist"> <[family_hist]> </li></ul></dd>
-      </dl>
+	<div class="row">
+		<div class="span12">
+			<h1><[ patient.latest_vitalinfo.firstname + " " + patient.latest_vitalinfo.lastname ]></h1>
+			<dl>
+				<dt>Gender</dt><dd><[patient.latest_vitalinfo.gender]></dd>
+				<dt>Date Of Birth</dt><dd><[patient.latest_vitalinfo.dob]></dd>
+				<dt>NHI: </dt><dd><[patient.nhi]></dd>
+			</dl>
+		</div>
+	</div>
+	<div class="vitalinfoBreak"><hr/></div>
+		<div class="row">
+			<div class="span12">
+			<dl>
+				  <dt>Check In Time: </dt><dd><[ vitalinfo.check_in_time.substring(0,10) + " " + vitalinfo.check_in_time.substring(11,16)]></dd>      
+				  <dt>Location: </dt><dd><[vitalinfo.location]></dd>
+				  <dt>Height: </dt><dd><[vitalinfo.height_value]> <[vitalinfo.height_unit]></dd>
+				  <dt>Weight: </dt><dd><[vitalinfo.weight_value]> <[vitalinfo.weight_unit]></dd>
+				  <dt>Blood Type: </dt><dd><[vitalinfo.blood_type]></dd>
+				  <dt>Drinker: </dt><dd><[vitalinfo.drinker]></dd>
+				  <dt>Smoker: </dt><dd><[vitalinfo.smoker]></dd>
+				  <dt>Medical Conditions: </dt><dd><ul><li ng-repeat="medical_condition in vitalinfo.medical_conditions"> <[medical_condition]> </li></ul></dd>
+				  <dt>Allergies: </dt><dd><ul><li ng-repeat="allergy in vitalinfo.allergies"> <[allergy]> </li></ul></dd>
+				  <dt>Overseas Recently: </dt><dd><[vitalinfo.overseas_recently]></dd>
+				  <div ng-show= ShowOverseasRecentlyDiv()>
+					<dt>Overseas Destinations: </dt><dd><ul><li ng-repeat="overseas_dest in vitalinfo.overseas_dests"> <[overseas_dest]> </li></ul></dd>
+				  </div>
+				  <dt>Family History: </dt><dd><ul><li ng-repeat="family_hist in vitalinfo.family_hist"> <[family_hist]> </li></ul></dd>
+			  </dl>
+		  </div>
+	  </div>
   </div>
-
 </div>

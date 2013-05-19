@@ -1,49 +1,63 @@
-<div ng-controller="PatientListCtrl">
+<div class="container" ng-controller="PatientListCtrl">
+	<div class="row">
+		<div class="span12">
+			<h1>Vital Stats Manager</h1>
+		</div>
+	</div>
+	<div class="row">
+			<div class="search-bar">
+				<div class="span2">
+					<label>Patient Search</label>
+				</div>
 
-        <h1>Vital Stats Manager</h1>
+			  <div class="search-input">
+				<div class="span1">
+					<label>Search by: </label>
+				</div>
+				<div class="span4">	
+					<select ng-model="searchBy" ng-change="searchByChange()">
+					  <option value="fullname">Name</option>
+					  <option value="nhi">NHI number</option>
+					</select>
+				</div>
+				<div class="span5">
+					<input type="search" ng-change="searchBarChange()" ng-model="queryString">
+				</div>
+			  </div>
+			</div>
+		</div>
+	<div class = "patients">
 
-        <div class="search-bar">
-          <label>Patient Search</label>
+	  <div class="patient" ng-repeat="patient in patients | filter:query">
+		<div class="row">
+			<div class="span12">
+				<a href="#/patients/<[ patient.nhi ]>"><h3 class="patient-name"><[patient.latest_vitalinfo.firstname]> <[patient.latest_vitalinfo.lastname]></h3></a>
+			</div>
+			<div class="span12">
+				<dl>
+				  <dt>NHI</dt>
+				  <dd><[patient.nhi]></dd>
 
-          <div class="search-input">
-            <label>Search by:</label>
-            <select ng-model="searchBy" ng-change="searchByChange()">
-              <option value="fullname">Name</option>
-              <option value="nhi">NHI number</option>
-            </select>
+				  <dt>Occupation</dt>
+				  <dd><[patient.latest_vitalinfo.occupation]></dd>
 
-            <input type="search" ng-change="searchBarChange()" ng-model="queryString">
-          </div>
-        </div>
-        
-        <div class = "patients">
+				  <dt>Citizen/Resident</dt>
+				  <dd><[patient.latest_vitalinfo.citizen_resident]></dd>
 
-          <div class="patient" ng-repeat="patient in patients | filter:query">
-            <a href="#/patients/<[ patient.nhi ]>"><h3 class="patient-name"><[patient.latest_vitalinfo.firstname]> <[patient.latest_vitalinfo.lastname]></h3></a>
+				  <dt>Contact Number</dt>
+				  <dd><[patient.latest_vitalinfo.contact_num]></dd>
 
-            <dl>
-              <dt>NHI</dt>
-              <dd><[patient.nhi]></dd>
+				  <dt>Gender</dt>
+				  <dd><[patient.latest_vitalinfo.gender]></dd>
 
-              <dt>Occupation</dt>
-              <dd><[patient.latest_vitalinfo.occupation]></dd>
+				  <dt>Date Of Birth</dt>
+				  <dd><[patient.latest_vitalinfo.dob]></dd>
 
-              <dt>Citizen/Resident</dt>
-              <dd><[patient.latest_vitalinfo.citizen_resident]></dd>
-
-              <dt>Contact Number</dt>
-              <dd><[patient.latest_vitalinfo.contact_num]></dd>
-
-              <dt>Gender</dt>
-              <dd><[patient.latest_vitalinfo.gender]></dd>
-
-              <dt>Date Of Birth</dt>
-              <dd><[patient.latest_vitalinfo.dob]></dd>
-
-              <dt>Last Check In</dt>
-              <dd><[patient.latest_vitalinfo.check_in_time.substring(0,10) + " " + patient.latest_vitalinfo.check_in_time.substring(11,16)]></dd>
-            </dl>
-          </div>
-        </div>
-
-    </div>
+				  <dt>Last Check In</dt>
+				  <dd><[patient.latest_vitalinfo.check_in_time.substring(0,10) + " " + patient.latest_vitalinfo.check_in_time.substring(11,16)]></dd>
+				</dl>
+			</div>
+		</div>
+	  </div>
+	</div>
+</div>

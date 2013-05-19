@@ -1,60 +1,65 @@
 
-<div ng-controller="PatientCtrl">
-  <div class="patient_details">
-    
-    <div class="patient">
+<div class="container" ng-controller="PatientCtrl">
+	<div class="row">
+		<div class="span12">
+			<div class="patient_details">
+				<div class="patient">
 
-      <h1><[ patient.latest_vitalinfo.firstname + " " + patient.latest_vitalinfo.lastname ]></h1>
+					<h1><[ patient.latest_vitalinfo.firstname + " " + patient.latest_vitalinfo.lastname ]></h1>
 
-      <dl>
-        <dt>NHI</dt>
-        <dd><[patient.nhi]></dd>
+					<dl>
+					<dt>NHI</dt>
+					<dd><[patient.nhi]></dd>
 
-        <dt>Occupation</dt>
-        <dd><[patient.latest_vitalinfo.occupation]></dd>
+					<dt>Occupation</dt>
+					<dd><[patient.latest_vitalinfo.occupation]></dd>
 
-        <dt>Citizen/Resident</dt>
-        <dd><[patient.latest_vitalinfo.citizen_resident]></dd>
+					<dt>Citizen/Resident</dt>
+					<dd><[patient.latest_vitalinfo.citizen_resident]></dd>
 
-        <dt>Contact Number</dt>
-        <dd><[patient.latest_vitalinfo.contact_num]></dd>
+					<dt>Contact Number</dt>
+					<dd><[patient.latest_vitalinfo.contact_num]></dd>
 
-        <dt>Gender</dt>
-        <dd><[patient.latest_vitalinfo.gender]></dd>
+					<dt>Gender</dt>
+					<dd><[patient.latest_vitalinfo.gender]></dd>
 
-        <dt>Date Of Birth</dt>
-        <dd><[patient.latest_vitalinfo.dob]></dd>
+					<dt>Date Of Birth</dt>
+					<dd><[patient.latest_vitalinfo.dob]></dd>
 
-        <dt>Last Check In</dt>
-        <dd><[patient.latest_vitalinfo.check_in_time]></dd>
-      </dl>
-    </div>
-  </div>
-
-  <div class="checkins">
-    <div class="checkin-sorter">
-      <label>Sort check-ins by: </label>
-      <select ng-model="sortBy" ng-change="sortByChange()">
-        <option value="check_in_time">Date</option>
-        <option value="location">Location</option>
-      </select>
-    </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Check-in Date</th>
-            <th>Check-in Time</th>
-            <th>Location</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="vitalinfo in vitalinfos | orderBy:sortBy:reverseCheckIns">
-            <td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.check_in_time.substring(0,10) ]></a></td>
-            <td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.check_in_time.substring(11,16) ]></a></td>
-            <td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.location ]></a></td>
-          </tr>
-        </tbody>
-    </table>
-    </div>
-  </div>
+					<dt>Last Check In</dt>
+					<dd><[patient.latest_vitalinfo.check_in_time]></dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<div class="checkins">
+				<div class="checkin-sorter">
+					<label>Sort check-ins by: </label>
+					<select ng-model="sortBy" ng-change="sortByChange()">
+						<option value="check_in_time">Date</option>
+						<option value="location">Location</option>
+					</select>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<th>Check-in Date</th>
+							<th>Check-in Time</th>
+							<th>Location</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="vitalinfo in vitalinfos | orderBy:sortBy:reverseCheckIns">
+							<td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.check_in_time.substring(0,10) ]></a></td>
+							<td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.check_in_time.substring(11,16) ]></a></td>
+							<td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>"><[ vitalinfo.location ]></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
