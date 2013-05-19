@@ -15,13 +15,15 @@ def root():
 
 @app.route('/login/', methods=['POST'])
 def login():
+    resp = make_response(redirect(url_for('root')))
+
     if 'department' in request.form:
-        session['department'] = request.form['department']
+        resp.set_cookie('role', request.form['role'])
     else:
         return make_response("'department' not in POST data. Received: {}".format(
             json.dumps(request.form, indent=2)), 400)
 
-    return redirect(url_for('root'))
+    return resp
 
 
 @app.route('/patients/', methods=['GET', 'POST'])
@@ -47,7 +49,8 @@ def patients():
         patient = db.merge(patient)
         db.commit()
 
-        department = Department.query.filter_by(department_name=session.get('department')).first()
+        department = Department.query.filter_by(
+            department_name=session.get('department')).first()
 
         if department:
             patient.departments.append(department)
@@ -101,7 +104,8 @@ def vital_infos(nhi):
 
 @app.route('/patients/<nhi>/vitalinfos/<int:vital_info_id>/', methods=['GET', 'POST', 'DELETE'])
 def vital_info(nhi, vital_info_id):
-    vitalinfo = VitalInfo.query.filter_by(patient_nhi=nhi, vital_info_id=vital_info_id).first()
+    vitalinfo = VitalInfo.query.filter_by(
+        patient_nhi=nhi, vital_info_id=vital_info_id).first()
 
     if not vitalinfo:
         return make_response("No vitalinfo for patient {} with id {}".format(nhi, vital_info_id))
