@@ -30,15 +30,18 @@ myApp.config(function($routeProvider) {
       .otherwise(
       {
         redirectTo: "/"
-      })
+      });
 });
 
-function LoginCtrl ($scope, $cookies) {
+function LoginCtrl ($scope, $cookies, $location) {
   $cookies.city = "AK";
   $scope.printCookies = function() {
     console.log($cookies);
   };
 
+  if ('department' in $cookies) {
+    $location.path('/patients');
+  }
 }
 
 function VitalInfoCtrl ($scope, $http, $routeParams) {
@@ -53,8 +56,8 @@ function VitalInfoCtrl ($scope, $http, $routeParams) {
   //Works but throws errors in console
   //Returns true which is used with ng-show to show the overseas recently div if the overseas_recently parameter is true
   $scope.ShowOverseasRecentlyDiv = function(){
-	  console.log(String($scope.vitalinfo.overseas_recently)=="true");
-	  return String($scope.vitalinfo.overseas_recently)=="true";
+    console.log(String($scope.vitalinfo.overseas_recently)=="true");
+    return String($scope.vitalinfo.overseas_recently)=="true";
   };
 }
 
