@@ -4,7 +4,7 @@ from flask import request, redirect, url_for, session, jsonify, render_template,
 from sqlalchemy import desc
 
 from server import app
-from models import db, Patient, VitalInfo
+from models import db, Patient, VitalInfo, Department
 
 
 @app.route('/')
@@ -15,20 +15,22 @@ def root():
 
 @app.route('/login/', methods=['POST'])
 def login():
-    if 'role' in request.form:
-        session['role'] = request.form['role']
+    session['department'] = request.form.get('department', 'default')
 
     return redirect(url_for('root'))
 
 
 @app.route('/patients/', methods=['GET', 'POST'])
 def patients():
+    query = Patient.query.join(Department.patients).filter(
+        Department.department_name == session.get('department', 'default'))
+
     if request.method == "GET":
         offset = int(request.args.get('offset', 0))
         limit = int(request.args.get('limit', 100))
 
         return jsonify({'patients': [
-            p.serialize() for p in Patient.query
+            p.serialize() for p in query
             .order_by(desc(Patient.latest_check_in))
             .offset(offset)
             .limit(limit)
