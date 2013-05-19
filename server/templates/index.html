@@ -16,11 +16,6 @@
 	<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
         <a class="brand" href="#">Vital Stats Manager</a>
 			  <div class="nav-collapse collapse">
 			  	<ul class="nav" ng-bread-crumbs id='myBreadCrumbs'></ul>
@@ -29,9 +24,7 @@
 	  </div>
 	</div>
 
-  <div>
-    <div ng-view></div>
-  </div>
+  <div ng-view class="container"></div>
 
   <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
 
