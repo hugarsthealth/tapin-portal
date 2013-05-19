@@ -1,6 +1,6 @@
 import json
 
-from flask import request, redirect, url_for, session, jsonify, render_template, make_response
+from flask import request, redirect, url_for, jsonify, render_template, make_response
 from sqlalchemy import desc
 
 from server import app
@@ -29,7 +29,7 @@ def login():
 @app.route('/patients/', methods=['GET', 'POST'])
 def patients():
     query = Patient.query.join(Department.patients).filter(
-        Department.department_name == session.get('department', 'default'))
+        Department.department_name == request.cookies.get('department'))
 
     if request.method == "GET":
         offset = int(request.args.get('offset', 0))
@@ -50,7 +50,7 @@ def patients():
         db.commit()
 
         department = Department.query.filter_by(
-            department_name=session.get('department')).first()
+            department_name=request.cookies.get('department')).first()
 
         if department:
             patient.departments.append(department)
@@ -66,7 +66,7 @@ def patients():
 @app.route('/patients/<nhi>/', methods=['GET', 'PUT', 'DELETE'])
 def patient(nhi):
     patient = Patient.query.join(Department.patients).filter(
-        Department.department_name == session.get('department', 'default')
+        Department.department_name == request.cookies.get('department')
     ).filter_by(nhi=nhi).first()
 
     if not patient:
