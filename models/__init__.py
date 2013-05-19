@@ -12,10 +12,10 @@ db = scoped_session(sessionmaker(autocommit=False,
 Base = declarative_base()
 Base.query = db.query_property()
 
-from models.associations import patient_role_table
+from models.associations import patient_department_table
 from models.patient import Patient
 from models.vitalinfo import VitalInfo
-from models.role import Role
+from models.department import Department
 
 
 def init_db(num_patients=5, min_vital_infos=2, max_vital_infos=10):

@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, DateTime
 from sqlalchemy.orm import relationship
 
-from models import Base, patient_role_table
+from models import Base, patient_department_table
 
 
 class Patient(Base):
@@ -9,9 +9,9 @@ class Patient(Base):
     nhi = Column(String(10), primary_key=True)
     latest_check_in = Column(DateTime)
 
-    roles = relationship(
-        "Role",
-        secondary=patient_role_table,
+    departments = relationship(
+        "Department",
+        secondary=patient_department_table,
         backref="patients"
     )
 
@@ -29,7 +29,7 @@ class Patient(Base):
     def serialize(self):
         return {
             "nhi": self.nhi,
-            "roles": [r.serialize() for r in self.roles],
+            "departments": [d.serialize() for d in self.departments],
             "latest_check_in": self.latest_check_in.isoformat() if self.latest_check_in else None,
             "latest_vitalinfo": self.vitalinfos[0].serialize() if self.vitalinfos else None
         }

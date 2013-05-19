@@ -8,8 +8,8 @@ from models import Base
 class VitalInfo(Base):
     __tablename__ = 'vital_info'
     vital_info_id = Column(Integer, primary_key=True)
-    check_in_time = Column(DateTime, nullable=False)
-    patient_nhi = Column(String(10), ForeignKey("patient.nhi"), nullable=False)
+    check_in_time = Column(DateTime)
+    patient_nhi = Column(String(10), ForeignKey("patient.nhi"))
     firstname = Column(String(250))
     lastname = Column(String(250))
     occupation = Column(String(250))
