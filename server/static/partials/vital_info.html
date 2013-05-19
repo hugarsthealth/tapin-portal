@@ -1,9 +1,9 @@
 <div ng-controller="VitalInfoCtrl">
   <div class="vitalinfo">
-    <h1><[ patient.firstname + " " + patient.lastname ]></h1>
+    <h1><[ patient.latest_vitalinfo.firstname + " " + patient.latest_vitalinfo.lastname ]></h1>
     <dl>
-		<dt>Gender</dt><dd><[patient.gender]></dd>
-        <dt>Date Of Birth</dt><dd><[patient.dob]></dd>
+		<dt>Gender</dt><dd><[patient.latest_vitalinfo.gender]></dd>
+        <dt>Date Of Birth</dt><dd><[patient.latest_vitalinfo.dob]></dd>
         <dt>NHI: </dt><dd><[patient.nhi]></dd>
 	</dl>
 
