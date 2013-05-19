@@ -13,6 +13,14 @@ def root():
     return render_template('index.html')
 
 
+@app.route('/login/', methods=['POST'])
+def login():
+    if 'role' in request.form:
+        session['role'] = request.form['role']
+
+    return redirect(url_for('root'))
+
+
 @app.route('/patients/', methods=['GET', 'POST'])
 def patients():
     if request.method == "GET":
@@ -21,7 +29,7 @@ def patients():
 
         return jsonify({'patients': [
             p.serialize() for p in Patient.query
-            .order_by(desc(Patient.last_check_in))
+            .order_by(desc(Patient.latest_check_in))
             .offset(offset)
             .limit(limit)
             .all()
@@ -111,9 +119,9 @@ def add_vital_info(nhi, data):
     v.patient_nhi = nhi
 
     db.add(v)
-    db.commit()  # need to commit before v.patient will resolve
+    db.commit()
 
-    if v.patient.last_check_in is None or v.check_in_time > v.patient.last_check_in:
-        v.patient.last_check_in = v.check_in_time
+    if v.patient.latest_check_in is None or v.check_in_time > v.patient.latest_check_in:
+        v.patient.latest_check_in = v.check_in_time
 
     db.commit()

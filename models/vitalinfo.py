@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import ForeignKey, Column, Integer, String, DateTime, Float, Boolean
+from sqlalchemy import ForeignKey, Column, Integer, String, DateTime, Date, Float, Boolean
 
 from models import Base
 
@@ -10,6 +10,13 @@ class VitalInfo(Base):
     vital_info_id = Column(Integer, primary_key=True)
     check_in_time = Column(DateTime, nullable=False)
     patient_nhi = Column(String(10), ForeignKey("patient.nhi"), nullable=False)
+    firstname = Column(String(250), nullable=False)
+    lastname = Column(String(250), nullable=False)
+    occupation = Column(String(250))
+    citizen_resident = Column(Boolean)
+    contact_num = Column(String(20))
+    gender = Column(String(250))
+    dob = Column(Date)
     weight_value = Column(Float)
     weight_unit = Column(String(50))
     height_value = Column(Float)
@@ -33,6 +40,13 @@ class VitalInfo(Base):
             "vital_info_id": self.vital_info_id,
             "check_in_time": self.check_in_time.isoformat() if self.check_in_time else None,
             "patient_nhi": self.patient_nhi,
+            "firstname": self.firstname,
+            "lastname": self.lastname,
+            "occupation": self.occupation,
+            "citizen_resident": self.citizen_resident,
+            "contact_num": self.contact_num,
+            "gender": self.gender,
+            "dob": self.dob.isoformat() if self.dob else None,
             "weight_value": self.weight_value,
             "weight_unit": self.weight_unit,
             "height_value": self.height_value,
@@ -50,7 +64,7 @@ class VitalInfo(Base):
 
     def deserialize(self, data):
         for key in data:
-            if not data[key]:
+            if not data[key] or not hasattr(self, key):
                 continue
 
             if key in ['family_hist', 'overseas_dests', 'medical_conditions', 'allergies'] and isinstance(data[key], list):
@@ -58,10 +72,16 @@ class VitalInfo(Base):
                 continue
 
             if key in ['check_in_time'] and (isinstance(data[key], unicode) or isinstance(data[key], str)):
-                setattr(self, key, datetime.strptime(data[key], "%Y-%m-%dT%H:%M:%S.%f"))
+                setattr(self, key, datetime.strptime(
+                    data[key], "%Y-%m-%dT%H:%M:%S.%f"))
+                continue
+
+            if key in ['dob'] and (isinstance(data[key], unicode) or isinstance(data[key], str)):
+                setattr(self, key, datetime.strptime(
+                    data[key], "%Y-%m-%d").date())
                 continue
 
             setattr(self, key, data[key])
 
     def __repr__(self):
-        return '<VitalInfo (id: {}, patient: {})>'.format(self.vital_info_id, self.patient_nhi)
+        return '<VitalInfo (id: {}, patient: {}, time: {})>'.format(self.vital_info_id, self.patient_nhi, self.check_in_time)

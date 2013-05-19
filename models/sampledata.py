@@ -4,7 +4,7 @@ from random import choice, randrange, getrandbits, randint
 from datetime import datetime, timedelta
 import string
 
-from models import db, Patient, VitalInfo
+from models import db, Patient, VitalInfo, Role
 
 with open('models/dictionary.txt') as f:
     words = [word.strip() for word in f.read().split('\n')]
@@ -45,31 +45,22 @@ def list_of_rand_sentences(list_length, sentence_length):
 
 
 def generate_patient():
-    firstname = rand_name()
-    lastname = rand_name()
     nhi = rand_nhi()
-    occupation = rand_name()
-    citizen_resident = rand_bool()
-    contact_num = rand_digit_str(10)
-    gender = choice(['Male', 'Female'])
-    dob = rand_date(30000)
-    last_check_in = None
 
     return {
-        'firstname': firstname,
-        'lastname': lastname,
         'nhi': nhi,
-        'occupation': occupation,
-        'citizen_resident': citizen_resident,
-        'contact_num': contact_num,
-        'gender': gender,
-        'dob': dob,
-        'last_check_in': last_check_in,
     }
 
 
 def generate_vital_info():
     check_in_time = rand_date()
+    firstname = rand_name()
+    lastname = rand_name()
+    occupation = rand_name()
+    citizen_resident = rand_bool()
+    contact_num = rand_digit_str(10)
+    gender = choice(['Male', 'Female'])
+    dob = rand_date(30000)
     weight_value = randrange(0, 200)
     weight_unit = choice(['kg', 'lb'])
     height_value = randrange(0, 200)
@@ -86,6 +77,13 @@ def generate_vital_info():
 
     return {
         'check_in_time': check_in_time,
+        'firstname': firstname,
+        'lastname': lastname,
+        'occupation': occupation,
+        'citizen_resident': citizen_resident,
+        'contact_num': contact_num,
+        'gender': gender,
+        'dob': dob,
         'weight_value': weight_value,
         'weight_unit': weight_unit,
         'height_value': height_value,
@@ -103,8 +101,11 @@ def generate_vital_info():
 
 
 def populate_database(num_patients, min_vital_infos, max_vital_infos):
+    default = Role(name="default")
+
     for i in xrange(num_patients):
         patient = Patient(**generate_patient())
+        patient.roles.append(default)
         db.add(patient)
         db.commit()
 
@@ -112,11 +113,11 @@ def populate_database(num_patients, min_vital_infos, max_vital_infos):
             vitalinfo = VitalInfo(**generate_vital_info())
             vitalinfo.patient_nhi = patient.nhi
 
-            lci = patient.last_check_in
+            lci = patient.latest_check_in
             vid = vitalinfo.check_in_time
 
             lci = vid if lci is None or vid > lci else lci
-            patient.last_check_in = lci
+            patient.latest_check_in = lci
 
             db.add(vitalinfo)
             db.commit()
