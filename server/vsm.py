@@ -40,6 +40,11 @@ def patients():
     elif request.method == "POST":
         patient_data = json.loads(request.data)
         patient = Patient(**patient_data)
+        patient = db.merge(Patient.query.get(patient.nhi))
+
+        department = Department.query.filter_by(department_name=session.get('department', 'default')).first()
+        patient.departments.append(department)
+
         db.add(patient)
         db.commit()
 
@@ -51,20 +56,14 @@ def patients():
 
 @app.route('/patients/<nhi>/', methods=['GET', 'PUT', 'DELETE'])
 def patient(nhi):
-    patient = Patient.query.get(nhi)
+    patient = Patient.query.join(Department.patients).filter(
+        Department.department_name == session.get('department', 'default')).get(nhi)
 
     if not patient:
         return make_response("No patient with NHI " + nhi, 404)
 
     elif request.method == "GET":
         return jsonify({'patient': patient.serialize()})
-
-# No need to update patient
-#    elif request.method == "POST":
-#        patient.deserialize(json.loads(request.data))
-#        db.commit()
-#
-#        return make_response("Successfully updated!", 200)
 
     elif request.method == "DELETE":
         db.delete(patient)
