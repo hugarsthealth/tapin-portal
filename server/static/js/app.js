@@ -9,6 +9,11 @@ myApp.config(function($routeProvider) {
   $routeProvider
       .when('/',
       {
+        templateUrl: 'static/partials/login.html',
+        controller: 'LoginCtrl'
+      })
+      .when('/patients',
+      {
         templateUrl: 'static/partials/patient_index.html',
         controller: 'PatientListCtrl'
       })
