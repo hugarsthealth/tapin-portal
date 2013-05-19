@@ -15,7 +15,11 @@ def root():
 
 @app.route('/login/', methods=['POST'])
 def login():
-    session['department'] = request.form.get('department', 'default')
+    if 'department' in request.form:
+        session['department'] = request.form['department']
+    else:
+        return make_response("'department' not in POST data. Received: {}".format(
+            json.dumps(request.form, indent=2)), 400)
 
     return redirect(url_for('root'))
 
@@ -42,7 +46,8 @@ def patients():
         patient = Patient(**patient_data)
         patient = db.merge(Patient.query.get(patient.nhi))
 
-        department = Department.query.filter_by(department_name=session.get('department', 'default')).first()
+        department = Department.query.filter_by(
+            department_name=session.get('department', 'default')).first()
         patient.departments.append(department)
 
         db.add(patient)
