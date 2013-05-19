@@ -18,7 +18,7 @@ def login():
     resp = make_response(redirect(url_for('root')))
 
     if 'department' in request.form:
-        resp.set_cookie('role', request.form['role'])
+        resp.set_cookie('department', request.form.get('department'))
     else:
         return make_response("'department' not in POST data. Received: {}".format(
             json.dumps(request.form, indent=2)), 400)
@@ -29,7 +29,7 @@ def login():
 @app.route('/patients/', methods=['GET', 'POST'])
 def patients():
     query = Patient.query.join(Department.patients).filter(
-        Department.department_name == request.cookies.get('department'))
+        Department.department_name == request.cookies.get('department', 'default'))
 
     if request.method == "GET":
         offset = int(request.args.get('offset', 0))
@@ -50,7 +50,7 @@ def patients():
         db.commit()
 
         department = Department.query.filter_by(
-            department_name=request.cookies.get('department')).first()
+            department_name=request.cookies.get('department', 'default')).first()
 
         if department:
             patient.departments.append(department)
@@ -66,7 +66,7 @@ def patients():
 @app.route('/patients/<nhi>/', methods=['GET', 'PUT', 'DELETE'])
 def patient(nhi):
     patient = Patient.query.join(Department.patients).filter(
-        Department.department_name == request.cookies.get('department')
+        Department.department_name == request.cookies.get('department', 'default')
     ).filter_by(nhi=nhi).first()
 
     if not patient:
