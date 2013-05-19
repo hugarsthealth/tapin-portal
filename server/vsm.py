@@ -60,7 +60,7 @@ def patients():
         if 'vitalinfo' in patient_data:
             add_vital_info(patient.nhi, patient_data['vitalinfo'])
 
-        return make_response("Successfully added!", 200)
+        return make_response("Added patient: {}".format(json.dumps(patient.serialize())), 200)
 
 
 @app.route('/patients/<nhi>/', methods=['GET', 'PUT', 'DELETE'])
@@ -79,7 +79,7 @@ def patient(nhi):
         db.delete(patient)
         db.commit()
 
-        return make_response("Successfully deleted!", 200)
+        return make_response("Deleted patient: {}".format(nhi), 200)
 
 
 @app.route('/patients/<nhi>/vitalinfos/', methods=['GET', 'POST'])
@@ -97,9 +97,8 @@ def vital_infos(nhi):
         ]})
 
     elif request.method == "POST":
-        add_vital_info(nhi, json.loads(request.data))
-
-        return make_response("Successfully added!", 200)
+        v = add_vital_info(nhi, json.loads(request.data))
+        return make_response("Added vitalinfo: {}".format(json.dumps(v.serialize())), 200)
 
 
 @app.route('/patients/<nhi>/vitalinfos/<int:vital_info_id>/', methods=['GET', 'POST', 'DELETE'])
@@ -120,13 +119,13 @@ def vital_info(nhi, vital_info_id):
         vitalinfo = db.merge(vitalinfo)
         db.commit()
 
-        return make_response("Successfully updated!", 200)
+        return make_response("Updated vitalinfo: {}".format(json.dumps(vitalinfo.serialize())), 200)
 
     elif request.method == "DELETE":
         db.delete(vitalinfo)
         db.commit()
 
-        return make_response("Successfully deleted!", 200)
+        return make_response("Deleted vitalinfo: {} from patient: {}".format(vital_info_id, nhi), 200)
 
 
 def add_vital_info(nhi, data):
@@ -140,3 +139,4 @@ def add_vital_info(nhi, data):
         v.patient.latest_check_in = v.check_in_time
 
     db.commit()
+    return v
