@@ -57,7 +57,7 @@ def patient(nhi):
     elif request.method == "GET":
         return jsonify({'patient': patient.serialize()})
 
-    elif request.method == "PUT":
+    elif request.method == "POST":
         patient.deserialize(json.loads(request.data))
         db.commit()
 
@@ -101,7 +101,7 @@ def vital_info(nhi, vital_info_id):
     elif request.method == "GET":
         return jsonify({'vitalinfo': vitalinfo.serialize()})
 
-    elif request.method == "PUT":
+    elif request.method == "POST":
         vitalinfo.deserialize(json.loads(request.data))
         db.commit()
 
