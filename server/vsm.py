@@ -17,7 +17,7 @@ def root():
 def login():
     resp = make_response(redirect(url_for('root')))
 
-    if 'department' in request.form:
+    if 'department' in request.values:
         resp.set_cookie('department', request.form.get('department'))
     # elif: 'department' in request.data:
     #     resp.set_cookie('department', request.data.get('department'))
