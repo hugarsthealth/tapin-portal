@@ -1,12 +1,15 @@
 function LoginCtrl ($scope, $cookies, $location) {
   if ('department' in $cookies) {
     $location.path('/patients');
+    $cookies.derp = "hello";
   }
+
 }
 
 function VitalInfoCtrl ($scope, $http, $routeParams, $cookies, $location) {
   if (!('department' in $cookies)) {
     $location.path('/');
+    $cookies.no_auth = true;
   }
 
   $http.get('/patients/' + $routeParams.nhi).success(function(data) {
@@ -28,6 +31,7 @@ function VitalInfoCtrl ($scope, $http, $routeParams, $cookies, $location) {
 function PatientCtrl($scope, $http, $routeParams, $cookies, $location) {
   if (!('department' in $cookies)) {
     $location.path('/');
+    $cookies.no_auth = true;
   }
 
   $http.get('/patients/' + $routeParams.nhi).success(function(data) {
@@ -54,7 +58,8 @@ function PatientCtrl($scope, $http, $routeParams, $cookies, $location) {
 function PatientListCtrl($scope, $http, $cookies, $location){
   if (!('department' in $cookies)) {
     $location.path('/');
-    console.log("No cookies");
+    console.log("got here");
+    $cookies.no_auth = "true";
   }
 
   $http.get('/patients/').success(function(data) {
