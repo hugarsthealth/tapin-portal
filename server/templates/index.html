@@ -9,6 +9,7 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/breadcrumbs.js') }}"></script>
   	<script src="//raw.github.com/angular/angular.js/master/src/ngCookies/cookies.js"></script>
 
+
     <title>Vital Stats Manager</title>
 </head>
 
@@ -18,8 +19,7 @@
       <div class="container">
         <a class="brand" href="#">Vital Stats Manager</a>
 			  <div class="nav-collapse collapse">
-			  	<ul class="nav" ng-bread-crumbs id='myBreadCrumbs'></ul>
-          
+
           <p ng-show="logged_in" class="navbar-text pull-right">Logged in as <[ department ]> <a href="#" ng-click="signOut()">Sign out</a></p>
           
 	      </div><!--/.nav-collapse -->
@@ -27,7 +27,10 @@
 	  </div>
 	</div>
 
-  <div ng-view class="container"></div>
+  <div class="container">
+    <ul id='myBreadCrumbs' bread-crumbs style="margin-top: 10px;"></ul>
+    <div ng-view></div>
+  </div>
 
   <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='js/controllers.js') }}"></script>
