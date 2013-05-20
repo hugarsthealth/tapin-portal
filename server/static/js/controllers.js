@@ -1,8 +1,13 @@
 function LoginCtrl ($scope, $cookies, $location) {
   if ('department' in $cookies) {
     $location.path('/patients');
-    $cookies.derp = "hello";
   }
+
+  if ('no_auth' in $cookies) {
+    $scope.no_auth = true;
+    delete $cookies.no_auth;
+    console.log("no auth should have been deleted");
+  } 
 
 }
 
