@@ -19,8 +19,8 @@ def login():
 
     if 'department' in request.form:
         resp.set_cookie('department', request.form.get('department'))
-    elif: 'department' in request.data:
-        resp.set_cookie('department', request.data.get('department'))
+    # elif: 'department' in request.data:
+    #     resp.set_cookie('department', request.data.get('department'))
     else:
         return make_response("'department' not in POST data. Received: {}".format(
             json.dumps(request.form, indent=2)), 400)
