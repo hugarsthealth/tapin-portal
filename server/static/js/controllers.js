@@ -4,7 +4,11 @@ function LoginCtrl ($scope, $cookies, $location) {
   }
 }
 
-function VitalInfoCtrl ($scope, $http, $routeParams) {
+function VitalInfoCtrl ($scope, $http, $routeParams, $cookies, $location) {
+  if (!('department' in $cookies)) {
+    $location.path('/');
+  }
+
   $http.get('/patients/' + $routeParams.nhi).success(function(data) {
     console.log(data);
     $scope.patient = data.patient;
@@ -21,7 +25,11 @@ function VitalInfoCtrl ($scope, $http, $routeParams) {
   };
 }
 
-function PatientCtrl($scope, $http, $routeParams) {
+function PatientCtrl($scope, $http, $routeParams, $cookies, $location) {
+  if (!('department' in $cookies)) {
+    $location.path('/');
+  }
+
   $http.get('/patients/' + $routeParams.nhi).success(function(data) {
     $scope.patient = data.patient;
     console.log($scope.patient);
@@ -43,7 +51,12 @@ function PatientCtrl($scope, $http, $routeParams) {
   $scope.reverseCheckIns = true;
 }
 
-function PatientListCtrl($scope, $http){
+function PatientListCtrl($scope, $http, $cookies, $location){
+  if (!('department' in $cookies)) {
+    $location.path('/');
+    console.log("No cookies");
+  }
+
   $http.get('/patients/').success(function(data) {
     $scope.patients = data.patients;
     console.log($scope.patients);
@@ -73,4 +86,18 @@ function PatientListCtrl($scope, $http){
   $scope.searchByChange = function () {
     $scope.searchBarChange();
   };
+}
+
+function NavBarCtrl($scope, $cookies, $location){
+  if ('department' in $cookies) {
+    $scope.logged_in = true;
+    $scope.department = $cookies.department;
+  }
+
+  $scope.signOut = function() {
+    console.log("Deleting cookie")
+    delete $cookies.department;
+    $location.path('/');
+    $scope.logged_in = false;
+  }
 }

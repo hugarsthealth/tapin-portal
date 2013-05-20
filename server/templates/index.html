@@ -13,12 +13,15 @@
 </head>
 
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavBarCtrl  ">
     <div class="navbar-inner">
       <div class="container">
         <a class="brand" href="#">Vital Stats Manager</a>
 			  <div class="nav-collapse collapse">
 			  	<ul class="nav" ng-bread-crumbs id='myBreadCrumbs'></ul>
+          
+          <p ng-show="logged_in" class="navbar-text pull-right">Logged in as <[ department ]> <a href="#" ng-click="signOut()">Sign out</a></p>
+          
 	      </div><!--/.nav-collapse -->
 	    </div>
 	  </div>
