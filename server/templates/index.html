@@ -7,13 +7,12 @@
 
     <script type="text/javascript" src="{{ url_for('static', filename='js/angular.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/breadcrumbs.js') }}"></script>
-  	<script src="//raw.github.com/angular/angular.js/master/src/ngCookies/cookies.js"></script>
-
+    <script type="text/javascript" src="{{ url_for('static', filename='js/cookies.js') }}"></script>
 
     <title>Vital Stats Manager</title>
 </head>
 
-<body>
+<body ng-controller="breadCrumbsCtrl">
 	<div class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavBarCtrl  ">
     <div class="navbar-inner">
       <div class="container">

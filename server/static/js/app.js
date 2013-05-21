@@ -166,11 +166,12 @@ angular.module('ngBreadcrumbs', []).factory('BreadCrumbsService', function($root
 
 function breadCrumbsCtrl($scope, BreadCrumbsService){
   $scope.pushIndex = function() {
-            BreadCrumbsService.push( 'myBreadCrumbs', {
-                href: '#/',
-                label: 'Patient Index'
-            } );
-        };
+    console.log('Add patient index');
+    BreadCrumbsService.push( 'myBreadCrumbs', {
+        href: '#/',
+        label: 'Patient Index'
+    });
+  };
   $scope.pushPatientCrumb = function() {
     console.log('Add patient crumb');
     BreadCrumbsService.push( 'myBreadCrumbs', {
