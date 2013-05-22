@@ -6,13 +6,12 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/site.css') }}">
 
     <script type="text/javascript" src="{{ url_for('static', filename='js/angular.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/breadcrumbs.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/cookies.js') }}"></script>
 
     <title>Vital Stats Manager</title>
 </head>
 
-<body ng-controller="breadCrumbsCtrl">
+<body>
 	<div class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavBarCtrl  ">
     <div class="navbar-inner">
       <div class="container">
@@ -20,14 +19,20 @@
 			  <div class="nav-collapse collapse">
 
           <p ng-show="logged_in" class="navbar-text pull-right">Logged in as <[ department ]> <a href="#" ng-click="signOut()">Sign out</a></p>
-          
+
 	      </div><!--/.nav-collapse -->
 	    </div>
 	  </div>
 	</div>
 
   <div class="container">
-    <ul id='myBreadCrumbs' bread-crumbs style="margin-top: 10px;"></ul>
+    <ul ng-controller="breadCrumbsCtrl" class="breadcrumb">
+      <li ng-repeat="bc in bcs">
+        <a href="#<[bcs.join('/')]>"><[bc]></a>
+        <span class="divider">/</span>
+      </li>
+    </ul>
+
     <div ng-view></div>
   </div>
 
