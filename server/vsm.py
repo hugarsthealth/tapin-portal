@@ -26,6 +26,16 @@ def login():
     return resp
 
 
+@app.route('/departments/', methods=['GET'])
+def departments():
+    return jsonify({'departments': [d.serialize() for d in Department.query.all()]})
+
+
+@app.route('/departments/<int:department_id>', methods=['GET'])
+def department(department_id):
+    return jsonify({'department': Department.query.get(department_id).serialize()})
+
+
 @app.route('/patients/', methods=['GET', 'POST'])
 def patients():
     query = Patient.query.join(Department.patients).filter(
