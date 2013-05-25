@@ -113,7 +113,7 @@ function BreadCrumbsCtrl($scope, $location, $route){
     $scope.bcs.forEach(function(bc) {
       $scope.show = true;
 
-      // dat oneliner
+      // dat oneliner. forEach and indexOf only supported in IE9+
       $scope.paths[bc] = this.bcs.slice(0, this.bcs.indexOf(bc) + 1).join('/');
     }.bind($scope));
   });
