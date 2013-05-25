@@ -15,6 +15,10 @@ body {
     background: ghostwhite;
 }
 
+.patient-heading {
+    margin-top: 0;
+}
+
 .patient dt {
     height: 20px;
     text-align: left;
