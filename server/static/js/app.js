@@ -1,4 +1,4 @@
-var myApp = angular.module('vsmApp', ['ngCookies', 'ngBreadcrumbs']);
+var myApp = angular.module('vsmApp', ['ngCookies']);
 
 myApp.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('<[');
@@ -21,6 +21,10 @@ myApp.config(function($routeProvider) {
       {
         templateUrl: 'static/partials/patient.html',
         controller:'PatientCtrl'
+      })
+      .when('/patients/:nhi/vitalinfos', {
+        templateUrl: 'static/partials/patient.html',
+        controller: 'PatientCtrl'
       })
       .when('/patients/:nhi/vitalinfos/:vital_info_id',
       {
@@ -110,73 +114,18 @@ function PatientListCtrl($scope, $http){
   };
 }
 
-angular.module('ngBreadcrumbs', []).factory('BreadCrumbsService', function($rootScope, $log) {
-    var data = {};
-    var ensureIdIsRegistered = function(id) {
-        if (angular.isUndefined(data[id])) {
-            data[id] = [];
-        }
-    };
-    return {
-        push: function(id, item) {
-            ensureIdIsRegistered(id);
-            data[id].push(item);
-            $log.log( "$broadcast" );
-            $rootScope.$broadcast( 'breadcrumbsRefresh' );
-        },
-        get: function(id) {
-            ensureIdIsRegistered(id);
-            return angular.copy(data[id]);
-        },
-        setLastIndex: function( id, idx ) {
-            ensureIdIsRegistered(id);
-            if ( data[id].length > 1+idx ) {
-                data[id].splice( 1+idx, data[id].length - idx );
-            }
-        }
-    };
-}).directive('breadCrumbs', function($log, BreadCrumbsService) {
-    return {
-        restrict: 'A',
-        template: '<ul class="breadcrumb"><li ng-repeat=\'bc in breadcrumbs\' ng-class="{\'active\': {{$last}} }"><a ng-click="unregisterBreadCrumb( $index )" ng-href="{{bc.href}}">{{bc.label}}</a><span class="divider" ng-show="! $last">|</span></li></ul>',
-        replace: true,
-        compile: function(tElement, tAttrs) {
-            return function($scope, $elem, $attr) {
-                var bc_id = $attr['id'],
-                    resetCrumbs = function() {
-                        $scope.breadcrumbs = [];
-                        angular.forEach(BreadCrumbsService.get(bc_id), function(v) {
-                            $scope.breadcrumbs.push(v);
-                        });
-                    };
-                resetCrumbs();
-                $scope.unregisterBreadCrumb = function( index ) {
-                    BreadCrumbsService.setLastIndex( bc_id, index );
-                    resetCrumbs();
-                };
-                $scope.$on( 'breadcrumbsRefresh', function() {
-                    $log.log( "$on" );
-                    resetCrumbs();
-                } );
-            };
-        }
-    };
+function breadCrumbsCtrl($scope, $location, $route){
+  $scope.$on('$routeChangeSuccess', function() {
 
-});
+    var path = $location.path();
+    $scope.bcs = path === "/" ? [] : path.split('/').slice(1);
+    $scope.paths = {};
 
-function breadCrumbsCtrl($scope, BreadCrumbsService){
-  $scope.pushIndex = function() {
-    console.log('Add patient index');
-    BreadCrumbsService.push( 'myBreadCrumbs', {
-        href: '#/',
-        label: 'Patient Index'
-    });
-  };
-  $scope.pushPatientCrumb = function() {
-    console.log('Add patient crumb');
-    BreadCrumbsService.push( 'myBreadCrumbs', {
-      href: '#/patients/'+$scope.patient.nhi,
-      label: 'Patient ' +$scope.patient.nhi
-    });
-  };
+    $scope.bcs.forEach(function(bc) {
+      $scope.show = true;
+
+      // dat oneliner
+      $scope.paths[bc] = this.bcs.slice(0, this.bcs.indexOf(bc) + 1).join('/');
+    }.bind($scope));
+  });
 }

@@ -43,3 +43,6 @@ nosetests.xml
 # SQLite
 *.db
 *.db-journal
+
+# Chrome Devtools
+.allow-devtools-edit
