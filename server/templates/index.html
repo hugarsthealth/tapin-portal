@@ -17,9 +17,16 @@
       <div class="container">
         <a class="brand" href="#">Vital Stats Manager</a>
 			  <div class="nav-collapse collapse">
-
-          <p ng-show="logged_in" class="navbar-text pull-right">Logged in as <[ department ]> <a href="#" ng-click="signOut()">Sign out</a></p>
-
+          <ul  ng-show="logged_in" class="nav pull-right">
+            <li>
+              <p class="navbar-text">Viewing patients from <[department]></p>
+            </li>
+            <li class="divider-vertical"></li>
+            <li>
+                <button ng-click="signOut()" class="btn">Switch Department</button>
+            </li>
+            <li class="divider-vertical"></li>
+          </ul>
 	      </div><!--/.nav-collapse -->
 	    </div>
 	  </div>
