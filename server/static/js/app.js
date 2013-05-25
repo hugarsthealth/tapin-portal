@@ -37,9 +37,9 @@ myApp.config(function($routeProvider) {
 });
 
 myApp.factory('Patient', function($resource) {
-  return $resource('/patients/:nhi/');
+  return $resource('/patients/:nhi');
 });
 
 myApp.factory('VitalInfo', function($resource) {
-  return $resource('/patients/:nhi/vitalinfos/:vital_info_id/');
+  return $resource('/patients/:nhi/vitalinfos/:vital_info_id');
 });

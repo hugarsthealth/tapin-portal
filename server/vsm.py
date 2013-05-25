@@ -13,7 +13,7 @@ def root():
     return render_template('index.html')
 
 
-@app.route('/login/', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def login():
     resp = make_response(redirect(url_for('root')))
 
@@ -26,7 +26,7 @@ def login():
     return resp
 
 
-@app.route('/departments/', methods=['GET'])
+@app.route('/departments', methods=['GET'])
 def departments():
     return make_response((json.dumps([
         d.serialize() for d in Department.query.all()
@@ -38,7 +38,7 @@ def department(department_id):
     return jsonify(Department.query.get(department_id).serialize())
 
 
-@app.route('/patients/', methods=['GET', 'POST'])
+@app.route('/patients', methods=['GET', 'POST'])
 def patients():
     query = Patient.query.join(Department.patients).filter(
         Department.department_name == request.cookies.get('department', 'default'))
@@ -75,7 +75,7 @@ def patients():
         return jsonify(patient.serialize())
 
 
-@app.route('/patients/<nhi>/', methods=['GET', 'PUT', 'DELETE'])
+@app.route('/patients/<nhi>', methods=['GET', 'PUT', 'DELETE'])
 def patient(nhi):
     patient = Patient.query.join(Department.patients).filter(
         Department.department_name == request.cookies.get('department', 'default')).filter_by(nhi=nhi).first()
@@ -93,7 +93,7 @@ def patient(nhi):
         return make_response("Deleted patient: {}".format(nhi), 200)
 
 
-@app.route('/patients/<nhi>/vitalinfos/', methods=['GET', 'POST'])
+@app.route('/patients/<nhi>/vitalinfos', methods=['GET', 'POST'])
 def vital_infos(nhi):
     if request.method == "GET":
         offset = int(request.args.get('offset', 0))
@@ -111,7 +111,7 @@ def vital_infos(nhi):
         return jsonify(add_vital_info(nhi, json.loads(request.data)).serialize())
 
 
-@app.route('/patients/<nhi>/vitalinfos/<int:vital_info_id>/', methods=['GET', 'POST', 'DELETE'])
+@app.route('/patients/<nhi>/vitalinfos/<int:vital_info_id>', methods=['GET', 'POST', 'DELETE'])
 def vital_info(nhi, vital_info_id):
     vitalinfo = VitalInfo.query.filter_by(
         patient_nhi=nhi, vital_info_id=vital_info_id).first()
