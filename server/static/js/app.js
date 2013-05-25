@@ -22,6 +22,10 @@ myApp.config(function($routeProvider) {
         templateUrl: 'static/partials/patient.html',
         controller:'PatientCtrl'
       })
+      .when('/patients/:nhi/vitalinfos', {
+        templateUrl: 'static/partials/patient.html',
+        controller: 'PatientCtrl'
+      })
       .when('/patients/:nhi/vitalinfos/:vital_info_id',
       {
         templateUrl: 'static/partials/vital_info.html',
@@ -110,8 +114,18 @@ function PatientListCtrl($scope, $http){
   };
 }
 
-function breadCrumbsCtrl($scope, $location){
+function breadCrumbsCtrl($scope, $location, $route){
   $scope.$on('$routeChangeSuccess', function() {
-    $scope.bcs = $location.path().split('/');
+
+    var path = $location.path();
+    $scope.bcs = path === "/" ? [] : path.split('/').slice(1);
+    $scope.paths = {};
+
+    $scope.bcs.forEach(function(bc) {
+      $scope.show = true;
+
+      // dat oneliner
+      $scope.paths[bc] = this.bcs.slice(0, this.bcs.indexOf(bc) + 1).join('/');
+    }.bind($scope));
   });
 }

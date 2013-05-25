@@ -26,9 +26,9 @@
 	</div>
 
   <div class="container">
-    <ul ng-controller="breadCrumbsCtrl" class="breadcrumb">
+    <ul ng-controller="breadCrumbsCtrl" ng-show="show" class="breadcrumb">
       <li ng-repeat="bc in bcs">
-        <a href="#<[bcs.join('/')]>"><[bc]></a>
+        <a href="#/<[ paths[bc] ]>"><[bc]></a>
         <span class="divider">/</span>
       </li>
     </ul>
