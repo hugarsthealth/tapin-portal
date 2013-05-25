@@ -120,6 +120,7 @@ function breadCrumbsCtrl($scope, $location, $route){
     var path = $location.path();
     $scope.bcs = path === "/" ? [] : path.split('/').slice(1);
     $scope.paths = {};
+    $scope.show = false;
 
     $scope.bcs.forEach(function(bc) {
       $scope.show = true;
