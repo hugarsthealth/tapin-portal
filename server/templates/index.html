@@ -2,11 +2,11 @@
 <html ng-app="vsmApp" id="ng-app">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/vendor/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/site.css') }}">
 
-    <script type="text/javascript" src="{{ url_for('static', filename='js/angular.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/cookies.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/angular.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/cookies.js') }}"></script>
 
     <title>Vital Stats Manager</title>
 </head>
@@ -32,7 +32,7 @@
 	</div>
 
   <div class="container">
-    <ul ng-controller="breadCrumbsCtrl" ng-show="show" class="breadcrumb">
+    <ul ng-controller="BreadCrumbsCtrl" ng-show="show" class="breadcrumb">
       <li ng-repeat="bc in bcs">
         <a href="#/<[ paths[bc] ]>"><[bc | uppercase ]></a>
         <span class="divider">/</span>

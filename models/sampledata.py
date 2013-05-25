@@ -68,10 +68,10 @@ def generate_vital_info():
     blood_type = choice(['A', 'B', 'AB', 'O'])
     smoker = rand_bool()
     drinker = rand_bool()
-    family_hist = list_of_rand_sentences(6, 10)
+    family_hist = list_of_rand_sentences(4, 10)
     overseas_recently = rand_bool()
-    overseas_dests = list_of_rand_sentences(10, 2)
-    medical_conditions = list_of_rand_sentences(6, 8)
+    overseas_dests = list_of_rand_sentences(3, 2)
+    medical_conditions = list_of_rand_sentences(2, 8)
     allergies = list_of_rand_sentences(4, 2)
     location = rand_name()
 
