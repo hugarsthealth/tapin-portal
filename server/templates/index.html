@@ -35,7 +35,7 @@
   <div class="container">
     <ul ng-controller="breadCrumbsCtrl" ng-show="show" class="breadcrumb">
       <li ng-repeat="bc in bcs">
-        <a href="#/<[ paths[bc] ]>"><[bc]></a>
+        <a href="#/<[ paths[bc] ]>"><[bc | uppercase ]></a>
         <span class="divider">/</span>
       </li>
     </ul>
