@@ -28,12 +28,14 @@ def login():
 
 @app.route('/departments/', methods=['GET'])
 def departments():
-    return jsonify({'departments': [d.serialize() for d in Department.query.all()]})
+    return make_response((json.dumps([
+        d.serialize() for d in Department.query.all()
+    ]), 200, {"Content-Type": "application/json"}))
 
 
 @app.route('/departments/<int:department_id>', methods=['GET'])
 def department(department_id):
-    return jsonify({'department': Department.query.get(department_id).serialize()})
+    return jsonify(Department.query.get(department_id).serialize())
 
 
 @app.route('/patients/', methods=['GET', 'POST'])
@@ -45,13 +47,13 @@ def patients():
         offset = int(request.args.get('offset', 0))
         limit = int(request.args.get('limit', 100))
 
-        return jsonify({'patients': [
+        return make_response((json.dumps([
             p.serialize() for p in query
             .order_by(desc(Patient.latest_check_in))
             .offset(offset)
             .limit(limit)
             .all()
-        ]})
+        ]), 200, {"Content-Type": "application/json"}))
 
     elif request.method == "POST":
         patient_data = json.loads(request.data)
@@ -70,20 +72,19 @@ def patients():
         if 'vitalinfo' in patient_data:
             add_vital_info(patient.nhi, patient_data['vitalinfo'])
 
-        return make_response("Added patient: {}".format(json.dumps(patient.serialize())), 200)
+        return jsonify(patient.serialize())
 
 
 @app.route('/patients/<nhi>/', methods=['GET', 'PUT', 'DELETE'])
 def patient(nhi):
     patient = Patient.query.join(Department.patients).filter(
-        Department.department_name == request.cookies.get('department', 'default')
-    ).filter_by(nhi=nhi).first()
+        Department.department_name == request.cookies.get('department', 'default')).filter_by(nhi=nhi).first()
 
     if not patient:
         return make_response("No patient with NHI " + nhi, 404)
 
     elif request.method == "GET":
-        return jsonify({'patient': patient.serialize()})
+        return jsonify(patient.serialize())
 
     elif request.method == "DELETE":
         db.delete(patient)
@@ -98,17 +99,16 @@ def vital_infos(nhi):
         offset = int(request.args.get('offset', 0))
         limit = int(request.args.get('limit', 100))
 
-        return jsonify({'vitalinfos': [
+        return make_response((json.dumps([
             v.serialize() for v in VitalInfo.query
             .filter_by(patient_nhi=nhi)
             .order_by(desc(VitalInfo.check_in_time))
             .offset(offset)
             .limit(limit)
-        ]})
+        ]), 200, {"Content-Type": "application/json"}))
 
     elif request.method == "POST":
-        v = add_vital_info(nhi, json.loads(request.data))
-        return make_response("Added vitalinfo: {}".format(json.dumps(v.serialize())), 200)
+        return jsonify(add_vital_info(nhi, json.loads(request.data)).serialize())
 
 
 @app.route('/patients/<nhi>/vitalinfos/<int:vital_info_id>/', methods=['GET', 'POST', 'DELETE'])
@@ -120,7 +120,7 @@ def vital_info(nhi, vital_info_id):
         return make_response("No vitalinfo for patient {} with id {}".format(nhi, vital_info_id))
 
     elif request.method == "GET":
-        return jsonify({'vitalinfo': vitalinfo.serialize()})
+        return jsonify(vitalinfo.serialize())
 
     elif request.method == "POST":
         vitalinfo_data = json.loads(request.data)
@@ -129,7 +129,7 @@ def vital_info(nhi, vital_info_id):
         vitalinfo = db.merge(vitalinfo)
         db.commit()
 
-        return make_response("Updated vitalinfo: {}".format(json.dumps(vitalinfo.serialize())), 200)
+        return jsonify(vitalinfo.serialize())
 
     elif request.method == "DELETE":
         db.delete(vitalinfo)

@@ -4,6 +4,27 @@ function LoginCtrl ($scope, $cookies, $location) {
   }
 }
 
+function PatientCardCtrl ($scope, $location, $http, $resource, $routeParams, Patient) {
+  // var Patient = $resource('/patients/:nhi/');
+  // p = Patient.get({"nhi": "TGJ498"}, function(p) {
+  //   console.log(p);
+  // })
+
+  $scope.deletePatient = function() {
+    var index = $scope.patients.indexOf($scope.patient);
+    var deleted = $scope.patients.splice(index, 1)[0];
+
+    $http({method: "DELETE", url: "/patients/" + $scope.patient.nhi + "/"}).
+      success(function(data, status, headers, config) {
+        console.log('deleted');
+      }).
+      error(function(data, status, headers, config) {
+        console.log('failed to delete', deleted);
+        $scope.patients.splice(index, 0, deleted);
+      });
+  };
+}
+
 function VitalInfoCtrl ($scope, $http, $routeParams, $cookies, $location) {
   if (!('department' in $cookies)) {
     $location.path('/');
@@ -46,19 +67,24 @@ function PatientCtrl($scope, $http, $routeParams, $cookies, $location) {
   $scope.reverseCheckIns = true;
 }
 
-function PatientListCtrl($scope, $http, $cookies, $location){
+function PatientListCtrl($scope, $http, $cookies, $location, Patient){
   if (!('department' in $cookies)) {
     $location.path('/');
     //console.log("No cookies");
   }
 
-  $http.get('/patients/').success(function(data) {
-    $scope.patients = data.patients;
-    //console.log($scope.patients);
-    for (var i = 0 ; i < $scope.patients.length ; i++) {
-      $scope.patients[i].fullname = $scope.patients[i].latest_vitalinfo.firstname + " " + $scope.patients[i].latest_vitalinfo.lastname;
-    }
-  });
+
+  Patient.get({}, function(p) {
+    $scope.patients = p.patients;
+  })
+
+  // $http.get('/patients/').success(function(data) {
+  //   $scope.patients = data.patients;
+  //   //console.log($scope.patients);
+  //   for (var i = 0 ; i < $scope.patients.length ; i++) {
+  //     $scope.patients[i].fullname = $scope.patients[i].latest_vitalinfo.firstname + " " + $scope.patients[i].latest_vitalinfo.lastname;
+  //   }
+  // });
 
   $scope.orderProp = 'patient_id';
   $scope.searchBy = "fullname";

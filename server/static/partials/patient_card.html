@@ -1,4 +1,6 @@
-<div class="patient">
+<div class="patient" ng-model="patient" ng-controller="PatientCardCtrl">
+  <button class="delete-patient pull-right btn btn-danger" ng-click="deletePatient($event)"><i class="icon-remove"></i></button>
+
   <div class="row">
       <div class="span12">
           <a href="#/patients/<[ patient.nhi ]>">

@@ -1,4 +1,4 @@
-var myApp = angular.module('vsmApp', ['ngCookies']);
+var myApp = angular.module('vsmApp', ['ngCookies', 'ngResource']);
 
 myApp.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('<[');
@@ -34,4 +34,12 @@ myApp.config(function($routeProvider) {
       {
         redirectTo: "/"
       });
+});
+
+myApp.factory('Patient', function($resource) {
+  return $resource('/patients/:nhi/');
+});
+
+myApp.factory('VitalInfo', function($resource) {
+  return $resource('/patients/:nhi/vitalinfos/:vital_info_id/');
 });
