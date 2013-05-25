@@ -13,7 +13,7 @@
 	<hr>
 
 	<div class="row">
-		<div class="span12">
+		<div class="span12 vitalinfo">
 			<dl class="dl-horizontal">
 				<dt>Check In Time: </dt><dd><[ vitalinfo.check_in_time.substring(0,10) + " " + vitalinfo.check_in_time.substring(11,16)]></dd>
 				<dt>Location: </dt><dd><[vitalinfo.location]></dd>
@@ -25,7 +25,7 @@
 				<dt>Medical Conditions: </dt><dd><ul><li ng-repeat="medical_condition in vitalinfo.medical_conditions"> <[medical_condition]> </li></ul></dd>
 				<dt>Allergies: </dt><dd><ul><li ng-repeat="allergy in vitalinfo.allergies"> <[allergy]> </li></ul></dd>
 				<dt>Overseas Recently: </dt><dd><[vitalinfo.overseas_recently]></dd>
-				<div ng-show= ShowOverseasRecentlyDiv()>
+				<div ng-show="vitalinfo.overseas_recently">
 				<dt>Overseas Destinations: </dt><dd><ul><li ng-repeat="overseas_dest in vitalinfo.overseas_dests"> <[overseas_dest]> </li></ul></dd>
 				</div>
 				<dt>Family History: </dt><dd><ul><li ng-repeat="family_hist in vitalinfo.family_hist"> <[family_hist]> </li></ul></dd>

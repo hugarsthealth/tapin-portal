@@ -16,13 +16,8 @@ function VitalInfoCtrl ($scope, $http, $routeParams, $cookies, $location) {
   $http.get('/patients/' + $routeParams.nhi + '/vitalinfos/' + $routeParams.vital_info_id).success(function(data) {
     //console.log(data);
     $scope.vitalinfo = data.vitalinfo;
+    console.log($scope.vitalinfo);
   });
-  //Works but throws errors in console
-  //Returns true which is used with ng-show to show the overseas recently div if the overseas_recently parameter is true
-  $scope.ShowOverseasRecentlyDiv = function(){
-    //console.log(String($scope.vitalinfo.overseas_recently)=="true");
-    return String($scope.vitalinfo.overseas_recently)=="true";
-  };
 }
 
 function PatientCtrl($scope, $http, $routeParams, $cookies, $location) {

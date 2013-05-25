@@ -3,6 +3,11 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/vendor/bootstrap.min.css') }}">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/vendor/bootstrap-responsive.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/site.css') }}">
 
@@ -17,17 +22,15 @@
     <div class="navbar-inner">
       <div class="container">
         <a class="brand" href="#">Vital Stats Manager</a>
-			  <div class="nav-collapse collapse">
-          <ul  ng-show="logged_in" class="nav pull-right">
-            <li>
-              <p class="navbar-text">Viewing patients from <[department]></p>
-            </li>
-            <li class="divider-vertical"></li>
-            <li>
-                <button ng-click="signOut()" class="btn btn-info">Switch Department</button>
-            </li>
-          </ul>
-	      </div><!--/.nav-collapse -->
+        <ul  ng-show="logged_in" class="department-controls nav pull-right">
+          <li>
+            <p class="navbar-text">Viewing patients from <[department]></p>
+          </li>
+          <li class="divider-vertical"></li>
+          <li>
+              <button ng-click="signOut()" class="btn btn-info">Switch Department</button>
+          </li>
+        </ul>
 	    </div>
 	  </div>
 	</div>

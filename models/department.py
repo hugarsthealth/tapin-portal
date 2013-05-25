@@ -20,7 +20,7 @@ class Department(Base):
 
     def deserialize(self, data):
         for key in data:
-            if not data[key] or not hasattr(self, key):
+            if not hasattr(self, key):
                 continue
 
             setattr(self, key, data[key])
