@@ -103,6 +103,12 @@ class TestDepartment(VsmTest):
 
         self.app.post('/login/', data={"department": "Cardiology"})
 
+    def test_departments_get(self):
+        rv = self.app.get('/departments/')
+        departments = json.loads(rv.data)['departments']
+
+        assert len(departments) == 2
+
     def test_department_patients_get(self):
         rv = self.app.get('/patients/')
         patients = json.loads(rv.data)['patients']
