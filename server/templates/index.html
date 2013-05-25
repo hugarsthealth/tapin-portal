@@ -2,7 +2,7 @@
 <html ng-app="vsmApp" id="ng-app">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/site.css') }}">
 
     <script type="text/javascript" src="{{ url_for('static', filename='js/angular.js') }}"></script>
@@ -12,7 +12,7 @@
 </head>
 
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavBarCtrl  ">
+	<div class="navbar navbar-fixed-top" ng-controller="NavBarCtrl  ">
     <div class="navbar-inner">
       <div class="container">
         <a class="brand" href="#">Vital Stats Manager</a>
@@ -23,7 +23,7 @@
             </li>
             <li class="divider-vertical"></li>
             <li>
-                <button ng-click="signOut()" class="btn">Switch Department</button>
+                <button ng-click="signOut()" class="btn btn-info">Switch Department</button>
             </li>
             <li class="divider-vertical"></li>
           </ul>

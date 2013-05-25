@@ -2,6 +2,10 @@ body {
     padding-top: 60px;
 }
 
+.navbar .btn {
+    margin-top: 7px;
+}
+
 .patient {
     box-sizing: border-box;
     margin-bottom: 20px;
