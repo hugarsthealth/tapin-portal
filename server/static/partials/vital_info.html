@@ -35,17 +35,17 @@
 
 				<dt>Smoker</dt><dd ng-show="currentlyEditing"><select ng-model="vitalinfo.smoker"><option value="true">Yes</option><option value="false">No</option></select></dd><dd ng-hide="currentlyEditing"><[vitalinfo.smoker]></dd>
 
-				<dt>Medical Conditions</dt><dd ng-show="currentlyEditing" ><ul ><li ng-repeat="medical_condition in vitalinfo.medical_conditions"><input class="edit-input" ng-model="medical_condition"/></li></ul></dd><dd ng-hide="currentlyEditing"><ul class="noneditable-list"><li ng-repeat="medical_condition in vitalinfo.medical_conditions"> <[medical_condition]> </li></ul></dd>
+				<dt>Medical Conditions</dt><dd ng-show="currentlyEditing" ><ul ><li ng-repeat="medical_condition in vitalinfo.medical_conditions"><input class="edit-input" ng-model="medical_condition"/></li></ul></dd><dd ng-hide="currentlyEditing"><ul><li ng-repeat="medical_condition in vitalinfo.medical_conditions"> <[medical_condition]> </li></ul></dd>
 
-				<dt>Allergies</dt><dd ng-show="currentlyEditing" ><ul ><li ng-repeat="allergy in vitalinfo.allergies"><input class="edit-input" ng-model="allergy"></li></ul></dd><dd ng-hide="currentlyEditing"><ul class="noneditable-list"><li ng-repeat="allergy in vitalinfo.allergies"> <[allergy]> </li></ul></dd>
+				<dt>Allergies</dt><dd ng-show="currentlyEditing" ><ul ><li ng-repeat="allergy in vitalinfo.allergies"><input class="edit-input" ng-model="allergy"></li></ul></dd><dd ng-hide="currentlyEditing"><ul><li ng-repeat="allergy in vitalinfo.allergies"> <[allergy]> </li></ul></dd>
 
 				<dt>Overseas Recently</dt><dd ng-show="currentlyEditing" ><select ng-model="vitalinfo.overseas_recently"><option value="true">Yes</option><option value="false">No</option></select></dd><dd ng-hide="currentlyEditing"><[vitalinfo.overseas_recently]></dd>
 
 				<div ng-show="vitalinfo.overseas_recently">
-				<dt>Overseas Destinations</dt><dd ng-show="currentlyEditing" ><ul ><li ng-repeat="overseas_dest in vitalinfo.overseas_dests"><input class="edit-input" ng-model="overseas_dest"/></li></ul></dd><dd ng-hide="currentlyEditing" ><ul class="noneditable-list"><li ng-repeat="overseas_dest in vitalinfo.overseas_dests"> <[overseas_dest]> </li></ul></dd>
+				<dt>Overseas Destinations</dt><dd ng-show="currentlyEditing" ><ul ><li ng-repeat="overseas_dest in vitalinfo.overseas_dests"><input class="edit-input" ng-model="overseas_dest"/></li></ul></dd><dd ng-hide="currentlyEditing" ><ul><li ng-repeat="overseas_dest in vitalinfo.overseas_dests"> <[overseas_dest]> </li></ul></dd>
 				</div>
 
-				<dt>Family History</dt><dd ng-show="currentlyEditing"><ul ><li ng-repeat="family_hist in vitalinfo.family_hist"><input class="edit-input" ng-model="family_hist"/></li></ul></dd><dd ng-hide="currentlyEditing" ><ul class="noneditable-list"><li ng-repeat="family_hist in vitalinfo.family_hist"> <[family_hist]> </li></ul></dd>
+				<dt>Family History</dt><dd ng-show="currentlyEditing"><ul ><li ng-repeat="family_hist in vitalinfo.family_hist"><input class="edit-input" ng-model="family_hist"/></li></ul></dd><dd ng-hide="currentlyEditing" ><ul><li ng-repeat="family_hist in vitalinfo.family_hist"> <[family_hist]> </li></ul></dd>
 				</dl>
 	  	</div>
   	</div>
