@@ -39,6 +39,10 @@ select {
     margin: 0;
 }
 
+.vitalinfo h1 {
+  margin-bottom: 30px;
+}
+
 .vitalinfo hr {
     margin: 0;
 }
