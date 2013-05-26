@@ -10,7 +10,7 @@
 				<dt>NHI</dt><dd><[patient.nhi]></dd>
 				<dt>Occupation</dt><dd ng-show="currentlyEditing"><input ng-model="vitalinfo.occupation" /></dd><dd ng-hide="currentlyEditing"><[vitalinfo.occupation]></dd>
 				<dt>Citizen/Resident</dt><dd ng-show="currentlyEditing"><select ng-model="vitalinfo.citizen_resident"><option value="true">Yes</option><option value="false">No</option></select></dd><dd ng-hide="currentlyEditing" ><[vitalinfo.citizen_resident]></dd>
-				<dt>Contact Number</dt><dd ng-show="currentlyEditing"><inpung-model="vitalinfo.contact_num" /></dd><dd ng-hide="currentlyEditing"><[vitalinfo.contact_num]></dd>
+				<dt>Contact Number</dt><dd ng-show="currentlyEditing"><input ng-model="vitalinfo.contact_num" /></dd><dd ng-hide="currentlyEditing"><[vitalinfo.contact_num]></dd>
 
 			</dl>
 		</div>
@@ -35,7 +35,7 @@
 
 				<dt>Smoker</dt><dd ng-show="currentlyEditing"><select ng-model="vitalinfo.smoker"><option value="true">Yes</option><option value="false">No</option></select></dd><dd ng-hide="currentlyEditing"><[vitalinfo.smoker]></dd>
 
-				<dt>Medical Conditions</dt><dd ng-show="currentlyEditing" ><ul ><li ng-repeat="medical_condition in vitalinfo.medical_conditions"><input class="edit-input" ng-model="medical_condition"/></li></ul></dd><dd ng-hide="currentlyEditing"><ul><li ng-repeat="medical_condition in vitalinfo.medical_conditions"> <[medical_condition]> </li></ul></dd>
+				<dt>Medical Conditions</dt><dd ng-show="currentlyEditing" ><ul ><li ng-repeat="medical_condition in vitalinfo.medical_conditions"><input class="edit-input" ng-model="medical_condition"/> <i class="icon-remove" ng-click="deleteFromList(medical_condition, vitalinfo.medical_conditions)"></i></li></ul></dd><dd ng-hide="currentlyEditing"><ul><li ng-repeat="medical_condition in vitalinfo.medical_conditions"> <[medical_condition]> </li></ul></dd>
 
 				<dt>Allergies</dt><dd ng-show="currentlyEditing" ><ul ><li ng-repeat="allergy in vitalinfo.allergies"><input class="edit-input" ng-model="allergy"></li></ul></dd><dd ng-hide="currentlyEditing"><ul><li ng-repeat="allergy in vitalinfo.allergies"> <[allergy]> </li></ul></dd>
 

@@ -36,6 +36,12 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
     $route.reload();
   };
 
+  $scope.deleteFromList = function(element, elements) {
+    var index = elements.indexOf(element);
+    elements.splice(index, 1);
+    alert("Element deleted");
+  };
+
   $scope.patient = Patient.get({"nhi": $routeParams.nhi});
   $scope.vitalinfo = VitalInfo.get({"nhi": $routeParams.nhi, "vital_info_id": $routeParams.vital_info_id});
 }
