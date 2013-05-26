@@ -11,12 +11,11 @@
 	<div class="row">
 		<div class="span12">
 
-			<form class="form-inline" method="post" action="/login">
+			<form class="form-inline">
 				<fieldset>
 					<legend>Choose your department</legend>
-					<select ng-model="department" ng-options="d.department_name for d in departments" name="department" required>
-					</select>
-					<button type="submit" class="login-btn btn btn-primary">Enter</button>
+					<select ng-model="department" ng-options="d.department_name for d in departments" name="department"></select>
+					<button type="submit" class="login-btn btn btn-primary" ng-click="enter()">Enter</button>
 				</fieldset>
 			</form>
 
