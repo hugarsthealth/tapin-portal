@@ -28,22 +28,22 @@ class VsmTest(unittest.TestCase):
 class TestPatient(VsmTest):
 
     def test_new_patient(self):
-        self.app.post('/patients/', data=json.dumps({"nhi": "123ABC"}))
+        self.app.post('/patients', data=json.dumps({"nhi": "123ABC"}))
         assert Patient.query.get('123ABC') is not None
 
     def test_new_patient_idempotent(self):
-        self.app.post('/patients/', data=json.dumps({"nhi": "123ABC"}))
-        self.app.post('/patients/', data=json.dumps({"nhi": "123ABC"}))
+        self.app.post('/patients', data=json.dumps({"nhi": "123ABC"}))
+        self.app.post('/patients', data=json.dumps({"nhi": "123ABC"}))
         assert Patient.query.get('123ABC') is not None
 
     def test_new_patient_with_vitalinfo(self):
-        self.app.post('/patients/',
+        self.app.post('/patients',
                       data=json.dumps({"nhi": "111AAA", "vitalinfo": {"check_in_time": self.now}}))
 
         assert Patient.query.get('111AAA').vitalinfos
 
     def test_delete_patient(self):
-        self.app.delete('/patients/123ABC/')
+        self.app.delete('/patients/123ABC')
         assert Patient.query.get('123ABC') is None
 
 
@@ -58,23 +58,23 @@ class TestVitalInfo(VsmTest):
         db.commit()
 
     def test_new_vitalinfo(self):
-        self.app.post('/patients/123ABC/vitalinfos/',
+        self.app.post('/patients/123ABC/vitalinfos',
                       data=json.dumps({"check_in_time": self.now}))
 
         assert len(Patient.query.get('123ABC').vitalinfos) == 2
 
     def test_update_vitalinfo(self):
-        self.app.post('/patients/123ABC/vitalinfos/1/',
+        self.app.post('/patients/123ABC/vitalinfos/1',
                       data=json.dumps({"location": "Been updated"}))
 
         assert VitalInfo.query.get(1).location == "Been updated"
 
     def test_delete_vitalinfo(self):
-        self.app.delete('/patients/123ABC/vitalinfos/1/')
+        self.app.delete('/patients/123ABC/vitalinfos/1')
         assert VitalInfo.query.get(1) is None
 
     def test_latest_check_in(self):
-        self.app.post('/patients/123ABC/vitalinfos/',
+        self.app.post('/patients/123ABC/vitalinfos',
                       data=json.dumps({"check_in_time": self.now}))
 
         assert Patient.query.get(
@@ -101,22 +101,22 @@ class TestDepartment(VsmTest):
         map(db.add, (p1, p2, p3))
         db.commit()
 
-        self.app.post('/login/', data={"department": "Cardiology"})
+        self.app.post('/login', data={"department": "Cardiology"})
 
     def test_departments_get(self):
-        rv = self.app.get('/departments/')
+        rv = self.app.get('/departments')
         departments = json.loads(rv.data)
 
         assert len(departments) == 2
 
     def test_department_patients_get(self):
-        rv = self.app.get('/patients/')
+        rv = self.app.get('/patients')
         patients = json.loads(rv.data)
 
         assert all(any(d['department_name'] == 'Cardiology' for d in p['departments']) for p in patients)
 
     def test_department_patient_get(self):
-        rv = self.app.get('/patients/B/')
+        rv = self.app.get('/patients/B')
         assert rv.data == "No patient with NHI B"
 
 
