@@ -24,6 +24,7 @@ function PatientCtrl($scope, $routeParams, $cookies, $location, Patient, VitalIn
   $scope.deletePatient = function(index) {
     $scope.patient.$delete({"nhi": $scope.patient.nhi},
       function() {
+        toastr.success('Successfully deleted', $scope.patient.nhi);
         $location.path('/patients');
       },
       function() {
@@ -53,10 +54,10 @@ function PatientListCtrl($scope, $cookies, $location, Patient){
 
     deleted.$delete({"nhi": deleted.nhi},
       function() {
-        toastr.success('Successfully deleted', deleted.fullname);
+        toastr.success('Successfully deleted', deleted.nhi);
       },
       function() {
-        toastr.error('Could not be deleted', deleted.fullname);
+        toastr.error('Could not be deleted', deleted.nhi);
         $scope.patients.splice(index, 0, deleted);
       });
   };

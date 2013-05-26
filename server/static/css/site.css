@@ -1,23 +1,23 @@
 select {
-    height: 39px;
+  height: 39px;
 }
 
 .navbar .btn {
-    margin-top: 7px;
+  margin-top: 7px;
 }
 
 .patient {
-    box-sizing: border-box;
-    margin-bottom: 20px;
-    padding: 0 15px 15px 15px;
-    border: 1px solid silver;
-    box-shadow: 0 1px 2px silver;
-    background: ghostwhite;
-    position: relative;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 0 15px 15px 15px;
+  border: 1px solid silver;
+  box-shadow: 0 1px 2px silver;
+  background: ghostwhite;
+  position: relative;
 }
 
 .patient-heading {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .patient dl {
@@ -25,18 +25,18 @@ select {
 }
 
 .patient dt {
-    height: 24px;
-    text-align: left;
+  height: 24px;
+  text-align: left;
 }
 
 .patient dd {
-    height: 24px;
+  height: 24px;
 }
 
 .vitalinfo ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .vitalinfo h1 {
@@ -44,7 +44,7 @@ select {
 }
 
 .vitalinfo hr {
-    margin: 0;
+  margin: 0;
 }
 
 .login-btn {
@@ -52,10 +52,16 @@ select {
 }
 
 .delete-patient {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    padding: 5px 10px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  padding: 5px 10px;
+}
+
+.breadcrumb .active a {
+  text-decoration: none;
+  color: gray;
+  cursor: default;
 }
 
 .icon-hospital {
