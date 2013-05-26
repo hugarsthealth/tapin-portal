@@ -43,9 +43,9 @@
 
   <div class="container">
     <ul ng-controller="BreadCrumbsCtrl" ng-show="show" class="breadcrumb">
-      <li ng-repeat="bc in bcs">
+      <li ng-repeat="bc in bcs" ng-class="{active: $last}">
         <a href="#/<[ paths[bc] ]>"><[bc | uppercase ]></a>
-        <span class="divider">/</span>
+        <span ng-show="!$last" class="divider">/</span>
       </li>
     </ul>
 

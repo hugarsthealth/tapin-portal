@@ -50,6 +50,12 @@ select {
     padding: 5px 10px;
 }
 
+.breadcrumb .active a {
+  text-decoration: none;
+  color: gray;
+  cursor: default;
+}
+
 .custom-enter,
 .custom-leave,
 .custom-move {
