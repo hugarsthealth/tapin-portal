@@ -20,13 +20,17 @@ select {
     margin-top: 0;
 }
 
+.patient dl {
+  margin-bottom: 0;
+}
+
 .patient dt {
-    height: 20px;
+    height: 24px;
     text-align: left;
 }
 
 .patient dd {
-    height: 20px;
+    height: 24px;
 }
 
 .vitalinfo ul {
