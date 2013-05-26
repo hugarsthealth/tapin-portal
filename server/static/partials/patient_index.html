@@ -18,7 +18,7 @@
 
 	</div>
 
-	<div class="row" ng-repeat="patient in patients | filter:query">
+	<div class="row" ng-repeat="patient in patients | filter:query" ng-animate="'custom'">
 		<div class="span12" ng-include src="'static/partials/patient_card.html'"></div>
 	</div>
   </div>
