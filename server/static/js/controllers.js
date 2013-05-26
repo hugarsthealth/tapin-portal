@@ -1,4 +1,8 @@
-function LoginCtrl ($scope, $cookies, $location) {
+function LoginCtrl ($scope, $cookies, $location, Department) {
+  $scope.departments = Department.query({}, function(ds) {
+    $scope.department = ds[0];
+  });
+
   if ('department' in $cookies) {
     $location.path('/patients');
   }

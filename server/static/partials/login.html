@@ -14,9 +14,7 @@
 			<form class="form-inline" method="post" action="/login">
 				<fieldset>
 					<legend>Choose your department</legend>
-					<select name="department">
-						<option value="Cardiology">Cardiology</option>
-						<option value="Emergency">Emergency</option>
+					<select ng-model="department" ng-options="d.department_name for d in departments" name="department" required>
 					</select>
 					<button type="submit" class="login-btn btn btn-primary">Enter</button>
 				</fieldset>

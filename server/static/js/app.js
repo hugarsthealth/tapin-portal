@@ -43,3 +43,7 @@ myApp.factory('Patient', function($resource) {
 myApp.factory('VitalInfo', function($resource) {
   return $resource('/patients/:nhi/vitalinfos/:vital_info_id');
 });
+
+myApp.factory('Department', function($resource) {
+  return $resource('/departments/:department_id');
+});
