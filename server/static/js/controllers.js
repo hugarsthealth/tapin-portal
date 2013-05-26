@@ -4,35 +4,32 @@ function LoginCtrl ($scope, $cookies, $location) {
   }
 }
 
-function VitalInfoCtrl ($scope, $http, $routeParams, $cookies, $location) {
+function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, Patient, VitalInfo) {
   if (!('department' in $cookies)) {
     $location.path('/');
   }
 
-  $http.get('/patients/' + $routeParams.nhi).success(function(data) {
-    //console.log(data);
-    $scope.patient = data.patient;
-  });
-  $http.get('/patients/' + $routeParams.nhi + '/vitalinfos/' + $routeParams.vital_info_id).success(function(data) {
-    //console.log(data);
-    $scope.vitalinfo = data.vitalinfo;
-    console.log($scope.vitalinfo);
-  });
+  $scope.patient = Patient.get({"nhi": $routeParams.nhi});
+  $scope.vitalinfo = VitalInfo.get({"nhi": $routeParams.nhi, "vital_info_id": $routeParams.vital_info_id});
 }
 
-function PatientCtrl($scope, $http, $routeParams, $cookies, $location) {
+function PatientCtrl($scope, $routeParams, $cookies, $location, Patient, VitalInfo) {
   if (!('department' in $cookies)) {
     $location.path('/');
   }
 
-  $http.get('/patients/' + $routeParams.nhi).success(function(data) {
-    $scope.patient = data.patient;
-    //console.log($scope.patient);
-  });
-  $http.get('/patients/' + $routeParams.nhi + '/vitalinfos').success(function(data) {
-    //console.log(data);
-    $scope.vitalinfos = data.vitalinfos;
-  });
+  $scope.patient = Patient.get({"nhi": $routeParams.nhi});
+  $scope.vitalinfos = VitalInfo.query({"nhi": $routeParams.nhi});
+
+  $scope.deletePatient = function(index) {
+    $scope.patient.$delete({"nhi": $scope.patient.nhi},
+      function() {
+        $location.path('/patients');
+      },
+      function() {
+        toastr.error('Could not be deleted', $scope.patient.nhi);
+      });
+  };
 
   $scope.sortByChange = function() {
     if ($scope.sortBy === "check_in_time") {
@@ -46,18 +43,28 @@ function PatientCtrl($scope, $http, $routeParams, $cookies, $location) {
   $scope.reverseCheckIns = true;
 }
 
-function PatientListCtrl($scope, $http, $cookies, $location){
+function PatientListCtrl($scope, $cookies, $location, Patient){
   if (!('department' in $cookies)) {
     $location.path('/');
-    //console.log("No cookies");
   }
 
-  $http.get('/patients/').success(function(data) {
-    $scope.patients = data.patients;
-    //console.log($scope.patients);
-    for (var i = 0 ; i < $scope.patients.length ; i++) {
-      $scope.patients[i].fullname = $scope.patients[i].latest_vitalinfo.firstname + " " + $scope.patients[i].latest_vitalinfo.lastname;
-    }
+  $scope.deletePatient = function(index) {
+    var deleted = $scope.patients.splice(index, 1)[0];
+
+    deleted.$delete({"nhi": deleted.nhi},
+      function() {
+        toastr.success('Successfully deleted', deleted.fullname);
+      },
+      function() {
+        toastr.error('Could not be deleted', deleted.fullname);
+        $scope.patients.splice(index, 0, deleted);
+      });
+  };
+
+  $scope.patients = Patient.query({}, function(patients) {
+    patients.forEach(function(p) {
+      p.fullname = p.latest_vitalinfo.firstname + " " + p.latest_vitalinfo.lastname;
+    });
   });
 
   $scope.orderProp = 'patient_id';

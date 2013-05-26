@@ -105,13 +105,13 @@ class TestDepartment(VsmTest):
 
     def test_departments_get(self):
         rv = self.app.get('/departments/')
-        departments = json.loads(rv.data)['departments']
+        departments = json.loads(rv.data)
 
         assert len(departments) == 2
 
     def test_department_patients_get(self):
         rv = self.app.get('/patients/')
-        patients = json.loads(rv.data)['patients']
+        patients = json.loads(rv.data)
 
         assert all(any(d['department_name'] == 'Cardiology' for d in p['departments']) for p in patients)
 
