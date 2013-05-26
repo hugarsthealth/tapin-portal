@@ -1,7 +1,14 @@
-function LoginCtrl ($scope, $cookies, $location, Department) {
-  $scope.departments = Department.query({}, function(ds) {
-    $scope.department = ds[0];
-  });
+function LoginCtrl ($scope, $cookies, $location, $route, Department) {
+  $scope.departments = Department.query();
+
+  $scope.enter = function() {
+    if ($scope.department) {
+      $cookies.department = $scope.department.department_name;
+      document.location = '/';  // screw it
+    } else {
+      toastr.warning("Please select a department");
+    }
+  };
 
   if ('department' in $cookies) {
     $location.path('/patients');
