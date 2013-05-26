@@ -18,8 +18,15 @@ from models.vitalinfo import VitalInfo
 from models.department import Department
 
 
-def init_db(num_patients=5, min_vital_infos=2, max_vital_infos=10):
+def init_db(num_patients=100, min_vital_infos=2, max_vital_infos=10):
     from models.sampledata import populate_database
 
     Base.metadata.create_all(bind=engine)
     populate_database(num_patients, min_vital_infos, max_vital_infos)
+
+
+def drop_db():
+    from sqlalchemy import MetaData
+    m = MetaData(engine)
+    m.reflect()
+    m.drop_all()
