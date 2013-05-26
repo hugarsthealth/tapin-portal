@@ -1,11 +1,17 @@
 <div class="vitalinfo" ng-controller="VitalInfoCtrl">
-	<div class="row">
+
+	<div class="row vitalinfo-details">
+		<button class="edit-vitalinfo pull-right btn btn-primary" ng-click="editVitalInfo()"><i class="icon-edit"></i> Edit</button> 
 		<div class="span12">
 			<h1><[ patient.latest_vitalinfo.firstname + " " + patient.latest_vitalinfo.lastname ]></h1>
 			<dl class="dl-horizontal">
 				<dt>Gender</dt><dd><[patient.latest_vitalinfo.gender]></dd>
 				<dt>Date Of Birth</dt><dd><[patient.latest_vitalinfo.dob]></dd>
-				<dt>NHI: </dt><dd><[patient.nhi]></dd>
+				<dt>NHI</dt><dd><[patient.nhi]></dd>
+				<dt>Occupation</dt><dd><[patient.latest_vitalinfo.occupation]></dd>
+				<dt>Citizen/Resident</dt><dd><[patient.latest_vitalinfo.citizen_resident]></dd>
+				<dt>Contact Number</dt><dd><[patient.latest_vitalinfo.contact_num]></dd>
+
 			</dl>
 		</div>
 	</div>
@@ -15,20 +21,20 @@
 	<div class="row">
 		<div class="span12 vitalinfo">
 			<dl class="dl-horizontal">
-				<dt>Check In Time: </dt><dd><[ vitalinfo.check_in_time.substring(0,10) + " " + vitalinfo.check_in_time.substring(11,16)]></dd>
-				<dt>Location: </dt><dd><[vitalinfo.location]></dd>
-				<dt>Height: </dt><dd><[vitalinfo.height_value]> <[vitalinfo.height_unit]></dd>
-				<dt>Weight: </dt><dd><[vitalinfo.weight_value]> <[vitalinfo.weight_unit]></dd>
-				<dt>Blood Type: </dt><dd><[vitalinfo.blood_type]></dd>
-				<dt>Drinker: </dt><dd><[vitalinfo.drinker]></dd>
-				<dt>Smoker: </dt><dd><[vitalinfo.smoker]></dd>
-				<dt>Medical Conditions: </dt><dd><ul><li ng-repeat="medical_condition in vitalinfo.medical_conditions"> <[medical_condition]> </li></ul></dd>
-				<dt>Allergies: </dt><dd><ul><li ng-repeat="allergy in vitalinfo.allergies"> <[allergy]> </li></ul></dd>
-				<dt>Overseas Recently: </dt><dd><[vitalinfo.overseas_recently]></dd>
+				<dt>Check In Time</dt><dd><[ vitalinfo.check_in_time.substring(0,10) + " " + vitalinfo.check_in_time.substring(11,16)]></dd>
+				<dt>Location</dt><dd><[vitalinfo.location]></dd>
+				<dt>Height</dt><dd><[vitalinfo.height_value]> <[vitalinfo.height_unit]></dd>
+				<dt>Weight</dt><dd><[vitalinfo.weight_value]> <[vitalinfo.weight_unit]></dd>
+				<dt>Blood Type</dt><dd><[vitalinfo.blood_type]></dd>
+				<dt>Drinker</dt><dd><[vitalinfo.drinker]></dd>
+				<dt>Smoker</dt><dd><[vitalinfo.smoker]></dd>
+				<dt>Medical Conditions</dt><dd><ul><li ng-repeat="medical_condition in vitalinfo.medical_conditions"> <[medical_condition]> </li></ul></dd>
+				<dt>Allergies</dt><dd><ul><li ng-repeat="allergy in vitalinfo.allergies"> <[allergy]> </li></ul></dd>
+				<dt>Overseas Recently</dt><dd><[vitalinfo.overseas_recently]></dd>
 				<div ng-show="vitalinfo.overseas_recently">
-				<dt>Overseas Destinations: </dt><dd><ul><li ng-repeat="overseas_dest in vitalinfo.overseas_dests"> <[overseas_dest]> </li></ul></dd>
+				<dt>Overseas Destinations</dt><dd><ul><li ng-repeat="overseas_dest in vitalinfo.overseas_dests"> <[overseas_dest]> </li></ul></dd>
 				</div>
-				<dt>Family History: </dt><dd><ul><li ng-repeat="family_hist in vitalinfo.family_hist"> <[family_hist]> </li></ul></dd>
+				<dt>Family History</dt><dd><ul><li ng-repeat="family_hist in vitalinfo.family_hist"> <[family_hist]> </li></ul></dd>
 				</dl>
 	  	</div>
   	</div>

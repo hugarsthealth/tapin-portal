@@ -105,3 +105,15 @@ legend {
 .custom-move.custom-move-active {
   opacity:1;
 }
+
+.vitalinfo-details {
+  position: relative;
+}
+
+.edit-vitalinfo {
+  font-size: 1.5em;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  padding: 5px 10px;
+}
