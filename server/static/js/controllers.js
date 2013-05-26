@@ -21,6 +21,7 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
   $scope.saveChanges = function () {
     $scope.currentlyEditing = false;
     $scope.vitalinfo.$save({"nhi": $routeParams.nhi, "vital_info_id": $routeParams.vital_info_id});
+    $route.reload();  
   };
 
   $scope.cancelEditing = function () {
