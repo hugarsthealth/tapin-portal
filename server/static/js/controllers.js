@@ -21,6 +21,16 @@ function PatientCtrl($scope, $routeParams, $cookies, $location, Patient, VitalIn
   $scope.patient = Patient.get({"nhi": $routeParams.nhi});
   $scope.vitalinfos = VitalInfo.query({"nhi": $routeParams.nhi});
 
+  $scope.deletePatient = function(index) {
+    $scope.patient.$delete({"nhi": $scope.patient.nhi},
+      function() {
+        $location.path('/patients');
+      },
+      function() {
+        toastr.error('Could not be deleted', $scope.patient.nhi);
+      });
+  };
+
   $scope.sortByChange = function() {
     if ($scope.sortBy === "check_in_time") {
       $scope.reverseCheckIns = true;
@@ -33,25 +43,23 @@ function PatientCtrl($scope, $routeParams, $cookies, $location, Patient, VitalIn
   $scope.reverseCheckIns = true;
 }
 
-
-function PatientCardCtrl ($scope, $location, $resource, $routeParams, Patient) {
-  $scope.deletePatient = function(index) {
-    var deleted = $scope.patients.splice(index, 1)[0];
-
-    $scope.patient.$delete({"nhi": $scope.patient.nhi}, function() {
-      toastr.success('Successfully deleted', 'patient');
-    },
-    function() {
-      toastr.error('Was not deleted', deleted.fullname);
-      $scope.patients.splice(index, 0, deleted);
-    });
-  };
-}
-
 function PatientListCtrl($scope, $cookies, $location, Patient){
   if (!('department' in $cookies)) {
     $location.path('/');
   }
+
+  $scope.deletePatient = function(index) {
+    var deleted = $scope.patients.splice(index, 1)[0];
+
+    deleted.$delete({"nhi": deleted.nhi},
+      function() {
+        toastr.success('Successfully deleted', deleted.fullname);
+      },
+      function() {
+        toastr.error('Could not be deleted', deleted.fullname);
+        $scope.patients.splice(index, 0, deleted);
+      });
+  };
 
   $scope.patients = Patient.query({}, function(patients) {
     patients.forEach(function(p) {
