@@ -8,6 +8,19 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, Patient, Vita
   if (!('department' in $cookies)) {
     $location.path('/');
   }
+  $scope.currentlyEditing = false;
+
+  $scope.editVitalInfo = function () {
+    $scope.currentlyEditing = true;
+  };
+
+  $scope.saveChanges = function () {
+    $scope.currentlyEditing = false;
+  };
+
+  $scope.cancelEditing = function () {
+    $scope.currentlyEditing = false;
+  };
 
   $scope.patient = Patient.get({"nhi": $routeParams.nhi});
   $scope.vitalinfo = VitalInfo.get({"nhi": $routeParams.nhi, "vital_info_id": $routeParams.vital_info_id});

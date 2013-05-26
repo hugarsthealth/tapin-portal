@@ -123,3 +123,13 @@ legend {
   top: 15px;
   padding: 5px 10px;
 }
+
+.save-changes {
+  margin-bottom: 15px;
+  margin-right: 5px;
+}
+
+.cancel-editing {
+  margin-bottom: 15px;
+  margin-left: 5px;
+}
