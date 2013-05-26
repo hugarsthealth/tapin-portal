@@ -4,7 +4,7 @@ function LoginCtrl ($scope, $cookies, $location) {
   }
 }
 
-function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, Patient, VitalInfo) {
+function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patient, VitalInfo) {
   if (!('department' in $cookies)) {
     $location.path('/');
   }
@@ -16,10 +16,12 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, Patient, Vita
 
   $scope.saveChanges = function () {
     $scope.currentlyEditing = false;
+    $scope.vitalinfo.$save({"nhi": $routeParams.nhi, "vital_info_id": $routeParams.vital_info_id});
   };
 
   $scope.cancelEditing = function () {
-    $scope.currentlyEditing = false;
+    //alert("We gon reload");
+    $route.reload();
   };
 
   $scope.patient = Patient.get({"nhi": $routeParams.nhi});

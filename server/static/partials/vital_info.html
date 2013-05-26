@@ -3,14 +3,14 @@
 	<div class="row vitalinfo-details">
 		<button class="edit-vitalinfo pull-right btn btn-primary" ng-click="editVitalInfo()" ng-hide="currentlyEditing"><i class="icon-edit"></i> Edit</button> 
 		<div class="span12">
-			<h1><[ patient.latest_vitalinfo.firstname + " " + patient.latest_vitalinfo.lastname ]></h1>
+			<h1><[ vitalinfo.firstname + " " + vitalinfo.lastname ]></h1>
 			<dl class="dl-horizontal">
-				<dt>Gender</dt><dd><[patient.latest_vitalinfo.gender]></dd>
-				<dt>Date Of Birth</dt><dd><[patient.latest_vitalinfo.dob]></dd>
+				<dt>Gender</dt><dd><[vitalinfo.gender]></dd>
+				<dt>Date Of Birth</dt><dd><[vitalinfo.dob]></dd>
 				<dt>NHI</dt><dd><[patient.nhi]></dd>
-				<dt>Occupation</dt><dd ng-show="currentlyEditing"><input ng-model="patient.latest_vitalinfo.occupation" /></dd><dd ng-hide="currentlyEditing"><[patient.latest_vitalinfo.occupation]></dd>
-				<dt>Citizen/Resident</dt><dd ng-show="currentlyEditing"><select ng-model="patient.latest_vitalinfo.citizen_resident"><option value="true">Yes</option><option value="false">No</option></select></dd><dd ng-hide="currentlyEditing" ><[patient.latest_vitalinfo.citizen_resident]></dd>
-				<dt>Contact Number</dt><dd ng-show="currentlyEditing"><input ng-model="patient.latest_vitalinfo.contact_num" /></dd><dd ng-hide="currentlyEditing"><[patient.latest_vitalinfo.contact_num]></dd>
+				<dt>Occupation</dt><dd ng-show="currentlyEditing"><input ng-model="vitalinfo.occupation" /></dd><dd ng-hide="currentlyEditing"><[vitalinfo.occupation]></dd>
+				<dt>Citizen/Resident</dt><dd ng-show="currentlyEditing"><select ng-model="vitalinfo.citizen_resident"><option value="true">Yes</option><option value="false">No</option></select></dd><dd ng-hide="currentlyEditing" ><[vitalinfo.citizen_resident]></dd>
+				<dt>Contact Number</dt><dd ng-show="currentlyEditing"><input ng-model="vitalinfo.contact_num" /></dd><dd ng-hide="currentlyEditing"><[vitalinfo.contact_num]></dd>
 
 			</dl>
 		</div>
@@ -22,19 +22,30 @@
 		<div class="span12 vitalinfo">
 			<dl class="dl-horizontal">
 				<dt>Check In Time</dt><dd><[ vitalinfo.check_in_time.substring(0,10) + " " + vitalinfo.check_in_time.substring(11,16)]></dd>
+
 				<dt>Location</dt><dd><[vitalinfo.location]></dd>
+
 				<dt>Height</dt><dd ng-show="currentlyEditing" ><input ng-model="vitalinfo.height_value" /></dd><dd ng-hide="currentlyEditing"><[vitalinfo.height_value]> <[vitalinfo.height_unit]></dd>
+
 				<dt>Weight</dt><dd ng-show="currentlyEditing" ><input ng-model="vitalinfo.weight_value"/></dd><dd ng-hide="currentlyEditing"><[vitalinfo.weight_value]> <[vitalinfo.weight_unit]></dd>
+
 				<dt>Blood Type</dt><dd ng-show="currentlyEditing"><input ng-model="vitalinfo.blood_type"/></dd><dd ng-hide="currentlyEditing" ><[vitalinfo.blood_type]></dd>
+
 				<dt>Drinker</dt><dd ng-show="currentlyEditing" ><select ng-model="vitalinfo.drinker"><option value="true">Yes</option><option value="false">No</option></select></dd><dd ng-hide="currentlyEditing"><[vitalinfo.drinker]></dd>
+
 				<dt>Smoker</dt><dd ng-show="currentlyEditing"><select ng-model="vitalinfo.smoker"><option value="true">Yes</option><option value="false">No</option></select></dd><dd ng-hide="currentlyEditing"><[vitalinfo.smoker]></dd>
-				<dt>Medical Conditions</dt><dd ng-show="currentlyEditing" ></dd><dd ng-hide="currentlyEditing"><ul><li ng-repeat="medical_condition in vitalinfo.medical_conditions"> <[medical_condition]> </li></ul></dd>
-				<dt>Allergies</dt><dd ng-show="currentlyEditing" ></dd><dd ng-hide="currentlyEditing"><ul><li ng-repeat="allergy in vitalinfo.allergies"> <[allergy]> </li></ul></dd>
-				<dt>Overseas Recently</dt><dd ng-show="currentlyEditing" ></dd><dd ng-hide="currentlyEditing"><[vitalinfo.overseas_recently]></dd>
+
+				<dt>Medical Conditions</dt><dd ng-show="currentlyEditing" ><ul class="editable-list"><li ng-repeat="medical_condition in vitalinfo.medical_conditions"><input ng-model="medical_condition"/></li></ul></dd><dd ng-hide="currentlyEditing"><ul class="noneditable-list"><li ng-repeat="medical_condition in vitalinfo.medical_conditions"> <[medical_condition]> </li></ul></dd>
+
+				<dt>Allergies</dt><dd ng-show="currentlyEditing" ><ul class="editable-list"><li ng-repeat="allergy in vitalinfo.allergies"><input ng-model="allergy"></li></ul></dd><dd ng-hide="currentlyEditing"><ul class="noneditable-list"><li ng-repeat="allergy in vitalinfo.allergies"> <[allergy]> </li></ul></dd>
+
+				<dt>Overseas Recently</dt><dd ng-show="currentlyEditing" ><select ng-model="vitalinfo.overseas_recently"><option value="true">Yes</option><option value="false">No</option></select></dd><dd ng-hide="currentlyEditing"><[vitalinfo.overseas_recently]></dd>
+
 				<div ng-show="vitalinfo.overseas_recently">
-				<dt>Overseas Destinations</dt><dd ng-show="currentlyEditing" ></dd><dd ng-hide="currentlyEditing" ><ul><li ng-repeat="overseas_dest in vitalinfo.overseas_dests"> <[overseas_dest]> </li></ul></dd>
+				<dt>Overseas Destinations</dt><dd ng-show="currentlyEditing" ><ul class="editable-list"><li ng-repeat="overseas_dest in vitalinfo.overseas_dests"><input ng-model="overseas_dest"/></li></ul></dd><dd ng-hide="currentlyEditing" ><ul class="noneditable-list"><li ng-repeat="overseas_dest in vitalinfo.overseas_dests"> <[overseas_dest]> </li></ul></dd>
 				</div>
-				<dt>Family History</dt><dd ng-show="currentlyEditing" ></dd><dd ng-hide="currentlyEditing" ><ul><li ng-repeat="family_hist in vitalinfo.family_hist"> <[family_hist]> </li></ul></dd>
+
+				<dt>Family History</dt><dd ng-show="currentlyEditing"><ul class="editable-list"><li ng-repeat="family_hist in vitalinfo.family_hist"><input ng-model="family_hist"/></li></ul></dd><dd ng-hide="currentlyEditing" ><ul class="noneditable-list"><li ng-repeat="family_hist in vitalinfo.family_hist"> <[family_hist]> </li></ul></dd>
 				</dl>
 	  	</div>
   	</div>
