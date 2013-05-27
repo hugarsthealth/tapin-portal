@@ -1,0 +1,7 @@
+2013-05-27T08:18:23.527503+00:00 heroku[router]: at=info method=POST path=/patients host=vsm.herokuapp.com fwd="130.216.30.114" dyno=web.1 connect=1ms service=21ms status=500 bytes=291
+2013-05-27T08:18:22.917979+00:00 heroku[router]: at=info method=POST path=/patients host=vsm.herokuapp.com fwd="130.216.30.114" dyno=web.1 connect=6ms service=29ms status=500 bytes=291
+2013-05-27T08:18:36.179511+00:00 heroku[router]: at=info method=POST path=/patients/ZIX491/vitalinfos/469 host=vsm.herokuapp.com fwd="130.216.191.182" dyno=web.1 connect=2ms service=381ms status=200 bytes=1277
+2013-05-27T08:18:40.253842+00:00 heroku[router]: at=info method=POST path=/patients host=vsm.herokuapp.com fwd="130.216.30.114" dyno=web.1 connect=2ms service=37ms status=500 bytes=291
+2013-05-27T08:20:04.543294+00:00 heroku[router]: at=info method=POST path=/patients host=vsm.herokuapp.com fwd="130.216.30.114" dyno=web.1 connect=2ms service=33ms status=500 bytes=291
+2013-05-27T08:20:18.028654+00:00 heroku[router]: at=info method=POST path=/patients host=vsm.herokuapp.com fwd="130.216.30.114" dyno=web.1 connect=1ms service=49ms status=500 bytes=291
+2013-05-27T08:20:28.331147+00:00 heroku[router]: at=info method=POST path=/patients host=vsm.herokuapp.com fwd="130.216.30.114" dyno=web.1 connect=3ms service=102ms status=500 bytes=291
