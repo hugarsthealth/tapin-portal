@@ -1,10 +1,13 @@
+// Declares the modules that our app is going to use
 var myApp = angular.module('vsmApp', ['ngCookies', 'ngResource', 'ui.utils']);
 
+// Need to use different symbols as flask uses {{ and }}
 myApp.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('<[');
     $interpolateProvider.endSymbol(']>');
 });
 
+// Routes for out application
 myApp.config(function($routeProvider) {
   $routeProvider
       .when('/',
@@ -36,6 +39,8 @@ myApp.config(function($routeProvider) {
       });
 });
 
+// These are the resources that we are getting from the web app
+// Helps us update models from the api
 myApp.factory('Patient', function($resource) {
   return $resource('/patients/:nhi');
 });

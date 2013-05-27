@@ -1,3 +1,4 @@
+// Controls the logining in and out of the application
 function LoginCtrl ($scope, $cookies, $location, $route, Department) {
   $scope.departments = Department.query();
 
@@ -15,6 +16,7 @@ function LoginCtrl ($scope, $cookies, $location, $route, Department) {
   }
 }
 
+// controls the display and editing of a vital info
 function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patient, VitalInfo) {
   if (!('department' in $cookies)) {
     $location.path('/');
@@ -28,6 +30,7 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
   };
 
   $scope.saveChanges = function () {
+    // Need all these checks to delete empty fields from the list
     if ($scope.vitalinfo.overseas_dests[$scope.vitalinfo.overseas_dests.length-1] === "") {
       $scope.vitalinfo.overseas_dests.splice($scope.vitalinfo.overseas_dests.length-1,1);
     }
@@ -41,6 +44,7 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
       $scope.vitalinfo.family_hist.splice($scope.vitalinfo.family_hist.length-1,1);
     }
 
+    // Gotta save that stuff
     $scope.currentlyEditing = false;
     $scope.vitalinfo.$save({"nhi": $routeParams.nhi, "vital_info_id": $routeParams.vital_info_id},
       function() {
@@ -90,6 +94,7 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
   $scope.vitalinfo = VitalInfo.get({"nhi": $routeParams.nhi, "vital_info_id": $routeParams.vital_info_id});
 }
 
+// Controller for viewing a single patient
 function PatientCtrl($scope, $routeParams, $cookies, $location, Patient, VitalInfo) {
   if (!('department' in $cookies)) {
     $location.path('/');
@@ -124,6 +129,7 @@ function PatientCtrl($scope, $routeParams, $cookies, $location, Patient, VitalIn
   $scope.reverseCheckIns = true;
 }
 
+// Controller for the entire list of patients
 function PatientListCtrl($scope, $cookies, $location, Patient){
   if (!('department' in $cookies)) {
     $location.path('/');
@@ -176,6 +182,7 @@ function PatientListCtrl($scope, $cookies, $location, Patient){
   };
 }
 
+// Controller for the nav bar
 function NavBarCtrl($scope, $cookies, $location){
   if ('department' in $cookies) {
     $scope.logged_in = true;
@@ -190,6 +197,7 @@ function NavBarCtrl($scope, $cookies, $location){
   };
 }
 
+// Controller for the breadcrumbs
 function BreadCrumbsCtrl($scope, $location, $route){
   $scope.$on('$routeChangeSuccess', function() {
 
