@@ -28,13 +28,25 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
   };
 
   $scope.saveChanges = function () {
+    if ($scope.vitalinfo.overseas_dests[$scope.vitalinfo.overseas_dests.length-1] === "") {
+      $scope.vitalinfo.overseas_dests,splice($scope.vitalinfo.overseas_dests.length-1,1);
+    }
+    if ($scope.vitalinfo.allergies[$scope.vitalinfo.allergies.length-1] === "") {
+      $scope.vitalinfo.allergies.splice($scope.vitalinfo.allergies.length-1,1);
+    }
+    if ($scope.vitalinfo.medical_conditions[$scope.vitalinfo.medical_conditions.length-1] === "") {
+      $scope.vitalinfo.medical_conditions.splice($scope.vitalinfo.medical_conditions.length-1,1);
+    }
+    if ($scope.vitalinfo.family_hist[$scope.vitalinfo.family_hist.length-1] === "") {
+      $scope.vitalinfo.family_hist.splice($scope.vitalinfo.family_hist.length-1,1);
+    }
+
     $scope.currentlyEditing = false;
     $scope.vitalinfo.$save({"nhi": $routeParams.nhi, "vital_info_id": $routeParams.vital_info_id});
     $route.reload();  
   };
 
   $scope.cancelEditing = function () {
-    //alert("We gon reload");
     $route.reload();
   };
 
@@ -55,7 +67,6 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
   $scope.deleteFromList = function(element, elements) {
     var index = elements.indexOf(element);
     elements.splice(index, 1);
-    alert("Element deleted");
   };
 
   $scope.addToList = function(viList) {
@@ -66,7 +77,6 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
         return;
       }
     }
-    alert("going to add");
     viList.push("");
   };
 
