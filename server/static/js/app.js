@@ -1,4 +1,4 @@
-var myApp = angular.module('vsmApp', ['ngCookies', 'ngResource']);
+var myApp = angular.module('vsmApp', ['ngCookies', 'ngResource', 'ui.utils']);
 
 myApp.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('<[');

@@ -20,20 +20,64 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
     $location.path('/');
   }
   $scope.currentlyEditing = false;
+  $scope.editingList = null;
+  $scope.editingPos = null;
 
   $scope.editVitalInfo = function () {
     $scope.currentlyEditing = true;
   };
 
   $scope.saveChanges = function () {
+    if ($scope.vitalinfo.overseas_dests[$scope.vitalinfo.overseas_dests.length-1] === "") {
+      $scope.vitalinfo.overseas_dests,splice($scope.vitalinfo.overseas_dests.length-1,1);
+    }
+    if ($scope.vitalinfo.allergies[$scope.vitalinfo.allergies.length-1] === "") {
+      $scope.vitalinfo.allergies.splice($scope.vitalinfo.allergies.length-1,1);
+    }
+    if ($scope.vitalinfo.medical_conditions[$scope.vitalinfo.medical_conditions.length-1] === "") {
+      $scope.vitalinfo.medical_conditions.splice($scope.vitalinfo.medical_conditions.length-1,1);
+    }
+    if ($scope.vitalinfo.family_hist[$scope.vitalinfo.family_hist.length-1] === "") {
+      $scope.vitalinfo.family_hist.splice($scope.vitalinfo.family_hist.length-1,1);
+    }
+
     $scope.currentlyEditing = false;
     $scope.vitalinfo.$save({"nhi": $routeParams.nhi, "vital_info_id": $routeParams.vital_info_id});
     $route.reload();  
   };
 
   $scope.cancelEditing = function () {
-    //alert("We gon reload");
     $route.reload();
+  };
+
+  $scope.saveChangeIntoList = function (element) {
+    $scope.editingList[$scope.editingPos] = element;
+
+    console.log(element);
+    $scope.editingList = null;
+    $scope.editingPos = null;
+  };
+
+  $scope.prepareChangeIntoList = function (element, viList) {
+    $scope.editingList = viList;
+    $scope.editingPos = viList.indexOf(element);
+    console.log("preparing edit for " + element + " at " + viList.indexOf(element));
+  };
+
+  $scope.deleteFromList = function(element, elements) {
+    var index = elements.indexOf(element);
+    elements.splice(index, 1);
+  };
+
+  $scope.addToList = function(viList) {
+    console.log(viList);
+    for (var i = 0; i< viList.length ; i++) {
+      if (viList[i] === "") {
+        toastr.error("Can not create another blank entry.");
+        return;
+      }
+    }
+    viList.push("");
   };
 
   $scope.patient = Patient.get({"nhi": $routeParams.nhi});
