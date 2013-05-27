@@ -42,6 +42,25 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
     alert("Element deleted");
   };
 
+  $scope.addToList = function(viList) {
+    console.log(viList);
+    for (var i = 0; i< viList.length ; i++) {
+      if (viList[i] === "") {
+        toastr.error("Can not create another blank entry.");
+        return;
+      }
+    }
+    alert("going to add");
+    viList.push("");
+  };
+
+  $scope.rangeOfList = function(viList) {
+    var range = [];
+    for (var i = 0; i < viList.length; i++) {
+      range.push(i);
+    }
+  };
+
   $scope.patient = Patient.get({"nhi": $routeParams.nhi});
   $scope.vitalinfo = VitalInfo.get({"nhi": $routeParams.nhi, "vital_info_id": $routeParams.vital_info_id});
 }
