@@ -1,7 +1,7 @@
 <div class="vitalinfo" ng-controller="VitalInfoCtrl">
 
 	<div class="row vitalinfo-details">
-		<button class="edit-vitalinfo pull-right btn btn-primary" ng-click="editVitalInfo()" ng-hide="currentlyEditing"><i class="icon-edit"></i> Edit</button> 
+		<button class="edit-vitalinfo pull-right btn btn-primary" ng-click="editVitalInfo()" ng-hide="currentlyEditing"><i class="icon-edit"></i> Edit</button>
 		<div class="span12">
 			<h1><[ vitalinfo.firstname + " " + vitalinfo.lastname ]></h1>
 			<dl class="dl-horizontal">
@@ -111,8 +111,10 @@
   	</div>
   	<div class="row">
   		<div class="span10 offset2">
-  			<button ng-show="currentlyEditing" ng-click="saveChanges()" class="save-changes btn btn-success">Save changes <i class="icon-ok"></i></button>
-  			<button ng-show="currentlyEditing" ng-click="cancelEditing()" class="cancel-editing btn btn-danger">Cancel <i class="icon-remove"></i></button>
+  			<div class="edit-controls">
+	  			<button ng-show="currentlyEditing" ng-click="saveChanges()" class="save-changes btn btn-success">Save changes <i class="icon-ok"></i></button>
+	  			<button ng-show="currentlyEditing" ng-click="cancelEditing()" class="cancel-editing btn btn-danger">Cancel <i class="icon-remove"></i></button>
+	  		</div>
   		</div>
   	</div>
 </div>

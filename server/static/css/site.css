@@ -125,25 +125,30 @@ legend {
 }
 
 .edit-vitalinfo {
-  font-size: 1.5em;
   position: absolute;
-  right: 15px;
   top: 15px;
-  padding: 5px 10px;
+  right: 0;
 }
 
 .save-changes {
-  margin-bottom: 15px;
-  margin-right: 5px;
+  margin: 10px;
+  margin-right: 0;
 }
 
 .cancel-editing {
-  margin-bottom: 15px;
-  margin-left: 5px;
+  margin: 10px;
+}
+
+.edit-controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2c3e50;
+  box-shadow: 2px 2px 2px gray;
+  border-radius: 8px;
 }
 
 .edit-input {
-  width: 80%;
+  width: 60%;
   margin-bottom: 4px;
 }
- 
