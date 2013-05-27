@@ -8,9 +8,13 @@
 				<dt>Gender</dt><dd><[vitalinfo.gender]></dd>
 				<dt>Date Of Birth</dt><dd><[vitalinfo.dob]></dd>
 				<dt>NHI</dt><dd><[patient.nhi]></dd>
-				<dt>Occupation</dt><dd ng-show="currentlyEditing"><input ng-model="vitalinfo.occupation" /></dd><dd ng-hide="currentlyEditing"><[vitalinfo.occupation]></dd>
-				<dt>Citizen/Resident</dt><dd ng-show="currentlyEditing"><select ng-model="vitalinfo.citizen_resident"><option ng-selected="vitalinfo.citizen_resident" value="true">Yes</option><option ng-selected="vitalinfo.citizen_resident == false"value="false">No</option></select></dd><dd ng-hide="currentlyEditing" ><[vitalinfo.citizen_resident]></dd>
-				<dt>Contact Number</dt><dd ng-show="currentlyEditing"><input ng-model="vitalinfo.contact_num" /></dd><dd ng-hide="currentlyEditing"><[vitalinfo.contact_num]></dd>
+				<dt>Occupation</dt><dd ng-show="currentlyEditing"><input type="text" ng-model="vitalinfo.occupation" /></dd><dd ng-hide="currentlyEditing"><[vitalinfo.occupation]></dd>
+
+				<dt>Citizen/Resident</dt>
+				<dd ng-show="currentlyEditing"><input ng-model="vitalinfo.citizen_resident" type="checkbox"></input></dd>
+				<dd ng-hide="currentlyEditing" ><[vitalinfo.citizen_resident]></dd>
+
+				<dt>Contact Number</dt><dd ng-show="currentlyEditing"><input type="tel" ng-model="vitalinfo.contact_num" /></dd><dd ng-hide="currentlyEditing"><[vitalinfo.contact_num]></dd>
 
 			</dl>
 		</div>
@@ -25,23 +29,27 @@
 
 				<dt>Location</dt><dd><[vitalinfo.location]></dd>
 
-				<dt>Height</dt><dd ng-show="currentlyEditing" ><input ng-model="vitalinfo.height_value" /></dd><dd ng-hide="currentlyEditing"><[vitalinfo.height_value]> <[vitalinfo.height_unit]></dd>
+				<dt>Height</dt><dd ng-show="currentlyEditing" ><input type="number" ng-model="vitalinfo.height_value" /></dd><dd ng-hide="currentlyEditing"><[vitalinfo.height_value]> <[vitalinfo.height_unit]></dd>
 
-				<dt>Weight</dt><dd ng-show="currentlyEditing" ><input ng-model="vitalinfo.weight_value"/></dd><dd ng-hide="currentlyEditing"><[vitalinfo.weight_value]> <[vitalinfo.weight_unit]></dd>
+				<dt>Weight</dt><dd ng-show="currentlyEditing" ><input type="number" type="text" ng-model="vitalinfo.weight_value"/></dd><dd ng-hide="currentlyEditing"><[vitalinfo.weight_value]> <[vitalinfo.weight_unit]></dd>
 
-				<dt>Blood Type</dt><dd ng-show="currentlyEditing"><input ng-model="vitalinfo.blood_type"/></dd><dd ng-hide="currentlyEditing" ><[vitalinfo.blood_type]></dd>
+				<dt>Blood Type</dt><dd ng-show="currentlyEditing"><input type="text" ng-model="vitalinfo.blood_type"/></dd><dd ng-hide="currentlyEditing" ><[vitalinfo.blood_type]></dd>
 
-				<dt>Drinker</dt><dd ng-show="currentlyEditing" ><select ng-model="vitalinfo.drinker"><option ng-selected="vitalinfo.drinker" value="true">Yes</option><option ng-selected="vitalinfo.drinker == false" value="false">No</option></select></dd><dd ng-hide="currentlyEditing"><[vitalinfo.drinker]></dd>
+				<dt>Drinker</dt>
+				<dd ng-show="currentlyEditing"><input ng-model="vitalinfo.drinker" type="checkbox"></input></dd>
+				<dd ng-hide="currentlyEditing"><[vitalinfo.drinker]></dd>
 
-				<dt>Smoker</dt><dd ng-show="currentlyEditing"><select ng-model="vitalinfo.smoker"><option ng-selected="vitalinfo.smoker" value="true">Yes</option><option ng-selected="vitalinfo.smoker == false" value="false">No</option></select></dd><dd ng-hide="currentlyEditing"><[vitalinfo.smoker]></dd>
+				<dt>Smoker</dt>
+				<dd ng-show="currentlyEditing"><input ng-model="vitalinfo.smoker" type="checkbox"></input></dd>
+				<dd ng-hide="currentlyEditing"><[vitalinfo.smoker]></dd>
 
 				<dt>Medical Conditions</dt>
 				<dd ng-show="currentlyEditing" >
 					<ul >
 						<li ng-repeat="medical_condition in vitalinfo.medical_conditions">
-							<input ui-event="{ blur : 'saveChangeIntoList(medical_condition)', focus : 'prepareChangeIntoList(medical_condition, vitalinfo.medical_conditions)' }" class="edit-input" ng-model="medical_condition"/> <i class="icon-remove" ng-click="deleteFromList(medical_condition, vitalinfo.medical_conditions)"></i>
+							<input type="text" ui-event="{ blur : 'saveChangeIntoList(medical_condition)', focus : 'prepareChangeIntoList(medical_condition, vitalinfo.medical_conditions)' }" class="edit-input" ng-model="medical_condition"/> <i class="icon-remove" ng-click="deleteFromList(medical_condition, vitalinfo.medical_conditions)"></i>
 						</li>
-						<li ng-click="addToList(vitalinfo.medical_conditions)">
+						<li class="list-add" ng-click="addToList(vitalinfo.medical_conditions)">
 							<i class="icon-plus"></i> Click here to add a new medical condition
 						</li>
 					</ul>
@@ -56,9 +64,9 @@
 				<dd ng-show="currentlyEditing" >
 					<ul >
 						<li ng-repeat="allergy in vitalinfo.allergies">
-							<input ui-event="{ blur : 'saveChangeIntoList(allergy)', focus : 'prepareChangeIntoList(allergy, vitalinfo.allergies)' }" class="edit-input" ng-model="allergy"> <i class="icon-remove" ng-click="deleteFromList(allergy, vitalinfo.allergies)"></i>
+							<input type="text" ui-event="{ blur : 'saveChangeIntoList(allergy)', focus : 'prepareChangeIntoList(allergy, vitalinfo.allergies)' }" class="edit-input" ng-model="allergy"> <i class="icon-remove" ng-click="deleteFromList(allergy, vitalinfo.allergies)"></i>
 						</li>
-						<li ng-click="addToList(vitalinfo.allergies)">
+						<li class="list-add" ng-click="addToList(vitalinfo.allergies)">
 							<i class="icon-plus"></i> Click here to add a new allergy
 						</li>
 					</ul>
@@ -69,16 +77,14 @@
 					</ul>
 				</dd>
 
-				<dt>Overseas Recently</dt><dd ng-show="currentlyEditing" ><select ng-model="vitalinfo.overseas_recently"><option ng-selected="vitalinfo.overseas_recently" value="true">Yes</option><option ng-selected="vitalinfo.overseas_recently==false" value="false">No</option></select></dd><dd ng-hide="currentlyEditing"><[vitalinfo.overseas_recently]></dd>
-
 				<div ng-show="vitalinfo.overseas_recently">
 				<dt>Overseas Destinations</dt>
 				<dd ng-show="currentlyEditing" >
 					<ul >
 						<li ng-repeat="overseas_dest in vitalinfo.overseas_dests">
-							<input ui-event="{ blur : 'saveChangeIntoList(overseas_dest)', focus : 'prepareChangeIntoList(overseas_dest, vitalinfo.overseas_dests)' }" class="edit-input" ng-model="overseas_dest"/> <i class="icon-remove" ng-click="deleteFromList(overseas_dest, vitalinfo.overseas_dests)"></i>
+							<input type="text" ui-event="{ blur : 'saveChangeIntoList(overseas_dest)', focus : 'prepareChangeIntoList(overseas_dest, vitalinfo.overseas_dests)' }" class="edit-input" ng-model="overseas_dest"/> <i class="icon-remove" ng-click="deleteFromList(overseas_dest, vitalinfo.overseas_dests)"></i>
 						</li>
-						<li ng-click="addToList(vitalinfo.overseas_dests)">
+						<li class="list-add" ng-click="addToList(vitalinfo.overseas_dests)">
 							<i class="icon-plus"></i> Click here to add a new overseas destination
 						</li>
 					</ul>
@@ -94,9 +100,9 @@
 				<dd ng-show="currentlyEditing">
 					<ul >
 						<li ng-repeat="family_hist in vitalinfo.family_hist">
-							<input ui-event="{ blur : 'saveChangeIntoList(family_hist)', focus : 'prepareChangeIntoList(family_hist, vitalinfo.family_hist)' }" class="edit-input" ng-model="family_hist"/> <i class="icon-remove" ng-click="deleteFromList(family_hist, vitalinfo.family_hist)"></i>
+							<input type="text" ui-event="{ blur : 'saveChangeIntoList(family_hist)', focus : 'prepareChangeIntoList(family_hist, vitalinfo.family_hist)' }" class="edit-input" ng-model="family_hist"/> <i class="icon-remove" ng-click="deleteFromList(family_hist, vitalinfo.family_hist)"></i>
 						</li>
-						<li ng-click="addToList(vitalinfo.family_hist)">
+						<li class="list-add" ng-click="addToList(vitalinfo.family_hist)">
 							<i class="icon-plus"></i> Click here to add a new family history
 						</li>
 					</ul>

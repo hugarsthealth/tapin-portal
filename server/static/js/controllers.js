@@ -29,7 +29,7 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
 
   $scope.saveChanges = function () {
     if ($scope.vitalinfo.overseas_dests[$scope.vitalinfo.overseas_dests.length-1] === "") {
-      $scope.vitalinfo.overseas_dests,splice($scope.vitalinfo.overseas_dests.length-1,1);
+      $scope.vitalinfo.overseas_dests.splice($scope.vitalinfo.overseas_dests.length-1,1);
     }
     if ($scope.vitalinfo.allergies[$scope.vitalinfo.allergies.length-1] === "") {
       $scope.vitalinfo.allergies.splice($scope.vitalinfo.allergies.length-1,1);
@@ -42,8 +42,14 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
     }
 
     $scope.currentlyEditing = false;
-    $scope.vitalinfo.$save({"nhi": $routeParams.nhi, "vital_info_id": $routeParams.vital_info_id});
-    $route.reload();  
+    $scope.vitalinfo.$save({"nhi": $routeParams.nhi, "vital_info_id": $routeParams.vital_info_id},
+      function() {
+        toastr.success("Saved changes");
+        $route.reload();
+      },
+      function() {
+        toastr.error("Failed to save changes");
+      });
   };
 
   $scope.cancelEditing = function () {
@@ -93,6 +99,9 @@ function PatientCtrl($scope, $routeParams, $cookies, $location, Patient, VitalIn
   $scope.vitalinfos = VitalInfo.query({"nhi": $routeParams.nhi});
 
   $scope.deletePatient = function(index) {
+    if(!confirm("Are you sure you wish to delete " + $scope.patient.latest_vitalinfo.firstname + " " + $scope.patient.latest_vitalinfo.lastname + "?"))
+      return;
+
     $scope.patient.$delete({"nhi": $scope.patient.nhi},
       function() {
         toastr.success('Successfully deleted', $scope.patient.nhi);
@@ -122,6 +131,11 @@ function PatientListCtrl($scope, $cookies, $location, Patient){
 
   $scope.deletePatient = function(index) {
     var deleted = $scope.patients.splice(index, 1)[0];
+
+    if(!confirm("Are you sure you wish to delete " + deleted.latest_vitalinfo.firstname + " " + deleted.latest_vitalinfo.lastname + "?")) {
+      $scope.patients.splice(index, 0, deleted);
+      return;
+    }
 
     deleted.$delete({"nhi": deleted.nhi},
       function() {
