@@ -9,7 +9,7 @@
 				<dt>Date Of Birth</dt><dd><[vitalinfo.dob]></dd>
 				<dt>NHI</dt><dd><[patient.nhi]></dd>
 				<dt>Occupation</dt><dd ng-show="currentlyEditing"><input ng-model="vitalinfo.occupation" /></dd><dd ng-hide="currentlyEditing"><[vitalinfo.occupation]></dd>
-				<dt>Citizen/Resident</dt><dd ng-show="currentlyEditing"><select ng-model="vitalinfo.citizen_resident"><option value="true">Yes</option><option value="false">No</option></select></dd><dd ng-hide="currentlyEditing" ><[vitalinfo.citizen_resident]></dd>
+				<dt>Citizen/Resident</dt><dd ng-show="currentlyEditing"><select ng-model="vitalinfo.citizen_resident"><option ng-selected="vitalinfo.citizen_resident" value="true">Yes</option><option ng-selected="vitalinfo.citizen_resident == false"value="false">No</option></select></dd><dd ng-hide="currentlyEditing" ><[vitalinfo.citizen_resident]></dd>
 				<dt>Contact Number</dt><dd ng-show="currentlyEditing"><input ng-model="vitalinfo.contact_num" /></dd><dd ng-hide="currentlyEditing"><[vitalinfo.contact_num]></dd>
 
 			</dl>
@@ -31,9 +31,9 @@
 
 				<dt>Blood Type</dt><dd ng-show="currentlyEditing"><input ng-model="vitalinfo.blood_type"/></dd><dd ng-hide="currentlyEditing" ><[vitalinfo.blood_type]></dd>
 
-				<dt>Drinker</dt><dd ng-show="currentlyEditing" ><select ng-model="vitalinfo.drinker"><option value="true">Yes</option><option value="false">No</option></select></dd><dd ng-hide="currentlyEditing"><[vitalinfo.drinker]></dd>
+				<dt>Drinker</dt><dd ng-show="currentlyEditing" ><select ng-model="vitalinfo.drinker"><option ng-selected="vitalinfo.drinker" value="true">Yes</option><option ng-selected="vitalinfo.drinker == false" value="false">No</option></select></dd><dd ng-hide="currentlyEditing"><[vitalinfo.drinker]></dd>
 
-				<dt>Smoker</dt><dd ng-show="currentlyEditing"><select ng-model="vitalinfo.smoker"><option value="true">Yes</option><option value="false">No</option></select></dd><dd ng-hide="currentlyEditing"><[vitalinfo.smoker]></dd>
+				<dt>Smoker</dt><dd ng-show="currentlyEditing"><select ng-model="vitalinfo.smoker"><option ng-selected="vitalinfo.smoker" value="true">Yes</option><option ng-selected="vitalinfo.smoker == false" value="false">No</option></select></dd><dd ng-hide="currentlyEditing"><[vitalinfo.smoker]></dd>
 
 				<dt>Medical Conditions</dt>
 				<dd ng-show="currentlyEditing" >
@@ -69,7 +69,7 @@
 					</ul>
 				</dd>
 
-				<dt>Overseas Recently</dt><dd ng-show="currentlyEditing" ><select ng-model="vitalinfo.overseas_recently"><option value="true">Yes</option><option value="false">No</option></select></dd><dd ng-hide="currentlyEditing"><[vitalinfo.overseas_recently]></dd>
+				<dt>Overseas Recently</dt><dd ng-show="currentlyEditing" ><select ng-model="vitalinfo.overseas_recently"><option ng-selected="vitalinfo.overseas_recently" value="true">Yes</option><option ng-selected="vitalinfo.overseas_recently==false" value="false">No</option></select></dd><dd ng-hide="currentlyEditing"><[vitalinfo.overseas_recently]></dd>
 
 				<div ng-show="vitalinfo.overseas_recently">
 				<dt>Overseas Destinations</dt>
