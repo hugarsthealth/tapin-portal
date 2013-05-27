@@ -6,6 +6,13 @@ from models import Base
 
 
 class VitalInfo(Base):
+    """
+    The VitalInfo class is a database backed model representing a Patient's
+    vital information at the time of a check in. It contains data which would
+    normally be entered on the form used to check in to a hospital.
+
+    """
+
     __tablename__ = 'vital_info'
     vital_info_id = Column(Integer, primary_key=True)
     check_in_time = Column(DateTime)
@@ -31,7 +38,6 @@ class VitalInfo(Base):
     allergies = Column(String(2500))
     location = Column(String(50))
 
-    """docstring for VitalInfo"""
     def __init__(self, **kwargs):
         self.deserialize(kwargs)
 
@@ -63,20 +69,30 @@ class VitalInfo(Base):
         }
 
     def deserialize(self, data):
+        """
+        Populate a VitalInfo object with data from a dictionary
+
+        Arguments:
+        data -- a dictionary containing data to put on the VitalInfo.
+
+        """
         for key in data:
             if not hasattr(self, key):
                 continue
 
             if key in ['family_hist', 'overseas_dests', 'medical_conditions', 'allergies'] and isinstance(data[key], list):
+                # These keys are lists stored as semicolon delimited strings in the db
                 setattr(self, key, ';'.join(data[key]))
                 continue
 
             if key in ['check_in_time'] and (isinstance(data[key], unicode) or isinstance(data[key], str)):
+                # If check in time is given as a string, parse into a datetime
                 setattr(self, key, datetime.strptime(
                     data[key], "%Y-%m-%dT%H:%M:%S.%f"))
                 continue
 
             if key in ['dob'] and (isinstance(data[key], unicode) or isinstance(data[key], str)):
+                # If dob is given as a string, parse into a date
                 setattr(self, key, datetime.strptime(
                     data[key], "%Y-%m-%d").date())
                 continue

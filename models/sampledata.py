@@ -101,6 +101,16 @@ def generate_vital_info():
 
 
 def populate_database(num_patients, min_vital_infos, max_vital_infos):
+    """
+    Generates a number of Patients and a number of VitalInfos per patient and
+    stores them in the database.
+
+    Arguments
+    num_patients    -- the number of patients to generate
+    min_vital_infos -- the minimum number of VitalInfos to generate per Patient
+    max_vital_infos -- the maximum number of VitalInfos to generate per Patient
+
+    """
     departments = [
         Department(department_name="Cardiology"),
         Department(department_name="Emergency"),

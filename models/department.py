@@ -4,6 +4,13 @@ from models import Base
 
 
 class Department(Base):
+    """
+    The Department class is a database backed model representing a hospital
+    department. When a patient checks in, they check in at a department. The
+    information about which deparments a Patient has checked into is stored in
+    an association table modelling a many-to-many relationship.
+
+    """
     __tablename__ = 'department'
     department_id = Column(Integer, primary_key=True)
     department_name = Column(String, unique=True, nullable=False)

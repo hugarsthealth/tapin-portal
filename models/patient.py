@@ -5,6 +5,14 @@ from models import Base, patient_department_table
 
 
 class Patient(Base):
+    """
+    The Patient class is a database backed model representing a patient that has
+    checked in to the hospital. A patient has a one-to-many relationship with
+    vitalinfos, each vitalinfo representing a different and potentially
+    unrelated check in.
+
+    """
+
     __tablename__ = 'patient'
     nhi = Column(String(10), primary_key=True)
     latest_check_in = Column(DateTime)
@@ -22,7 +30,6 @@ class Patient(Base):
         order_by="desc(VitalInfo.check_in_time)"
     )
 
-    """docstring for Patient"""
     def __init__(self, **kwargs):
         self.deserialize(kwargs)
 
@@ -35,6 +42,13 @@ class Patient(Base):
         }
 
     def deserialize(self, data):
+        """
+        Populate a Patient object with data from a dictionary
+
+        Arguments:
+        data -- a dictionary containing data to put on the patient.
+
+        """
         for key in data:
             if not hasattr(self, key):
                 continue
