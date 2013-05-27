@@ -20,6 +20,8 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
     $location.path('/');
   }
   $scope.currentlyEditing = false;
+  $scope.editingList = null;
+  $scope.editingPos = null;
 
   $scope.editVitalInfo = function () {
     $scope.currentlyEditing = true;
@@ -34,6 +36,20 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
   $scope.cancelEditing = function () {
     //alert("We gon reload");
     $route.reload();
+  };
+
+  $scope.saveChangeIntoList = function (element) {
+    $scope.editingList[$scope.editingPos] = element;
+
+    console.log(element);
+    $scope.editingList = null;
+    $scope.editingPos = null;
+  };
+
+  $scope.prepareChangeIntoList = function (element, viList) {
+    $scope.editingList = viList;
+    $scope.editingPos = viList.indexOf(element);
+    console.log("preparing edit for " + element + " at " + viList.indexOf(element));
   };
 
   $scope.deleteFromList = function(element, elements) {
@@ -52,13 +68,6 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
     }
     alert("going to add");
     viList.push("");
-  };
-
-  $scope.rangeOfList = function(viList) {
-    var range = [];
-    for (var i = 0; i < viList.length; i++) {
-      range.push(i);
-    }
   };
 
   $scope.patient = Patient.get({"nhi": $routeParams.nhi});
