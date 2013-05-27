@@ -33,6 +33,10 @@ select {
   height: 24px;
 }
 
+.vitalinfo {
+  margin-bottom: 20px;
+}
+
 .vitalinfo ul {
   list-style: none;
   padding: 0;
@@ -44,16 +48,31 @@ select {
 }
 
 .vitalinfo hr {
-  margin: 0;
+  margin: 20px 0;
+  padding: 0;
+}
+
+.vitalinfo dl {
+  margin-bottom: 0;
 }
 
 .vitalinfo dd {
-  margin-bottom: 10px;
+  padding-bottom: 15px;
 }
 
-.vitalinfo li {
-  margin-bottom: 4px;
+.vitalinfo i[class="icon-remove"] {
+  cursor: pointer;
+  margin-bottom: 5px;
 }
+
+.vitalinfo input {
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.vitalinfo input/*[type="checkbox"] {
+  margin: 0;
+}*/
 
 .login-btn {
   margin: 0 6px;
@@ -150,5 +169,9 @@ legend {
 
 .edit-input {
   width: 60%;
-  margin-bottom: 4px;
+  /*margin-bottom: 4px;*/
+}
+
+.list-add {
+  cursor: pointer;
 }
