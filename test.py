@@ -7,7 +7,7 @@ from datetime import datetime
 # set before importing from models to use in memory db
 os.environ['DATABASE_URL'] = 'sqlite://'
 
-from models import db, Base, engine, Patient, VitalInfo, Department
+from models import db, Base, engine, Patient, CheckIn, Department
 from server import app
 
 
@@ -36,49 +36,49 @@ class TestPatient(VsmTest):
         self.app.post('/patients', data=json.dumps({"nhi": "123ABC"}))
         assert Patient.query.get('123ABC') is not None
 
-    def test_new_patient_with_vitalinfo(self):
+    def test_new_patient_with_checkin(self):
         self.app.post('/patients',
-                      data=json.dumps({"nhi": "111AAA", "vitalinfo": {"check_in_time": self.now}}))
+                      data=json.dumps({"nhi": "111AAA", "checkin": {"checkin_time": self.now}}))
 
-        assert Patient.query.get('111AAA').vitalinfos
+        assert Patient.query.get('111AAA').checkins
 
     def test_delete_patient(self):
         self.app.delete('/patients/123ABC')
         assert Patient.query.get('123ABC') is None
 
 
-class TestVitalInfo(VsmTest):
+class TestCheckIn(VsmTest):
 
     def setUp(self):
-        super(TestVitalInfo, self).setUp()
+        super(TestCheckIn, self).setUp()
 
         db.add(Patient(nhi="123ABC"))
-        db.add(VitalInfo(patient_nhi="123ABC", check_in_time=self.now))
+        db.add(CheckIn(patient_nhi="123ABC", checkin_time=self.now))
 
         db.commit()
 
-    def test_new_vitalinfo(self):
-        self.app.post('/patients/123ABC/vitalinfos',
-                      data=json.dumps({"check_in_time": self.now}))
+    def test_new_checkin(self):
+        self.app.post('/patients/123ABC/checkins',
+                      data=json.dumps({"checkin_time": self.now}))
 
-        assert len(Patient.query.get('123ABC').vitalinfos) == 2
+        assert len(Patient.query.get('123ABC').checkins) == 2
 
-    def test_update_vitalinfo(self):
-        self.app.post('/patients/123ABC/vitalinfos/1',
+    def test_update_checkin(self):
+        self.app.post('/patients/123ABC/checkins/1',
                       data=json.dumps({"location": "Been updated"}))
 
-        assert VitalInfo.query.get(1).location == "Been updated"
+        assert CheckIn.query.get(1).location == "Been updated"
 
-    def test_delete_vitalinfo(self):
-        self.app.delete('/patients/123ABC/vitalinfos/1')
-        assert VitalInfo.query.get(1) is None
+    def test_delete_checkin(self):
+        self.app.delete('/patients/123ABC/checkins/1')
+        assert CheckIn.query.get(1) is None
 
-    def test_latest_check_in(self):
-        self.app.post('/patients/123ABC/vitalinfos',
-                      data=json.dumps({"check_in_time": self.now}))
+    def test_latest_checkin(self):
+        self.app.post('/patients/123ABC/checkins',
+                      data=json.dumps({"checkin_time": self.now}))
 
         assert Patient.query.get(
-            '123ABC').latest_check_in.isoformat() == self.now
+            '123ABC').latest_checkin_time.isoformat() == self.now
 
 
 class TestDepartment(VsmTest):

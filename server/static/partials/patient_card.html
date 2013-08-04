@@ -1,11 +1,11 @@
 <div class="patient">
-  
+
   <button class="delete-patient pull-right btn btn-danger" ng-show="deletePatient" ng-click="deletePatient($index)"><i class="icon-remove"></i></button>
 
   <div class="row">
       <div class="span12">
           <a href="#/patients/<[ patient.nhi ]>">
-              <h3 class="patient-name"><[patient.latest_vitalinfo.firstname]> <[patient.latest_vitalinfo.lastname]></h3>
+              <h3 class="patient-name"><[patient.latest_checkin.firstname]> <[patient.latest_checkin.lastname]></h3>
           </a>
       </div>
   </div>
@@ -17,22 +17,22 @@
             <dd><[patient.nhi]></dd>
 
             <dt>Occupation</dt>
-            <dd><[patient.latest_vitalinfo.occupation]></dd>
+            <dd><[patient.latest_checkin.occupation]></dd>
 
             <dt>Citizen/Resident</dt>
-            <dd><[patient.latest_vitalinfo.citizen_resident]></dd>
+            <dd><[patient.latest_checkin.citizen_resident]></dd>
 
             <dt>Contact Number</dt>
-            <dd><[patient.latest_vitalinfo.contact_num]></dd>
+            <dd><[patient.latest_checkin.contact_num]></dd>
 
             <dt>Gender</dt>
-            <dd><[patient.latest_vitalinfo.gender]></dd>
+            <dd><[patient.latest_checkin.gender]></dd>
 
             <dt>Date Of Birth</dt>
-            <dd><[patient.latest_vitalinfo.dob]></dd>
+            <dd><[patient.latest_checkin.dob]></dd>
 
             <dt>Last Check In</dt>
-            <dd><[patient.latest_vitalinfo.check_in_time.substring(0,10) + " " + patient.latest_vitalinfo.check_in_time.substring(11,16)]></dd>
+            <dd><[patient.latest_checkin.checkin_time.substring(0,10) + " " + patient.latest_checkin.checkin_time.substring(11,16)]></dd>
           </dl>
       </div>
   </div>

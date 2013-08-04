@@ -25,13 +25,13 @@ myApp.config(function($routeProvider) {
         templateUrl: 'static/partials/patient.html',
         controller:'PatientCtrl'
       })
-      .when('/patients/:nhi/vitalinfos', {
+      .when('/patients/:nhi/checkins', {
         redirectTo: "/patients/:nhi"
       })
-      .when('/patients/:nhi/vitalinfos/:vital_info_id',
+      .when('/patients/:nhi/checkins/:checkin_id',
       {
-        templateUrl: 'static/partials/vital_info.html',
-        controller: 'VitalInfoCtrl'
+        templateUrl: 'static/partials/checkin.html',
+        controller: 'CheckInCtrl'
       })
       .otherwise(
       {
@@ -45,8 +45,8 @@ myApp.factory('Patient', function($resource) {
   return $resource('/patients/:nhi');
 });
 
-myApp.factory('VitalInfo', function($resource) {
-  return $resource('/patients/:nhi/vitalinfos/:vital_info_id');
+myApp.factory('CheckIn', function($resource) {
+  return $resource('/patients/:nhi/checkins/:checkin_id');
 });
 
 myApp.factory('Department', function($resource) {

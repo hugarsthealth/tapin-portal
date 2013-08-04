@@ -16,4 +16,4 @@ app.config.update(
 def shutdown_session(exception=None):
     db.remove()
 
-import server.vsm
+import server.tapin

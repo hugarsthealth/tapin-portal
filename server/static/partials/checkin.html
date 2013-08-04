@@ -1,0 +1,126 @@
+<div class="checkin" ng-controller="CheckInCtrl">
+
+	<div class="row checkin-details">
+		<button class="edit-checkin pull-right btn btn-primary" ng-click="editCheckIn()" ng-hide="currentlyEditing"><i class="icon-edit"></i> Edit</button>
+		<div class="span12">
+			<h1><[ checkin.firstname + " " + checkin.lastname ]></h1>
+			<dl class="dl-horizontal">
+				<dt>Gender</dt><dd><[checkin.gender]></dd>
+				<dt>Date Of Birth</dt><dd><[checkin.dob]></dd>
+				<dt>NHI</dt><dd><[patient.nhi]></dd>
+				<dt>Occupation</dt><dd ng-show="currentlyEditing"><input type="text" ng-model="checkin.occupation" /></dd><dd ng-hide="currentlyEditing"><[checkin.occupation]></dd>
+
+				<dt>Citizen/Resident</dt>
+				<dd ng-show="currentlyEditing"><input ng-model="checkin.citizen_resident" type="checkbox"></input></dd>
+				<dd ng-hide="currentlyEditing" ><[checkin.citizen_resident]></dd>
+
+				<dt>Contact Number</dt><dd ng-show="currentlyEditing"><input type="tel" ng-model="checkin.contact_num" /></dd><dd ng-hide="currentlyEditing"><[checkin.contact_num]></dd>
+
+			</dl>
+		</div>
+	</div>
+
+	<hr>
+
+	<div class="row">
+		<div class="span12 checkin">
+			<dl class="dl-horizontal">
+				<dt>Check In Time</dt><dd><[ checkin.checkin_time.substring(0,10) + " " + checkin.checkin_time.substring(11,16)]></dd>
+
+				<dt>Location</dt><dd><[checkin.location]></dd>
+
+				<dt>Height</dt><dd ng-show="currentlyEditing" ><input type="number" ng-model="checkin.height_value" /></dd><dd ng-hide="currentlyEditing"><[checkin.height_value]> <[checkin.height_unit]></dd>
+
+				<dt>Weight</dt><dd ng-show="currentlyEditing" ><input type="number" type="text" ng-model="checkin.weight_value"/></dd><dd ng-hide="currentlyEditing"><[checkin.weight_value]> <[checkin.weight_unit]></dd>
+
+				<dt>Blood Type</dt><dd ng-show="currentlyEditing"><input type="text" ng-model="checkin.blood_type"/></dd><dd ng-hide="currentlyEditing" ><[checkin.blood_type]></dd>
+
+				<dt>Drinker</dt>
+				<dd ng-show="currentlyEditing"><input ng-model="checkin.drinker" type="checkbox"></input></dd>
+				<dd ng-hide="currentlyEditing"><[checkin.drinker]></dd>
+
+				<dt>Smoker</dt>
+				<dd ng-show="currentlyEditing"><input ng-model="checkin.smoker" type="checkbox"></input></dd>
+				<dd ng-hide="currentlyEditing"><[checkin.smoker]></dd>
+
+				<dt>Medical Conditions</dt>
+				<dd ng-show="currentlyEditing" >
+					<ul >
+						<li ng-repeat="medical_condition in checkin.medical_conditions">
+							<input type="text" ui-event="{ blur : 'saveChangeIntoList(medical_condition)', focus : 'prepareChangeIntoList(medical_condition, checkin.medical_conditions)' }" class="edit-input" ng-model="medical_condition"/> <i class="icon-remove" ng-click="deleteFromList(medical_condition, checkin.medical_conditions)"></i>
+						</li>
+						<li class="list-add" ng-click="addToList(checkin.medical_conditions)">
+							<i class="icon-plus"></i> Click here to add a new medical condition
+						</li>
+					</ul>
+				</dd>
+				<dd ng-hide="currentlyEditing">
+					<ul>
+						<li ng-repeat="medical_condition in checkin.medical_conditions"> <[medical_condition]> </li>
+					</ul>
+				</dd>
+
+				<dt>Allergies</dt>
+				<dd ng-show="currentlyEditing" >
+					<ul >
+						<li ng-repeat="allergy in checkin.allergies">
+							<input type="text" ui-event="{ blur : 'saveChangeIntoList(allergy)', focus : 'prepareChangeIntoList(allergy, checkin.allergies)' }" class="edit-input" ng-model="allergy"> <i class="icon-remove" ng-click="deleteFromList(allergy, checkin.allergies)"></i>
+						</li>
+						<li class="list-add" ng-click="addToList(checkin.allergies)">
+							<i class="icon-plus"></i> Click here to add a new allergy
+						</li>
+					</ul>
+				</dd>
+				<dd ng-hide="currentlyEditing">
+					<ul>
+						<li ng-repeat="allergy in checkin.allergies"> <[allergy]> </li>
+					</ul>
+				</dd>
+
+				<div ng-show="checkin.overseas_recently">
+				<dt>Overseas Destinations</dt>
+				<dd ng-show="currentlyEditing" >
+					<ul >
+						<li ng-repeat="overseas_dest in checkin.overseas_dests">
+							<input type="text" ui-event="{ blur : 'saveChangeIntoList(overseas_dest)', focus : 'prepareChangeIntoList(overseas_dest, checkin.overseas_dests)' }" class="edit-input" ng-model="overseas_dest"/> <i class="icon-remove" ng-click="deleteFromList(overseas_dest, checkin.overseas_dests)"></i>
+						</li>
+						<li class="list-add" ng-click="addToList(checkin.overseas_dests)">
+							<i class="icon-plus"></i> Click here to add a new overseas destination
+						</li>
+					</ul>
+				</dd>
+				<dd ng-hide="currentlyEditing" >
+					<ul>
+						<li ng-repeat="overseas_dest in checkin.overseas_dests"> <[overseas_dest]> </li>
+					</ul>
+				</dd>
+				</div>
+
+				<dt>Family History</dt>
+				<dd ng-show="currentlyEditing">
+					<ul >
+						<li ng-repeat="family_hist in checkin.family_hist">
+							<input type="text" ui-event="{ blur : 'saveChangeIntoList(family_hist)', focus : 'prepareChangeIntoList(family_hist, checkin.family_hist)' }" class="edit-input" ng-model="family_hist"/> <i class="icon-remove" ng-click="deleteFromList(family_hist, checkin.family_hist)"></i>
+						</li>
+						<li class="list-add" ng-click="addToList(checkin.family_hist)">
+							<i class="icon-plus"></i> Click here to add a new family history
+						</li>
+					</ul>
+				</dd>
+				<dd ng-hide="currentlyEditing" >
+					<ul>
+						<li ng-repeat="family_hist in checkin.family_hist"> <[family_hist]> </li>
+					</ul>
+				</dd>
+			</dl>
+	  	</div>
+  	</div>
+  	<div class="row">
+  		<div class="span10 offset2">
+  			<div class="edit-controls">
+	  			<button ng-show="currentlyEditing" ng-click="saveChanges()" class="save-changes btn btn-success">Save changes <i class="icon-ok"></i></button>
+	  			<button ng-show="currentlyEditing" ng-click="cancelEditing()" class="cancel-editing btn btn-danger">Cancel <i class="icon-remove"></i></button>
+	  		</div>
+  		</div>
+  	</div>
+</div>

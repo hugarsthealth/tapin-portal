@@ -14,15 +14,15 @@ Base.query = db.query_property()
 
 from models.associations import patient_department_table
 from models.patient import Patient
-from models.vitalinfo import VitalInfo
+from models.checkin import CheckIn
 from models.department import Department
 
 
-def init_db(num_patients=100, min_vital_infos=2, max_vital_infos=10):
+def init_db(num_patients=100, min_checkins=2, max_checkins=10):
     from models.sampledata import populate_database
 
     Base.metadata.create_all(bind=engine)
-    populate_database(num_patients, min_vital_infos, max_vital_infos)
+    populate_database(num_patients, min_checkins, max_checkins)
 
 
 def drop_db():
