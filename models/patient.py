@@ -8,14 +8,14 @@ class Patient(Base):
     """
     The Patient class is a database backed model representing a patient that has
     checked in to the hospital. A patient has a one-to-many relationship with
-    vitalinfos, each vitalinfo representing a different and potentially
-    unrelated check in.
+    check ins, each check in representing a different and potentially
+    unrelated visit to the hospital.
 
     """
 
     __tablename__ = 'patient'
     nhi = Column(String(10), primary_key=True)
-    latest_check_in = Column(DateTime)
+    latest_checkin_time = Column(DateTime)
 
     departments = relationship(
         "Department",
@@ -23,11 +23,11 @@ class Patient(Base):
         backref="patients"
     )
 
-    vitalinfos = relationship(
-        "VitalInfo",
+    checkins = relationship(
+        "CheckIn",
         backref="patient",
         cascade="delete",
-        order_by="desc(VitalInfo.check_in_time)"
+        order_by="desc(CheckIn.checkin_time)"
     )
 
     def __init__(self, **kwargs):
@@ -37,8 +37,8 @@ class Patient(Base):
         return {
             "nhi": self.nhi,
             "departments": [d.serialize() for d in self.departments],
-            "latest_check_in": self.latest_check_in.isoformat() if self.latest_check_in else None,
-            "latest_vitalinfo": self.vitalinfos[0].serialize() if self.vitalinfos else None
+            "latest_checkin": self.checkins[0].serialize() if self.checkins else None,
+            "latest_checkin_time": self.latest_checkin_time.isoformat() if self.latest_checkin_time else None
         }
 
     def deserialize(self, data):

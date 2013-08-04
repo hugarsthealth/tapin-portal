@@ -10,7 +10,7 @@
 			<form class="form-inline">
 				<label>Sort check-ins by: </label>
 				<select ng-model="sortBy" ng-change="sortByChange()">
-					<option value="check_in_time">Date</option>
+					<option value="checkin_time">Date</option>
 					<option value="location">Location</option>
 				</select>
 			</form>
@@ -28,13 +28,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="vitalinfo in vitalinfos | orderBy:sortBy:reverseCheckIns">
-						<td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>">
-								<[ vitalinfo.check_in_time.substring(0,10) ]></a></td>
-						<td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>">
-								<[ vitalinfo.check_in_time.substring(11,16) ]></a></td>
-						<td><a href="#/patients/<[ patient.nhi ]>/vitalinfos/<[ vitalinfo.vital_info_id]>">
-								<[ vitalinfo.location ]></a></td>
+					<tr ng-repeat="checkin in checkins | orderBy:sortBy:reverseCheckIns">
+						<td><a href="#/patients/<[ patient.nhi ]>/checkins/<[ checkin.checkin_id]>">
+								<[ checkin.checkin_time.substring(0,10) ]></a></td>
+						<td><a href="#/patients/<[ patient.nhi ]>/checkins/<[ checkin.checkin_id]>">
+								<[ checkin.checkin_time.substring(11,16) ]></a></td>
+						<td><a href="#/patients/<[ patient.nhi ]>/checkins/<[ checkin.checkin_id]>">
+								<[ checkin.location ]></a></td>
 					</tr>
 				</tbody>
 			</table>

@@ -4,7 +4,7 @@ from flask import request, redirect, url_for, jsonify, render_template, make_res
 from sqlalchemy import desc
 
 from server import app
-from models import db, Patient, VitalInfo, Department
+from models import db, Patient, CheckIn, Department
 
 
 @app.route('/')
@@ -49,7 +49,7 @@ def patients():
 
         return make_response((json.dumps([
             p.serialize() for p in query
-            .order_by(desc(Patient.latest_check_in))
+            .order_by(desc(Patient.latest_checkin_time))
             .offset(offset)
             .limit(limit)
             .all()
@@ -69,8 +69,8 @@ def patients():
 
         db.commit()
 
-        if 'vitalinfo' in patient_data:
-            add_vital_info(patient.nhi, patient_data['vitalinfo'])
+        if 'checkin' in patient_data:
+            add_checkin(patient.nhi, patient_data['checkin'])
 
         return jsonify(patient.serialize())
 
@@ -93,60 +93,60 @@ def patient(nhi):
         return make_response("Deleted patient: {}".format(nhi), 200)
 
 
-@app.route('/patients/<nhi>/vitalinfos', methods=['GET', 'POST'])
-def vital_infos(nhi):
+@app.route('/patients/<nhi>/checkins', methods=['GET', 'POST'])
+def checkins(nhi):
     if request.method == "GET":
         offset = int(request.args.get('offset', 0))
         limit = int(request.args.get('limit', 100))
 
         return make_response((json.dumps([
-            v.serialize() for v in VitalInfo.query
+            v.serialize() for v in CheckIn.query
             .filter_by(patient_nhi=nhi)
-            .order_by(desc(VitalInfo.check_in_time))
+            .order_by(desc(CheckIn.checkin_time))
             .offset(offset)
             .limit(limit)
         ]), 200, {"Content-Type": "application/json"}))
 
     elif request.method == "POST":
-        return jsonify(add_vital_info(nhi, json.loads(request.data)).serialize())
+        return jsonify(add_checkin(nhi, json.loads(request.data)).serialize())
 
 
-@app.route('/patients/<nhi>/vitalinfos/<int:vital_info_id>', methods=['GET', 'POST', 'DELETE'])
-def vital_info(nhi, vital_info_id):
-    vitalinfo = VitalInfo.query.filter_by(
-        patient_nhi=nhi, vital_info_id=vital_info_id).first()
+@app.route('/patients/<nhi>/checkins/<int:checkin_id>', methods=['GET', 'POST', 'DELETE'])
+def checkin(nhi, checkin_id):
+    checkin = CheckIn.query.filter_by(
+        patient_nhi=nhi, checkin_id=checkin_id).first()
 
-    if not vitalinfo:
-        return make_response("No vitalinfo for patient {} with id {}".format(nhi, vital_info_id))
+    if not checkin:
+        return make_response("No checkin for patient {} with id {}".format(nhi, checkin_id))
 
     elif request.method == "GET":
-        return jsonify(vitalinfo.serialize())
+        return jsonify(checkin.serialize())
 
     elif request.method == "POST":
-        vitalinfo_data = json.loads(request.data)
-        vitalinfo = VitalInfo(**vitalinfo_data)
-        vitalinfo.vital_info_id = vital_info_id
-        vitalinfo = db.merge(vitalinfo)
+        checkin_data = json.loads(request.data)
+        checkin = CheckIn(**checkin_data)
+        checkin.checkin_id = checkin_id
+        checkin = db.merge(checkin)
         db.commit()
 
-        return jsonify(vitalinfo.serialize())
+        return jsonify(checkin.serialize())
 
     elif request.method == "DELETE":
-        db.delete(vitalinfo)
+        db.delete(checkin)
         db.commit()
 
-        return make_response("Deleted vitalinfo: {} from patient: {}".format(vital_info_id, nhi), 200)
+        return make_response("Deleted checkin: {} from patient: {}".format(checkin_id, nhi), 200)
 
 
-def add_vital_info(nhi, data):
-    v = VitalInfo(**data)
-    v.patient_nhi = nhi
+def add_checkin(nhi, data):
+    c = CheckIn(**data)
+    c.patient_nhi = nhi
 
-    db.add(v)
+    db.add(c)
     db.commit()
 
-    if v.patient.latest_check_in is None or v.check_in_time > v.patient.latest_check_in:
-        v.patient.latest_check_in = v.check_in_time
+    if c.patient.latest_checkin_time is None or c.checkin_time > c.patient.latest_checkin_time:
+        c.patient.latest_checkin_time = c.checkin_time
 
     db.commit()
-    return v
+    return c

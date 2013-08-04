@@ -5,17 +5,17 @@ from sqlalchemy import ForeignKey, Column, Integer, String, DateTime, Date, Floa
 from models import Base
 
 
-class VitalInfo(Base):
+class CheckIn(Base):
     """
-    The VitalInfo class is a database backed model representing a Patient's
+    The CheckIn class is a database backed model representing a Patient's
     vital information at the time of a check in. It contains data which would
     normally be entered on the form used to check in to a hospital.
 
     """
 
-    __tablename__ = 'vital_info'
-    vital_info_id = Column(Integer, primary_key=True)
-    check_in_time = Column(DateTime)
+    __tablename__ = 'checkin'
+    checkin_id = Column(Integer, primary_key=True)
+    checkin_time = Column(DateTime)
     patient_nhi = Column(String(10), ForeignKey("patient.nhi"))
     firstname = Column(String(250))
     lastname = Column(String(250))
@@ -43,8 +43,8 @@ class VitalInfo(Base):
 
     def serialize(self):
         return {
-            "vital_info_id": self.vital_info_id,
-            "check_in_time": self.check_in_time.isoformat() if self.check_in_time else None,
+            "checkin_id": self.checkin_id,
+            "checkin_time": self.checkin_time.isoformat() if self.checkin_time else None,
             "patient_nhi": self.patient_nhi,
             "firstname": self.firstname,
             "lastname": self.lastname,
@@ -70,10 +70,10 @@ class VitalInfo(Base):
 
     def deserialize(self, data):
         """
-        Populate a VitalInfo object with data from a dictionary
+        Populate a CheckIn object with data from a dictionary
 
         Arguments:
-        data -- a dictionary containing data to put on the VitalInfo.
+        data -- a dictionary containing data to put on the CheckIn.
 
         """
         for key in data:
@@ -85,7 +85,7 @@ class VitalInfo(Base):
                 setattr(self, key, ';'.join(data[key]))
                 continue
 
-            if key in ['check_in_time'] and (isinstance(data[key], unicode) or isinstance(data[key], str)):
+            if key in ['checkin_time'] and (isinstance(data[key], unicode) or isinstance(data[key], str)):
                 # If check in time is given as a string, parse into a datetime
                 setattr(self, key, datetime.strptime(
                     data[key], "%Y-%m-%dT%H:%M:%S.%f"))
@@ -100,4 +100,4 @@ class VitalInfo(Base):
             setattr(self, key, data[key])
 
     def __repr__(self):
-        return '<VitalInfo (id: {}, patient: {}, time: {})>'.format(self.vital_info_id, self.patient_nhi, self.check_in_time)
+        return '<CheckIn (id: {}, patient: {}, time: {})>'.format(self.checkin_id, self.patient_nhi, self.checkin_time)

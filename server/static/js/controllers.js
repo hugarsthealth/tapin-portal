@@ -16,8 +16,8 @@ function LoginCtrl ($scope, $cookies, $location, $route, Department) {
   }
 }
 
-// controls the display and editing of a vital info
-function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patient, VitalInfo) {
+// controls the display and editing of a check in
+function CheckInCtrl ($scope, $routeParams, $cookies, $location, $route, Patient, CheckIn) {
   if (!('department' in $cookies)) {
     $location.path('/');
   }
@@ -25,28 +25,28 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
   $scope.editingList = null;
   $scope.editingPos = null;
 
-  $scope.editVitalInfo = function () {
+  $scope.editCheckIn = function () {
     $scope.currentlyEditing = true;
   };
 
   $scope.saveChanges = function () {
     // Need all these checks to delete empty fields from the list
-    if ($scope.vitalinfo.overseas_dests[$scope.vitalinfo.overseas_dests.length-1] === "") {
-      $scope.vitalinfo.overseas_dests.splice($scope.vitalinfo.overseas_dests.length-1,1);
+    if ($scope.checkin.overseas_dests[$scope.checkin.overseas_dests.length-1] === "") {
+      $scope.checkin.overseas_dests.splice($scope.checkin.overseas_dests.length-1,1);
     }
-    if ($scope.vitalinfo.allergies[$scope.vitalinfo.allergies.length-1] === "") {
-      $scope.vitalinfo.allergies.splice($scope.vitalinfo.allergies.length-1,1);
+    if ($scope.checkin.allergies[$scope.checkin.allergies.length-1] === "") {
+      $scope.checkin.allergies.splice($scope.checkin.allergies.length-1,1);
     }
-    if ($scope.vitalinfo.medical_conditions[$scope.vitalinfo.medical_conditions.length-1] === "") {
-      $scope.vitalinfo.medical_conditions.splice($scope.vitalinfo.medical_conditions.length-1,1);
+    if ($scope.checkin.medical_conditions[$scope.checkin.medical_conditions.length-1] === "") {
+      $scope.checkin.medical_conditions.splice($scope.checkin.medical_conditions.length-1,1);
     }
-    if ($scope.vitalinfo.family_hist[$scope.vitalinfo.family_hist.length-1] === "") {
-      $scope.vitalinfo.family_hist.splice($scope.vitalinfo.family_hist.length-1,1);
+    if ($scope.checkin.family_hist[$scope.checkin.family_hist.length-1] === "") {
+      $scope.checkin.family_hist.splice($scope.checkin.family_hist.length-1,1);
     }
 
     // Gotta save that stuff
     $scope.currentlyEditing = false;
-    $scope.vitalinfo.$save({"nhi": $routeParams.nhi, "vital_info_id": $routeParams.vital_info_id},
+    $scope.checkin.$save({"nhi": $routeParams.nhi, "checkin_id": $routeParams.checkin_id},
       function() {
         toastr.success("Saved changes");
         $route.reload();
@@ -91,20 +91,20 @@ function VitalInfoCtrl ($scope, $routeParams, $cookies, $location, $route, Patie
   };
 
   $scope.patient = Patient.get({"nhi": $routeParams.nhi});
-  $scope.vitalinfo = VitalInfo.get({"nhi": $routeParams.nhi, "vital_info_id": $routeParams.vital_info_id});
+  $scope.checkin = CheckIn.get({"nhi": $routeParams.nhi, "checkin_id": $routeParams.checkin_id});
 }
 
 // Controller for viewing a single patient
-function PatientCtrl($scope, $routeParams, $cookies, $location, Patient, VitalInfo) {
+function PatientCtrl($scope, $routeParams, $cookies, $location, Patient, CheckIn) {
   if (!('department' in $cookies)) {
     $location.path('/');
   }
 
   $scope.patient = Patient.get({"nhi": $routeParams.nhi});
-  $scope.vitalinfos = VitalInfo.query({"nhi": $routeParams.nhi});
+  $scope.checkins = CheckIn.query({"nhi": $routeParams.nhi});
 
   $scope.deletePatient = function(index) {
-    if(!confirm("Are you sure you wish to delete " + $scope.patient.latest_vitalinfo.firstname + " " + $scope.patient.latest_vitalinfo.lastname + "?"))
+    if(!confirm("Are you sure you wish to delete " + $scope.patient.latest_checkin.firstname + " " + $scope.patient.latest_checkin.lastname + "?"))
       return;
 
     $scope.patient.$delete({"nhi": $scope.patient.nhi},
@@ -118,14 +118,14 @@ function PatientCtrl($scope, $routeParams, $cookies, $location, Patient, VitalIn
   };
 
   $scope.sortByChange = function() {
-    if ($scope.sortBy === "check_in_time") {
+    if ($scope.sortBy === "latest_checkin_time") {
       $scope.reverseCheckIns = true;
     }  else {
       $scope.reverseCheckIns = false;
     }
   };
 
-  $scope.sortBy = "check_in_time";
+  $scope.sortBy = "latest_checkin_time";
   $scope.reverseCheckIns = true;
 }
 
@@ -138,7 +138,7 @@ function PatientListCtrl($scope, $cookies, $location, Patient){
   $scope.deletePatient = function(index) {
     var deleted = $scope.patients.splice(index, 1)[0];
 
-    if(!confirm("Are you sure you wish to delete " + deleted.latest_vitalinfo.firstname + " " + deleted.latest_vitalinfo.lastname + "?")) {
+    if(!confirm("Are you sure you wish to delete " + deleted.latest_checkin.firstname + " " + deleted.latest_checkin.lastname + "?")) {
       $scope.patients.splice(index, 0, deleted);
       return;
     }
@@ -155,7 +155,7 @@ function PatientListCtrl($scope, $cookies, $location, Patient){
 
   $scope.patients = Patient.query({}, function(patients) {
     patients.forEach(function(p) {
-      p.fullname = p.latest_vitalinfo.firstname + " " + p.latest_vitalinfo.lastname;
+      p.fullname = p.latest_checkin.firstname + " " + p.latest_checkin.lastname;
     });
   });
 

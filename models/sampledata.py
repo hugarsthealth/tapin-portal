@@ -4,7 +4,7 @@ from random import choice, randrange, getrandbits, randint
 from datetime import datetime, timedelta
 import string
 
-from models import db, Patient, VitalInfo, Department
+from models import db, Patient, CheckIn, Department
 
 with open('models/dictionary.txt') as f:
     words = [word.strip() for word in f.read().split('\n')]
@@ -52,8 +52,8 @@ def generate_patient():
     }
 
 
-def generate_vital_info():
-    check_in_time = rand_date()
+def generate_checkin():
+    checkin_time = rand_date()
     firstname = rand_name()
     lastname = rand_name()
     occupation = rand_name()
@@ -76,7 +76,7 @@ def generate_vital_info():
     location = rand_name()
 
     return {
-        'check_in_time': check_in_time,
+        'checkin_time': checkin_time,
         'firstname': firstname,
         'lastname': lastname,
         'occupation': occupation,
@@ -100,15 +100,15 @@ def generate_vital_info():
     }
 
 
-def populate_database(num_patients, min_vital_infos, max_vital_infos):
+def populate_database(num_patients, min_checkins, max_checkins):
     """
-    Generates a number of Patients and a number of VitalInfos per patient and
+    Generates a number of Patients and a number of CheckIns per patient and
     stores them in the database.
 
     Arguments
     num_patients    -- the number of patients to generate
-    min_vital_infos -- the minimum number of VitalInfos to generate per Patient
-    max_vital_infos -- the maximum number of VitalInfos to generate per Patient
+    min_checkins -- the minimum number of CheckIns to generate per Patient
+    max_checkins -- the maximum number of CheckIns to generate per Patient
 
     """
     departments = [
@@ -128,15 +128,15 @@ def populate_database(num_patients, min_vital_infos, max_vital_infos):
         db.add(patient)
         db.commit()
 
-        for j in xrange(randrange(min_vital_infos, max_vital_infos)):
-            vitalinfo = VitalInfo(**generate_vital_info())
-            vitalinfo.patient_nhi = patient.nhi
+        for j in xrange(randrange(min_checkins, max_checkins)):
+            checkin = CheckIn(**generate_checkin())
+            checkin.patient_nhi = patient.nhi
 
-            lci = patient.latest_check_in
-            vid = vitalinfo.check_in_time
+            lci = patient.latest_checkin_time
+            vid = checkin.checkin_time
 
             lci = vid if lci is None or vid > lci else lci
-            patient.latest_check_in = lci
+            patient.latest_checkin_time = lci
 
-            db.add(vitalinfo)
+            db.add(checkin)
             db.commit()

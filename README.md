@@ -16,7 +16,7 @@
 5. Run `python` in shell and then:
 ```python
 >>> import models
->>> models.init_db([num_patients [, min_vital_infos [, max_vital_infos]]]):
+>>> models.init_db([num_patients [, min_checkins [, max_checkins]]]):
 ```
 
 6. Run the app:

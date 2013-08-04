@@ -33,44 +33,44 @@ select {
   height: 24px;
 }
 
-.vitalinfo {
+.checkin {
   margin-bottom: 20px;
 }
 
-.vitalinfo ul {
+.checkin ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.vitalinfo h1 {
+.checkin h1 {
   margin-bottom: 30px;
 }
 
-.vitalinfo hr {
+.checkin hr {
   margin: 20px 0;
   padding: 0;
 }
 
-.vitalinfo dl {
+.checkin dl {
   margin-bottom: 0;
 }
 
-.vitalinfo dd {
+.checkin dd {
   padding-bottom: 15px;
 }
 
-.vitalinfo i[class="icon-remove"] {
+.checkin i[class="icon-remove"] {
   cursor: pointer;
   margin-bottom: 5px;
 }
 
-.vitalinfo input {
+.checkin input {
   padding: 5px;
   margin-bottom: 5px;
 }
 
-.vitalinfo input/*[type="checkbox"] {
+.checkin input/*[type="checkbox"] {
   margin: 0;
 }*/
 
@@ -139,11 +139,11 @@ legend {
   opacity:1;
 }
 
-.vitalinfo-details {
+.checkin-details {
   position: relative;
 }
 
-.edit-vitalinfo {
+.edit-checkin {
   position: absolute;
   top: 15px;
   right: 0;
