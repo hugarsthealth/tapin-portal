@@ -1,10 +1,10 @@
-# Vital Stats Manager - Server
+# Tap In Portal
 
 ## Development
 1. Clone the repo:
-`git clone https://github.com/jcgharvey/vsm-svr.git/`
+`git clone https://github.com/hugarsthealth/tapin-portal.git/`
 
-2. Create a virtualenv inside the project folder (vsm-svr):
+2. Create a virtualenv inside the project folder (tapin-portal):
 `virtualenv venv`
 
 3. Activate virtualenv:

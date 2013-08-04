@@ -16,20 +16,20 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
 
     <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/toastr.min.js') }}"></script>
-    
+
     <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/angular.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/angular-cookies.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/angular-resource.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/angular-ui-utils.js') }}"></script>
 
-    <title>Vital Stats Manager</title>
+    <title>Orion Tap In</title>
 </head>
 
 <body>
 	<div class="navbar navbar-fixed-top" ng-controller="NavBarCtrl  ">
     <div class="navbar-inner">
       <div class="container">
-        <a class="brand" href="#"><i class="icon-hospital"></i> Vital Stats Manager</a>
+        <a class="brand" href="#"><i class="icon-hospital"></i> Orion Tap In</a>
         <ul  ng-show="logged_in" class="department-controls nav pull-right">
           <li>
             <p class="navbar-text">Viewing patients from <[department]></p>
