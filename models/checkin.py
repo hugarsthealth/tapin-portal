@@ -28,7 +28,7 @@ class CheckIn(Base):
     weight_unit = Column(String(50))
     height_value = Column(Float)
     height_unit = Column(String(50))
-    blood_type = Column(String(5))
+    blood_type = Column(String(50))
     smoker = Column(Boolean)
     drinker = Column(Boolean)
     family_hist = Column(String(2500))
@@ -36,7 +36,7 @@ class CheckIn(Base):
     overseas_dests = Column(String(2500))
     medical_conditions = Column(String(2500))
     allergies = Column(String(2500))
-    location = Column(String(50))
+    location = Column(String(2500))
 
     def __init__(self, **kwargs):
         self.deserialize(kwargs)

@@ -17,8 +17,8 @@ class Appointment(Base):
     appointment_id = Column(Integer, primary_key=True)
     time = Column(DateTime)
     patient_nhi = Column(String(10), ForeignKey("patient.nhi"))
-    reason = Column(String(250))
-    location = Column(String(50))
+    reason = Column(String(2500))
+    location = Column(String(2500))
 
     def __init__(self, **kwargs):
         self.deserialize(kwargs)
