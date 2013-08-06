@@ -139,7 +139,7 @@ def checkin(nhi, checkin_id):
 
 
 @app.route('/patients/<nhi>/appointments', methods=['GET', 'POST'])
-def appointments(nhi):
+def patient_appointments(nhi):
     if request.method == "GET":
         offset = int(request.args.get('offset', 0))
         limit = int(request.args.get('limit', 100))
@@ -160,7 +160,7 @@ def appointments(nhi):
 
 
 @app.route('/patients/<nhi>/appointments/<int:appointment_id>', methods=['GET', 'POST', 'DELETE'])
-def checkin(nhi, appointment_id):
+def patient_appointment(nhi, appointment_id):
     appointment = Appointment.query.filter_by(
         patient_nhi=nhi, appointment_id=appointment_id).first()
 
