@@ -186,6 +186,18 @@ def patient_appointment(nhi, appointment_id):
         return make_response("Deleted appointment: {} from patient: {}".format(appointment_id, nhi), 200)
 
 
+@app.route('/appointments', methods=['GET'])
+def appointments():
+    return make_response((json.dumps([
+        d.serialize() for d in Appointment.query.all()
+    ]), 200, {"Content-Type": "application/json"}))
+
+
+@app.route('/appointments/<int:appointment_id>', methods=['GET'])
+def appointment(appointment_id):
+    return jsonify(Appointment.query.get(appointment_id).serialize())
+
+
 def add_checkin(nhi, data):
     c = CheckIn(**data)
     c.patient_nhi = nhi

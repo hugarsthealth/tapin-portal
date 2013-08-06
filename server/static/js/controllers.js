@@ -153,6 +153,20 @@ function PatientListCtrl($scope, $cookies, $location, Patient){
       });
   };
 
+  $scope.expandedPatients = [];
+
+  $scope.expandPatient = function(nhi) {
+    $scope.expandedPatients.push(nhi);
+  };
+
+  $scope.retractPatient = function(nhi) {
+    var patientIndex = $scope.expandedPatients.indexOf(nhi);
+
+    if (patientIndex > -1) {
+      $scope.expandedPatients.splice(patientIndex, 1);
+    }
+  };
+
   $scope.patients = Patient.query({}, function(patients) {
     patients.forEach(function(p) {
       p.fullname = p.latest_checkin.firstname + " " + p.latest_checkin.lastname;

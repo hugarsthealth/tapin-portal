@@ -6,31 +6,38 @@ select {
   margin-top: 7px;
 }
 
-.patient {
+.recent-patient-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.patient-card {
   box-sizing: border-box;
-  margin-bottom: 20px;
-  padding: 0 15px 15px 15px;
-  border: 1px solid silver;
-  box-shadow: 0 1px 2px silver;
+  padding: 5px;
+  margin-bottom: 10px;
   background: ghostwhite;
   position: relative;
+  box-shadow: 0 0 5px slategray;
+  /*border-radius: 3px;*/
+  height: 100%;
+}
+
+.patient-name {
+  display: inline-block;
+}
+
+.patient-nhi {
+  text-transform: uppercase;
+}
+
+.patient-action {
+  padding: 5px 10px;
+  margin-right: 5px;
 }
 
 .patient-heading {
   margin-top: 0;
-}
-
-.patient dl {
-  margin-bottom: 0;
-}
-
-.patient dt {
-  height: 24px;
-  text-align: left;
-}
-
-.patient dd {
-  height: 24px;
 }
 
 .checkin {
@@ -78,13 +85,6 @@ select {
   margin: 0 6px;
 }
 
-.delete-patient {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  padding: 5px 10px;
-}
-
 .breadcrumb .active a {
   text-decoration: none;
   color: gray;
@@ -113,7 +113,6 @@ legend {
   transition: 0.2s linear all;
   position:relative;
 }
-
 .custom-enter {
   left:-10px;
   opacity:0;
@@ -122,7 +121,6 @@ legend {
   left:0;
   opacity:1;
 }
-
 .custom-leave {
   left:0;
   opacity:1;
@@ -131,13 +129,62 @@ legend {
   left:-1000px;
   opacity:0;
 }
-
 .custom-move {
   opacity:0.5;
 }
 .custom-move.custom-move-active {
   opacity:1;
 }
+
+.slide-hide, .slide-show {
+    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+    -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+    -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+}
+.slide-hide {
+    position: relative;
+    top: 0;
+}
+.slide-hide.slide-hide-active {
+    position: absolute;
+    top: -100px;
+}
+.slide-show {
+    position: absolute;
+    top: 100px;
+}
+.slide-show.slide-show-active {
+    position: relative;
+    top: 0px;
+}
+
+.fade-hide {
+    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s;
+    -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s;
+    -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s;
+}
+
+.fade-show {
+    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+.fade-hide {
+    opacity:1;
+}
+.fade-hide.fade-hide-active {
+    opacity:0;
+}
+.fade-show {
+    opacity:0;
+}
+.fade-show.fade-show-active {
+    opacity:1;
+}
+
 
 .checkin-details {
   position: relative;

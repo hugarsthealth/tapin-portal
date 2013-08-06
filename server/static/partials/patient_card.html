@@ -1,39 +1,24 @@
-<div class="patient">
+<div class="patient-card">
 
-  <button class="delete-patient pull-right btn btn-danger" ng-show="deletePatient" ng-click="deletePatient($index)"><i class="icon-remove"></i></button>
+  <button class="patient-action btn btn-danger" ng-show="deletePatient" ng-click="deletePatient($index)">
+    <i class="icon-remove"></i>
+  </button>
 
-  <div class="row">
-      <div class="span12">
-          <a href="#/patients/<[ patient.nhi ]>">
-              <h3 class="patient-name"><[patient.latest_checkin.firstname]> <[patient.latest_checkin.lastname]></h3>
-          </a>
-      </div>
+  <button class="patient-action btn btn-info" ng-show="expandedPatients.indexOf(patient.nhi) === -1" ng-click="expandPatient(patient.nhi)" ng-animate="'fade'">
+    <i class="icon-chevron-down"></i>
+  </button>
+
+  <button class="patient-action btn btn-info" ng-show="expandedPatients.indexOf(patient.nhi) != -1" ng-click="retractPatient(patient.nhi)" ng-animate="'fade'">
+    <i class="icon-chevron-up"></i>
+  </button>
+
+  <a class="patient-summary" href="#/patients/<[ patient.nhi ]>">
+      <span class="patient-name"><[patient.latest_checkin.firstname]> <[patient.latest_checkin.lastname]></span>
+      <span class="patient-nhi">(<[patient.nhi]>)</span>
+  </a>
+
+  <div ng-show="expandedPatients.indexOf(patient.nhi) != -1" ng-animate="'fade'">
+    hello
   </div>
 
-  <div class="row">
-      <div class="span12">
-          <dl class="dl-horizontal">
-            <dt>NHI</dt>
-            <dd><[patient.nhi]></dd>
-
-            <dt>Occupation</dt>
-            <dd><[patient.latest_checkin.occupation]></dd>
-
-            <dt>Citizen/Resident</dt>
-            <dd><[patient.latest_checkin.citizen_resident]></dd>
-
-            <dt>Contact Number</dt>
-            <dd><[patient.latest_checkin.contact_num]></dd>
-
-            <dt>Gender</dt>
-            <dd><[patient.latest_checkin.gender]></dd>
-
-            <dt>Date Of Birth</dt>
-            <dd><[patient.latest_checkin.dob]></dd>
-
-            <dt>Last Check In</dt>
-            <dd><[patient.latest_checkin.checkin_time.substring(0,10) + " " + patient.latest_checkin.checkin_time.substring(11,16)]></dd>
-          </dl>
-      </div>
-  </div>
 </div>
