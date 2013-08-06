@@ -4,7 +4,7 @@ from flask import request, redirect, url_for, jsonify, render_template, make_res
 from sqlalchemy import desc
 
 from server import app
-from models import db, Patient, CheckIn, Department
+from models import db, Patient, CheckIn, Department, Appointment
 
 
 @app.route('/')
@@ -136,6 +136,54 @@ def checkin(nhi, checkin_id):
         db.commit()
 
         return make_response("Deleted checkin: {} from patient: {}".format(checkin_id, nhi), 200)
+
+
+@app.route('/patients/<nhi>/appointments', methods=['GET', 'POST'])
+def appointments(nhi):
+    if request.method == "GET":
+        offset = int(request.args.get('offset', 0))
+        limit = int(request.args.get('limit', 100))
+
+        return make_response((json.dumps([
+            a.serialize() for a in Appointment.query
+            .filter_by(patient_nhi=nhi)
+            .order_by(desc(Appointment.time))
+            .offset(offset)
+            .limit(limit)
+        ]), 200, {"Content-Type": "application/json"}))
+
+    elif request.method == "POST":
+        appointment = Appointment(**json.loads(request.data))
+        db.commit()
+
+        return jsonify(appointment.serialize())
+
+
+@app.route('/patients/<nhi>/appointments/<int:appointment_id>', methods=['GET', 'POST', 'DELETE'])
+def checkin(nhi, appointment_id):
+    appointment = Appointment.query.filter_by(
+        patient_nhi=nhi, appointment_id=appointment_id).first()
+
+    if not appointment:
+        return make_response("No appointment for patient {} with id {}".format(nhi, appointment_id))
+
+    elif request.method == "GET":
+        return jsonify(appointment.serialize())
+
+    elif request.method == "POST":
+        appointment_data = json.loads(request.data)
+        appointment = Appointment(**appointment_data)
+        appointment.appointment_id = appointment_id
+        appointment = db.merge(appointment)
+        db.commit()
+
+        return jsonify(appointment.serialize())
+
+    elif request.method == "DELETE":
+        db.delete(appointment)
+        db.commit()
+
+        return make_response("Deleted appointment: {} from patient: {}".format(appointment_id, nhi), 200)
 
 
 def add_checkin(nhi, data):
