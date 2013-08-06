@@ -4,20 +4,19 @@
     <i class="icon-remove"></i>
   </button>
 
-  <button class="patient-action btn btn-info" ng-show="expandedPatients.indexOf(patient.nhi) === -1" ng-click="expandPatient(patient.nhi)" ng-animate="'fade'">
+  <button class="patient-action btn btn-info" ng-show="expandedPatients.indexOf(patient.nhi) === -1" ng-click="expandPatient(patient.nhi)">
     <i class="icon-chevron-down"></i>
   </button>
 
-  <button class="patient-action btn btn-info" ng-show="expandedPatients.indexOf(patient.nhi) != -1" ng-click="retractPatient(patient.nhi)" ng-animate="'fade'">
+  <button class="patient-action btn btn-info" ng-show="expandedPatients.indexOf(patient.nhi) != -1" ng-click="retractPatient(patient.nhi)">
     <i class="icon-chevron-up"></i>
   </button>
 
   <a class="patient-summary" href="#/patients/<[ patient.nhi ]>">
-      <span class="patient-name"><[patient.latest_checkin.firstname]> <[patient.latest_checkin.lastname]></span>
-      <span class="patient-nhi">(<[patient.nhi]>)</span>
+      <[patient.latest_checkin.firstname]> <[patient.latest_checkin.lastname]> <span class="patient-nhi">(<[patient.nhi]>)</span>
   </a>
 
-  <div ng-show="expandedPatients.indexOf(patient.nhi) != -1" ng-animate="'fade'">
+  <div ng-show="expandedPatients.indexOf(patient.nhi) != -1">
     hello
   </div>
 

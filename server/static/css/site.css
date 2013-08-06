@@ -20,7 +20,6 @@ select {
   position: relative;
   box-shadow: 0 0 5px slategray;
   /*border-radius: 3px;*/
-  height: 100%;
 }
 
 .patient-name {
@@ -135,56 +134,6 @@ legend {
 .custom-move.custom-move-active {
   opacity:1;
 }
-
-.slide-hide, .slide-show {
-    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
-    -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
-    -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
-    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
-}
-.slide-hide {
-    position: relative;
-    top: 0;
-}
-.slide-hide.slide-hide-active {
-    position: absolute;
-    top: -100px;
-}
-.slide-show {
-    position: absolute;
-    top: 100px;
-}
-.slide-show.slide-show-active {
-    position: relative;
-    top: 0px;
-}
-
-.fade-hide {
-    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s;
-    -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s;
-    -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s;
-    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s;
-}
-
-.fade-show {
-    -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-    -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-    -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-}
-.fade-hide {
-    opacity:1;
-}
-.fade-hide.fade-hide-active {
-    opacity:0;
-}
-.fade-show {
-    opacity:0;
-}
-.fade-show.fade-show-active {
-    opacity:1;
-}
-
 
 .checkin-details {
   position: relative;
