@@ -4,7 +4,7 @@ from random import choice, randrange, getrandbits, randint
 from datetime import datetime, timedelta
 import string
 
-from models import db, Patient, CheckIn, Department
+from models import db, Patient, CheckIn, Department, Appointment
 
 with open('models/dictionary.txt') as f:
     words = [word.strip() for word in f.read().split('\n')]
@@ -100,6 +100,14 @@ def generate_checkin():
     }
 
 
+def generate_appointment():
+    return dict(
+        time = rand_date(),
+        reason = rand_sentence(5),
+        location = "Starhip Children's Hospital"
+    )
+
+
 def populate_database(num_patients, min_checkins, max_checkins):
     """
     Generates a number of Patients and a number of CheckIns per patient and
@@ -139,4 +147,11 @@ def populate_database(num_patients, min_checkins, max_checkins):
             patient.latest_checkin_time = lci
 
             db.add(checkin)
+            db.commit()
+
+        for k in xrange(randrange(0, 3)):
+            appointment = Appointment(**generate_appointment())
+            appointment.patient_nhi = patient.nhi
+
+            db.add(appointment)
             db.commit()
