@@ -16,6 +16,7 @@ from models.associations import patient_department_table
 from models.patient import Patient
 from models.checkin import CheckIn
 from models.department import Department
+from models.appointment import Appointment
 
 
 def init_db(num_patients=100, min_checkins=2, max_checkins=10):
