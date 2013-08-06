@@ -185,6 +185,19 @@ def patient_appointment(nhi, appointment_id):
 
         return make_response("Deleted appointment: {} from patient: {}".format(appointment_id, nhi), 200)
 
+@app.route('/patient_summaries')
+def patient_summaries():
+    return json.dumps([summarize_patient(p) for p in Patient.query.all()])
+
+def summarize_patient(patient):
+    return {
+        "nhi" : patient.nhi,
+        "name": full_name_from_checkin(patient.checkins[0])
+    }
+
+def full_name_from_checkin(checkin):
+    return checkin.firstname + " " + checkin.lastname
+
 
 def add_checkin(nhi, data):
     c = CheckIn(**data)

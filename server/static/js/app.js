@@ -50,6 +50,10 @@ myApp.factory('Patient', function($resource) {
   return $resource('/patients/:nhi');
 });
 
+myApp.factory('PatientSummary', function($resource) {
+  return $resource('/patient_summaries/:nhi');
+});
+
 myApp.factory('CheckIn', function($resource) {
   return $resource('/patients/:nhi/checkins/:checkin_id');
 });

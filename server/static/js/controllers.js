@@ -166,6 +166,7 @@ function PatientListCtrl($scope, $cookies, $location, Patient){
     if (!$scope.queryString) {
       // if there is no query, don't filter
       $scope.query = true;
+      console.log($scope.query)
       return;
     }
 
@@ -175,6 +176,7 @@ function PatientListCtrl($scope, $cookies, $location, Patient){
     } else {
       $scope.query.nhi = $scope.queryString;
     }
+    console.log($scope.query)
   };
 
   $scope.searchByChange = function () {
