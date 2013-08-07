@@ -189,7 +189,9 @@ def patient_appointment(nhi, appointment_id):
 @app.route('/appointments', methods=['GET'])
 def appointments():
     return make_response((json.dumps([
-        d.serialize() for d in Appointment.query.all()
+        d.serialize() for d in Appointment.query
+        .order_by(desc(Appointment.time))
+        .all()
     ]), 200, {"Content-Type": "application/json"}))
 
 

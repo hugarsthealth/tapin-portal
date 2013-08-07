@@ -181,7 +181,12 @@ define(['angular', 'services'], function (angular) {
           $location.path('/');
         }
 
-        $scope.patients = Patient.query({});
+        $scope.patients = Patient.query({}, function(patients) {
+          patients.forEach(function(p) {
+            p.fullname = p.latest_checkin.firstname + " " + p.latest_checkin.lastname;
+          });
+        });
+
         $scope.appointments = Appointment.query({});
 
         $scope.orderProp = 'patient_id';

@@ -1,4 +1,4 @@
-h1, h2 {
+h1, h2, h3 {
   font-weight: 100;
 }
 
@@ -8,6 +8,10 @@ select {
 
 .navbar .btn {
   margin-top: 7px;
+}
+
+.patient-filter-form {
+  padding-top: 5px;
 }
 
 .recent-patient-list, .upcoming-patient-list {
