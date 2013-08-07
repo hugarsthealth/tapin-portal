@@ -1,25 +1,39 @@
 <div ng-controller="PatientListCtrl">
 	<div class="row">
 
-		<div class="span3">
-			<h1 class="patient-heading">Patients</h1>
+		<div class="span6">
+			<h2 class="patient-heading">Recent Patients</h2>
 		</div>
 
-		<div class="span9">
-	    <form class="form-inline pull-right">
-				<label>Filter by: </label>
-				<select class="input-small" ng-model="searchBy" ng-change="searchByChange()">
-				  <option value="fullname">Name</option>
-				  <option value="nhi">NHI</option>
-				</select>
-				<input type="search" class="input-xlarge search-query" ng-change="searchBarChange()" ng-model="queryString">
-	    </form>
-	  </div>
-
+<!-- 		<div class="span3">
+		    <form class="form-inline pull-right">
+					<label>Filter by: </label>
+					<select class="input-small" ng-model="searchBy" ng-change="searchByChange()">
+					  <option value="fullname">Name</option>
+					  <option value="nhi">NHI</option>
+					</select>
+					<input type="search" class="input-small search-query" ng-change="searchBarChange()" ng-model="queryString">
+		    </form>
+  		</div>
+ -->
+  		<div class="span6">
+  			<h2 class="patient-heading">Upcoming Appointments</h2>
+  		</div>
 	</div>
 
-	<div class="row" ng-repeat="patient in patients | filter:query" ng-animate="'custom'">
-		<div class="span12" ng-include src="'static/partials/patient_card.html'"></div>
+	<div class="row">
+		<div class="span6">
+			<ul class="recent-patient-list">
+				<li ng-repeat="patient in patients | filter:query" ng-animate="'custom'" ng-include src="'static/partials/patient_card.html'">
+				</li>
+			</ul>
+		</div>
+		<div class="span6">
+			<ul class="upcoming-patient-list">
+				<li ng-repeat="appointment in appointments | filter:query" ng-animate="'custom'" ng-include src="'static/partials/appointment_card.html'">
+				</li>
+			</ul>
+		</div>
 	</div>
   </div>
 </div>

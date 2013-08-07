@@ -45,8 +45,7 @@ class Patient(Base):
             "nhi": self.nhi,
             "departments": [d.serialize() for d in self.departments],
             "latest_checkin": self.checkins[0].serialize() if self.checkins else None,
-            "latest_checkin_time": self.latest_checkin_time.isoformat() if self.latest_checkin_time else None,
-            "next_appointment": self.appointments[0].serialize() if self.appointments else None
+            "latest_checkin_time": self.latest_checkin_time.isoformat() if self.latest_checkin_time else None
         }
 
     def deserialize(self, data):

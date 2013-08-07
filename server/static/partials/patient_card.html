@@ -1,39 +1,44 @@
-<div class="patient">
+<div ng-controller="PatientCardCtrl" class="card" ng-class="patient.latest_checkin.gender.toLowerCase()">
 
-  <button class="delete-patient pull-right btn btn-danger" ng-show="deletePatient" ng-click="deletePatient($index)"><i class="icon-remove"></i></button>
+  <a class="card-summary" href="#/patients/<[ patient.nhi ]>">
+      <h5><[patient.latest_checkin.firstname]> <[patient.latest_checkin.lastname]> <span class="patient-nhi">(<[patient.nhi]>)</span></h5>
+  </a>
 
-  <div class="row">
-      <div class="span12">
-          <a href="#/patients/<[ patient.nhi ]>">
-              <h3 class="patient-name"><[patient.latest_checkin.firstname]> <[patient.latest_checkin.lastname]></h3>
-          </a>
-      </div>
+  <div class="card-actions">
+    <button class="card-action btn btn-info" ng-show="expandedPatients.indexOf(patient.nhi) === -1" ng-click="expandPatient(patient.nhi)">
+      <i class="icon-chevron-down"></i>
+    </button>
+
+    <button class="card-action btn btn-info" ng-show="expandedPatients.indexOf(patient.nhi) != -1" ng-click="retractPatient(patient.nhi)">
+      <i class="icon-chevron-up"></i>
+    </button>
+
+    <button class="card-action btn btn-danger" ng-show="deletePatient" ng-click="deletePatient($index)">
+      <i class="icon-remove"></i>
+    </button>
   </div>
 
-  <div class="row">
-      <div class="span12">
-          <dl class="dl-horizontal">
-            <dt>NHI</dt>
-            <dd><[patient.nhi]></dd>
+  <div ng-show="expandedPatients.indexOf(patient.nhi) != -1">
+    <dl class="dl-horizontal">
+      <dt>NHI</dt>
+      <dd><[patient.nhi]></dd>
 
-            <dt>Occupation</dt>
-            <dd><[patient.latest_checkin.occupation]></dd>
+      <dt>Occupation</dt>
+      <dd><[patient.latest_checkin.occupation]></dd>
 
-            <dt>Citizen/Resident</dt>
-            <dd><[patient.latest_checkin.citizen_resident]></dd>
+      <dt>Citizen/Resident</dt>
+      <dd><[patient.latest_checkin.citizen_resident]></dd>
 
-            <dt>Contact Number</dt>
-            <dd><[patient.latest_checkin.contact_num]></dd>
+      <dt>Contact Number</dt>
+      <dd><[patient.latest_checkin.contact_num]></dd>
 
-            <dt>Gender</dt>
-            <dd><[patient.latest_checkin.gender]></dd>
+      <dt>Gender</dt>
+      <dd><[patient.latest_checkin.gender]></dd>
 
-            <dt>Date Of Birth</dt>
-            <dd><[patient.latest_checkin.dob]></dd>
+      <dt>Date Of Birth</dt>
+      <dd><[patient.latest_checkin.dob]></dd>
 
-            <dt>Last Check In</dt>
-            <dd><[patient.latest_checkin.checkin_time.substring(0,10) + " " + patient.latest_checkin.checkin_time.substring(11,16)]></dd>
-          </dl>
-      </div>
-  </div>
+      <dt>Last Check In</dt>
+      <dd><[patient.latest_checkin.checkin_time.substring(0,10) + " " + patient.latest_checkin.checkin_time.substring(11,16)]></dd>
+    </dl>
 </div>
