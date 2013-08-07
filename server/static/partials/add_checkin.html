@@ -1,19 +1,105 @@
 <div ng-conroller="AddCheckinCtrl">
+	<div ng-hide="makingCheckin">
+		<h2>Select a patient to create a check in for</h2>
+		<label>Filter by: </label>
+		<select class="input-small" ng-model="searchBy" ng-change="searchByChange()">
+			<option value="name">Name</option>
+			<option value="nhi">NHI</option>
+		</select>
+		<input type="search" class="input-xlarge search-query" ng-change="searchBarChange()" ng-model="queryString">
+		
+		<ul>
+			<li ng-click="displayCheckinCreate(patient.nhi)" ng-repeat="patient in filteredPatients = (patients | filter:query)">
+				<p><[patient.nhi]></p>
+				<p><[patient.name]></p>
+			</li>
+		</ul>
+		<p ng-hide="filteredPatients.length">We can't find the patient you're looking for. <span style="color: blue" ng-click="newPatient()">Create a new one?</span></p>
+		<p ng-show="creatingPatient">Enter new patients NHI number: <input type="text" ng-model="patientNHI"><button ng-click="createPatient(patientNHI)">Confirm</button></p>
+	</div>
+	<div ng-show="makingCheckin">
+		<h3>Making checkin for patient with NHI <[ patientNHI ]></h3>
+		<dl class="dl-horizontal">
+			<dt>First name</dt><dd><input type="text" ng-model="checkin.firstname"></dd>
+			<dt>Last name</dt><dd><input type="text" ng-model="checkin.lastname"></dd>
+			<dt>Gender</dt><dd><select ng-model="checkin.gender"><option value="Male">Male</option><option value="Female">Female</option><option value="Other">Other</option></select></dd>
+			<dt>Date Of Birth</dt><dd><input type="text" ng-model="checkin.dob"></dd>
+			<dt>Occupation</dt><dd><input type="text" ng-model="checkin.occupation" /></dd>
 
-	<h2>Select a patient to create a check in for</h2>
-	<label>Filter by: </label>
-	<select class="input-small" ng-model="searchBy" ng-change="searchByChange()">
-		<option value="name">Name</option>
-		<option value="nhi">NHI</option>
-	</select>
-	<input type="search" class="input-xlarge search-query" ng-change="searchBarChange()" ng-model="queryString">
-	
-	<ul>
-		<li ng-repeat="patient in filteredPatients = (patients | filter:query)">
-			<p><[patient.nhi]></p>
-			<p><[patient.name]></p>
-		</li>
-	</ul>
-	<p ng-hide="filteredPatients.length">We can't find the patient you're looking for. <span style="color: blue" ng-click="newPatient()">Create a new one?</span></p>
-	<p ng-show="creatingPatient">Enter new patients NHI number: <input type="text"><button>Confirm</button></p>
+			<dt>Citizen/Resident</dt>
+			<dd><input ng-model="checkin.citizen_resident" type="checkbox"></input></dd>
+
+			<dt>Contact Number</dt><dd><input type="tel" ng-model="checkin.contact_num" /></dd>
+
+		</dl>
+		<dl class="dl-horizontal">
+			<dt>Check In Time</dt><dd><input type="text" ng-model="checkin.checkin_time"></dd>
+
+			<dt>Location</dt><dd><input type="text" ng-model="checkin.location"></dd>
+
+			<dt>Height</dt><dd><input class="input-small" type="number" ng-model="checkin.height_value" /> <select class="input-small" ng-model="checkin.height_unit"><option value="cm">cm</option><option value="inches">inches</option></select></dd>
+
+			<dt>Weight</dt><dd ><input class="input-small" type="number" type="text" ng-model="checkin.weight_value"/> <select class="input-small" ng-model="checkin.weight_unit"><option value="kg">kgs</option><option value="lb">lbs</option></select></dd>
+
+			<dt>Blood Type</dt><dd><input class="input-mini" type="text" ng-model="checkin.blood_type"/></dd>
+
+			<dt>Drinker</dt>
+			<dd><input ng-model="checkin.drinker" type="checkbox"></input></dd>
+
+			<dt>Smoker</dt>
+			<dd><input ng-model="checkin.smoker" type="checkbox"></input></dd>
+
+			<dt>Medical Conditions</dt>
+			<dd >
+				<ul >
+					<li ng-repeat="medical_condition in checkin.medical_conditions">
+						<input type="text" ui-event="{ blur : 'saveChangeIntoList(medical_condition)', focus : 'prepareChangeIntoList(medical_condition, checkin.medical_conditions)' }" class="edit-input" ng-model="medical_condition"/> <i class="icon-remove" ng-click="deleteFromList(medical_condition, checkin.medical_conditions)"></i>
+					</li>
+					<li class="list-add" ng-click="addToList(checkin.medical_conditions)">
+						<i class="icon-plus"></i> Click here to add a new medical condition
+					</li>
+				</ul>
+			</dd>
+
+			<dt>Allergies</dt>
+			<dd >
+				<ul >
+					<li ng-repeat="allergy in checkin.allergies">
+						<input type="text" ui-event="{ blur : 'saveChangeIntoList(allergy)', focus : 'prepareChangeIntoList(allergy, checkin.allergies)' }" class="edit-input" ng-model="allergy"> <i class="icon-remove" ng-click="deleteFromList(allergy, checkin.allergies)"></i>
+					</li>
+					<li class="list-add" ng-click="addToList(checkin.allergies)">
+						<i class="icon-plus"></i> Click here to add a new allergy
+					</li>
+				</ul>
+			</dd>
+			
+			<div ng-show="checkin.overseas_recently">
+			<dt>Overseas Destinations</dt>
+			<dd >
+				<ul >
+					<li ng-repeat="overseas_dest in checkin.overseas_dests">
+						<input type="text" ui-event="{ blur : 'saveChangeIntoList(overseas_dest)', focus : 'prepareChangeIntoList(overseas_dest, checkin.overseas_dests)' }" class="edit-input" ng-model="overseas_dest"/> <i class="icon-remove" ng-click="deleteFromList(overseas_dest, checkin.overseas_dests)"></i>
+					</li>
+					<li class="list-add" ng-click="addToList(checkin.overseas_dests)">
+						<i class="icon-plus"></i> Click here to add a new overseas destination
+					</li>
+				</ul>
+			</dd>
+			</div>
+
+			<dt>Family History</dt>
+			<dd>
+				<ul >
+					<li ng-repeat="family_hist in checkin.family_hist">
+						<input type="text" ui-event="{ blur : 'saveChangeIntoList(family_hist)', focus : 'prepareChangeIntoList(family_hist, checkin.family_hist)' }" class="edit-input" ng-model="family_hist"/> <i class="icon-remove" ng-click="deleteFromList(family_hist, checkin.family_hist)"></i>
+					</li>
+					<li class="list-add" ng-click="addToList(checkin.family_hist)">
+						<i class="icon-plus"></i> Click here to add a new family history
+					</li>
+				</ul>
+			</dd>
+		</dl>
+		<p><[ checkin ]></p>
+	</div>
+
 </div>

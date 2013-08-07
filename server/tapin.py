@@ -77,8 +77,7 @@ def patients():
 
 @app.route('/patients/<nhi>', methods=['GET', 'PUT', 'DELETE'])
 def patient(nhi):
-    patient = Patient.query.join(Department.patients).filter(
-        Department.department_name == request.cookies.get('department', 'default')).filter_by(nhi=nhi).first()
+    patient = Patient.query.filter_by(nhi=nhi).first()
 
     if not patient:
         return make_response("No patient with NHI " + nhi, 404)
@@ -190,10 +189,16 @@ def patient_summaries():
     return json.dumps([summarize_patient(p) for p in Patient.query.all()])
 
 def summarize_patient(patient):
-    return {
-        "nhi" : patient.nhi,
-        "name": full_name_from_checkin(patient.checkins[0])
-    }
+    try:
+        return {
+            "nhi" : patient.nhi,
+            "name": full_name_from_checkin(patient.checkins[0])
+        }
+    except IndexError:
+        print patient.nhi
+        return
+
+
 
 def full_name_from_checkin(checkin):
     return checkin.firstname + " " + checkin.lastname
