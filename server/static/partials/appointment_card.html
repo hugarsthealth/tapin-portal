@@ -1,0 +1,29 @@
+<div ng-controller="AppointmentCardCtrl" class="card" ng-class="patient.latest_checkin.gender.toLowerCase()">
+  <!-- This all stops working if a patient has never checked in :S -->
+
+  <a class="card-summary">
+      <h5><[patient.latest_checkin.firstname]> <[patient.latest_checkin.lastname]> <span class="patient-nhi">(<[patient.nhi]>)</span></h5>
+  </a>
+
+  <div class="card-actions">
+    <button class="card-action btn btn-info" ng-show="expandedAppointments.indexOf(appointment.appointment_id) === -1" ng-click="expandAppointment(appointment.appointment_id)">
+      <i class="icon-chevron-down"></i>
+    </button>
+
+    <button class="card-action btn btn-info" ng-show="expandedAppointments.indexOf(appointment.appointment_id) != -1" ng-click="retractAppointment(appointment.appointment_id)">
+      <i class="icon-chevron-up"></i>
+    </button>
+  </div>
+
+  <div ng-show="expandedAppointments.indexOf(appointment.appointment_id) != -1">
+    <dl class="dl-horizontal">
+      <dt>Reason</dt>
+      <dd><[appointment.reason]></dd>
+
+      <dt>Contact Number</dt>
+      <dd><[patient.latest_checkin.contact_num]></dd>
+
+      <dt>Appointment Time</dt>
+      <dd><[patient.latest_checkin.checkin_time.substring(0,10) + " " + patient.latest_checkin.checkin_time.substring(11,16)]></dd>
+    </dl>
+</div>

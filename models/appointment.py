@@ -27,7 +27,7 @@ class Appointment(Base):
         return {
             "appointment_id": self.appointment_id,
             "time": self.time.isoformat() if self.time else None,
-            "patient_nhi": self.patient_nhi,
+            "patient": self.patient.serialize(),
             "reason": self.reason,
             "location": self.location
         }

@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="vsmApp" id="ng-app">
+<html>
 
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/vendor/toastr.min.css') }}">
@@ -12,15 +12,6 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/vendor/bootstrap-responsive.min.css') }}">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/site.css') }}">
-
-    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
-
-    <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/toastr.min.js') }}"></script>
-
-    <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/angular.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/angular-cookies.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/angular-resource.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/vendor/angular-ui-utils.js') }}"></script>
 
     <title>Orion Health Tap In</title>
 </head>
@@ -54,9 +45,9 @@
     <div ng-view></div>
   </div>
 
-  <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='js/controllers.js') }}"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='js/controllers/add_checkin_controller.js') }}"></script>
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="{{ url_for('static', filename='js/vendor/toastr.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/vendor/require.js') }}" data-main="static/js/main"></script>
 
 </body>
 </html>

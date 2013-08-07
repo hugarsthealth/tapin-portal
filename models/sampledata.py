@@ -134,7 +134,6 @@ def populate_database(num_patients, min_checkins, max_checkins):
         patient = Patient(**generate_patient())
         patient.departments.append(choice(departments))
         db.add(patient)
-        db.commit()
 
         for j in xrange(randrange(min_checkins, max_checkins)):
             checkin = CheckIn(**generate_checkin())
@@ -147,11 +146,11 @@ def populate_database(num_patients, min_checkins, max_checkins):
             patient.latest_checkin_time = lci
 
             db.add(checkin)
-            db.commit()
 
         for k in xrange(randrange(0, 3)):
             appointment = Appointment(**generate_appointment())
             appointment.patient_nhi = patient.nhi
 
             db.add(appointment)
-            db.commit()
+
+    db.commit()
