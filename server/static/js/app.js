@@ -52,3 +52,7 @@ myApp.factory('CheckIn', function($resource) {
 myApp.factory('Department', function($resource) {
   return $resource('/departments/:department_id');
 });
+
+myApp.factory('Appointment', function($resource) {
+  return $resource('/appointments/:appointment_id');
+});

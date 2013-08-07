@@ -1,3 +1,7 @@
+h1, h2 {
+  font-weight: 100;
+}
+
 select {
   height: 39px;
 }
@@ -6,33 +10,57 @@ select {
   margin-top: 7px;
 }
 
-.recent-patient-list {
+.recent-patient-list, .upcoming-patient-list {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.patient-card {
+.card {
   box-sizing: border-box;
-  padding: 5px;
+  padding: 10px 10px 10px 20px;
   margin-bottom: 10px;
   background: ghostwhite;
   position: relative;
   box-shadow: 0 0 5px slategray;
-  /*border-radius: 3px;*/
+  border-radius: 5px;
 }
 
-.patient-name {
+.male {
+  background: rgba(0, 100, 255, 0.1);
+}
+
+.female {
+  background: rgba(255, 0, 255, 0.1);
+}
+
+.card-summary {
   display: inline-block;
+  margin: 0;
 }
 
 .patient-nhi {
   text-transform: uppercase;
 }
 
-.patient-action {
+.card-actions {
+  padding-top: 6px;
+  float: right;
+}
+
+.card-action {
+  vertical-align: middle;
   padding: 5px 10px;
   margin-right: 5px;
+}
+
+.card dl {
+  margin-bottom: 10px;
+}
+
+.card dt, dd {
+  text-align: left;
+  line-height: 1.8;
 }
 
 .patient-heading {

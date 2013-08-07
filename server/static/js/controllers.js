@@ -130,10 +130,16 @@ function PatientCtrl($scope, $routeParams, $cookies, $location, Patient, CheckIn
 }
 
 // Controller for the entire list of patients
-function PatientListCtrl($scope, $cookies, $location, Patient){
+function PatientListCtrl($scope, $cookies, $location, Patient, Appointment){
   if (!('department' in $cookies)) {
     $location.path('/');
   }
+
+  $scope.patients = Patient.query({});
+  $scope.appointments = Appointment.query({});
+
+  $scope.orderProp = 'patient_id';
+  $scope.searchBy = "fullname";
 
   $scope.deletePatient = function(index) {
     var deleted = $scope.patients.splice(index, 1)[0];
@@ -150,31 +156,9 @@ function PatientListCtrl($scope, $cookies, $location, Patient){
       function() {
         toastr.error('Could not be deleted', deleted.nhi);
         $scope.patients.splice(index, 0, deleted);
-      });
+      }
+    );
   };
-
-  $scope.expandedPatients = [];
-
-  $scope.expandPatient = function(nhi) {
-    $scope.expandedPatients.push(nhi);
-  };
-
-  $scope.retractPatient = function(nhi) {
-    var patientIndex = $scope.expandedPatients.indexOf(nhi);
-
-    if (patientIndex > -1) {
-      $scope.expandedPatients.splice(patientIndex, 1);
-    }
-  };
-
-  $scope.patients = Patient.query({}, function(patients) {
-    patients.forEach(function(p) {
-      p.fullname = p.latest_checkin.firstname + " " + p.latest_checkin.lastname;
-    });
-  });
-
-  $scope.orderProp = 'patient_id';
-  $scope.searchBy = "fullname";
 
   $scope.searchBarChange = function() {
     if (!$scope.queryString) {
