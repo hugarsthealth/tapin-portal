@@ -264,13 +264,12 @@ define(['angular', 'services'], function (angular) {
     }
   ])
 
-  .controller('AddCheckinCtrl', ['$scope', 'PatientSummary', '$http',
-    function ($scope, PatientSummary, $http) {
+  .controller('AddCheckinCtrl', ['$scope', 'PatientSummary', '$http', '$route', '$location',
+    function ($scope, PatientSummary, $http, $route, $location) {
 
       $scope.searchBy = "name";
       $scope.creatingPatient = false;
       $scope.makingCheckin = false;
-      $scope.patientNHI;
 
       $scope.searchBarChange = function() {
         if (!$scope.queryString) {
@@ -388,6 +387,30 @@ define(['angular', 'services'], function (angular) {
         var url = "/patients";
         $http.post(url, data).success(function(data, status, headers, config) {
           $scope.displayCheckinCreate(nhi);
+        });
+      };
+
+      $scope.cancelForm = function() {
+        $route.reload();
+      };
+
+      $scope.submitForm = function() {
+        // Need all these checks to delete empty fields from the list
+        if ($scope.checkin.overseas_dests[$scope.checkin.overseas_dests.length-1] === "") {
+          $scope.checkin.overseas_dests.splice($scope.checkin.overseas_dests.length-1,1);
+        }
+        if ($scope.checkin.allergies[$scope.checkin.allergies.length-1] === "") {
+          $scope.checkin.allergies.splice($scope.checkin.allergies.length-1,1);
+        }
+        if ($scope.checkin.medical_conditions[$scope.checkin.medical_conditions.length-1] === "") {
+          $scope.checkin.medical_conditions.splice($scope.checkin.medical_conditions.length-1,1);
+        }
+        if ($scope.checkin.family_hist[$scope.checkin.family_hist.length-1] === "") {
+          $scope.checkin.family_hist.splice($scope.checkin.family_hist.length-1,1);
+        }
+
+        $http.post('/patients/' + $scope.patientNHI.toString() + '/checkins', $scope.checkin).success(function (data, status, headers, config) {
+          $location.path('/');
         });
       };
     }
