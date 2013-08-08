@@ -188,11 +188,7 @@ define(['angular', 'services'], function (angular) {
       });
 
       $scope.appointments = Appointment.query({});
-
       $scope.searchBy = "fullname";
-
-      var self = this;
-
 
       (function getNewPatients() {
         console.log("updating patients");
@@ -234,7 +230,6 @@ define(['angular', 'services'], function (angular) {
         $timeout(getNewPatients, 5000);
       })();
 
-
       $scope.deletePatient = function(index) {
         var deleted = $scope.patients.splice(index, 1)[0];
 
@@ -257,7 +252,7 @@ define(['angular', 'services'], function (angular) {
       $scope.searchBarChange = function() {
         if (!$scope.queryString) {
           // if there is no query, don't filter
-          $scope.query = true;
+          $scope.query = {};
           return;
         }
 
