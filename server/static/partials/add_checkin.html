@@ -19,86 +19,194 @@
 	</div>
 	<div ng-show="makingCheckin">
 		<h3>Making checkin for patient with NHI <[ patientNHI ]></h3>
-		<dl class="dl-horizontal">
-			<dt>First name</dt><dd><input type="text" ng-model="checkin.firstname"></dd>
-			<dt>Last name</dt><dd><input type="text" ng-model="checkin.lastname"></dd>
-			<dt>Gender</dt><dd><select ng-model="checkin.gender"><option value="Male">Male</option><option value="Female">Female</option><option value="Other">Other</option></select></dd>
-			<dt>Date Of Birth</dt><dd><input type="text" ng-model="checkin.dob"></dd>
-			<dt>Occupation</dt><dd><input type="text" ng-model="checkin.occupation" /></dd>
-
-			<dt>Citizen/Resident</dt>
-			<dd><input ng-model="checkin.citizen_resident" type="checkbox"></input></dd>
-
-			<dt>Contact Number</dt><dd><input type="tel" ng-model="checkin.contact_num" /></dd>
-
-		</dl>
-		<dl class="dl-horizontal">
-			<dt>Check In Time</dt><dd><input type="text" ng-model="checkin.checkin_time"></dd>
-
-			<dt>Location</dt><dd><input type="text" ng-model="checkin.location"></dd>
-
-			<dt>Height</dt><dd><input class="input-small" type="number" ng-model="checkin.height_value" /> <select class="input-small" ng-model="checkin.height_unit"><option value="cm">cm</option><option value="inches">inches</option></select></dd>
-
-			<dt>Weight</dt><dd ><input class="input-small" type="number" type="text" ng-model="checkin.weight_value"/> <select class="input-small" ng-model="checkin.weight_unit"><option value="kg">kgs</option><option value="lb">lbs</option></select></dd>
-
-			<dt>Blood Type</dt><dd><input class="input-mini" type="text" ng-model="checkin.blood_type"/></dd>
-
-			<dt>Drinker</dt>
-			<dd><input ng-model="checkin.drinker" type="checkbox"></input></dd>
-
-			<dt>Smoker</dt>
-			<dd><input ng-model="checkin.smoker" type="checkbox"></input></dd>
-
-			<dt>Medical Conditions</dt>
-			<dd >
-				<ul >
-					<li ng-repeat="medical_condition in checkin.medical_conditions">
-						<input type="text" ui-event="{ blur : 'saveChangeIntoList(medical_condition)', focus : 'prepareChangeIntoList(medical_condition, checkin.medical_conditions)' }" class="edit-input" ng-model="medical_condition"/> <i class="icon-remove" ng-click="deleteFromList(medical_condition, checkin.medical_conditions)"></i>
-					</li>
-					<li class="list-add" ng-click="addToList(checkin.medical_conditions)">
-						<i class="icon-plus"></i> Click here to add a new medical condition
-					</li>
-				</ul>
-			</dd>
-
-			<dt>Allergies</dt>
-			<dd >
-				<ul >
-					<li ng-repeat="allergy in checkin.allergies">
-						<input type="text" ui-event="{ blur : 'saveChangeIntoList(allergy)', focus : 'prepareChangeIntoList(allergy, checkin.allergies)' }" class="edit-input" ng-model="allergy"> <i class="icon-remove" ng-click="deleteFromList(allergy, checkin.allergies)"></i>
-					</li>
-					<li class="list-add" ng-click="addToList(checkin.allergies)">
-						<i class="icon-plus"></i> Click here to add a new allergy
-					</li>
-				</ul>
-			</dd>
+		<form class="form-horizontal">
 			
-			<div ng-show="checkin.overseas_recently">
-			<dt>Overseas Destinations</dt>
-			<dd >
-				<ul >
-					<li ng-repeat="overseas_dest in checkin.overseas_dests">
-						<input type="text" ui-event="{ blur : 'saveChangeIntoList(overseas_dest)', focus : 'prepareChangeIntoList(overseas_dest, checkin.overseas_dests)' }" class="edit-input" ng-model="overseas_dest"/> <i class="icon-remove" ng-click="deleteFromList(overseas_dest, checkin.overseas_dests)"></i>
-					</li>
-					<li class="list-add" ng-click="addToList(checkin.overseas_dests)">
-						<i class="icon-plus"></i> Click here to add a new overseas destination
-					</li>
-				</ul>
-			</dd>
+			<div class="control-group">
+				<label class="control-label">First name</label>
+				<div class="controls">
+					<input type="text" ng-model="checkin.firstname">
+				</div>
 			</div>
 
-			<dt>Family History</dt>
-			<dd>
-				<ul >
-					<li ng-repeat="family_hist in checkin.family_hist">
-						<input type="text" ui-event="{ blur : 'saveChangeIntoList(family_hist)', focus : 'prepareChangeIntoList(family_hist, checkin.family_hist)' }" class="edit-input" ng-model="family_hist"/> <i class="icon-remove" ng-click="deleteFromList(family_hist, checkin.family_hist)"></i>
-					</li>
-					<li class="list-add" ng-click="addToList(checkin.family_hist)">
-						<i class="icon-plus"></i> Click here to add a new family history
-					</li>
-				</ul>
-			</dd>
-		</dl>
+
+			<div class="control-group">
+				<label class="control-label">Last name</label>
+				<div class="controls">
+					<input type="text" ng-model="checkin.lastname">
+				</div>
+			</div>
+
+
+			<div class="control-group">
+				<label class="control-label">Gender</label>
+				<div class="controls">
+					<select ng-model="checkin.gender">
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+						<option value="Other">Other</option></select>
+				</div>
+			</div>
+
+
+			<div class="control-group">
+				<label class="control-label">Date Of Birth</label>
+				<div class="controls">
+					<input type="text" ng-model="checkin.dob">
+				</div>
+			</div>
+
+
+			<div class="control-group">
+				<label class="control-label">Occupation</label>
+				<div class="controls">
+					<input type="text" ng-model="checkin.occupation" />
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Citizen/Resident</label>
+				<div class="controls">
+					<input ng-model="checkin.citizen_resident" type="checkbox"></input>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Contact Number</label>
+				<div class="controls">
+					<input type="tel" ng-model="checkin.contact_num" />
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Check In Time</label>
+				<div class="controls">
+					<input type="text" ng-model="checkin.checkin_time">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Location</label>
+				<div class="controls">
+					<input type="text" ng-model="checkin.location">
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Height</label>
+				<div class="control-group">
+					<input class="input-small" type="number" ng-model="checkin.height_value" /> 
+					<select class="input-small" ng-model="checkin.height_unit">
+						<option value="cm">cm</option>
+						<option value="inches">inches</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Weight</label>
+				<div class="controls" >
+					<input class="input-small" type="number" type="text" ng-model="checkin.weight_value"/> 
+					<select class="input-small" ng-model="checkin.weight_unit">
+						<option value="kg">kgs</option>
+						<option value="lb">lbs</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Blood Type</label>
+				<div class="controls">
+					<input class="input-mini" type="text" ng-model="checkin.blood_type"/>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Drinker</label>
+				<div class="controls">
+					<input ng-model="checkin.drinker" type="checkbox"></input>
+				</div>	
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Smoker</label>
+				<div class="controls">
+					<input ng-model="checkin.smoker" type="checkbox"></input>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Medical Conditions</label>
+				<div class="controls" >
+					<ul >
+						<li ng-repeat="medical_condition in checkin.medical_conditions">
+							<input type="text" ui-event="{ blur : 'saveChangeIntoList(medical_condition)', focus : 'prepareChangeIntoList(medical_condition, checkin.medical_conditions)' }" class="edit-input" ng-model="medical_condition"/> <i class="icon-remove" ng-click="deleteFromList(medical_condition, checkin.medical_conditions)"></i>
+						</li>
+						<li class="list-add" ng-click="addToList(checkin.medical_conditions)">
+							<i class="icon-plus"></i> Click here to add a new medical condition
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Allergies</label>
+				<div class="controls" >
+					<ul >
+						<li ng-repeat="allergy in checkin.allergies">
+							<input type="text" ui-event="{ blur : 'saveChangeIntoList(allergy)', focus : 'prepareChangeIntoList(allergy, checkin.allergies)' }" class="edit-input" ng-model="allergy"> <i class="icon-remove" ng-click="deleteFromList(allergy, checkin.allergies)"></i>
+						</li>
+						<li class="list-add" ng-click="addToList(checkin.allergies)">
+							<i class="icon-plus"></i> Click here to add a new allergy
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Overseas Recently</label>
+				<div class="controls">
+					<input ng-model="checkin.overseas_recently" type="checkbox"></input>
+				</div>
+			</div>
+			
+			<div ng-show="checkin.overseas_recently">
+			<div class="control-group">
+				<label class="control-label">Overseas Destinations</label>
+				<div class="controls" >
+					<ul >
+						<li ng-repeat="overseas_dest in checkin.overseas_dests">
+							<input type="text" ui-event="{ blur : 'saveChangeIntoList(overseas_dest)', focus : 'prepareChangeIntoList(overseas_dest, checkin.overseas_dests)' }" class="edit-input" ng-model="overseas_dest"/> <i class="icon-remove" ng-click="deleteFromList(overseas_dest, checkin.overseas_dests)"></i>
+						</li>
+						<li class="list-add" ng-click="addToList(checkin.overseas_dests)">
+							<i class="icon-plus"></i> Click here to add a new overseas destination
+						</li>
+					</ul>
+				</div>
+			</div>
+			</div>
+
+			<div class="control-group">
+				<label class="control-label">Family History</label>
+				<div class="controls">
+					<ul >
+						<li ng-repeat="family_hist in checkin.family_hist">
+							<input type="text" ui-event="{ blur : 'saveChangeIntoList(family_hist)', focus : 'prepareChangeIntoList(family_hist, checkin.family_hist)' }" class="edit-input" ng-model="family_hist"/> <i class="icon-remove" ng-click="deleteFromList(family_hist, checkin.family_hist)"></i>
+						</li>
+						<li class="list-add" ng-click="addToList(checkin.family_hist)">
+							<i class="icon-plus"></i> Click here to add a new family history
+						</li>
+					</ul>
+				</dd>
+			</div>
+		</form>
+
+		<div class="pull-right">
+  			<button ng-click="submitForm()" class="save-changes btn btn-success">Submit <i class="icon-ok"></i></button>
+  			<button ng-click="cancelForm()" class="cancel-editing btn btn-danger">Cancel <i class="icon-remove"></i></button>
+  		</div>
+
+  		<hr>
+
 		<p><[ checkin ]></p>
 	</div>
 
