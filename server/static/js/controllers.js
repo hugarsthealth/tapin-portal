@@ -31,6 +31,10 @@ define(['angular', 'services'], function (angular) {
       $scope.editingList = null;
       $scope.editingPos = null;
 
+      $scope.shouldShowList = function(list) {
+        return list || $scope.currentlyEditing;
+      };
+
       $scope.editCheckIn = function () {
         $scope.currentlyEditing = true;
       };
@@ -313,6 +317,7 @@ define(['angular', 'services'], function (angular) {
       $scope.searchBy = "name";
       $scope.creatingPatient = false;
       $scope.makingCheckin = false;
+      $scope.isNewPatient = false;
 
       $scope.searchBarChange = function() {
         if (!$scope.queryString) {
@@ -334,7 +339,6 @@ define(['angular', 'services'], function (angular) {
       };
 
       $scope.newPatient = function() {
-        alert($scope.creatingPatient);
         $scope.creatingPatient = true;
       };
 
@@ -342,19 +346,24 @@ define(['angular', 'services'], function (angular) {
 
       $scope.displayCheckinCreate = function(nhi) {
         // Get the patient and their lastest checkin. use it to populate the form
+        $scope.patientNHI = nhi;
         var url = '/patients/' + nhi.toString();
-        $http.get(url).success(function(data, status, headers, config) {
-          $scope.patientNHI = data.nhi;
-          $scope.checkin = create_checkin(data.latest_checkin);
-          console.log($scope.checkin);
-          $scope.makingCheckin = true;
-        });
+        $http.get(url).
+          success(function(data, status, headers, config) {
+            $scope.checkin = create_checkin(data.latest_checkin);
+            $scope.makingCheckin = true;
+          }).
+          error(function(data, status, headers, config) {
+            $scope.checkin = create_checkin(null);
+            $scope.makingCheckin = true;
+          });
       };
 
       var create_checkin = function(checkin) {
         if (checkin !== null) {
           delete checkin.patient_nhi;
           delete checkin.checkin_id;
+          checkin.checkin_time = new Date();
           return checkin;
         }
 
@@ -367,7 +376,7 @@ define(['angular', 'services'], function (angular) {
             "occupation": "",
             "citizen_resident": false,
             "contact_num": "",
-            "checkin_time": "",
+            "checkin_time": new Date(),
             "allergies": [
                 ""
             ],
@@ -426,11 +435,8 @@ define(['angular', 'services'], function (angular) {
       };
 
       $scope.createPatient = function(nhi) {
-        var data = {"nhi": nhi};
-        var url = "/patients";
-        $http.post(url, data).success(function(data, status, headers, config) {
-          $scope.displayCheckinCreate(nhi);
-        });
+        $scope.isNewPatient = true;
+        $scope.displayCheckinCreate(nhi);
       };
 
       $scope.cancelForm = function() {
@@ -452,9 +458,27 @@ define(['angular', 'services'], function (angular) {
           $scope.checkin.family_hist.splice($scope.checkin.family_hist.length-1,1);
         }
 
-        $http.post('/patients/' + $scope.patientNHI.toString() + '/checkins', $scope.checkin).success(function (data, status, headers, config) {
-          $location.path('/');
-        });
+        $scope.checkin.checkin_time = $scope.checkin.checkin_time.toISOString();
+        $scope.checkin.checkin_time = $scope.checkin.checkin_time.substring(0, $scope.checkin.checkin_time.length-1);
+        
+        if ($scope.isNewPatient) {
+          // bundle data and Send req to /patients to create the patient at the same time
+          var data = {};
+          data.nhi = $scope.patientNHI;
+          data.checkin = $scope.checkin;
+
+          $http.post('/patients', data).success(function(data, status, headers, config) {
+            $location.path('/');
+          });
+
+        } else {
+          // send it to /patients/nhi/checkins to add it to thier list
+          $http.post('/patients/' + $scope.patientNHI.toString() + '/checkins', $scope.checkin).success(function (data, status, headers, config) {
+            $location.path('/');
+          });
+        }
+
+        
       };
     }
   ]);
