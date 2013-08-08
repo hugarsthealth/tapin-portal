@@ -1,19 +1,19 @@
 <div ng-conroller="AddCheckinCtrl">
 	<div ng-hide="makingCheckin">
 		<h2>Select a patient to create a check in for</h2>
-		<label>Filter by: </label>
-		<select class="input-small" ng-model="searchBy" ng-change="searchByChange()">
-			<option value="name">Name</option>
-			<option value="nhi">NHI</option>
-		</select>
-		<input type="search" class="input-xlarge search-query" ng-change="searchBarChange()" ng-model="queryString">
-		
-		<ul>
-			<li ng-click="displayCheckinCreate(patient.nhi)" ng-repeat="patient in filteredPatients = (patients | filter:query)">
-				<p><[patient.nhi]></p>
-				<p><[patient.name]></p>
-			</li>
-		</ul>
+		<form ><label>Filter by: </label>
+				<select class="input-small" ng-model="searchBy" ng-change="searchByChange()">
+					<option value="name">Name</option>
+					<option value="nhi">NHI</option>
+				</select>
+				<input type="search" class="input-xlarge search-query" ng-change="searchBarChange()" ng-model="queryString">
+				
+				<ul>
+					<li ng-click="displayCheckinCreate(patient.nhi)" ng-repeat="patient in filteredPatients = (patients | filter:query)">
+						<p><[patient.nhi]></p>
+						<p><[patient.name]></p>
+					</li>
+				</ul></form>
 		<p ng-hide="filteredPatients.length">We can't find the patient you're looking for. <span style="color: blue" ng-click="newPatient()">Create a new one?</span></p>
 		<p ng-show="creatingPatient">Enter new patients NHI number: <input type="text" ng-model="patientNHI"><button ng-click="createPatient(patientNHI)">Confirm</button></p>
 	</div>
@@ -51,7 +51,7 @@
 			<div class="control-group">
 				<label class="control-label">Date Of Birth</label>
 				<div class="controls">
-					<input type="text" ng-model="checkin.dob">
+					<input type="date" ng-model="checkin.dob">
 				</div>
 			</div>
 
@@ -80,7 +80,7 @@
 			<div class="control-group">
 				<label class="control-label">Check In Time</label>
 				<div class="controls">
-					<input type="text" ng-model="checkin.checkin_time">
+					<input type="datetime" ng-model="checkin.checkin_time">
 				</div>
 			</div>
 

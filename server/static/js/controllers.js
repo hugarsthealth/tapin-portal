@@ -312,6 +312,7 @@ define(['angular', 'services'], function (angular) {
         if (checkin !== null) {
           delete checkin.patient_nhi;
           delete checkin.checkin_id;
+          checkin.checkin_time = new Date();
           return checkin;
         }
 
@@ -324,7 +325,7 @@ define(['angular', 'services'], function (angular) {
             "occupation": "",
             "citizen_resident": false,
             "contact_num": "",
-            "checkin_time": "",
+            "checkin_time": new Date(),
             "allergies": [
                 ""
             ],
