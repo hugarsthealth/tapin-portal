@@ -1,7 +1,7 @@
 <div ng-controller="AppointmentCardCtrl" class="card" ng-class="patient.latest_checkin.gender.toLowerCase()">
   <!-- This all stops working if a patient has never checked in :S -->
 
-  <a class="card-summary">
+  <a class="card-summary" href="#/patients/<[ patient.nhi ]>">
       <h5><[patient.latest_checkin.firstname]> <[patient.latest_checkin.lastname]> <span class="patient-nhi">(<[patient.nhi]>)</span></h5>
   </a>
 
