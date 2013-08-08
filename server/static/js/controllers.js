@@ -174,9 +174,9 @@ define(['angular', 'services'], function (angular) {
     }
   ])
 
-  .controller('PatientListCtrl', ['$scope', '$cookies', '$location', 'Patient', 'Appointment',
+  .controller('PatientListCtrl', ['$scope', '$cookies', '$location', '$timeout', 'Patient', 'Appointment',
     // Controller for the entire list of patients
-    function ($scope, $cookies, $location, Patient, Appointment){
+    function ($scope, $cookies, $location, $timeout, Patient, Appointment){
       if (!('department' in $cookies)) {
         $location.path('/');
       }
@@ -189,8 +189,51 @@ define(['angular', 'services'], function (angular) {
 
       $scope.appointments = Appointment.query({});
 
-      $scope.orderProp = 'patient_id';
       $scope.searchBy = "fullname";
+
+      var self = this;
+
+
+      (function getNewPatients() {
+        console.log("updating patients");
+
+        var newPatients = Patient.query({}, function() {
+          newPatients.forEach(function (newPatient, i) {
+            var exists = false;
+
+            $scope.patients.forEach(function(oldPatient, j) {
+              if (newPatient.nhi === oldPatient.nhi) {
+                exists = true;
+                if (newPatient.latest_checkin.checkin_time != oldPatient.latest_checkin.checkin_time) {
+                  console.log("new checkin!");
+
+                  // Assume the new checkin is more recent than existing ones
+                  $scope.patients.splice(j, 1);
+                  $scope.patients.unshift(newPatient);
+                }
+              }
+            });
+
+            if (!exists) {
+              console.log("new patient!");
+              $scope.patients.push(newPatient);
+            }
+          });
+        });
+
+        $scope.patients.sort(function(a, b) {
+          if (a.latest_checkin.checkin_time < b.latest_checkin.checkin_time)
+            return 1;
+
+          if (a.latest_checkin.checkin_time > b.latest_checkin.checkin_time)
+            return -1;
+
+          return 0;
+        });
+
+        $timeout(getNewPatients, 5000);
+      })();
+
 
       $scope.deletePatient = function(index) {
         var deleted = $scope.patients.splice(index, 1)[0];
