@@ -23,6 +23,19 @@
 	<div class="row">
 		<div class="span6">
 			<ul class="recent-patient-list">
+				<li>
+					<div class="card">
+						<a href="/#/add_checkin" class="card-summary">
+						    <h5>Manually check in a patient</h5>
+						</a>
+
+						<div class="card-actions">
+						  <a href="/#/add_checkin" class="card-action btn btn-info">
+						    <i class="icon-plus"></i>
+						  </a>
+						</div>
+					</div>
+				</li>
 				<li ng-repeat="patient in patients | filter:query" ng-animate="'custom'" ng-include src="'static/partials/patient_card.html'">
 				</li>
 			</ul>

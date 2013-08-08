@@ -7,6 +7,10 @@ define(['angular'], function (angular) {
     return $resource('/patients/:nhi');
   })
 
+  .factory('PatientSummary', function($resource) {
+    return $resource('/patient_summaries/:nhi');
+  })
+
   .factory('CheckIn', function($resource) {
     return $resource('/patients/:nhi/checkins/:checkin_id');
   })

@@ -26,6 +26,11 @@ define(['angular', 'app'], function(angular, app) {
         templateUrl: 'static/partials/checkin.html',
         controller: 'CheckInCtrl'
       })
+      .when('/add_checkin',
+      {
+        templateUrl: 'static/partials/add_checkin.html',
+        controller: 'AddCheckinCtrl'
+      })
       .otherwise(
       {
         redirectTo: "/"
