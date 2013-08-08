@@ -43,6 +43,7 @@
 				<dd ng-show="currentlyEditing"><input ng-model="checkin.smoker" type="checkbox"></input></dd>
 				<dd ng-hide="currentlyEditing"><[checkin.smoker]></dd>
 
+				<div ng-show="shouldShowList(checkin.medical_conditions)">
 				<dt>Medical Conditions</dt>
 				<dd ng-show="currentlyEditing" >
 					<ul >
@@ -59,7 +60,9 @@
 						<li ng-repeat="medical_condition in checkin.medical_conditions"> <[medical_condition]> </li>
 					</ul>
 				</dd>
+				</div>
 
+				<div ng-show="shouldShowList(checkin.allergies)">
 				<dt>Allergies</dt>
 				<dd ng-show="currentlyEditing" >
 					<ul >
@@ -76,6 +79,7 @@
 						<li ng-repeat="allergy in checkin.allergies"> <[allergy]> </li>
 					</ul>
 				</dd>
+				</div>
 
 				<div ng-show="checkin.overseas_recently">
 				<dt>Overseas Destinations</dt>
@@ -96,6 +100,7 @@
 				</dd>
 				</div>
 
+				<div ng-show="shouldShowList(checkin.family_hist)">
 				<dt>Family History</dt>
 				<dd ng-show="currentlyEditing">
 					<ul >
@@ -112,6 +117,7 @@
 						<li ng-repeat="family_hist in checkin.family_hist"> <[family_hist]> </li>
 					</ul>
 				</dd>
+				</div>
 			</dl>
 	  	</div>
   	</div>

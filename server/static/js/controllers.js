@@ -31,6 +31,10 @@ define(['angular', 'services'], function (angular) {
       $scope.editingList = null;
       $scope.editingPos = null;
 
+      $scope.shouldShowList = function(list) {
+        return list || $scope.currentlyEditing;
+      };
+
       $scope.editCheckIn = function () {
         $scope.currentlyEditing = true;
       };
