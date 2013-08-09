@@ -217,6 +217,8 @@ define(['angular', 'services'], function (angular) {
       $scope.appointments = Appointment.query({});
       $scope.searchBy = "fullname";
 
+      var patientPromise;
+
       (function getNewPatients() {
         // console.log("updating patients");
 
@@ -254,8 +256,12 @@ define(['angular', 'services'], function (angular) {
           return 0;
         });
 
-        $timeout(getNewPatients, 5000);
+        patientPromise = $timeout(getNewPatients, 5000);
       })();
+
+      $scope.$on('$destroy', function() {
+        $timeout.cancel(patientPromise);  // this is a hack
+      });
 
       $scope.deletePatient = function(index) {
         var deleted = $scope.patients.splice(index, 1)[0];
@@ -502,7 +508,7 @@ define(['angular', 'services'], function (angular) {
 
         $scope.checkin.checkin_time = $scope.checkin.checkin_time.toISOString();
         $scope.checkin.checkin_time = $scope.checkin.checkin_time.substring(0, $scope.checkin.checkin_time.length-1);
-        
+
         if ($scope.isNewPatient) {
           // bundle data and Send req to /patients to create the patient at the same time
           var data = {};
@@ -520,7 +526,7 @@ define(['angular', 'services'], function (angular) {
           });
         }
 
-        
+
       };
     }
   ]);
