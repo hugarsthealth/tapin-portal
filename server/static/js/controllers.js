@@ -32,27 +32,33 @@ define(['angular', 'services'], function (angular) {
       $scope.editingPos = null;
 
       $scope.shouldShowList = function(list) {
-        return list || $scope.currentlyEditing;
+        console.log(list);
+        // console.log("hello " + $scope.currentlyEditing);
+        // console.log(list || $scope.currentlyEditing);
+        return (list);
       };
 
       $scope.editCheckIn = function () {
+        [$scope.checkin.overseas_dests, $scope.checkin.allergies, $scope.checkin.medical_conditions, $scope.checkin.family_hist].forEach(function(list) {
+          console.log("in for each");
+          if (list == []) {
+            list = [""];
+          }
+        });
+
         $scope.currentlyEditing = true;
+      };
+
+      var isEmptyString = function(element, index, array) {
+        return element === "";
       };
 
       $scope.saveChanges = function () {
         // Need all these checks to delete empty fields from the list
-        if ($scope.checkin.overseas_dests[$scope.checkin.overseas_dests.length-1] === "") {
-          $scope.checkin.overseas_dests.splice($scope.checkin.overseas_dests.length-1,1);
-        }
-        if ($scope.checkin.allergies[$scope.checkin.allergies.length-1] === "") {
-          $scope.checkin.allergies.splice($scope.checkin.allergies.length-1,1);
-        }
-        if ($scope.checkin.medical_conditions[$scope.checkin.medical_conditions.length-1] === "") {
-          $scope.checkin.medical_conditions.splice($scope.checkin.medical_conditions.length-1,1);
-        }
-        if ($scope.checkin.family_hist[$scope.checkin.family_hist.length-1] === "") {
-          $scope.checkin.family_hist.splice($scope.checkin.family_hist.length-1,1);
-        }
+        $scope.checkin.overseas_dests = $scope.checkin.overseas_dests.filter(isEmptyString);
+        $scope.checkin.allergies = $scope.checkin.allergies.filter(isEmptyString);
+        $scope.checkin.medical_conditions = $scope.checkin.medical_conditions.filter(isEmptyString);
+        $scope.checkin.family_hist = $scope.checkin.family_hist.filter(isEmptyString);
 
         // Gotta save that stuff
         $scope.currentlyEditing = false;
@@ -91,6 +97,9 @@ define(['angular', 'services'], function (angular) {
 
       $scope.addToList = function(viList) {
         console.log(viList);
+        // if (viList === null) {
+        //   viList = [];
+        // }
         for (var i = 0; i< viList.length ; i++) {
           if (viList[i] === "") {
             toastr.error("Can not create another blank entry.");
@@ -101,7 +110,21 @@ define(['angular', 'services'], function (angular) {
       };
 
       $scope.patient = Patient.get({"nhi": $routeParams.nhi});
-      $scope.checkin = CheckIn.get({"nhi": $routeParams.nhi, "checkin_id": $routeParams.checkin_id});
+      $scope.checkin = CheckIn.get({"nhi": $routeParams.nhi, "checkin_id": $routeParams.checkin_id}, function() {
+        console.log("In function");
+        if ($scope.checkin.allergies === null) {
+          $scope.checkin.allergies = [];
+        }
+        if ($scope.checkin.overseas_dests === null) {
+          $scope.checkin.overseas_dests = [];
+        }
+        if ($scope.checkin.family_hist === null) {
+          $scope.checkin.family_hist = [];
+        }
+        if ($scope.checkin.medical_conditions === null) {
+          $scope.checkin.medical_conditions = [];
+        }
+      });
     }
   ])
 
@@ -195,7 +218,7 @@ define(['angular', 'services'], function (angular) {
       $scope.searchBy = "fullname";
 
       (function getNewPatients() {
-        console.log("updating patients");
+        // console.log("updating patients");
 
         var newPatients = Patient.query({}, function() {
           newPatients.forEach(function (newPatient, i) {
@@ -458,20 +481,24 @@ define(['angular', 'services'], function (angular) {
         $route.reload();
       };
 
+      var isEmptyString = function(element, index, array) {
+        return element !== "";
+      };
+
       $scope.submitForm = function() {
         // Need all these checks to delete empty fields from the list
-        if ($scope.checkin.overseas_dests[$scope.checkin.overseas_dests.length-1] === "") {
-          $scope.checkin.overseas_dests.splice($scope.checkin.overseas_dests.length-1,1);
-        }
-        if ($scope.checkin.allergies[$scope.checkin.allergies.length-1] === "") {
-          $scope.checkin.allergies.splice($scope.checkin.allergies.length-1,1);
-        }
-        if ($scope.checkin.medical_conditions[$scope.checkin.medical_conditions.length-1] === "") {
-          $scope.checkin.medical_conditions.splice($scope.checkin.medical_conditions.length-1,1);
-        }
-        if ($scope.checkin.family_hist[$scope.checkin.family_hist.length-1] === "") {
-          $scope.checkin.family_hist.splice($scope.checkin.family_hist.length-1,1);
-        }
+        $scope.checkin.overseas_dests = $scope.checkin.overseas_dests.filter(isEmptyString);
+        $scope.checkin.allergies = $scope.checkin.allergies.filter(isEmptyString);
+        $scope.checkin.medical_conditions = $scope.checkin.medical_conditions.filter(isEmptyString);
+        $scope.checkin.family_hist = $scope.checkin.family_hist.filter(isEmptyString);
+
+        console.log($scope.checkin.overseas_dests);
+        console.log($scope.checkin.allergies);
+        console.log($scope.checkin.medical_conditions);
+        console.log($scope.checkin.family_hist);
+
+
+        
 
         $scope.checkin.checkin_time = $scope.checkin.checkin_time.toISOString();
         $scope.checkin.checkin_time = $scope.checkin.checkin_time.substring(0, $scope.checkin.checkin_time.length-1);
