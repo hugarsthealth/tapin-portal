@@ -364,6 +364,20 @@ define(['angular', 'services'], function (angular) {
           delete checkin.patient_nhi;
           delete checkin.checkin_id;
           checkin.checkin_time = new Date();
+          console.log("starting the ifs");
+          if (checkin.allergies === null) {
+            checkin.allergies = [""];
+          }
+          if (checkin.overseas_dests === null) {
+            checkin.overseas_dests = [""];
+          }
+          if (checkin.family_hist === null) {
+            checkin.family_hist = [""];
+          }
+          if (checkin.medical_conditions === null) {
+            checkin.medical_conditions = [""];
+          }
+          console.log("ending the ifs");
           return checkin;
         }
 
@@ -413,6 +427,7 @@ define(['angular', 'services'], function (angular) {
       };
 
       $scope.prepareChangeIntoList = function (element, viList) {
+        console.log("preparing change");
         $scope.editingList = viList;
         $scope.editingPos = viList.indexOf(element);
         console.log("preparing edit for " + element + " at " + viList.indexOf(element));
