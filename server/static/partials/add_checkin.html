@@ -1,26 +1,38 @@
 <div ng-conroller="AddCheckinCtrl">
 	<div ng-hide="makingCheckin">
 		<h2>Select a patient to create a check in for</h2>
-		<form ><label>Filter by: </label>
-				<select class="input-small" ng-model="searchBy" ng-change="searchByChange()">
-					<option value="name">Name</option>
-					<option value="nhi">NHI</option>
-				</select>
-				<input type="search" class="input-xlarge search-query" ng-change="searchBarChange()" ng-model="queryString">
-				
-				<ul>
-					<li ng-click="displayCheckinCreate(patient.nhi)" ng-repeat="patient in filteredPatients = (patients | filter:query)">
-						<p><[patient.nhi]></p>
-						<p><[patient.name]></p>
-					</li>
-				</ul></form>
+		<form class="form-inline">
+			<label for="patient-search">Filter by:</label>
+			<select class="input-small" ng-model="searchBy" ng-change="searchByChange()">
+				<option value="name">Name</option>
+				<option value="nhi">NHI</option>
+			</select>
+			<input type="search" id="patient-search" class="input-xlarge search-query" ng-change="searchBarChange()" ng-model="queryString">
+		</form>
+
+		<ul class="patient-search-list">
+			<li ng-click="displayCheckinCreate(patient.nhi)" ng-repeat="patient in filteredPatients = (patients | filter:query)" ng-animate="'custom'">
+				<div ng-controller="PatientCardCtrl" class="card" ng-class="patient.latest_checkin.gender.toLowerCase()">
+
+				  <a class="card-summary" href="#/patients/<[ patient.nhi ]>">
+				      <h5><[patient.name]> <span class="patient-nhi">(<[patient.nhi]>)</span></h5>
+				  </a>
+
+				  <div class="card-actions">
+				    <button class="card-action btn btn-info">
+				      <i class="icon-angle-right"></i>
+				    </button>
+				  </div>
+			</li>
+		</ul>
+
 		<p ng-hide="filteredPatients.length">We can't find the patient you're looking for. <span style="color: blue" ng-click="newPatient()">Create a new one?</span></p>
 		<p ng-show="creatingPatient">Enter new patients NHI number: <input type="text" ng-model="patientNHI"><button ng-click="createPatient(patientNHI)">Confirm</button></p>
 	</div>
 	<div ng-show="makingCheckin">
 		<h3>Making checkin for patient with NHI <[ patientNHI ]></h3>
 		<form class="form-horizontal">
-			
+
 			<div class="control-group">
 				<label class="control-label">First name</label>
 				<div class="controls">
@@ -94,7 +106,7 @@
 			<div class="control-group">
 				<label class="control-label">Height</label>
 				<div class="controls">
-					<input class="input-small" type="number" ng-model="checkin.height_value" /> 
+					<input class="input-small" type="number" ng-model="checkin.height_value" />
 					<select class="input-small" ng-model="checkin.height_unit">
 						<option value="cm">cm</option>
 						<option value="inches">inches</option>
@@ -105,7 +117,7 @@
 			<div class="control-group">
 				<label class="control-label">Weight</label>
 				<div class="controls" >
-					<input class="input-small" type="number" type="text" ng-model="checkin.weight_value"/> 
+					<input class="input-small" type="number" type="text" ng-model="checkin.weight_value"/>
 					<select class="input-small" ng-model="checkin.weight_unit">
 						<option value="kg">kgs</option>
 						<option value="lb">lbs</option>
@@ -124,7 +136,7 @@
 				<label class="control-label">Drinker</label>
 				<div class="controls">
 					<input ng-model="checkin.drinker" type="checkbox"></input>
-				</div>	
+				</div>
 			</div>
 
 			<div class="control-group">
@@ -168,7 +180,7 @@
 					<input ng-model="checkin.overseas_recently" type="checkbox"></input>
 				</div>
 			</div>
-			
+
 			<div ng-show="checkin.overseas_recently">
 			<div class="control-group">
 				<label class="control-label">Overseas Destinations</label>
