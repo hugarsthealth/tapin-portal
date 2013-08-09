@@ -216,7 +216,7 @@ define(['angular', 'services'], function (angular) {
 
             if (!exists) {
               console.log("new patient!");
-              $scope.patients.push(newPatient);
+              $scope.patients.unshift(newPatient);
             }
           });
         });
