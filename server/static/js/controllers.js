@@ -33,18 +33,18 @@ define(['angular', 'services'], function (angular) {
 
       $scope.shouldShowList = function(list) {
         console.log(list);
-        // console.log("hello " + $scope.currentlyEditing);
+        console.log("hello " + $scope.currentlyEditing);
         // console.log(list || $scope.currentlyEditing);
-        return (list);
+        return ($scope.currentlyEditing || list);
       };
 
       $scope.editCheckIn = function () {
-        [$scope.checkin.overseas_dests, $scope.checkin.allergies, $scope.checkin.medical_conditions, $scope.checkin.family_hist].forEach(function(list) {
-          console.log("in for each");
-          if (list == []) {
-            list = [""];
-          }
-        });
+        // [$scope.checkin.overseas_dests, $scope.checkin.allergies, $scope.checkin.medical_conditions, $scope.checkin.family_hist].forEach(function(list) {
+        //   console.log("in for each");
+        //   if (list == []) {
+        //     list = [""];
+        //   }
+        // });
 
         $scope.currentlyEditing = true;
       };
